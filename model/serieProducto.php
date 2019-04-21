@@ -75,7 +75,7 @@ class serieProducto {
         $data_source = new DataSource();
         $filas = 0;
 
-        $filas = $data_source->insertmultiple("insert into serie_producto (serie,id_producto ,cantidad) values(?,?,?)", $series
+        $filas = $data_source->insertmultiple("insert into serie_producto(serie,id_producto ,cantidad) values(?,?,?)", $series
         );
         return $filas;
     }

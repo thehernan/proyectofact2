@@ -1177,42 +1177,67 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
     var itemv = 1;
     var descrip;
     var pd=0;
-    for (var i = 0 ; i < cont ; i++){
-         descrip = $('.descripcionprod'+i).val();
-         if(descrip == ''){
-             itemv = 0;
-             pd = i;
-             console.log(pd);
-            
-         }
-        
-    }
+    
+     $("textarea[name='descripcionprod[]']").each(function(indice, elemento) {
+           // console.log('El elemento con 1el índice '+indice+' contiene '+$(elemento).val());1111111111
+//           alert($(elemento).val());
+           if($(elemento).val() == ''){
+               itemv = 0;
+               pd = $(elemento).attr('ident');
+           }
+
+    });
+   
     var itemvc = 1;
     var cantidad;
     var pc=0;
-    for (var i = 0 ; i < cont ; i++){
-         cantidad = $('.cantidad'+i).val();
-         if(cantidad == '' || cantidad == 0 || isNaN(cantidad) ){
-             itemvc = 0;
-             pc=i;
-         }
-        
-    }
+    
+    $("input[name='cantidad[]']").each(function(indice, elemento) {
+           // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+           
+           if($(elemento).val() == '' || $(elemento).val() == 0 || isNaN($(elemento).val())){
+               itemvc = 0;
+               pc = $(elemento).attr('ident');
+           }
+
+    });
+    
+    
     var itemvp = 1;
     var precio;
     var pp=0;
-    for (var i = 0 ; i < cont ; i++){
-         precio = $('.precio'+i).val();
-         if(precio == '' || precio ==0 || isNaN(precio)){
-             itemvp = 0;
-            pp=i;
-             
-         }
-        
-    }
+    
+    $("input[name='precio[]']").each(function(indice, elemento) {
+           // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+           if($(elemento).val() == '' || $(elemento).val() == 0 || isNaN($(elemento).val())){
+               itemvp = 0;
+               pp = $(elemento).attr('ident');
+           }
+
+    });
+    
+    var itemvs=1;
+    var ps =0 ;
+        $("input[name='serieprod[]']").each(function(indice, elemento) {
+           // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+//          alert('fueraif');
+           if($(elemento).val() == ''){
+//               itemvp = 0;
+//               pp = $(elemento).attr('ident');
+               
+               itemvs=0;
+               ps =  $(elemento).attr('ident');
+//               $(elemento).focus();
+                
+//                return false;
+           }
+
+    });
+    
+    
     if(itemv == 0 ){
         $('.descripcionprod'+pd).focus();
-        swal("Alerta!", "Agregue descripción al item", "info");
+        swal("Alerta!", "Ingrese descripción al item", "info");
         
         return false;
         
@@ -1220,7 +1245,7 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
     }
     if(itemvc == 0 ){
         $('.cantidad'+pc).focus();
-        swal("Alerta!", "Agregue cantidad al item", "info");
+        swal("Alerta!", "Ingrese cantidad al item", "info");
         
         return false;
         
@@ -1228,8 +1253,16 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
     }
     if(itemvp == 0 ){
         $('.precio'+pp).focus();
-        swal("Alerta!", "Agregue precio al item", "info");
+        swal("Alerta!", "Ingrese precio al item", "info");
         
+        return false;
+        
+        
+    }
+    if(itemvs == 0 ){
+        $('.serieprod'+ps).focus();
+        
+        swal("Alerta!", "Ingrese serie de producto", "info");
         return false;
         
         

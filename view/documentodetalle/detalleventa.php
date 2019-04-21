@@ -122,12 +122,12 @@ $total = 0;
 
 <?php foreach ($detalles as $detalle) { ?>
             //              var newDiv = document.createElement("div"); 
-    //              var newContent = document.createTextNode("Hola!¿Qué tal?"); 
-    //              newDiv.appendChild(newContent); //añade texto al div creado. 
-    //
-    //              // añade el elemento creado y su contenido al DOM 
-    //              var currentDiv = document.getElementById("div1"); 
-    //              document.getElementById('#tabla').innerHTML (newDiv, currentDiv);
+            //              var newContent = document.createTextNode("Hola!¿Qué tal?"); 
+            //              newDiv.appendChild(newContent); //añade texto al div creado. 
+            //
+            //              // añade el elemento creado y su contenido al DOM 
+            //              var currentDiv = document.getElementById("div1"); 
+            //              document.getElementById('#tabla').innerHTML (newDiv, currentDiv);
 
 
             ////////////////////////////// div /////////////
@@ -166,7 +166,7 @@ $total = 0;
             //////////////////////////////////////////////////////////////////
             //////////// id prod ////////////////////
             var input = document.createElement('input');
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
             input.setAttribute('type', 'hidden');
             input.setAttribute('class', 'form-control id' + cont);
             input.setAttribute('id', 'id[]');
@@ -189,7 +189,7 @@ $total = 0;
 
             ////// input ///////////
             var input = document.createElement('input');
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
             input.setAttribute('type', 'text');
             input.setAttribute('class', 'form-control codigo' + cont);
             input.setAttribute('id', 'codigo[]');
@@ -213,7 +213,7 @@ $total = 0;
 
             ////// input ///////////
             var input = document.createElement('input');
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
             input.setAttribute('type', 'text');
             input.setAttribute('class', 'form-control descripcionprod' + cont);
             input.setAttribute('id', 'descripcionprod[]');
@@ -244,9 +244,9 @@ $total = 0;
             ////// select ///////////
             var select = document.createElement('select');
 
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
 
-    //           select.last().addClass('form-control show-tick');
+            //           select.last().addClass('form-control show-tick');
             select.setAttribute('id', 'unidad');
             select.setAttribute('name', 'unidad[]');
             select.setAttribute('data-live-search', 'true');
@@ -283,9 +283,9 @@ $total = 0;
             ////// select ///////////
             var selectigv = document.createElement('select');
 
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
 
-    //           select.last().addClass('form-control show-tick');
+            //           select.last().addClass('form-control show-tick');
             selectigv.setAttribute('id', 'tipoigv');
             selectigv.setAttribute('name', 'tipoigv[]');
             selectigv.setAttribute('data-live-search', 'true');
@@ -320,7 +320,7 @@ $total = 0;
 
             ////// input ///////////
             var input = document.createElement('input');
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
             input.setAttribute('type', 'text');
             input.setAttribute('class', 'form-control cantidad' + cont);
             input.setAttribute('id', 'cantidad[]');
@@ -349,7 +349,7 @@ $total = 0;
 
             ////// input ///////////
             var input = document.createElement('input');
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
             input.setAttribute('type', 'text');
             input.setAttribute('class', 'form-control precio' + cont);
             input.setAttribute('id', 'precio[]');
@@ -379,7 +379,7 @@ $total = 0;
 
             ////// input ///////////
             var input = document.createElement('input');
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
             input.setAttribute('type', 'text');
             input.setAttribute('class', 'form-control subtotal' + cont);
             input.setAttribute('readonly', 'true');
@@ -404,7 +404,7 @@ $total = 0;
 
             ////// input ///////////
             var inputtotal = document.createElement('input');
-    //           divcol.createTextNode(input);
+            //           divcol.createTextNode(input);
             inputtotal.setAttribute('type', 'text');
             inputtotal.setAttribute('class', 'form-control total' + cont);
             inputtotal.setAttribute('readonly', 'true');
@@ -427,7 +427,7 @@ $total = 0;
             var btn = document.createElement('button');
             btn.setAttribute('type', 'button');
             btn.setAttribute('class', 'btn btn-danger waves-effect');
-    //           btn.setAttribute('id','btneliminar');
+            //           btn.setAttribute('id','btneliminar');
 
 
             btn.appendChild(span);
@@ -478,12 +478,12 @@ $total = 0;
                                     dataType: 'json',
                                     delay: 100
                                 });
-    //                          .done(function (data){
-    //                      console.log('done'+data);
-    ////                      console.log('select dano'+ui);
-    //                      
-    //                     
-    //                  });
+                                //                          .done(function (data){
+                                //                      console.log('done'+data);
+                                ////                      console.log('select dano'+ui);
+                                //                      
+                                //                     
+                                //                  });
                             },
 
                     select: function (event, ui) {
@@ -509,17 +509,17 @@ $total = 0;
                         $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
                         $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
                         $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + totalgen.toFixed(2));
-    //                    $('#idcodsunat').val(ui.item.id);
-    //                    $('#codigo').val(ui.item.codigo);                    
+                        //                    $('#idcodsunat').val(ui.item.id);
+                        //                    $('#codigo').val(ui.item.codigo);                    
                         console.log(ui);
-    //                    console.log('select  '+ui);
+                        //                    console.log('select  '+ui);
                     }
 
 
 
                 });
 
-    //            event.preventDefault();
+                //            event.preventDefault();
             });
 
 
@@ -567,7 +567,7 @@ $total = 0;
                 var totalgen = 0;
                 console.log('cont ' + cont);
                 for (var j = 0; j < cont; j++) {
-    //                console.log('i cantidad'+i);
+                    //                console.log('i cantidad'+i);
                     totalgen = parseFloat(totalgen) + parseFloat($('.total' + j).val());
 
                 }
@@ -582,7 +582,7 @@ $total = 0;
             });
 
 
-    //          
+            //          
 
 
 
@@ -597,18 +597,18 @@ $total = 0;
             cont++;
             $('#cont').val(cont);
 
-    //           var fila = $("#tabla  div:eq(0)").clone();
-    //           fila.appendTo("#tabla");
-    //            
-    //            
-    //            /////////////////////////////////////////////
-    //            var op = $('#unidad').clone(true,true);
-    //            
-    //            var selectedValue = $("#unidad option:selected").val();
-    //            op.find("option[value = '" + selectedValue + "']").attr("selected", "selected");
-    //            op.attr('class','form-control show-tick');
-    ////            $('#tabla').append(op);
-    //            op.appendTo('#select');
+            //           var fila = $("#tabla  div:eq(0)").clone();
+            //           fila.appendTo("#tabla");
+            //            
+            //            
+            //            /////////////////////////////////////////////
+            //            var op = $('#unidad').clone(true,true);
+            //            
+            //            var selectedValue = $("#unidad option:selected").val();
+            //            op.find("option[value = '" + selectedValue + "']").attr("selected", "selected");
+            //            op.attr('class','form-control show-tick');
+            ////            $('#tabla').append(op);
+            //            op.appendTo('#select');
 
             //////////////////// calcula el total general , gravada , igv
             var totalgen = 0;
@@ -690,7 +690,7 @@ $total = 0;
             var diveliminar = document.createElement('div');
             diveliminar.setAttribute('class', 'eliminar col-lg-1 col-md-1 col-sm-2 col-xs-2');
             diveliminar.setAttribute('ident', cont);
-            
+
 
 
             var divserie = document.createElement('div');
@@ -784,9 +784,11 @@ $total = 0;
             select.setAttribute('name', 'unidad[]');
             select.setAttribute('data-live-search', 'true');
             select.className = 'form-control show-tick';
-<?php $i = 0;
+<?php
+$i = 0;
 foreach ($unidades as $unidad) {
-    $i++; ?>
+    $i++;
+    ?>
 
                 var option = document.createElement("option");
                 option.innerHTML = '<?= trim($unidad->getDescripcion()) ?>';
@@ -849,7 +851,7 @@ foreach ($unidades as $unidad) {
 //           divcol.createTextNode(input);
             input.setAttribute('type', 'text');
             input.setAttribute('class', 'form-control cantidad' + cont);
-            input.setAttribute('id', 'cantidad' + cont);
+            input.setAttribute('id', 'cantidad[]');
             input.setAttribute('name', 'cantidad[]');
             input.setAttribute('placeholder', 'Cantidad');
             input.setAttribute('ident', cont);
@@ -972,12 +974,12 @@ foreach ($unidades as $unidad) {
             div.appendChild(divcol7);
             div.appendChild(divcol8);
             div.appendChild(diveliminar);
-            
-            
+
+
 //            var divrowserie = document.createElement('div');
 //            divrowserie.setAttribute('class', 'row ');
 //            divrowserie.appendChild(divserie);
-            
+
 //            div.appendChild(divserie);
 
 
@@ -1027,23 +1029,21 @@ foreach ($unidades as $unidad) {
                             },
 
                     select: function (event, ui) {
-                        event.preventDefault();
+                        var subtotal = 0, total=0;
                         $('.id' + (ident)).val(ui.item.id);
                         $('.codigo' + (ident)).val(ui.item.codigo);
                         $('.precio' + (ident)).val(ui.item.preciov);
                         $('.descripcionprod' + (ident)).val(ui.item.descripcion);
                         var incluir = ui.item.incluir;
-                        var totalgen = 0;
-                        var cantidad = $('.cantidad' + ident).val();
-                        console.log('cant ' + cantidad);
-                        var precio = ui.item.preciov;
-                        var total = 0;
+                        
+                        
                         ///////////////// creo colapce para incluir series ////////////////
 
                         if (incluir == 'Si') {
 //                        var series = document.getElementById('serie'+cont);
 //                        console.log(series);
-                            $('.cantidad' + ident).attr('disabled','true');
+                            $('.cantidad' + ident).val(0);
+                            $('.cantidad' + ident).attr('readonly','true');
                             var divpanels = document.createElement('div');
                             divpanels.setAttribute('class', 'panel panel-successs');
                             var panelheding = document.createElement('div');
@@ -1096,31 +1096,36 @@ foreach ($unidades as $unidad) {
 
 
 
+                        }else {
+                            
+                              $('.divseries' + ident).empty();
+                               $('.cantidad' + ident).removeAttr('readonly');
+                            
                         }
-
-
+                        
+                        /////// calculo item ///////
+                        var cantidad = $('.cantidad' + ident).val();
+                        console.log('cant ' + cantidad);
+                        
+                        var precio = ui.item.preciov;
+                        
+                        total = cantidad* precio;
+                        subtotal = total /1.18;
+                        
+                        $('.total'+ident).val(total.toFixed(2));
+                        $('.subtotal'+ident).val(subtotal.toFixed(2));
+                        var total = 0;
 
 
                         ///////////////////////////////////////////////////////////////////
 
 
-                        for (var k = 0; k < cont; k++) {
-
-                            total = cantidad * precio;
-                            $('.total' + ident).val(total.toFixed(2));
-                            totalgen = parseFloat(totalgen) + parseFloat($('.total' + k).val());
-
-                        }
-                        var subtotal = totalgen / 1.18;
-                        var igv = totalgen - subtotal;
-                        console.log('totalgen' + totalgen);
-                        $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
-                        $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
-                        $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + totalgen.toFixed(2));
+                        calculartotal();
 //                    $('#idcodsunat').val(ui.item.id);
 //                    $('#codigo').val(ui.item.codigo);                    
-                        console.log(ui);
+//                        console.log(ui);
 //                    console.log('select  '+ui);
+                        event.preventDefault();
                     }
 
 
@@ -1168,13 +1173,15 @@ foreach ($unidades as $unidad) {
 //                
                 var inputserie = document.createElement('input');
                 inputserie.setAttribute('type', 'text');
-                inputserie.setAttribute('class', 'form-control serie' + iden);
+                inputserie.setAttribute('class', 'form-control serieprod' + iden);
+                inputserie.setAttribute('name', 'serieprod[]');
                 divserie.appendChild(inputserie);
 
 
                 var inputidprod = document.createElement('input');
                 inputidprod.setAttribute('type', 'hidden');
                 inputidprod.setAttribute('class', 'form-control idprod' + iden);
+                inputidprod.setAttribute('name', 'serieidprod[]');
                 inputidprod.setAttribute('value', idprod);
 
                 var btneliminar = document.createElement('button');
@@ -1186,7 +1193,7 @@ foreach ($unidades as $unidad) {
                 span.setAttribute('class', 'glyphicon glyphicon-remove');
                 btneliminar.appendChild(span);
                 divbtn.appendChild(btneliminar);
-
+                divrow.appendChild(inputidprod);
                 divrow.appendChild(divserie);
                 divrow.appendChild(divbtn);
 
@@ -1197,8 +1204,16 @@ foreach ($unidades as $unidad) {
 //                body.appendChild(btneliminar);
 
 //                i++;
-
-
+                
+                
+                var precio = $('.precio'+ iden).val();
+                var total = cant * precio;
+                var subtotal = total /1.18;
+                
+                $('.subtotal'+iden).val(subtotal.toFixed(2));
+                $('.total'+iden).val(total.toFixed(2));
+                
+                calculartotal();
 
 
             });
@@ -1216,20 +1231,7 @@ foreach ($unidades as $unidad) {
                 $('.subtotal' + ident).val(subtotal.toFixed(2));
                 $('.total' + ident).val(total.toFixed(2));
 
-                var totalgen = 0;
-
-                for (var i = 0; i < cont; i++) {
-
-                    totalgen = parseFloat(totalgen) + parseFloat($('.total' + i).val());
-
-                }
-
-                var subtotal = totalgen / 1.18;
-                var igv = totalgen - subtotal;
-                console.log('totalgen' + totalgen);
-                $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
-                $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
-                $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + totalgen.toFixed(2));
+               calculartotal();
 
 
 
@@ -1244,24 +1246,39 @@ foreach ($unidades as $unidad) {
                 $('.total' + ident).val(total.toFixed(2));
 
 
-                var totalgen = 0;
-                console.log('cont ' + cont);
-                for (var j = 0; j < cont; j++) {
-//                console.log('i cantidad'+i);
-                    totalgen = parseFloat(totalgen) + parseFloat($('.total' + j).val());
-
-                }
-                var subtotal = totalgen / 1.18;
-                var igv = totalgen - subtotal;
-
-                console.log('totalgen' + totalgen);
-                $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
-                $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
-                $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + totalgen.toFixed(2));
+                calculartotal();
 
             });
 
-         
+            $(document).on("click", ".eliminarserie" + cont, function () {
+//            function eliminarserie(idn){
+
+                var idn = $(this).attr('ident');
+
+//                alert(idn);
+
+                var cant = $('.cantidad' + idn).val();
+
+                cant--;
+
+                $('.cantidad' + idn).val(cant);
+                
+                var precio = $('.precio'+ idn).val();
+                var total = cant * precio;
+                var subtotal = total /1.18;
+                
+                $('.subtotal'+idn).val(subtotal.toFixed(2));
+                $('.total'+idn).val(total.toFixed(2));
+
+                var parent = $(this).parents().get(0);
+//            var parent1 = $(this).parents().get(1);
+                $(parent).remove();
+//            $(parent1).remove();
+
+                calculartotal();
+            });
+
+
 
 
 //          
@@ -1292,34 +1309,45 @@ foreach ($unidades as $unidad) {
 ////            $('#tabla').append(op);
 //            op.appendTo('#select');
 
+
+
+
+
+
+
+
+
         }
         
         
-        
-        
-        
-         $(document).on("click", ".eliminarserie" + cont, function () {
-//            function eliminarserie(idn){
-            
-                var idn = $(this).attr('ident');
-
-//                alert(idn);
-
-                var cant = $('.cantidad' + idn).val();
-
-                cant--;
-
-                $('.cantidad' + idn).val(cant);
-
-                var parent = $(this).parents().get(0);
-//            var parent1 = $(this).parents().get(1);
-                $(parent).remove();
-//            $(parent1).remove();
-
-
+        function calculartotal (){
+        var total = 0, subtotal = 0 ;
+        var igv = 0;
+            $("input[name='total[]']").each(function(indice, elemento) {
+               // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+               if($(elemento).val() != ''){
+                   total += parseFloat($(elemento).val());
+               }
+               
             });
+            $("input[name='subtotal[]']").each(function(indice, elemento) {
+               // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+               if($(elemento).val() != ''){
+                   subtotal += parseFloat($(elemento).val());
+               }
+               
+            });
+            
+            igv = total - subtotal;
+            
+            
+            
+            $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
+            $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
+            $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + total.toFixed(2));
         
-
+        
+        }
         ///////// FIN DE NUEVO ITEM ///////////////////
 
 
@@ -1327,37 +1355,17 @@ foreach ($unidades as $unidad) {
 
         // Evento que selecciona la fila y la edivmina 
         $(document).on("click", ".eliminar", function () {
-            
+
             var ide = $(this).attr('ident');
-            alert(ide);
+//            alert(ide);
             var parent = $(this).parents().get(0);
 //            var parent1 = $(this).parents().get(1);
-            var parentserie = $('.divseries'+ide).remove();
+            var parentserie = $('.divseries' + ide).remove();
             $(parent).remove();
-            
+
 //            cont--;
 //            $('#cont').val(cont);
-            var totalgen = 0;
-            var inputs = $('input[name^=codigo]');
-            var count = inputs.length;
-            
-            alert(count);
-            
-            for (var l = 0; l < count; l++) {
-
-                totalgen = parseFloat(totalgen) + parseFloat($('.total' + l).val());
-
-            }
-            var subtotal = totalgen / 1.18;
-            var igv = totalgen - subtotal;
-
-            console.log('totalgen' + totalgen);
-            if (isNaN(totalgen)) {
-                totalgen = 0;
-            }
-            $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
-            $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
-            $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + totalgen.toFixed(2));
+           calculartotal();
 
         });
 
@@ -1370,51 +1378,8 @@ foreach ($unidades as $unidad) {
 
 
 
+        
 
-
-
-
-
-//        $(document).on("keydown.autocomplete",".descripcionprod",function (e){
-//            $(this).autocomplete({
-//                source: '<?= base_url . 'producto/search' ?>',
-//                minLength: 3,
-//    //            data: {decrip: descrip}
-//                select: function(event, ui) {
-//                 console.log('ccoigo '+ui);
-//                    event.preventDefault();
-////                    $('#idcodsunat').val(ui.item.id);
-//                    $('.descripcionprod').val(ui.item.codigo+' - '+ui.item.descripcion);
-//                    
-//             }
-//                
-//                
-//            });
-//            
-//            
-//        )};
-
-//        
-//        $(".descripcionprod").autocomplete({
-//           
-////            var descrip = $("#cliente").val();
-//          
-//            source: '<?= base_url . 'producto/search' ?>',
-//            minLength: 3,
-////            data: {decrip: descrip}
-//            select: function(event, ui) {
-//                 console.log('ccoigo '+ui);
-//                    event.preventDefault();
-////                    $('#idcodsunat').val(ui.item.id);
-//                    $('.descripcionprod').val(ui.item.codigo+' - '+ui.item.descripcion);
-//                    
-//                    
-//              
-//                    
-//
-//
-//             }
-//        });
 //        
 
 

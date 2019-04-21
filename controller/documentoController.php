@@ -17,6 +17,7 @@ require_once 'model/sucursal.php';
 require_once 'model/Detalle.php';
 require_once 'model/tipocambio.php';
 require_once 'model/Detalle.php';
+require_once 'model/serieProducto.php';
 
 class documentoController{
     private $documento;
@@ -526,8 +527,33 @@ function insert(){
             );      
             array_push($detalles, $d);
         }
+        
         $detalle = new Detalle();
         $detalle->insert($detalles);
+        
+        
+        if(isset($_POST['serieidprod']) && isset($_POST['serieprod'])){
+            var_dump($_POST['serieprod']);
+            $idprodserie = $_POST['serieidprod'];
+            $serie = $_POST['serieprod'];
+
+            $series = array();
+            for ($i = 0; $i<count($serie); $i++){
+                $d = array(
+                    $serie[$i],
+                    $idprodserie[$i],
+                    1
+                  
+                );      
+                array_push($series, $d);
+            }    
+                $seriem = new serieProducto();
+                $seriem->insert($series);
+            
+            }
+            
+        
+        
         
         
         
