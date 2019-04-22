@@ -18,6 +18,8 @@ require_once 'model/Detalle.php';
 require_once 'model/tipocambio.php';
 require_once 'model/Detalle.php';
 require_once 'model/serieProducto.php';
+require_once 'model/documentoOtros.php';
+require_once 'model/documentoGuia.php';
 
 class documentoController{
     private $documento;
@@ -45,6 +47,8 @@ class documentoController{
         $usuarios = $this->usuario->selectAll();
         $impuestos=$this->impuesto->selectAll();
         $unidades = $this->unidad->selectAll();
+        $seriesm = new serieProducto();
+        $series = $seriesm->select(74);
         require_once 'view/layout/header.php';
         require_once 'view/documentocabecera/form_documento.php';
       
@@ -549,6 +553,46 @@ function insert(){
             }    
                 $seriem = new serieProducto();
                 $seriem->insert($series);
+            
+            }
+        if(isset($_POST['serieguia']) && isset($_POST['tipoguia'])){
+            var_dump($_POST['serieguia']);
+            $serieguia = $_POST['serieguia'];
+            $tipoguia = $_POST['tipoguia'];
+
+            $guias = array();
+            for ($i = 0; $i<count($serieguia); $i++){
+                $d = array(
+                    $serieguia[$i],
+                    $tipoguia[$i],
+                    $id
+                    
+                  
+                );      
+                array_push($guias, $d);
+            }    
+                $docguias = new documentoGuia();
+                $docguias->insert($guias);
+            
+            }
+        if(isset($_POST['nombreotros']) && isset($_POST['descripcionotros'])){
+            var_dump($_POST['nombreotros']);
+            $nombre = $_POST['nombreotros'];
+            $descripcion = $_POST['descripcionotros'];
+
+            $otros = array();
+            for ($i = 0; $i<count($nombre); $i++){
+                $d = array(
+                    $nombre[$i],
+                    $descripcion[$i],
+                    $id
+                    
+                  
+                );      
+                array_push($otros, $d);
+            }    
+                $otrosm = new documentoOtros();
+                $otrosm->insert($otros);
             
             }
             

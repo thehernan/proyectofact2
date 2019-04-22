@@ -114,8 +114,8 @@
 //           divcol.createTextNode(input);
            input.setAttribute('type','text');
            input.setAttribute('class','form-control');
-           input.setAttribute('id','serie[]');
-           input.setAttribute('name','serie[]');
+           input.setAttribute('id','serieguia[]');
+           input.setAttribute('name','serieguia[]');
            input.setAttribute('placeholder','Serie - Numero');
            
            divcol.appendChild(input);
@@ -132,8 +132,8 @@
 //           divcol.createTextNode(input);
            
 //           select.last().addClass('form-control show-tick');
-           select.setAttribute('id','tipoguia');
-           select.setAttribute('name','tipoguia');
+           select.setAttribute('id','tipoguia[]');
+           select.setAttribute('name','tipoguia[]');
            select.setAttribute('data-live-search','true');
            select.className ='form-control show-tick';
           
@@ -235,8 +235,8 @@
 //           divcol.createTextNode(input);
            input.setAttribute('type','text');
            input.setAttribute('class','form-control');
-           input.setAttribute('id','nombre[]');
-           input.setAttribute('name','nombre[]');
+           input.setAttribute('id','nombreotros[]');
+           input.setAttribute('name','nombreotros[]');
            input.setAttribute('placeholder','Nombre');
            
            divcol.appendChild(input);
@@ -250,8 +250,8 @@
 //           divcol.createTextNode(input);
            input.setAttribute('type','text');
            input.setAttribute('class','form-control');
-           input.setAttribute('id','descripcion[]');
-           input.setAttribute('name','descripcion[]');
+           input.setAttribute('id','descripcionotros[]');
+           input.setAttribute('name','descripcionotros[]');
            input.setAttribute('placeholder','Descripción');
            
            divcol2.appendChild(input);

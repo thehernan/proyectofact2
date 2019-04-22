@@ -226,7 +226,7 @@
                 </form>
                 
                 <!--<label> Productos / Servicios </label>-->
-            <?php require_once 'view/documentodetalle/detalleventa.php';?>
+            <?php require_once 'view/documentodetalle/detallecompra.php';?>
                 
                 
                 <div class="row">

@@ -839,6 +839,7 @@ function consultaruc(){
 function consultarucDoc($url){
     
     
+    
    var ruc = $('#txtrucbuscar').val();
    if(ruc.length < 8){
        $('#txtruc').val('');

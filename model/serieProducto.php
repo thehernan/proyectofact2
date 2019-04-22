@@ -52,7 +52,7 @@ class serieProducto {
     function select($idprod) {
         $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta("SELECT * serie_producto where id_producto=?;", array($idprod));
+        $data_tabla = $data_source->ejecutarconsulta("SELECT * from serie_producto where id_producto=? and cantidad > 0;", array($idprod));
 
 
         $series = array();

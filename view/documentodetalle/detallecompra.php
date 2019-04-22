@@ -1170,48 +1170,19 @@ foreach ($unidades as $unidad) {
 
                 var body = document.getElementById('body' + iden);
 //                body.appendChild(divserie);
-//                ////// select ///////////
-            var selectserie = document.createElement('select');
-
-//           divcol.createTextNode(input);
-
-//           select.last().addClass('form-control show-tick');
-            selectserie.setAttribute('id', 'serieprod[]');
-            selectserie.setAttribute('name', 'serieprod[]');
-            selectserie.setAttribute('data-live-search', 'true');
-            selectserie.className = 'form-control show-tick';
-            
-            $.ajax({
-                type: 'POST',
-                url: "<?= base_url?>serieproducto/select",
-                data: {id:idprod},
-                success: function (data) {
-                    console.log(data);
-//                    var datos = eval(data);
-//
-//                    for(var i = 0; i < datos.count();i++){
-//                        var optionserie = document.createElement("option");
-//                        optionserie.innerHTML = datos[i];
-//                        optionserie.setAttribute('value', datos[i]);
-//                        selectserie.add(optionserie);
-//                        
-//                    }
-                }		
-                        
-              
-                
-            });
+//                
+                var inputserie = document.createElement('input');
+                inputserie.setAttribute('type', 'text');
+                inputserie.setAttribute('class', 'form-control serieprod' + iden);
+                inputserie.setAttribute('name', 'serieprod[]');
+                divserie.appendChild(inputserie);
 
 
-//            select.appendChild(option);
-
-
-           
-            //////////////////////////////////////////////
-//       
-                divserie.appendChild(selectserie);
-
-
+                var inputidprod = document.createElement('input');
+                inputidprod.setAttribute('type', 'hidden');
+                inputidprod.setAttribute('class', 'form-control idprod' + iden);
+                inputidprod.setAttribute('name', 'serieidprod[]');
+                inputidprod.setAttribute('value', idprod);
 
                 var btneliminar = document.createElement('button');
                 btneliminar.setAttribute('type', 'button');
@@ -1222,7 +1193,7 @@ foreach ($unidades as $unidad) {
                 span.setAttribute('class', 'glyphicon glyphicon-remove');
                 btneliminar.appendChild(span);
                 divbtn.appendChild(btneliminar);
-//                divrow.appendChild(inputidprod);
+                divrow.appendChild(inputidprod);
                 divrow.appendChild(divserie);
                 divrow.appendChild(divbtn);
 
