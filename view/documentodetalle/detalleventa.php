@@ -708,10 +708,19 @@ $total = 0;
             input.setAttribute('class', 'form-control id' + cont);
             input.setAttribute('id', 'id[]');
             input.setAttribute('name', 'id[]');
+            
+            var inputincluye = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputincluye.setAttribute('type', 'hidden');
+            inputincluye.setAttribute('class', 'form-control incluye' + cont);
+            inputincluye.setAttribute('id', 'incluye[]');
+            inputincluye.setAttribute('name', 'incluye[]');
+            inputincluye.setAttribute('value', 'No');
 
 
 
             divcol.appendChild(input);
+            divcol.appendChild(inputincluye);
             /////////// elemento codigo ///
 
 
@@ -1043,6 +1052,7 @@ foreach ($unidades as $unidad) {
 //                        var series = document.getElementById('serie'+cont);
 //                        console.log(series);
                             $('.cantidad' + ident).val(0);
+                            $('.incluye' + ident).val('Si');
                             $('.cantidad' + ident).attr('readonly','true');
                             var divpanels = document.createElement('div');
                             divpanels.setAttribute('class', 'panel panel-successs');
@@ -1158,7 +1168,7 @@ foreach ($unidades as $unidad) {
 
 
                         }else {
-                            
+                              $('.incluye' + ident).val('No');
                               $('.divseries' + ident).empty();
                                $('.cantidad' + ident).removeAttr('readonly');
                             
@@ -1255,9 +1265,9 @@ foreach ($unidades as $unidad) {
 //           divcol.createTextNode(input);
 
 //           select.last().addClass('form-control show-tick');
-            selectserie.setAttribute('id', 'idserie[]');
-            selectserie.setAttribute('name', 'idserie[]');
-            selectserie.setAttribute('class', '  idserie'+iden);
+            selectserie.setAttribute('id', 'idserieitem[]');
+            selectserie.setAttribute('name', 'idserieitem[]');
+            selectserie.setAttribute('class', '  idserieitem'+iden);
             
             selectserie.setAttribute('ident', iden);
             selectserie.setAttribute('value', opcionval);

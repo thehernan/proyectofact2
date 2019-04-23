@@ -80,9 +80,9 @@ class serieDetalle {
         return $series;
     }
 
-    function insert(array $series,array $id) {
+    function insert(array $series, array $id) {
 
-        
+        var_dump($id);
         $data_source = new DataSource();
         $filas = 0;
         $serieprod = new serieProducto();

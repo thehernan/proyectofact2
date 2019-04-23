@@ -190,13 +190,15 @@ class Detalle {
     
       function insert(array $detalles) {
           
-        var_dump($detalles);
+//        var_dump($detalles);
         $data_source = new DataSource();
-        $filas = 0;
+        $filas = array();
 
         $filas = $data_source->insertmultiple("insert into detalle (id_producto,codigoprod ,descripcionprod ,id_unidad,"
                 . "id_impuesto,cantidad,precio,valor,total,id_documento) values(?,?,?,?,?,?,?,?,?,?)", $detalles
         );
+        
+        
         return $filas;
     }
     

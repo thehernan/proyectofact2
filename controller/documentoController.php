@@ -18,6 +18,7 @@ require_once 'model/Detalle.php';
 require_once 'model/tipocambio.php';
 require_once 'model/Detalle.php';
 require_once 'model/serieProducto.php';
+require_once 'model/serieDetalle.php';
 require_once 'model/documentoOtros.php';
 require_once 'model/documentoGuia.php';
 
@@ -601,7 +602,7 @@ function insertcompra(){
 }
 function insertsale(){
     
-    var_dump($_POST);
+//    var_dump($_POST);
     
     if (isset($_POST['cbserie']) && isset($_POST['txtnro']) &&  isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision'])
             && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['cbvendedor']) && isset($_POST['txtrucbuscar'])
@@ -666,9 +667,11 @@ function insertsale(){
         $precio = $_POST['precio'];
         $subtotal = $_POST['subtotal'];
         $total = $_POST['total'];
+        $incluye = $_POST['incluye'];
         
         
         $detalles = array();
+        $iddetalle = array();
         for ($i = 0; $i<count($codigo); $i++){
             $d = array(
                 $idprod[$i],
@@ -686,30 +689,52 @@ function insertsale(){
         }
         
         $detalle = new Detalle();
-        $detalle->insert($detalles);
+        $iddetalle = $detalle->insert($detalles);
         
         
-        if(isset($_POST['serieprod'])){
-            var_dump($_POST['serieprod']);
-            $idprodserie = $_POST['serieidprod'];
+        if(isset($_POST['serieprod']) && isset($_POST['idserie'])){
+            var_dump($_POST['idserieitem']);
+            $idserie = $_POST['idserieitem'];
             $serie = $_POST['serieprod'];
 
             $series = array();
-            for ($i = 0; $i<count($serie); $i++){
-                $d = array(
-                    $serie[$i],
-                    $idprodserie[$i],
-                    1
-                  
-                );      
-                array_push($series, $d);
+            $idupdate = array();
+            $cant = 0;$cantini = 0;
+            for ($i = 0; $i<count($codigo); $i++){ //recorro cada unos de los item
+                if($incluye[$i]=='Si'){ //// pregunto si incluye serie // 
+                    $cant = $cantidad[$i]; /// recojo la cantida de series a incluir en el item
+                    echo 'cantidad '.$cant;
+                    
+                    for ($j=$cantini ; $j < $cant+$cantini; $j++) {                            //recorro las series 
+                         $da = array(
+                            $serie[$j],
+//                            $idserie[$j],
+                            $iddetalle[$i],
+                            1
+
+                        );     
+                        
+                        
+                        $idup = array($idserie[$j]);
+                        array_push($idupdate, $idup);
+                        array_push($series, $da);
+                    }
+                    
+                    $cantini += $cant;
+                    echo 'cant '.$cantini;
+                    echo 'j '.$j;
+                    
+                }
+                
+               
+               
             }    
-                $seriem = new serieProducto();
-                $seriem->insert($series);
-            
+                $seried = new serieDetalle();
+                $seried->insert($series,$idupdate);
+//            
             }
         if(isset($_POST['serieguia']) && isset($_POST['tipoguia'])){
-            var_dump($_POST['serieguia']);
+//            var_dump($_POST['serieguia']);
             $serieguia = $_POST['serieguia'];
             $tipoguia = $_POST['tipoguia'];
 
@@ -729,7 +754,7 @@ function insertsale(){
             
             }
         if(isset($_POST['nombreotros']) && isset($_POST['descripcionotros'])){
-            var_dump($_POST['nombreotros']);
+//            var_dump($_POST['nombreotros']);
             $nombre = $_POST['nombreotros'];
             $descripcion = $_POST['descripcionotros'];
 

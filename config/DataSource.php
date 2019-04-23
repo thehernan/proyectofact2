@@ -75,15 +75,18 @@ class DataSource
     
     function insertmultiple($sql="",$values=array()){
         if($sql!=""){
+            $ids = array();
             $this->conexion->beginTransaction();
             $consulta=  $this->conexion->prepare($sql);
             for($i=0; $i<count($values);$i++){
                 $consulta->execute($values[$i]);
+                $id = $this->conexion->lastInsertId();
+                array_push($ids, $id);
             }
             $this->conexion->commit();
             
-            $numero_tabla_afectadas=$consulta->rowCount();
-            return $numero_tabla_afectadas;
+//            $numero_tabla_afectadas=$consulta->rowCount();
+            return $ids;
             
             
         }else {
