@@ -538,7 +538,7 @@ function insertcompra(){
         
         
         if(isset($_POST['serieidprod']) && isset($_POST['serieprod'])){
-            var_dump($_POST['serieprod']);
+//            var_dump($_POST['serieprod']);
             $idprodserie = $_POST['serieidprod'];
             $serie = $_POST['serieprod'];
 
@@ -557,7 +557,7 @@ function insertcompra(){
             
             }
         if(isset($_POST['serieguia']) && isset($_POST['tipoguia'])){
-            var_dump($_POST['serieguia']);
+//            var_dump($_POST['serieguia']);
             $serieguia = $_POST['serieguia'];
             $tipoguia = $_POST['tipoguia'];
 
@@ -577,7 +577,7 @@ function insertcompra(){
             
             }
         if(isset($_POST['nombreotros']) && isset($_POST['descripcionotros'])){
-            var_dump($_POST['nombreotros']);
+//            var_dump($_POST['nombreotros']);
             $nombre = $_POST['nombreotros'];
             $descripcion = $_POST['descripcionotros'];
 
@@ -693,7 +693,7 @@ function insertsale(){
         
         
         if(isset($_POST['serieprod']) && isset($_POST['idserie'])){
-            var_dump($_POST['idserieitem']);
+//            var_dump($_POST['idserieitem']);
             $idserie = $_POST['idserieitem'];
             $serie = $_POST['serieprod'];
 
@@ -703,7 +703,7 @@ function insertsale(){
             for ($i = 0; $i<count($codigo); $i++){ //recorro cada unos de los item
                 if($incluye[$i]=='Si'){ //// pregunto si incluye serie // 
                     $cant = $cantidad[$i]; /// recojo la cantida de series a incluir en el item
-                    echo 'cantidad '.$cant;
+//                    echo 'cantidad '.$cant;
                     
                     for ($j=$cantini ; $j < $cant+$cantini; $j++) {                            //recorro las series 
                          $da = array(
@@ -721,8 +721,8 @@ function insertsale(){
                     }
                     
                     $cantini += $cant;
-                    echo 'cant '.$cantini;
-                    echo 'j '.$j;
+//                    echo 'cant '.$cantini;
+//                    echo 'j '.$j;
                     
                 }
                 

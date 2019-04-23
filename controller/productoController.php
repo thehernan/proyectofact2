@@ -17,6 +17,7 @@ require_once 'model/categoriaprod.php';
 require_once 'model/marcaprod.php';
 require_once 'model/unidmedida.php';
 require_once 'model/tipoImpuesto.php';
+require_once 'model/serieProducto.php';
 class productoController {
     //put your code here
     private $producto;
@@ -37,6 +38,7 @@ class productoController {
     function selectprod(){
         $tipo = 'producto';
         $productos = $this->producto->select($tipo);
+   
         require_once 'view/layout/header.php';
         require_once 'view/producto/listar_producto.php';
         require_once 'view/layout/footer.php';
@@ -60,11 +62,16 @@ class productoController {
             $medidas = $this->medida->selectAll();
             $impuestos=$this->impuesto->selectAll();
             
+            $seriesprod = new serieProducto();
+            $series = $seriesprod->select($_GET['id']);
+            
             require_once 'view/producto/form_producto.php';  
             require_once 'view/marca/modalnewmarca.php'; 
             require_once 'view/linea/modalnewlinea.php'; 
             require_once 'view/categoria/modalnewcategoria.php'; 
             require_once 'view/unidmedida/modalnewunidmedida.php';
+            
+            
             
             
         }else {
@@ -419,5 +426,6 @@ function  search(){
         }
         
     }
+
 
 }

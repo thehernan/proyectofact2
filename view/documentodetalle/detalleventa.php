@@ -1268,6 +1268,7 @@ foreach ($unidades as $unidad) {
             selectserie.setAttribute('id', 'idserieitem[]');
             selectserie.setAttribute('name', 'idserieitem[]');
             selectserie.setAttribute('class', '  idserieitem'+iden);
+            selectserie.setAttribute('type', 'hidden');
             
             selectserie.setAttribute('ident', iden);
             selectserie.setAttribute('value', opcionval);

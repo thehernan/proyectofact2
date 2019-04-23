@@ -1335,15 +1335,15 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
 //            },
             success: function (data) {
                 $('#respuestaAjax').html('');
-                    if(data==1){
+                    if(data > 0){
                        swal("Éxitosamente!", "Operación realizada correctamente.", "success");
                         
                        
-                       if(tipo!= 'update'){
-                           $('#FormularioAjax').trigger("reset");
+                       
+                           $('#FormularioAjaxDocumento').trigger("reset");
                            
-                       }
-                           $('#btncancelar').html('REGRESAR');
+                       
+                           $('#tabla').empty();
                        
                         
                        

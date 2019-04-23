@@ -316,7 +316,7 @@ for ($i=0; $i < count($serie); $i++){
                         </form>
 
 
-
+                        <?= require_once 'view/producto/listar_series.php'; ?>
                     </div>
                 </div>
             </div>
