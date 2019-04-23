@@ -23,8 +23,21 @@ class serieproductoController {
 //        var_dump($_POST);
         if(isset($_POST['id'])){
             $idprod = $_POST['id'];
-            echo $idprod;
-            var_dump($this->serie->select($idprod));
+//            echo $idprod;
+            $series = array();
+            
+            foreach ($this->serie->select($idprod) as $serie){
+                $d = array(
+                    'id' => $serie->getId(),
+                    'serie' => $serie->getSerie()
+                    
+                    
+                );
+                array_push($series, $d);
+                
+            }
+            
+            echo json_encode($series);
             
         }
         

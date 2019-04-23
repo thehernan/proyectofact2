@@ -1047,9 +1047,20 @@ foreach ($unidades as $unidad) {
                             var divpanels = document.createElement('div');
                             divpanels.setAttribute('class', 'panel panel-successs');
                             var panelheding = document.createElement('div');
-                            panelheding.setAttribute('class', 'panel-heading');
+                            panelheding.setAttribute('class', 'panel-heading row');
                             panelheding.setAttribute('role', 'tab');
                             panelheding.setAttribute('id', 'headingOne_2');
+                            
+                            
+                            
+//                            var diva = document.createElement('div');
+//                            diva.setAttribute('class', 'col-lg-3 col-md-3 col-sm-3 col-xs-6 no-gutters');
+
+                            var divselect = document.createElement('div');
+                            divselect.setAttribute('class', 'col-lg-4 col-md-4 col-sm-4 col-xs-6 no-gutters');
+
+                            var divboton = document.createElement('div');
+                            divboton.setAttribute('class', ' col-lg-1 col-md-1 col-sm-1 col-xs-4 no-gutters');
 
 
 
@@ -1063,7 +1074,51 @@ foreach ($unidades as $unidad) {
                             a.setAttribute('aria-expanded', 'true');
                             a.setAttribute('aria-controls', 'collapseOne_2' + ident);
                             a.innerHTML = '<strong>Series de: </strong>' + ui.item.descripcion + '  ';
-                            panelheding.appendChild(a);
+//                            diva.appendChild(a);
+//                            panelheding.appendChild(diva);
+                            
+                            ///////// cargo series del producto en el SELECT//////////
+                             var selectserie = document.createElement('select');
+
+                //           divcol.createTextNode(input);
+
+                //           select.last().addClass('form-control show-tick');
+                            selectserie.setAttribute('id', 'idserie[]');
+                            selectserie.setAttribute('name', 'idserie[]');
+                            selectserie.setAttribute('class', 'form-control  show-tick idserie'+ident);
+                            selectserie.setAttribute('ident', ident);
+                            selectserie.setAttribute('data-live-search', 'true');
+                //            selectserie.className = 'form-control show-tick';
+                            var idprod = ui.item.id;
+                            $.ajax({
+                                type: 'POST',
+                                url: "<?= base_url?>serieproducto/select",
+                                data: {id:idprod},
+                                success: function (data) {
+                                    console.log(data);
+                                    var datos = eval(data);
+
+                                   datos.forEach(function(data, index) {
+                                    console.log("index " + index + " | id: " + data.id + " serie: " + data.serie)
+                                    var option = document.createElement("option");
+                                    option.innerHTML = data.serie;
+                                    option.setAttribute('value', data.id);
+                                    selectserie.add(option);
+                                  });
+                                }		
+
+
+
+                            });
+                            divselect.appendChild(a);
+                            divselect.appendChild(selectserie);
+                            panelheding.appendChild(divselect);
+                            ///////////////////////// FIN DEL SELECT //////////////////////////////////
+                            
+                            
+                            
+                            
+                            
 
                             var collapse = document.createElement('div');
                             collapse.setAttribute('id', 'collapseOne_2' + ident);
@@ -1076,16 +1131,22 @@ foreach ($unidades as $unidad) {
                             body.setAttribute('id', 'body' + ident);
 //                        body.innerHTML = 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry';
 
+//                            var labelplus = document.createElement('label');
+//                             labelplus.setAttribute('class', 'text-info');
+//                             labelplus.innerHTML ='Más';
+                            
                             var botonmas = document.createElement('button');
-                            botonmas.setAttribute('class', 'btn btn-success btn-sm nuevoserie' + ident);
+                            botonmas.setAttribute('class', ' btn btn-success waves-effect  nuevoserie' + ident);
                             botonmas.setAttribute('id', 'nuevoserie' + ident);
                             botonmas.setAttribute('name', 'nuevoserie' + ident);
                             botonmas.setAttribute('ident', ident);
                             var span = document.createElement('span');
                             span.setAttribute('class', 'glyphicon glyphicon-plus');
                             botonmas.appendChild(span);
-
-                            panelheding.appendChild(botonmas);
+                            
+//                            divboton.appendChild(labelplus);
+                            divboton.appendChild(botonmas);
+                            panelheding.appendChild(divboton);
 
                             collapse.appendChild(body);
                             divpanels.appendChild(panelheding);
@@ -1152,9 +1213,27 @@ foreach ($unidades as $unidad) {
                 $('.cantidad' + iden).val(cant);
 
                 var idprod = $('.id' + iden).val();
-
+                
+                
+//                var idn = $('.idserie'+iden).attr('ident');
+                var opcion = $('.idserie'+iden+' option:selected').text();    
+                var opcionval = $('.idserie'+iden).val();    
+//                 alert(opcion);
+                
+                
+                
+//               $('.serieprod'+idn).val(opcion);
+               
 //                var cantidad = document.getElementById('cantidad'+ident);
 //                cantidad.=cont;
+                var inputs = document.createElement('input');
+                inputs.setAttribute('type','text');
+                inputs.setAttribute('name','serieprod[]');
+                inputs.setAttribute('id','serieprod[]');
+                inputs.setAttribute('class','form-control serieprod'+iden);
+                inputs.setAttribute('readonly', 'true');
+                inputs.setAttribute('value',opcion);
+                
 
                 var divrow = document.createElement('div');
                 divrow.setAttribute('class', 'row');
@@ -1171,36 +1250,21 @@ foreach ($unidades as $unidad) {
                 var body = document.getElementById('body' + iden);
 //                body.appendChild(divserie);
 //                ////// select ///////////
-            var selectserie = document.createElement('select');
+            var selectserie = document.createElement('input');
 
 //           divcol.createTextNode(input);
 
 //           select.last().addClass('form-control show-tick');
-            selectserie.setAttribute('id', 'serieprod[]');
-            selectserie.setAttribute('name', 'serieprod[]');
-            selectserie.setAttribute('data-live-search', 'true');
-            selectserie.className = 'form-control show-tick';
+            selectserie.setAttribute('id', 'idserie[]');
+            selectserie.setAttribute('name', 'idserie[]');
+            selectserie.setAttribute('class', '  idserie'+iden);
             
-            $.ajax({
-                type: 'POST',
-                url: "<?= base_url?>serieproducto/select",
-                data: {id:idprod},
-                success: function (data) {
-                    console.log(data);
-//                    var datos = eval(data);
-//
-//                    for(var i = 0; i < datos.count();i++){
-//                        var optionserie = document.createElement("option");
-//                        optionserie.innerHTML = datos[i];
-//                        optionserie.setAttribute('value', datos[i]);
-//                        selectserie.add(optionserie);
-//                        
-//                    }
-                }		
-                        
-              
-                
-            });
+            selectserie.setAttribute('ident', iden);
+            selectserie.setAttribute('value', opcionval);
+           
+//            selectserie.className = 'form-control show-tick';
+            
+
 
 
 //            select.appendChild(option);
@@ -1209,6 +1273,7 @@ foreach ($unidades as $unidad) {
            
             //////////////////////////////////////////////
 //       
+                divserie.appendChild(inputs);
                 divserie.appendChild(selectserie);
 
 
@@ -1278,6 +1343,7 @@ foreach ($unidades as $unidad) {
                 calculartotal();
 
             });
+         
 
             $(document).on("click", ".eliminarserie" + cont, function () {
 //            function eliminarserie(idn){

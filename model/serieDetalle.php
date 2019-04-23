@@ -6,18 +6,32 @@
  * and open the template in the editor.
  */
 
-class serieProducto {
-
+/**
+ * Description of serieDetalle
+ *
+ * @author HERNAN
+ */
+require_once 'model/serieProducto.php';
+class serieDetalle {
+    //put your code here
     private $id;
     private $serie;
-    private $idproducto;
+    private $iddetalle;
     private $cantidad;
-
+    
     function __construct() {
         
     }
+    
+    function getIddetalle() {
+        return $this->iddetalle;
+    }
 
-    function getId() {
+    function setIddetalle($iddetalle) {
+        $this->iddetalle = $iddetalle;
+    }
+
+        function getId() {
         return $this->id;
     }
 
@@ -25,8 +39,10 @@ class serieProducto {
         return $this->serie;
     }
 
-    function getIdproducto() {
-        return $this->idproducto;
+    
+
+    function getCantidad() {
+        return $this->cantidad;
     }
 
     function setId($id) {
@@ -37,30 +53,25 @@ class serieProducto {
         $this->serie = $serie;
     }
 
-    function setIdproducto($idproducto) {
-        $this->idproducto = $idproducto;
-    }
-
-    function getCantidad() {
-        return $this->cantidad;
-    }
+   
 
     function setCantidad($cantidad) {
         $this->cantidad = $cantidad;
     }
-
-    function select($idprod) {
+    
+    
+    function select($iddet) {
         $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta("SELECT * from serie_producto where id_producto=? and cantidad > 0;", array($idprod));
+        $data_tabla = $data_source->ejecutarconsulta("SELECT * from detalle_serie where id_detalle=?;", array($iddet));
 
 
         $series = array();
         foreach ($data_tabla as $clave => $valor) {
-            $serie = new serieProducto();
+            $serie = new serieDetalle();
             $serie->setId($data_tabla[$clave]["id"]);
             $serie->setSerie($data_tabla[$clave]["serie"]);
-            $serie->setIdproducto($data_tabla[$clave]["id_producto"]);
+            $serie->setIddetalle($data_tabla[$clave]["id_detalle"]);
             $serie->setCantidad($data_tabla[$clave]["cantidad"]);
 
 
@@ -69,28 +80,19 @@ class serieProducto {
         return $series;
     }
 
-    function insert(array $series) {
+    function insert(array $series,array $id) {
 
         
         $data_source = new DataSource();
         $filas = 0;
-
-        $filas = $data_source->insertmultiple("insert into serie_producto(serie,id_producto ,cantidad) values(?,?,?)", $series
-        );
-        return $filas;
-    }
-    
-    function updatecant(array $id) {
-
+        $serieprod = new serieProducto();
+        $serieprod->updatecant($id);
         
-        $data_source = new DataSource();
-        $filas = 0;
-
-        $filas = $data_source->insertmultiple("update serie_producto set cantidad=0 where id= ?;", $id
+        $filas = $data_source->insertmultiple("insert into detalle_serie(serie,id_detalle,cantidad) values(?,?,?)", $series
         );
         return $filas;
     }
-    
-    
+
+
 
 }

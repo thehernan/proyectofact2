@@ -26,7 +26,7 @@
 
                     </div>
                     <div class="body">
-                        <form action="<?= base_url ?>documento/insert" method="POST"  id="FormularioAjaxDocumento" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
+                        <form action="<?= base_url ?>documento/insertsale" method="POST"  id="FormularioAjaxDocumento" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
                             <div class="row clearfix">
                                 <!--<form >-->
                                 <div class="row">
