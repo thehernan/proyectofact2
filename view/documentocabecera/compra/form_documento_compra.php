@@ -21,7 +21,7 @@
    
             </div>
             <div class="body">
-                <form action="<?= base_url?>" method="POST"  id="FormularioAjax" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
+                <form action="<?= base_url?>documento/insertcompra" method="POST"  id="FormularioAjax" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
                     <div class="row clearfix">
                         <!--<form >-->
                         
@@ -31,7 +31,7 @@
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group form-float">
                                             <label class="text-danger">Tipo Doc. </label>
-                                            <select class="form-control show-tick" id="cbserie" name="cbserie" required="">
+                                            <select class="form-control show-tick" id="tipodoc" name="tipodoc" required="">
                                                 <option value="" class="">- Documento  -</option>
                                                 <?php 
 
@@ -94,8 +94,8 @@
                             </div>
 
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-           <!--                                <div class="form-group form-float">-->
-                                           <input type="checkbox" id="incigv" checked />
+                            <!--                                <div class="form-group form-float">-->
+                            <input type="checkbox" id="incigv" name="incigv" checked />
                                            <label for="incigv">Inc. IGV</label>
                                            <!--</div>-->
                                     </div>
@@ -103,7 +103,7 @@
 
 
 
-                        </div>
+                            </div>
                         
                         
                         
@@ -128,7 +128,7 @@
                                         <label for="dpfechavencimiento">Fecha Vencimiento</label>
                                         <div class="form-group">
                                             <div class="form-line error" id="bs_datepicker_container">
-                                                <input type="text" class="form-control" placeholder="Fecha Vencimiento" id="dpfechavencimiento" name="dpfechavencimiento" value=" <?=  date('d/m/Y') ?> " required="">
+                                                <input type="text" class="form-control" placeholder="Fecha Vencimiento" id="dpfechavencimiento" name="dpfechavencimiento" value="<?=  date('d/m/Y') ?>" required="">
                                             </div>
                                         </div>
 
@@ -174,6 +174,7 @@
                         <HR>
                         <div class="row">
                              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                 <input type="hidden" name="idcliente" id="idcliente">
                                 <div class="form-group form-float">
                                     <label class="form-label text-danger">RUC/DNI</label>
                                     <div class="form-line">
@@ -223,7 +224,7 @@
                         </div>
                         <!--</form>-->
                    
-                </form>
+                <!--</form>-->
                 
                 <!--<label> Productos / Servicios </label>-->
             <?php require_once 'view/documentodetalle/detallecompra.php';?>
@@ -242,7 +243,7 @@
                                     <div class="form-group">
                                     <label for="textordenc">Orden de compra</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" id="textordenc"/>
+                                        <input type="text" class="form-control" id="txtordenc" name="txtordenc"/>
                                     </div>
                                     
                                     
@@ -250,7 +251,7 @@
                                     <div class="form-group">
                                     <label for="textobservacion">Observación</label>
                                     <div class="form-line">
-                                    <input type="text" class="form-control" id="textobservacion"/>
+                                        <input type="text" class="form-control" id="txtobservacion" name="txtobservacion"/>
                                     </div>
                                 </div>
                                     
@@ -299,7 +300,7 @@
                          
                         
                     </div>
-                         <button class="btn btn-lg btn-success waves-effect">REGISTRAR COMPROBANTE</button>
+                         <button type="submit" class="btn btn-lg btn-success waves-effect" id="guardardocumento" name="guardardocumento">REGISTRAR COMPROBANTE</button>
                     
                     
                 </div>
@@ -308,7 +309,7 @@
             </div>
                 
                 
-                
+            </form>  
                 
         </div>
     </div>

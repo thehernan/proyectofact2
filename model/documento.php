@@ -38,11 +38,78 @@ class documento {
     private $tipo;
     private $idsucursal;
     private $observacion;
+    private $tipodoc;
+    private $tipocambio;
+    private $docref;
+    private $serieref;
+    private $numeroref;
+    private $idtiponota;
+    private $garantia;
             
     function __construct() {
         
     }
     
+    function getGarantia() {
+        return $this->garantia;
+    }
+
+    function setGarantia($garantia) {
+        $this->garantia = $garantia;
+    }
+
+        
+    function getDocref() {
+        return $this->docref;
+    }
+
+    function getSerieref() {
+        return $this->serieref;
+    }
+
+    function getNumeroref() {
+        return $this->numeroref;
+    }
+
+    function getIdtiponota() {
+        return $this->idtiponota;
+    }
+
+    function setDocref($docref) {
+        $this->docref = $docref;
+    }
+
+    function setSerieref($serieref) {
+        $this->serieref = $serieref;
+    }
+
+    function setNumeroref($numeroref) {
+        $this->numeroref = $numeroref;
+    }
+
+    function setIdtiponota($idtiponota) {
+        $this->idtiponota = $idtiponota;
+    }
+
+        
+    function getTipocambio() {
+        return $this->tipocambio;
+    }
+
+    function setTipocambio($tipocambio) {
+        $this->tipocambio = $tipocambio;
+    }
+
+        
+    function getTipodoc() {
+        return $this->tipodoc;
+    }
+
+    function setTipodoc($tipodoc) {
+        $this->tipodoc = $tipodoc;
+    }
+
+        
     function getObservacion() {
         return $this->observacion;
     }
@@ -375,7 +442,7 @@ class documento {
 
         $data_source->ejecutarActualizacion("insert into documento(serie, numero, fechaemision,fechavencimiento,nroden,"
                 . "moneda,incigv,id_sunat_transaction,id_usuario,tipo_venta,tipo_venta_movimiento,tipo_venta_nop,"
-                . "sujetoa,id_persona,ruc,razonsocial,direccion,email,estadosunat,estadolocal,total,tipo,id_sucursal) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
+                . "sujetoa,id_persona,ruc,razonsocial,direccion,email,estadosunat,estadolocal,total,tipo,id_sucursal,tipo_doc,tipo_cambio,documento_ref,serie_ref,numero_ref,id_tiponota,observacion,garantia) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
             $documento->getSerie(),
             $documento->getNumero(),
             $documento->getFechaemision(),
@@ -398,7 +465,16 @@ class documento {
             $documento->getEstadolocal(),
             $documento->getTotal(),
             $documento->getTipo(),
-            $documento->getIdsucursal()
+            $documento->getIdsucursal(),
+            $documento->getTipodoc(),
+            $documento->getTipocambio(),
+            $documento->getDocref(),
+            $documento->getSerieref(),
+            $documento->getNumeroref(),
+            $documento->getIdtiponota(),
+            $documento->getObservacion(),
+            $documento->getGarantia()
+                    
             
         ));
         $id = $data_source->lastinsertid();

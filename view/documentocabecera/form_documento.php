@@ -21,7 +21,7 @@
 
 
                         <hr>
-                        <input id="url" type="hidden" value="<?= base_url ?>documento/insert" >
+                        <!--<input id="url" type="hidden" value="<?= base_url ?>documento/insert" >-->
 
 
                     </div>
@@ -30,13 +30,34 @@
                             <div class="row clearfix">
                                 <!--<form >-->
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <button type="button" data-color="deep-purple" class="btn bg-teal waves-effect" data-toggle="modal" data-target=".modalcambioclave"><span class="glyphicon glyphicon-plus"></span> DOC-SERIE</button>
                                     </div>
-
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <div class="form-group form-float">
-                                            <label class="text-danger">Doc-Serie </label>
+                                            <label class="text-danger">Tipo Doc. </label>
+                                            <select class="form-control show-tick" id="tipodoc" name="tipodoc" required="">
+                                                <option value="" class="">- Documento  -</option>
+                                                <?php 
+
+                                                $pred= array('Factura','Boleta');
+
+                                                for($i=0;$i < count($pred);$i++){
+
+                                                        echo '<option value="'.$pred[$i].'" >'.$pred[$i].'</option>';
+
+
+                                                }
+
+                                                ?>
+
+                                        </select>
+                                        </div>
+                            </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <div class="form-group form-float">
+                                            <label class="text-danger">Serie </label>
                                             <select class="form-control show-tick" id="cbserie" name="cbserie" required="">
                                                 <option value="" class="">- Doc-Serie  -</option>
                                                 <?php

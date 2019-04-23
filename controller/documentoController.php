@@ -21,6 +21,7 @@ require_once 'model/serieProducto.php';
 require_once 'model/serieDetalle.php';
 require_once 'model/documentoOtros.php';
 require_once 'model/documentoGuia.php';
+require_once 'model/producto.php';
 
 class documentoController{
     private $documento;
@@ -59,7 +60,7 @@ class documentoController{
     }
     
     function notecredit(){
-        
+        $detalles = array();
         $documentossuc =$this->docsucursal->selectAll();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
@@ -83,7 +84,7 @@ class documentoController{
     }
     
      function notedebit(){
-        
+        $detalles = array();
         $documentossuc =$this->docsucursal->selectAll();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
@@ -412,9 +413,18 @@ function  loadcredit(){
 
 function ordencompra(){
     
+    $documentossuc =$this->docsucursal->selectAll();
+    $transactions = $this->sunattrans->selectAll();
+    $usuarios = $this->usuario->selectAll();
+    $impuestos=$this->impuesto->selectAll();
+    $unidades = $this->unidad->selectAll();
     
     $tipocambio = new tipocambio();
     $cambio = $tipocambio->selectMax();
+    
+    $detalles = array();
+    $tipodoc = 'orden_compra';
+    
     
     require_once 'view/layout/header.php';
     require_once 'view/documentocabecera/ordencompra/form_documento_ordcompra.php';
@@ -451,8 +461,8 @@ function insertcompra(){
     
     var_dump($_POST);
     
-    if (isset($_POST['cbserie']) && isset($_POST['txtnro']) &&  isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision'])
-            && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['cbvendedor']) && isset($_POST['txtrucbuscar'])
+    if (isset($_POST['tipodoc'])  && isset($_POST['txtserie']) && isset($_POST['txtnro']) &&  isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision'])
+            && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio'])   && isset($_POST['txtrucbuscar'])
             && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc'])
             && isset($_POST['txtobservacion'])){
         
@@ -470,14 +480,14 @@ function insertcompra(){
         $documento = new documento();
         
         
-        $serie=$_POST['cbserie'];
+        $serie=$_POST['txtserie'];
         $numero=$_POST['txtnro'];
         $moneda=$_POST['cbmoneda'];
         $fechaemision=$emisionf;
         $fechavencimiento=$vencimientof;
-        $tipoventaop=$_POST['cbtipoop'];
+        $tipodoc=$_POST['tipodoc'];
         $idpersona=$_POST['idcliente'];
-        $idusuario= $_POST['cbvendedor'];
+        $idusuario=  $_SESSION['id'];
         $ruc=$_POST['txtrucbuscar'];
         $razonsocial=$_POST['txtcliente'];
         $direccion=$_POST['txtdireccion'];
@@ -485,6 +495,7 @@ function insertcompra(){
         $norden=$_POST['txtordenc'];
         $observacion=$_POST['txtobservacion'];
         $idsucursal=$_SESSION['idsucursal'];
+        $tipocambio = $_POST['txttipocambio'];
                 
                 
         $documento->setSerie($serie);
@@ -492,7 +503,7 @@ function insertcompra(){
         $documento->setMoneda($moneda);
         $documento->setFechaemision($fechaemision);
         $documento->setFechavencimiento($fechavencimiento);
-        $documento->setTipoventaop($tipoventaop);
+        $documento->setTipodoc('Compra');
         $documento->setIdusuario($idusuario);
         $documento->setIdpersona($idpersona);
         $documento->setRuc($ruc);
@@ -502,7 +513,8 @@ function insertcompra(){
         $documento->setNorden($norden);
         $documento->setObservacion($observacion);
         $documento->setIdsucursal($idsucursal);
-        
+        $documento->setTipocambio($tipocambio);
+        $documento->setTipo($tipodoc);
         echo $id = $documento->insert($documento);
         
         $idprod = $_POST['id'];
@@ -517,6 +529,7 @@ function insertcompra(){
         
         
         $detalles = array();
+         $produpdate = array();  //////////// array de productos actualizar stock
         for ($i = 0; $i<count($codigo); $i++){
             $d = array(
                 $idprod[$i],
@@ -531,10 +544,188 @@ function insertcompra(){
                 $id
             );      
             array_push($detalles, $d);
+            
+            $produp = array(
+                $cantidad[$i],
+                $idprod[$i]
+                
+            );
+            array_push($produpdate, $produp);
         }
         
         $detalle = new Detalle();
+        $producto = new producto();
         $detalle->insert($detalles);
+        $producto->updatestock($produpdate);
+        
+        
+        
+        
+        if(isset($_POST['serieidprod']) && isset($_POST['serieprod'])){
+//            var_dump($_POST['serieprod']);
+            $idprodserie = $_POST['serieidprod'];
+            $serie = $_POST['serieprod'];
+
+            $series = array();
+            for ($i = 0; $i<count($serie); $i++){
+                $d = array(
+                    $serie[$i],
+                    $idprodserie[$i],
+                    1
+                  
+                );      
+                array_push($series, $d);
+            }    
+                $seriem = new serieProducto();
+                $seriem->insert($series);
+            
+            }
+        if(isset($_POST['serieguia']) && isset($_POST['tipoguia'])){
+//            var_dump($_POST['serieguia']);
+            $serieguia = $_POST['serieguia'];
+            $tipoguia = $_POST['tipoguia'];
+
+            $guias = array();
+            for ($i = 0; $i<count($serieguia); $i++){
+                $d = array(
+                    $serieguia[$i],
+                    $tipoguia[$i],
+                    $id
+                    
+                  
+                );      
+                array_push($guias, $d);
+            }    
+                $docguias = new documentoGuia();
+                $docguias->insert($guias);
+            
+            }
+        if(isset($_POST['nombreotros']) && isset($_POST['descripcionotros'])){
+//            var_dump($_POST['nombreotros']);
+            $nombre = $_POST['nombreotros'];
+            $descripcion = $_POST['descripcionotros'];
+
+            $otros = array();
+            for ($i = 0; $i<count($nombre); $i++){
+                $d = array(
+                    $nombre[$i],
+                    $descripcion[$i],
+                    $id
+                    
+                  
+                );      
+                array_push($otros, $d);
+            }    
+                $otrosm = new documentoOtros();
+                $otrosm->insert($otros);
+            
+            }
+               
+    }
+    
+}
+function insertordencompra(){
+    
+    var_dump($_POST);
+    
+    if (isset($_POST['tipodoc'])  && isset($_POST['txtserie']) && isset($_POST['txtnro']) &&  isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision'])
+            && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio'])   && isset($_POST['txtrucbuscar'])
+            && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc'])
+            && isset($_POST['txtobservacion'])){
+        
+        $emision = $_POST['dpfechaemision'];
+       
+        $dateemis = DateTime::createFromFormat('d/m/Y', $emision);      
+        $emisionf = $dateemis->format('Y-m-d');
+        
+
+        $vencimiento = $_POST['dpfechavencimiento'];
+        $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);      
+        $vencimientof = $dateven->format('Y-m-d');
+        
+        
+        $documento = new documento();
+        
+        
+        $serie=$_POST['txtserie'];
+        $numero=$_POST['txtnro'];
+        $moneda=$_POST['cbmoneda'];
+        $fechaemision=$emisionf;
+        $fechavencimiento=$vencimientof;
+        $tipodoc=$_POST['tipodoc'];
+        $idpersona=$_POST['idcliente'];
+        $idusuario=  $_SESSION['id'];
+        $ruc=$_POST['txtrucbuscar'];
+        $razonsocial=$_POST['txtcliente'];
+        $direccion=$_POST['txtdireccion'];
+        $email=$_POST['txtemail'];
+        $norden=$_POST['txtordenc'];
+        $observacion=$_POST['txtobservacion'];
+        $idsucursal=$_SESSION['idsucursal'];
+        $tipocambio = $_POST['txttipocambio'];
+                
+                
+        $documento->setSerie($serie);
+        $documento->setNumero($numero);
+        $documento->setMoneda($moneda);
+        $documento->setFechaemision($fechaemision);
+        $documento->setFechavencimiento($fechavencimiento);
+        $documento->setTipodoc('Compra');
+        $documento->setIdusuario($idusuario);
+        $documento->setIdpersona($idpersona);
+        $documento->setRuc($ruc);
+        $documento->setRazonsocial($razonsocial);
+        $documento->setDireccion($direccion);
+        $documento->setEmail($email);
+        $documento->setNorden($norden);
+        $documento->setObservacion($observacion);
+        $documento->setIdsucursal($idsucursal);
+        $documento->setTipocambio($tipocambio);
+        $documento->setTipo($tipodoc);
+        echo $id = $documento->insert($documento);
+        
+        $idprod = $_POST['id'];
+        $codigo = $_POST['codigo'];
+        $descripcion = $_POST['descripcionprod'];
+        $unidad = $_POST['unidad'];
+        $tipoigv = $_POST['tipoigv'];
+        $cantidad = $_POST['cantidad'];
+        $precio = $_POST['precio'];
+        $subtotal = $_POST['subtotal'];
+        $total = $_POST['total'];
+        
+        
+        $detalles = array();
+         $produpdate = array();  //////////// array de productos actualizar stock
+        for ($i = 0; $i<count($codigo); $i++){
+            $d = array(
+                $idprod[$i],
+                $codigo[$i],
+                $descripcion[$i],
+                $unidad[$i],
+                $tipoigv[$i],
+                $cantidad[$i],
+                $precio[$i],
+                $subtotal[$i],
+                $total[$i],
+                $id
+            );      
+            array_push($detalles, $d);
+            
+            $produp = array(
+                $cantidad[$i],
+                $idprod[$i]
+                
+            );
+            array_push($produpdate, $produp);
+        }
+        
+        $detalle = new Detalle();
+        $producto = new producto();
+        $detalle->insert($detalles);
+        $producto->updatestock($produpdate);
+        
+        
         
         
         if(isset($_POST['serieidprod']) && isset($_POST['serieprod'])){
@@ -638,7 +829,7 @@ function insertsale(){
         $norden=$_POST['txtordenc'];
         $observacion=$_POST['txtobservacion'];
         $idsucursal=$_SESSION['idsucursal'];
-                
+        $tipodoc=$_POST['tipodoc'];        
                 
         $documento->setSerie($serie);
         $documento->setNumero($numero);
@@ -655,6 +846,8 @@ function insertsale(){
         $documento->setNorden($norden);
         $documento->setObservacion($observacion);
         $documento->setIdsucursal($idsucursal);
+         $documento->setTipodoc('Venta');
+         $documento->setTipo($tipodoc);
         
         echo $id = $documento->insert($documento);
         
@@ -672,6 +865,7 @@ function insertsale(){
         
         $detalles = array();
         $iddetalle = array();
+        $produpdate = array();  //////////// array de productos actualizar stock
         for ($i = 0; $i<count($codigo); $i++){
             $d = array(
                 $idprod[$i],
@@ -686,10 +880,227 @@ function insertsale(){
                 $id
             );      
             array_push($detalles, $d);
+            
+            $produp = array(
+                ($cantidad[$i]) * -1,
+                $idprod[$i]
+                
+            );
+            array_push($produpdate, $produp);
         }
         
         $detalle = new Detalle();
+        $producto = new producto();
         $iddetalle = $detalle->insert($detalles);
+        $producto->updatestock($produpdate);
+        
+        
+        if(isset($_POST['serieprod']) && isset($_POST['idserie'])){
+//            var_dump($_POST['idserieitem']);
+            $idserie = $_POST['idserieitem'];
+            $serie = $_POST['serieprod'];
+
+            $series = array();
+            $idupdate = array();
+            $cant = 0;$cantini = 0;
+            for ($i = 0; $i<count($codigo); $i++){ //recorro cada unos de los item
+                if($incluye[$i]=='Si'){ //// pregunto si incluye serie // 
+                    $cant = $cantidad[$i]; /// recojo la cantida de series a incluir en el item
+//                    echo 'cantidad '.$cant;
+                    
+                    for ($j=$cantini ; $j < $cant+$cantini; $j++) {                            //recorro las series 
+                         $da = array(
+                            $serie[$j],
+//                            $idserie[$j],
+                            $iddetalle[$i],
+                            1
+
+                        );     
+                        
+                        
+                        $idup = array($idserie[$j]);
+                        array_push($idupdate, $idup);
+                        array_push($series, $da);
+                    }
+                    
+                    $cantini += $cant;
+//                    echo 'cant '.$cantini;
+//                    echo 'j '.$j;
+                    
+                }
+                
+               
+               
+            }    
+                $seried = new serieDetalle();
+                $seried->insert($series,$idupdate);
+//            
+            }
+        if(isset($_POST['serieguia']) && isset($_POST['tipoguia'])){
+//            var_dump($_POST['serieguia']);
+            $serieguia = $_POST['serieguia'];
+            $tipoguia = $_POST['tipoguia'];
+
+            $guias = array();
+            for ($i = 0; $i<count($serieguia); $i++){
+                $d = array(
+                    $serieguia[$i],
+                    $tipoguia[$i],
+                    $id
+                    
+                  
+                );      
+                array_push($guias, $d);
+            }    
+                $docguias = new documentoGuia();
+                $docguias->insert($guias);
+            
+            }
+        if(isset($_POST['nombreotros']) && isset($_POST['descripcionotros'])){
+//            var_dump($_POST['nombreotros']);
+            $nombre = $_POST['nombreotros'];
+            $descripcion = $_POST['descripcionotros'];
+
+            $otros = array();
+            for ($i = 0; $i<count($nombre); $i++){
+                $d = array(
+                    $nombre[$i],
+                    $descripcion[$i],
+                    $id
+                    
+                  
+                );      
+                array_push($otros, $d);
+            }    
+                $otrosm = new documentoOtros();
+                $otrosm->insert($otros);
+            
+            }
+               
+    }
+    
+}
+function insertnota(){
+    
+//    var_dump($_POST);
+    
+    if (isset($_POST['cbserie']) && isset($_POST['txtnro']) &&  isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision'])
+            && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['txtrucbuscar'])
+            && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['cbdocref'])  && isset($_POST['txtserieref'])
+            && isset($_POST['txtnumeroref']) && isset($_POST['cbidtiponota']) && isset($_POST['txtobservacion'])){
+        
+        $emision = $_POST['dpfechaemision'];
+       
+        $dateemis = DateTime::createFromFormat('d/m/Y', $emision);      
+        $emisionf = $dateemis->format('Y-m-d');
+        
+
+        $vencimiento = $_POST['dpfechavencimiento'];
+        $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);      
+        $vencimientof = $dateven->format('Y-m-d');
+        
+        
+        $documento = new documento();
+        
+        
+        $serie=$_POST['cbserie'];
+        $numero=$_POST['txtnro'];
+        $moneda=$_POST['cbmoneda'];
+        $fechaemision=$emisionf;
+        $fechavencimiento=$vencimientof;
+        $tipoventaop=$_POST['cbtipoop'];
+        $idpersona=$_POST['idcliente'];
+         $idusuario=  $_SESSION['id'];
+        $ruc=$_POST['txtrucbuscar'];
+        $razonsocial=$_POST['txtcliente'];
+        $direccion=$_POST['txtdireccion'];
+        $email=$_POST['txtemail'];
+//        $norden=$_POST['txtordenc'];
+        $observacion=$_POST['txtobservacion'];
+        $idsucursal=$_SESSION['idsucursal'];
+        $tipodoc=$_POST['tiponota'];        
+        $serieref=$_POST['txtserieref'];        
+        $numeroref=$_POST['txtnumeroref'];        
+        $idtiponota=$_POST['cbidtiponota'];        
+        $observacion=$_POST['txtobservacion'];        
+        $docref=$_POST['cbdocref'];   
+        
+        $tiponota = $_POST['tiponota'];
+                
+        $documento->setSerie($serie);
+        $documento->setNumero($numero);
+        $documento->setMoneda($moneda);
+        $documento->setFechaemision($fechaemision);
+        $documento->setFechavencimiento($fechavencimiento);
+        $documento->setTipoventaop($tipoventaop);
+        $documento->setIdusuario($idusuario);
+        $documento->setIdpersona($idpersona);
+        $documento->setRuc($ruc);
+        $documento->setRazonsocial($razonsocial);
+        $documento->setDireccion($direccion);
+        $documento->setEmail($email);
+//        $documento->setNorden($norden);
+        $documento->setObservacion($observacion);
+        $documento->setIdsucursal($idsucursal);
+         $documento->setTipodoc($tiponota);
+         $documento->setTipo($tipodoc);
+         $documento->setSerieref($serieref);
+         $documento->setNumeroref($numeroref);
+         $documento->setIdtiponota($idtiponota);
+         $documento->setObservacion($observacion);
+         $documento->setDocref($docref);
+        
+        echo $id = $documento->insert($documento);
+        
+        $idprod = $_POST['id'];
+        $codigo = $_POST['codigo'];
+        $descripcion = $_POST['descripcionprod'];
+        $unidad = $_POST['unidad'];
+        $tipoigv = $_POST['tipoigv'];
+        $cantidad = $_POST['cantidad'];
+        $precio = $_POST['precio'];
+        $subtotal = $_POST['subtotal'];
+        $total = $_POST['total'];
+        $incluye = $_POST['incluye'];
+        
+        
+        $detalles = array();
+        $iddetalle = array();
+        $produpdate = array();  //////////// array de productos actualizar stock
+        for ($i = 0; $i<count($codigo); $i++){
+            $d = array(
+                $idprod[$i],
+                $codigo[$i],
+                $descripcion[$i],
+                $unidad[$i],
+                $tipoigv[$i],
+                $cantidad[$i],
+                $precio[$i],
+                $subtotal[$i],
+                $total[$i],
+                $id
+            );      
+            array_push($detalles, $d);
+            
+            if($tiponota=='nota_debito'){
+                $cantidad = ($cantidad[$i]) * -1;
+            }else{
+                $cantidad = ($cantidad[$i]);
+            }
+            
+            $produp = array(
+                
+                $cantidad,
+                $idprod[$i]
+                
+            );
+            array_push($produpdate, $produp);
+        }
+        
+        $detalle = new Detalle();
+        $producto = new producto();
+        $iddetalle = $detalle->insert($detalles);
+        $producto->updatestock($produpdate);
         
         
         if(isset($_POST['serieprod']) && isset($_POST['idserie'])){

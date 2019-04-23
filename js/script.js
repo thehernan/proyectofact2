@@ -1344,7 +1344,12 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
                            
                        
                            $('#tabla').empty();
-                       
+                           
+                           $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
+                           $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
+                           $('#lbltotal').html('<strong>TOTAL: </strong>    S/ 0.00');
+                           
+                           
                         
                        
 //                    $('#respuestaAjax').html(data);  

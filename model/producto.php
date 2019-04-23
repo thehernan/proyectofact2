@@ -367,6 +367,17 @@ class producto {
        
         return $filas;
     }
+      function updatestock(array $producto) {
+
+        $data_source = new DataSource();
+//        $filas = 0;
+//        $cliente = new cliente();
+//        $cliente = $objeto;
+        $filas = $data_source->insertmultiple("update producto set "
+                . "stock= stock + ? where id= ? and prod_servi = 'producto' and incluir != 'Si' ;", $producto);
+       
+        return $filas;
+    }
     
     
          function delete($id) {
