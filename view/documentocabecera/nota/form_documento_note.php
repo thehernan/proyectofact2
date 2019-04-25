@@ -61,9 +61,10 @@
 
                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <div class="form-group form-float">
+                                            <label class="form-label">Nro: </label>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" id="txtnro" name="txtnro" value="" required="">
-                                                <label class="form-label">Nro: (*)</label>
+                                                <input type="text" class="form-control" id="txtnro" name="txtnro" value="<?= $nro ?>"  readonly="">
+                                                
                                             </div>
                                         </div>
                                     </div>

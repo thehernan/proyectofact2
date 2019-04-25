@@ -8,7 +8,7 @@
         <div  id="respuestaAjax"></div>
         <div class="card">
             <div class="body">
-                <form action="<?= base_url ?>usuario/login" method="POST"  id="formlogin" data-form="<?= $data ?>" enctype="multipart/form-data" autocomplete="off" >
+                <form action="<?= base_url ?>usuario/login" id="formlogin" method="POST"  autocomplete="off" >
                     <!--<div class="msg">Sign in to start your session</div>-->
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -27,10 +27,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-8 p-t-5">
+<!--                        <div class="col-xs-8 p-t-5">
                             <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
                             <label for="rememberme">Recuérdame</label>
-                        </div>
+                        </div>-->
                         <div class="col-xs-5">
                             <button class="btn btn-block bg-deep-purple waves-effect" type="submit">INICIAR SESION</button>
                         </div>

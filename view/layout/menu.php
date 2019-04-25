@@ -76,7 +76,7 @@
                             <a href="<?=base_url?>sucursal/main">Principal</a>
                         </li>
                         <li>
-                            <a href="<?=base_url?>sucursal/select">Secundarias</a>
+                            <a href="<?=base_url?>sucursal/select">Sucursales</a>
                         </li>
                          <li>
                             <a href="<?=base_url?>sucursaldocumento/select">Documentos</a>
@@ -199,9 +199,9 @@
                 
             </a>
             <ul class="ml-menu">
-                <li >
+<!--                <li >
                     <a href="<?=base_url?>documento/ordencompra" >Ver comprobantes</a>
-                </li>
+                </li>-->
                 
                 <li >
                     <a href="<?=base_url?>documento/ordencompra" >Orden de compra</a>

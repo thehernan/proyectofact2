@@ -709,9 +709,20 @@ $total = 0;
             input.setAttribute('id', 'id[]');
             input.setAttribute('name', 'id[]');
 
+            var inputincluye = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputincluye.setAttribute('type', 'hidden');
+            inputincluye.setAttribute('class', 'form-control incluye' + cont);
+            inputincluye.setAttribute('id', 'incluye[]');
+            inputincluye.setAttribute('name', 'incluye[]');
+            inputincluye.setAttribute('value', 'No');
+
 
 
             divcol.appendChild(input);
+            divcol.appendChild(inputincluye);
+
+           
             /////////// elemento codigo ///
 
 
@@ -1042,6 +1053,7 @@ foreach ($unidades as $unidad) {
                         if (incluir == 'Si') {
 //                        var series = document.getElementById('serie'+cont);
 //                        console.log(series);
+                            $('.incluye' + ident).val('Si');
                             $('.cantidad' + ident).val(0);
                             $('.cantidad' + ident).attr('readonly','true');
                             var divpanels = document.createElement('div');

@@ -1098,7 +1098,7 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
     var cliente = $('#txtcliente').val();
     var cont = $('#cont').val();
     
-    var url = $('#url').val();
+    var urlprint = $('#print').val();
     
 //    
     if(serie == ''){
@@ -1336,6 +1336,7 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
             success: function (data) {
                 $('#respuestaAjax').html('');
                     if(data > 0){
+                        VentanaCentrada(urlprint+'&id='+data,'Ticket','','320','500','true');
                        swal("Éxitosamente!", "Operación realizada correctamente.", "success");
                         
                        
@@ -1344,6 +1345,10 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
                            
                        
                            $('#tabla').empty();
+                           var nro = $('#txtnro').val();
+                           if(nro != '' || !isNaN(nro)){
+                               $('#txtnro').val(parseInt(nro) + 1);
+                           }
                            
                            $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
                            $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
@@ -1369,6 +1374,53 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
     });
 //     e.preventDefault();
 });
+
+
+function ultimonumerodoc($url){
+    
+    var tipo = $('#tipodoc').val();
+        $.ajax({
+        type: 'POST',
+        url: $url,
+//        dataType: 'json',
+         
+        data: {tipo:tipo}
+        
+        ,
+//        beforeSend: function (xhr) {
+//            $('#respuestabusqueda').html('Cargando ...');
+//        }
+//        ,
+        success: function (dato) {
+            console.log(dato);
+            $('#txtnro').val(dato);
+            
+        }
+//        ,
+//        error: function (data){
+//            console.log(data);
+//            
+//        }
+ 
+    });
+    
+    
+    
+    
+    
+}
+
+
+function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) { //v3.0
+  if(window.screen)if(isCenter)if(isCenter=="true"){
+    var myLeft = (screen.width-myWidth)/2;
+    var myTop = (screen.height-myHeight)/2;
+    features+=(features!='')?',':'';
+    features+=',left='+myLeft+',top='+myTop;
+  }
+  window.open(theURL,winName,features+((features!='')?',':'')+'width='+myWidth+',height='+myHeight);
+}
+
 
 
 

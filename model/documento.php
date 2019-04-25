@@ -526,6 +526,47 @@ class documento {
         return $documento;
         
     }
+    
+       function selectMax($tipodoc){
+        
+        $data_source = new DataSource();
+
+        $data_tabla = $data_source->ejecutarconsulta("select * from documento where tipo = ? ORDER BY id DESC LIMIT 1;", array($tipodoc));
+
+        
+        $documento = new documento();
+        foreach ($data_tabla as $clave => $valor) {
+            
+            $documento->setId($data_tabla[$clave]["id"]);
+            $documento->setserie($data_tabla[$clave]["serie"]);
+            $documento->setNumero($data_tabla[$clave]["numero"]);
+            $documento->setFechaemision($data_tabla[$clave]["fechaemision"]);
+            $documento->setFechavencimiento($data_tabla[$clave]["fechavencimiento"]);
+            $documento->setNorden($data_tabla[$clave]["nroden"]);
+            $documento->setMoneda($data_tabla[$clave]["moneda"]);
+            $documento->setIncigv($data_tabla[$clave]["incigv"]);
+            $documento->setIdsunattransaction($data_tabla[$clave]["id_sunat_transaction"]);
+            $documento->setIdusuario($data_tabla[$clave]["id_usuario"]);
+            $documento->setTipoventa($data_tabla[$clave]["tipo_venta"]);
+            $documento->setTipoventamov($data_tabla[$clave]["tipo_venta_movimiento"]);
+            $documento->setTipoventaop($data_tabla[$clave]["tipo_venta_nop"]);
+            $documento->setSujetoa($data_tabla[$clave]["sujetoa"]);
+            $documento->setIdpersona($data_tabla[$clave]["id_persona"]);
+            $documento->setRuc($data_tabla[$clave]["ruc"]);
+            $documento->setRazonsocial($data_tabla[$clave]["razonsocial"]);
+            $documento->setDireccion($data_tabla[$clave]["direccion"]);
+            $documento->setEmail($data_tabla[$clave]["email"]);
+            $documento->setEstadosunat($data_tabla[$clave]["estadosunat"]);
+            $documento->setEstadolocal($data_tabla[$clave]["estadolocal"]);
+            $documento->setEmail($data_tabla[$clave]["email"]);
+            $documento->setTipo($data_tabla[$clave]["tipo"]);
+            $documento->setTotal($data_tabla[$clave]["total"]);
+            $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
+             
+        }
+        return $documento;
+        
+    }
 
 
 

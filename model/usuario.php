@@ -385,16 +385,16 @@ class usuario {
         return $filas;
     }
 
-    function login() {
+    function login(usuario $user) {
 
         $data_source = new DataSource();
-        $user = $this->usuario;
-        $password = base64_encode($this->clave);
+//        $user = $this->usuario;
+//        $password = base64_encode($this->clave);
         $data_tabla = $data_source->ejecutarconsulta("SELECT u.id,u.apellidoP,u.apellidoM,u.nombre,u.nacionalidad,
             u.sexo,u.fechaN,u.dni,u.telf1,u.telf2,u.cel1,u.cel2,u.email,u.usuario,
             u.clave,u.id_nivel,u.id_sucursal,u.comision,u.foto,s.nombre as sucursal
              from usuario as u LEFT JOIN sucursal as s 
-            on u.id_sucursal = s.id where usuario = ? and clave = ? and u.activo=1;", array($user, $password));
+            on u.id_sucursal = s.id where usuario = ? and clave = ? and u.activo=1;", array($user->getUsuario(),base64_encode($user->getClave())));
 
         $usuario = null;
 

@@ -1,8 +1,8 @@
-
+#php_flag display_errors off
 <IfModule mod_rewrite.c>
 
 RewriteEngine on
-ErrorDocument 404 http://localhost/facturador/error/index
+ErrorDocument 404 https://generalservicepiura.com/facturador/error/index
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 

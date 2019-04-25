@@ -35,9 +35,9 @@
 
                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <div class="form-group form-float">
-                                            <label class="form-label text-danger">Nro </label>
-                                            <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtnro" name="txtnro" value="" required="">
+                                            <label class="form-label ">Nro </label>
+                                            <div class="form-line ">
+                                                <input type="text" class="form-control" id="txtnro" name="txtnro" value="<?= $nro ?>" readonly="">
 
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
 
                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <!--                                <div class="form-group form-float">-->
-                                        <input type="checkbox" id="incigv" checked />
+                                        <input type="checkbox" id="incigv" name="incigv" checked />
                                         <label for="incigv">Inc. IGV</label>
                                         <!--</div>-->
                                     </div>
@@ -96,7 +96,7 @@
                                             <label for="dpfechavencimiento" class="text-danger">Fecha Entrega</label>
                                             <div class="form-group">
                                                 <div class="form-line error" id="bs_datepicker_container">
-                                                    <input type="text" class="form-control" placeholder="Fecha Vencimiento" id="dpfechavencimiento" name="dpfechavencimiento" value=" <?= date('d/m/Y') ?> " required="">
+                                                    <input type="text" class="form-control" placeholder="Fecha Vencimiento" id="dpfechavencimiento" name="dpfechavencimiento" value="<?= date('d/m/Y') ?>" required="">
                                                 </div>
                                             </div>
 
@@ -117,7 +117,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">Garantia</label>
                                             <div class="form-line focused error">
-                                                <input type="number" class="form-control" id="txttipocambio" name="txttipocambio" value="" required="" >
+                                                <input type="number" class="form-control" id="txtgarantia" name="txtgarantia" value="" required="" >
 
                                             </div>
                                         </div>
@@ -131,6 +131,7 @@
                                 <div class="h4 text-danger">DATOS DEL PROVEEDOR</div>
                                 <hr>
                                 <div class="row">
+                                    <input type="hidden" name="idcliente" id="idcliente">
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">RUC/DNI</label>

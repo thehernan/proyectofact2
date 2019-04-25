@@ -108,7 +108,7 @@ class productoController {
         require_once 'view/layout/footer.php';
     }
     function  insert(){
-        
+        var_dump($_POST);
         $fila = 0;
         if(isset($_POST['txtdescripcion'])  && isset($_POST['cbmoneda']) && isset($_POST['txtprecioc']) && 
                 isset($_POST['txtpreciov']) && isset($_POST['txtpreciomin']) && isset($_POST['txtstock']) && isset($_POST['cbimpuesto'])){
@@ -337,7 +337,7 @@ function  search(){
   function crearprod(){
         
         
-            
+            $series = array();
             $producto = new producto();
             $lineas = $this->linea->selectAll();
             $categorias=$this->categoria->selectAll();

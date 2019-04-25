@@ -84,10 +84,11 @@
                                     <option value="">- Tipo comprobante -</option>
                                     <?php 
                                     $pred= array('Factura','Boleta','Nota de crédito','Nota de débito');
-
+                                    $value= array('Factura','Boleta','nota_credito','nota_debito');
+                                    
                                     for($i=0;$i < count($pred);$i++){
 
-                                            echo '<option value="'.$pred[$i].'" >'.$pred[$i].'</option>';
+                                            echo '<option value="'.$value[$i].'" >'.$pred[$i].'</option>';
 
 
                                     }

@@ -23,11 +23,14 @@ class usuarioController {
         $this->usuario = new usuario();
         $this->sucursal = new sucursal();
         $this->nivel = new nivel();
+        
     }
     function index(){
-        
+//       S
+//        var_dump($_SESSION);
         if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
-            echo "<META HTTP-EQUIV='Refresh' CONTENT='0; URL=".base_url."dashboard/index'>";
+//            echo header("Location:".base_url);
+            echo "<META HTTP-EQUIV ='Refresh' CONTENT='0; URL=".base_url."dashboard/index'>";
             
         } else {
             
@@ -184,18 +187,18 @@ class usuarioController {
     
     }
 function login(){
-        
+    
         
     if(isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])){
-                
+                 
                 $usuario = new usuario();
                 $usuario->setUsuario($_POST['username']);
                 $usuario->setClave($_POST['password']);
-                        
-                $user = $usuario->login();
-                
+//                        var_dump($usuario);
+                $user = $usuario->login($usuario);
+                  
                 if($user!=null && is_object($user)){
-                   
+                    session_start();
                  
                     $_SESSION['id']=$user->getId();
                     $_SESSION['apellidop'] = $user->getApellidop();
@@ -218,7 +221,7 @@ function login(){
                     $_SESSION['comision']=$user->getComision();
                     $_SESSION['foto']=$user->getFoto();
                     
-//                    var_dump($_SESSION['user']);
+//                    var_dump($_SESSION);
                     
 //                    header("Location:".base_url.'dashboard/index');
                       echo "<META HTTP-EQUIV='Refresh' CONTENT='0; URL=".base_url."dashboard/index'>";

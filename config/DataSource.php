@@ -48,8 +48,9 @@ class DataSource
             $consulta=  $this->conexion->prepare($sql);
             
             $consulta->execute($values);
-          
-            
+//          
+//            var_dump($consulta);
+//            var_dump($values);
             $numero_tabla_afectadas=$consulta->rowCount();
             return $numero_tabla_afectadas;
             

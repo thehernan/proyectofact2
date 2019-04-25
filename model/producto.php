@@ -296,6 +296,7 @@ class producto {
         $filas = 0;
 //        $cliente = new cliente();
 //        $cliente = $objeto;
+        var_dump($producto);
         $filas = $data_source->ejecutarActualizacion("insert into producto (tipo, codigo,"
                 . "codigobarra,marca,descripcion,unidmed,"
                 . "moneda, precioc,preciov,preciovmin,"

@@ -12,14 +12,18 @@
  * @author HERNAN
  */
 require_once 'model/tipocambio.php';
+
 class dashboardController {
     //put your code here
     private $cambio;
+
     function __construct() {
         $this->cambio= new tipocambio();
+   
     }
 
     function index(){
+      
         $cambio = $this->cambio->selectMax();
         $cambios = $this->cambio->selectLimit(5);
         require_once 'view/layout/header.php';

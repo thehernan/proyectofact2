@@ -9,34 +9,34 @@
         <!-- Widgets -->
         <div class="row clearfix">
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box-4  hover-expand-effect">
+                <div class="info-box-4  "> <!-- hover-expand-effect -->
                     <div class="icon">
                         <i class="material-icons col-black">face</i>
                     </div>
                     <div class="content">
-                        <div class="text">NUEVO CLIENTE</div>
+                        <a href="<?=base_url?>persona/crearclient"><div class="text">NUEVO CLIENTE</div></a>
                         <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box-4  hover-expand-effect ">
+                <div class="info-box-4   ">
                     <div class="icon">
                         <i class="material-icons col-red">shopping_cart</i>
                     </div>
                     <div class="content">
-                        <div class="text">NUEVA VENTA</div>
+                        <a href="<?=base_url?>documento/sale"><div class="text">NUEVA VENTA</div></a>
                         <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box-4 bg-light-green hover-expand-effect">
+                <div class="info-box-4 bg-light-green ">
                     <div class="icon">
                         <i class="material-icons col-white">shopping_cart</i>
                     </div>
                     <div class="content">
-                        <div class="text">NUEVO ARTICULO</div>
+                        <a href="<?=base_url?>producto/crearprod"><div class="text">NUEVO ARTICULO</div></a>
                         <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                 <div class="card" id="cardcambio">
                     <div class="header">
                         <h2>ULTIMOS TIPOS DE CAMBIO</h2>
-                        <ul class="header-dropdown m-r--5">
+<!--                        <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">more_vert</i>
@@ -203,7 +203,7 @@
                                     <li><a href="javascript:void(0);">Something else here</a></li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul>-->
                     </div>
                     <div class="body">
                         <div class="table-responsive">
