@@ -57,13 +57,31 @@ class usuarioController {
                  && isset($_POST['cbsexo']) && isset($_POST['dpfechanacimiento'])
                 && isset($_POST['txtdni']) &&  isset($_POST['txttelf1']) &&  isset($_POST['txttelf2']) &&  isset($_POST['txtcel1'])
                  && isset($_POST['txtcel2']) && isset($_POST['txtemail']) && isset($_POST['txtusuario']) && isset($_POST['txtclave'])
-                && isset($_POST['cbnivel']) && isset($_POST['cbsucursal']) && isset($_POST['txtcomision']) ){
+                && isset($_POST['cbnivel']) && !empty($_POST['cbnivel']) && isset($_POST['cbsucursal']) && !empty($_POST['cbsucursal']) && isset($_POST['txtcomision']) ){
+            
+        
+            
+            
             
             $usuario = new usuario();
             
-            $fnac = $_POST['dpfechanacimiento'];
-            $dated = DateTime::createFromFormat('d/m/Y', $fnac);      
-            $datedf = $dated->format('Y-m-d');
+            
+            $fnac = trim($_POST['dpfechanacimiento']);
+                if(!empty($fnac)){
+                    
+                    $dated = DateTime::createFromFormat('d/m/Y', $fnac);      
+                    $datedf = $dated->format('Y-m-d');
+                }else {
+                    $datedf = date('Y-m-d');
+                }
+                
+                if(!empty($_POST['txtcomision'])){
+                    $comision = $_POST['txtcomision'];
+                    
+                }else {
+                    $comision = 0;
+                }
+            
             
             $usuario->setApellidop($_POST['txtapellidop']);
             $usuario->setApellidom($_POST['txtapellidom']);
@@ -81,7 +99,7 @@ class usuarioController {
             $usuario->setClave(base64_encode($_POST['txtclave']));
             $usuario->setId_nivel($_POST['cbnivel']);
             $usuario->setIdsucursal($_POST['cbsucursal']);
-            $usuario->setComision($_POST['txtcomision']);
+            $usuario->setComision($comision);
               if (!empty($_FILES['imgfoto']['name'])){
                   $imgfoto = $_FILES['imgfoto'];
                   $imgfoto64 = base64_encode(file_get_contents($imgfoto["tmp_name"]));
@@ -150,9 +168,21 @@ class usuarioController {
             
             $usuario = new usuario();
             
-            $fnac = $_POST['dpfechanacimiento'];
-            $dated = DateTime::createFromFormat('d/m/Y', $fnac);      
-            $datedf = $dated->format('Y-m-d');
+            $$fnac = trim($_POST['dpfechanacimiento']);
+                if(!empty($fnac)){
+                    
+                    $dated = DateTime::createFromFormat('d/m/Y', $fnac);      
+                    $datedf = $dated->format('Y-m-d');
+                }else {
+                    $datedf = date('Y-m-d');
+                }
+                
+                if(!empty($_POST['txtcomision'])){
+                    $comision = $_POST['txtcomision'];
+                    
+                }else {
+                    $comision = 0;
+                }
             
             $usuario->setId($_POST['id']);
             $usuario->setApellidop($_POST['txtapellidop']);
@@ -171,7 +201,7 @@ class usuarioController {
 //            $usuario->setClave(base64_encode($_POST['txtclave']));
             $usuario->setId_nivel($_POST['cbnivel']);
             $usuario->setIdsucursal($_POST['cbsucursal']);
-            $usuario->setComision($_POST['txtcomision']);
+            $usuario->setComision($comision);
             
             if (!empty($_FILES['imgfoto']['name'])){
                   $imgfoto = $_FILES['imgfoto'];

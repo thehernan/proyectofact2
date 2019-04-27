@@ -11,7 +11,7 @@
  *
  * @author HERNAN
  */
-require_once 'model/cuentabancaria.php';
+require_once 'model/cuentaBancaria.php';
 require_once 'model/bancos.php';
 class cuentabancariaController {
     //put your code here

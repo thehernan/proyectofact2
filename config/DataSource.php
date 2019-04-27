@@ -47,6 +47,9 @@ class DataSource
         if($sql!=""){
             $consulta=  $this->conexion->prepare($sql);
             
+          
+                     
+            
             $consulta->execute($values);
 //          
 //            var_dump($consulta);
@@ -79,6 +82,8 @@ class DataSource
             $ids = array();
             $this->conexion->beginTransaction();
             $consulta=  $this->conexion->prepare($sql);
+            
+            
             for($i=0; $i<count($values);$i++){
                 $consulta->execute($values[$i]);
                 $id = $this->conexion->lastInsertId();

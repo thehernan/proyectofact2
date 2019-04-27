@@ -296,13 +296,13 @@ class producto {
         $filas = 0;
 //        $cliente = new cliente();
 //        $cliente = $objeto;
-        var_dump($producto);
+//        var_dump($producto);
         $filas = $data_source->ejecutarActualizacion("insert into producto (tipo, codigo,"
                 . "codigobarra,marca,descripcion,unidmed,"
                 . "moneda, precioc,preciov,preciovmin,"
                 . "stock, peso,incluir,nrocuenta,observacion,"
                 . "id_tipo_impuesto,prod_servi,id_categoria,id_linea,"
-                . "id_marca,id_unidmedida,activo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", array(
+                . "id_marca,id_unidmedida,activo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);" ,array(
             $producto->getTipo(),
             $producto->getCodigo(),
             $producto->getCodbarra(),
@@ -324,7 +324,7 @@ class producto {
             $producto->getIdlinea(),
             $producto->getIdmarca(),
             $producto->getIdunidmedida(),
-            TRUE
+            1
         ));
        
         return $filas;

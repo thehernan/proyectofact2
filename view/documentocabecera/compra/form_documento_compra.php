@@ -20,6 +20,7 @@
                 </h1>
    
             </div>
+            <input id="print" type="hidden" value="<?= base_url ?>documento/printticket" >
             <div class="body">
                 <form action="<?= base_url?>documento/insertcompra" method="POST"  id="FormularioAjax" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
                     <div class="row clearfix">

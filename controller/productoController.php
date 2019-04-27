@@ -108,10 +108,35 @@ class productoController {
         require_once 'view/layout/footer.php';
     }
     function  insert(){
-        var_dump($_POST);
+//        var_dump($_POST);
         $fila = 0;
         if(isset($_POST['txtdescripcion'])  && isset($_POST['cbmoneda']) && isset($_POST['txtprecioc']) && 
                 isset($_POST['txtpreciov']) && isset($_POST['txtpreciomin']) && isset($_POST['txtstock']) && isset($_POST['cbimpuesto'])){
+            
+            if(empty($_POST['cblinea']) || is_nan($_POST['cblinea'])){
+                $linea = 0;
+            }else {
+                $linea = $_POST['cblinea'];
+            }
+            if(empty($_POST['cbcategoria']) || is_nan($_POST['cbcategoria'])){
+                $categoria = 0;
+            }else {
+                $categoria = $_POST['cbcategoria'];
+            }
+            if(empty($_POST['cbmarca']) || is_nan($_POST['cbmarca'])){
+                $marca = 0;
+            }else {
+                $marca = $_POST['cbmarca'];
+            }
+            if(empty($_POST['txtpeso']) || is_nan($_POST['txtpeso'])){
+                $peso = 0;
+            }else {
+                $peso = $_POST['txtpeso'];
+            }
+            
+            
+            
+            
             
             $producto = new producto();
 //            $producto->setTipo($_POST['cbtipo']);
@@ -125,15 +150,15 @@ class productoController {
             $producto->setPreciov($_POST['txtpreciov']);
             $producto->setPreciovmin($_POST['txtpreciomin']);
             $producto->setStock($_POST['txtstock']);
-            $producto->setPeso($_POST['txtpeso']);
+            $producto->setPeso($peso);
             $producto->setIncluir($_POST['cbincluir']);
 //            $producto->setNrocuenta($_POST['txtncuenta']);
             $producto->setObservacion($_POST['txtdetalle']);
             $producto->setIdtipoimpuesto($_POST['cbimpuesto']);
             $producto->setProdservi($_POST['txtprod']);
-            $producto->setIdcategoria($_POST['cbcategoria']);
-            $producto->setIdlinea($_POST['cblinea']);
-            $producto->setIdmarca($_POST['cbmarca']);
+            $producto->setIdcategoria($categoria);
+            $producto->setIdlinea($linea);
+            $producto->setIdmarca($marca);
             $producto->setIdunidmedida($_POST['cbmedida']);
             
             echo $this->producto->insert($producto);
@@ -160,6 +185,24 @@ class productoController {
         if(isset($_POST['txtdescripcion']) &&  isset($_POST['cbmoneda']) && isset($_POST['txtprecioc']) && 
                 isset($_POST['txtpreciov']) && isset($_POST['txtpreciomin']) && isset($_POST['cbimpuesto']) && isset($_POST['txtstock'])){
             
+            
+         
+             
+                $linea = 0;
+
+            if(empty($_POST['cbcategoria']) || is_nan($_POST['cbcategoria'])){
+                $categoria = 0;
+            }else {
+                $categoria = $_POST['cbcategoria'];
+            }
+            
+                $marca = 0;
+ 
+                $peso = 0;
+            
+            
+            
+            
             $producto = new producto();
 //            $producto->setTipo($_POST['cbtipo']);
             $producto->setCodigo($_POST['txtcod']);
@@ -172,15 +215,15 @@ class productoController {
             $producto->setPreciov($_POST['txtpreciov']);
             $producto->setPreciovmin($_POST['txtpreciomin']);
             $producto->setStock($_POST['txtstock']);
-//            $producto->setPeso($_POST['txtpeso']);
+            $producto->setPeso($peso);
 //            $producto->setIncluir($_POST['cbincluir']);
 //            $producto->setNrocuenta($_POST['txtncuenta']);
             $producto->setObservacion($_POST['txtdetalle']);
             $producto->setIdtipoimpuesto($_POST['cbimpuesto']);
             $producto->setProdservi($_POST['txtprod']);
-            $producto->setIdcategoria($_POST['cbcategoria']);
-//            $producto->setIdlinea($_POST['cblinea']);
-//            $producto->setIdmarca($_POST['cbmarca']);
+            $producto->setIdcategoria($categoria);
+            $producto->setIdlinea($linea);
+            $producto->setIdmarca($marca);
 //            $producto->setIdunidmedida($_POST['cbmedida']);
             
             echo $this->producto->insert($producto);

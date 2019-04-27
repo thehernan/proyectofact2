@@ -215,7 +215,7 @@ $(document).on('submit','#FormularioAjax',function (e) {
 //                    $('#respuestaAjax').html(data);  
                         
                     }else{
-                        swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+                        swal('No se realizarón cambios', 'Ya se encuentra registrado en el sistema', 'error');
                         console.log(data);
                     }
                    
@@ -433,7 +433,7 @@ $(document).on('submit','#FormularioProducto',function (e) {
 //                    $('#respuestaAjax').html(data);  
                         
                     }else{
-                        swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+                        swal('No se realizarón cambios', 'Ya se encuentra registrado en el sistema', 'error');
                         console.log(data);
                     }
 
@@ -1336,19 +1336,25 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
             success: function (data) {
                 $('#respuestaAjax').html('');
                     if(data > 0){
-                        VentanaCentrada(urlprint+'&id='+data,'Ticket','','320','500','true');
+                        
+                        var nro = $('#txtnro').val();
+                        $('#FormularioAjaxDocumento').trigger("reset");
+                        
+                        
+                         
+                           if(nro != '' || !isNaN(nro)){
+                               $('#txtnro').val(parseInt(nro.trim()) + 1);
+                           }
+                        VentanaCentrada(urlprint+'&id='+data,'Ticket','','','','false');
                        swal("Éxitosamente!", "Operación realizada correctamente.", "success");
                         
                        
                        
-                           $('#FormularioAjaxDocumento').trigger("reset");
+                           
                            
                        
                            $('#tabla').empty();
-                           var nro = $('#txtnro').val();
-                           if(nro != '' || !isNaN(nro)){
-                               $('#txtnro').val(parseInt(nro) + 1);
-                           }
+                           
                            
                            $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
                            $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
@@ -1417,8 +1423,18 @@ function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) {
     var myTop = (screen.height-myHeight)/2;
     features+=(features!='')?',':'';
     features+=',left='+myLeft+',top='+myTop;
+    window.open(theURL,winName,features+((features!='')?',':'')+'width='+myWidth+',height='+myHeight);
+  }else {
+      var params = [
+    'height='+screen.height,
+    'width='+screen.width,
+    'fullscreen=yes' // only works in IE, but here for completeness
+    ].join(',');
+      
+      
+      window.open(theURL,winName,params);
   }
-  window.open(theURL,winName,features+((features!='')?',':'')+'width='+myWidth+',height='+myHeight);
+  
 }
 
 

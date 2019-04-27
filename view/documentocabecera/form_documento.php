@@ -238,7 +238,7 @@
 
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group form-float">
-                                            <select class="form-control show-tick" id="cbmoneda" name="cbmoneda">
+                                            <select class="form-control show-tick" id="cbsujetoa" name="cbsujetoa">
                                                 <option value="">- Sujeto a  -</option>
                                                 <?php
                                                 $pred = array('Detracción', 'Retención', 'Percepcion');

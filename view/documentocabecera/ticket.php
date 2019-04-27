@@ -10,7 +10,39 @@
  
 </head>
 
+<?php 
+    require_once 'libs/phpqrcode/qrlib.php';
 
+    $dir= "temp/";
+    if(!file_exists($dir)){
+        mkdir($dir);
+        
+    }
+    $filename = $dir.'test.png';
+
+
+
+    if($document->getTipo() =='Factura'){
+        $comprobante='FACTURA ELECTRÓNICA'; 
+        $opc = '01';
+    }elseif($document->getTipo() =='Boleta') {
+        $comprobante='BOLETA DE VENTA ELECTRÓNICA';
+        $opc = '02';
+    }elseif($document->getTipo() =='nota_debito'){
+        $comprobante='NOTA DE CREDITO ELECTRÓNICA';
+        $opc = '03';
+    }elseif($document->getTipo() =='nota_credito'){
+        $comprobante='NOTA DE DEBITO ELECTRÓNICA';
+        $opc = '04';
+    }elseif($document->getTipo() =='Compra'){
+        $comprobante='COMPRA';
+    }else{
+        $comprobante='ORDEN DE COMPRA';
+    }
+    
+   
+
+?>
 
  
 <body>
@@ -19,7 +51,7 @@
   <div class="ticket">
       
       <img src="data:image/jpg;base64 ,<?=  $sucur->getImgtoplogo(); ?>" width="100" height="100" alt="Logo" /> 
-      <p class="centrado"><strong><?= $sucur->getEmpresa(); ?></strong><br><?= $sucur->getDireccion(); ?> <br> <?= $sucur->getDpto().' - '.$sucur->getProvincia().' - '.$sucur->getDistrito() ?><br> <?= $sucur->getTelf(); ?> <br><strong> <?= 'RUC.: '.$sucur->getRuc(); ?> <br><?= ($document->getTipo() =='Factura') ? $comprobante='FACTURA ELECTRÓNICA' : $comprobante='BOLETA DE VENTA ELECTRÓNICA';?><br>
+      <p class="centrado"><strong><?= $sucur->getEmpresa(); ?></strong><br><?= $sucur->getDireccion(); ?> <br> <?= $sucur->getDpto().' - '.$sucur->getProvincia().' - '.$sucur->getDistrito() ?><br> <?= $sucur->getTelf(); ?> <br><strong> <?= 'RUC.: '.$sucur->getRuc(); ?> <br><?=  $comprobante;?><br>
       <?= $document->getSerie().'-'.str_pad($document->getNumero(), 6, "0", STR_PAD_LEFT)?></strong></p>
     <p> <strong>   ADQUIRIENTE </strong><br>
      <?= $document->getRuc() ?> <br>
@@ -89,8 +121,11 @@
       </tbody>
     </table>
     <hr>
+     <?php $qr = $sucur->getRuc().' | '.$opc.' | '.$document->getSerie().' | '.str_pad($document->getNumero(), 6, "0", STR_PAD_LEFT).' | '.$igv.' | '.$total.' | '.$document->getFechaemision().' | '.$document->getRuc().' || '; ?>
     <p class="centrado"><strong>IMPORTE EN LETRAS: </strong><?php echo strtoupper(CifrasEnLetras::convertirEurosEnLetras($total)); ?></p><hr>
     <p class="justificado"> Representación impresa de la <?= $comprobante; ?></p>
+    <?php QRcode::png($qr,$filename,'M',20,15)?>
+    <img src="<?= $filename; ?>" alt="QR" width="160" height="160">
  
     <hr>
   </div>

@@ -248,3 +248,227 @@ Stack trace:
 [25-Apr-2019 20:37:21 UTC] PHP Fatal error:  require_once(): Failed opening required 'model/cuentabancaria.php' (include_path='.
 ;
 ; Windows: \path1') in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:40:25 UTC] PHP Warning:  require_once(model/cuentabancaria.php): failed to open stream: No such file or directory in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:40:25 UTC] PHP Fatal error:  require_once(): Failed opening required 'model/cuentabancaria.php' (include_path='.
+;
+; Windows: \path1') in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:40:29 UTC] PHP Warning:  require_once(model/cuentabancaria.php): failed to open stream: No such file or directory in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:40:29 UTC] PHP Fatal error:  require_once(): Failed opening required 'model/cuentabancaria.php' (include_path='.
+;
+; Windows: \path1') in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:40:30 UTC] PHP Warning:  require_once(model/cuentabancaria.php): failed to open stream: No such file or directory in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:40:30 UTC] PHP Fatal error:  require_once(): Failed opening required 'model/cuentabancaria.php' (include_path='.
+;
+; Windows: \path1') in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:40:31 UTC] PHP Warning:  require_once(model/cuentabancaria.php): failed to open stream: No such file or directory in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:40:31 UTC] PHP Fatal error:  require_once(): Failed opening required 'model/cuentabancaria.php' (include_path='.
+;
+; Windows: \path1') in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:41:04 UTC] PHP Warning:  require_once(model/cuentabancaria.php): failed to open stream: No such file or directory in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:41:04 UTC] PHP Fatal error:  require_once(): Failed opening required 'model/cuentabancaria.php' (include_path='.
+;
+; Windows: \path1') in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[25-Apr-2019 20:41:52 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column `elpequeni_fact`.`persona`.`anivcumpleanos` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/persona.php(378): DataSource->ejecutarActualizacion('insert into per...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/personaController.php(288): persona->insert(Object(persona))
+#3 /home/elpequeni/public_html/facturador/index.php(83): personaController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[25-Apr-2019 20:42:19 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column `elpequeni_fact`.`persona`.`anivcumpleanos` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/persona.php(378): DataSource->ejecutarActualizacion('insert into per...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/personaController.php(288): persona->insert(Object(persona))
+#3 /home/elpequeni/public_html/facturador/index.php(83): personaController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[25-Apr-2019 20:45:17 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect double value: '' for column `elpequeni_fact`.`producto`.`peso` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/producto.php(327): DataSource->ejecutarActualizacion('insert into pro...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/productoController.php(139): producto->insert(Object(producto))
+#3 /home/elpequeni/public_html/facturador/index.php(83): productoController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[25-Apr-2019 20:45:43 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `elpequeni_fact`.`producto`.`id_categoria` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/producto.php(366): DataSource->ejecutarActualizacion('update producto...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/productoController.php(283): producto->update(Object(producto))
+#3 /home/elpequeni/public_html/facturador/index.php(83): productoController->updateserv()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[25-Apr-2019 20:46:12 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `elpequeni_fact`.`producto`.`id_categoria` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/producto.php(327): DataSource->ejecutarActualizacion('insert into pro...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/productoController.php(186): producto->insert(Object(producto))
+#3 /home/elpequeni/public_html/facturador/index.php(83): productoController->insertserv()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[25-Apr-2019 20:48:06 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect double value: '' for column `elpequeni_fact`.`producto`.`peso` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/producto.php(327): DataSource->ejecutarActualizacion('insert into pro...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/productoController.php(139): producto->insert(Object(producto))
+#3 /home/elpequeni/public_html/facturador/index.php(83): productoController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[25-Apr-2019 21:19:52 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:52 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/10474787): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:52 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:52 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/104747875): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:52 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:52 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/10474787): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:52 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:52 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/104747875): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:53 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:53 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/1047478752): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:53 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:19:53 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/1047478752): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:10 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:10 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:13 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:13 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:13 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:13 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:14 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:14 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:14 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:20:14 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010439): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 345
+[25-Apr-2019 21:28:57 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `elpequeni_fact`.`documento`.`id_persona` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(479): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(907): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 17:15:32 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column `elpequeni_fact`.`persona`.`anivcumpleanos` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/persona.php(378): DataSource->ejecutarActualizacion('insert into per...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/personaController.php(288): persona->insert(Object(persona))
+#3 /home/elpequeni/public_html/facturador/index.php(83): personaController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 17:15:46 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column `elpequeni_fact`.`persona`.`anivcumpleanos` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/persona.php(378): DataSource->ejecutarActualizacion('insert into per...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/personaController.php(288): persona->insert(Object(persona))
+#3 /home/elpequeni/public_html/facturador/index.php(83): personaController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 17:23:57 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column `elpequeni_fact`.`persona`.`anivcumpleanos` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/persona.php(378): DataSource->ejecutarActualizacion('insert into per...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/personaController.php(303): persona->insert(Object(persona))
+#3 /home/elpequeni/public_html/facturador/index.php(83): personaController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 17:28:02 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column `elpequeni_fact`.`persona`.`anivcumpleanos` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/persona.php(378): DataSource->ejecutarActualizacion('insert into per...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/personaController.php(303): persona->insert(Object(persona))
+#3 /home/elpequeni/public_html/facturador/index.php(83): personaController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 17:57:46 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect double value: '' for column `elpequeni_fact`.`usuario`.`comision` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/usuario.php(298): DataSource->ejecutarActualizacion('insert into usu...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/usuarioController.php(93): usuario->insert(Object(usuario))
+#3 /home/elpequeni/public_html/facturador/index.php(83): usuarioController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 17:57:58 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect double value: '' for column `elpequeni_fact`.`usuario`.`comision` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/usuario.php(298): DataSource->ejecutarActualizacion('insert into usu...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/usuarioController.php(93): usuario->insert(Object(usuario))
+#3 /home/elpequeni/public_html/facturador/index.php(83): usuarioController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 18:07:12 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'dni' at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/usuario.php(298): DataSource->ejecutarActualizacion('insert into usu...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/usuarioController.php(111): usuario->insert(Object(usuario))
+#3 /home/elpequeni/public_html/facturador/index.php(83): usuarioController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 18:10:03 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect double value: '' for column `elpequeni_fact`.`usuario`.`comision` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/usuario.php(298): DataSource->ejecutarActualizacion('insert into usu...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/usuarioController.php(111): usuario->insert(Object(usuario))
+#3 /home/elpequeni/public_html/facturador/index.php(83): usuarioController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 18:10:28 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect double value: '' for column `elpequeni_fact`.`usuario`.`comision` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/usuario.php(298): DataSource->ejecutarActualizacion('insert into usu...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/usuarioController.php(111): usuario->insert(Object(usuario))
+#3 /home/elpequeni/public_html/facturador/index.php(83): usuarioController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 18:17:19 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 18:17:19 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/10474787): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 18:17:19 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 18:17:19 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/104747875): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 18:17:19 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 18:17:19 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/1047478752): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 18:17:53 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `elpequeni_fact`.`documento`.`id_persona` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(479): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(907): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 18:31:43 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `elpequeni_fact`.`documento`.`id_persona` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(479): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(927): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[26-Apr-2019 19:38:05 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 19:38:06 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/12457899): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 19:38:46 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `elpequeni_fact`.`detalle`.`id_producto` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:82
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(82): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/Detalle.php(199): DataSource->insertmultiple('insert into det...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1007): Detalle->insert(Array)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 82
+[26-Apr-2019 21:12:41 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:12:41 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/12324444): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:13:11 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `elpequeni_fact`.`detalle`.`id_producto` at row 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:82
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(82): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/Detalle.php(199): DataSource->insertmultiple('insert into det...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1007): Detalle->insert(Array)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 82
+[26-Apr-2019 21:15:58 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:15:58 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/223243434): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:15:58 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:15:58 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/223243434): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:16:45 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:16:45 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/33423423): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:16:45 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:16:45 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/33423423): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[26-Apr-2019 21:34:44 UTC] PHP Warning:  require_once(model/cuentabancaria.php): failed to open stream: No such file or directory in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14
+[26-Apr-2019 21:34:44 UTC] PHP Fatal error:  require_once(): Failed opening required 'model/cuentabancaria.php' (include_path='.
+;
+; Windows: \path1') in /home/elpequeni/public_html/facturador/controller/cuentabancariaController.php on line 14

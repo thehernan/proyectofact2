@@ -22,6 +22,7 @@ require_once 'model/documentoOtros.php';
 require_once 'model/documentoGuia.php';
 require_once 'model/producto.php';
 
+
 class documentoController {
 
     private $documento;
@@ -427,15 +428,28 @@ class documentoController {
 
         if (isset($_POST['tipodoc']) && isset($_POST['txtserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion'])) {
 
-            $emision = $_POST['dpfechaemision'];
+            $emision = trim($_POST['dpfechaemision']);
 
             $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
             $emisionf = $dateemis->format('Y-m-d');
 
 
-            $vencimiento = $_POST['dpfechavencimiento'];
+            $vencimiento = trim($_POST['dpfechavencimiento']);
             $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);
             $vencimientof = $dateven->format('Y-m-d');
+            
+            if(!empty($_POST['incigv'])){
+                $incigv = $_POST['incigv'];
+            }else {
+                $incigv = 0;
+            }
+            
+            if(!empty($_POST['cbsujetoa'])){
+                $sujetoa = $_POST['cbsujetoa'];
+                
+            }else {
+                $sujetoa = 0;
+            }
 
 
             $documento = new documento();
@@ -447,7 +461,13 @@ class documentoController {
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
             $tipodoc = $_POST['tipodoc'];
+            
+           
             $idpersona = $_POST['idcliente'];
+             if(empty($idpersona)){
+                $idpersona = 0;
+            }
+            
             $idusuario = $_SESSION['id'];
             $ruc = $_POST['txtrucbuscar'];
             $razonsocial = $_POST['txtcliente'];
@@ -476,6 +496,7 @@ class documentoController {
             $documento->setIdsucursal($idsucursal);
             $documento->setTipocambio($tipocambio);
             $documento->setTipo($tipodoc);
+            $documento->setSujetoa($sujetoa);
             echo $id = $documento->insert($documento);
 
             $idprod = $_POST['id'];
@@ -492,8 +513,12 @@ class documentoController {
             $detalles = array();
             $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
+                   $idpro = $idprod[$i];
+                if(empty($idprod[$i])){
+                    $idpro = 0;
+                }
                 $d = array(
-                    $idprod[$i],
+                    $idpro,
                     $codigo[$i],
                     $descripcion[$i],
                     $unidad[$i],
@@ -649,7 +674,22 @@ class documentoController {
             $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);
             $vencimientof = $dateven->format('Y-m-d');
 
-
+            
+            
+            
+            if(!empty($_POST['incigv'])){
+                $incigv = $_POST['incigv'];
+            }else {
+                $incigv = 0;
+            }
+            
+            if(!empty($_POST['cbsujetoa'])){
+                $sujetoa = $_POST['cbsujetoa'];
+                
+            }else {
+                $sujetoa = 0;
+            }
+            
             $documento = new documento();
 
 
@@ -659,7 +699,13 @@ class documentoController {
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
             $tipodoc = $_POST['tipodoc'];
+            
             $idpersona = $_POST['idcliente'];
+            
+             if(empty($idpersona)){
+                $idpersona = 0;
+            }
+            
             $idusuario = $_SESSION['id'];
             $ruc = $_POST['txtrucbuscar'];
             $razonsocial = $_POST['txtcliente'];
@@ -705,8 +751,12 @@ class documentoController {
             $detalles = array();
 //         $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
+                  $idpro = $idprod[$i];
+                if(empty($idprod[$i])){
+                    $idpro = 0;
+                }
                 $d = array(
-                    $idprod[$i],
+                    $idpro,
                     $codigo[$i],
                     $descripcion[$i],
                     $unidad[$i],
@@ -864,7 +914,20 @@ class documentoController {
             $vencimiento = $_POST['dpfechavencimiento'];
             $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);
             $vencimientof = $dateven->format('Y-m-d');
-
+            
+            
+            if(!empty($_POST['incigv'])){
+                $incigv = $_POST['incigv'];
+            }else {
+                $incigv = 0;
+            }
+            
+            if(!empty($_POST['cbsujetoa'])){
+                $sujetoa = $_POST['cbsujetoa'];
+                
+            }else {
+                $sujetoa = 0;
+            }
 
             $documento = new documento();
 
@@ -876,6 +939,11 @@ class documentoController {
             $fechavencimiento = $vencimientof;
             $tipoventaop = $_POST['cbtipoop'];
             $idpersona = $_POST['idcliente'];
+            
+             $idpersona = $_POST['idcliente'];
+             if(empty($idpersona)){
+                $idpersona = 0;
+            }
             $idusuario = $_POST['cbvendedor'];
             $ruc = $_POST['txtrucbuscar'];
             $razonsocial = $_POST['txtcliente'];
@@ -922,8 +990,12 @@ class documentoController {
             $iddetalle = array();
             $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
+                $idpro = $idprod[$i];
+                if(empty($idprod[$i])){
+                    $idpro = 0;
+                }
                 $d = array(
-                    $idprod[$i],
+                    $idpro,
                     $codigo[$i],
                     $descripcion[$i],
                     $unidad[$i],
@@ -1039,6 +1111,18 @@ class documentoController {
             $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);
             $vencimientof = $dateven->format('Y-m-d');
 
+              if(!empty($_POST['incigv'])){
+                $incigv = $_POST['incigv'];
+            }else {
+                $incigv = 0;
+            }
+            
+            if(!empty($_POST['cbsujetoa'])){
+                $sujetoa = $_POST['cbsujetoa'];
+                
+            }else {
+                $sujetoa = 0;
+            }
 
             $documento = new documento();
 
@@ -1049,7 +1133,13 @@ class documentoController {
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
             $tipoventaop = $_POST['cbtipoop'];
+            
+            
             $idpersona = $_POST['idcliente'];
+             if(empty($idpersona)){
+                $idpersona = 0;
+            }
+            
             $idusuario = $_SESSION['id'];
             $ruc = $_POST['txtrucbuscar'];
             $razonsocial = $_POST['txtcliente'];
@@ -1091,8 +1181,9 @@ class documentoController {
             $documento->setDocref($docref);
 
             echo $id = $documento->insert($documento);
-
+            
             $idprod = $_POST['id'];
+            
             $codigo = $_POST['codigo'];
             $descripcion = $_POST['descripcionprod'];
             $unidad = $_POST['unidad'];
@@ -1108,8 +1199,12 @@ class documentoController {
             $iddetalle = array();
             $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
+                $idpro = $idprod[$i];
+                if(empty($idprod[$i])){
+                    $idpro = 0;
+                }
                 $d = array(
-                    $idprod[$i],
+                    $idpro,
                     $codigo[$i],
                     $descripcion[$i],
                     $unidad[$i],
@@ -1234,6 +1329,7 @@ class documentoController {
     function printticket(){
         
         if(isset($_GET['id'])){
+            
             $id = $_GET['id'];
             $sucursal = new sucursal();
             $detalle = new Detalle();

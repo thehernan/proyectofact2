@@ -104,7 +104,14 @@ class personaController {
              && isset($_POST['txtrepresenta']) && isset($_POST['txtpartida']) && isset($_POST['cbidtipodoc']) && isset($_POST['cbmodopago']) && isset($_POST['cbrepresentante'])){
          
          
-         
+        $emision = trim($_POST['dpaniversario']);
+         if(!empty($emision)){
+             $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
+             $emisionf = $dateemis->format('Y-m-d');
+             
+         } else {
+             $emisionf= '0000-00-00';
+         }
           
           
          $id =  $_POST['id'];
@@ -122,7 +129,7 @@ class personaController {
          $cel3 = $_POST['txtcel3'];
          $email = $_POST['txtemail'];
          $web = $_POST['txtweb'];
-         $aniv = $_POST['dpaniversario'];
+         $aniv = $emisionf;
 //         $responsable = isset($_POST['txtresponsable']) ? $_POST['txtresponsable'] : false;
          $estado = $_POST['cbestado'];
          $representa = $_POST['txtrepresenta'];
@@ -228,7 +235,15 @@ class personaController {
              isset($_POST['tipo']) && !empty($_POST['tipo'])){
          
          
-         
+         $emision = trim($_POST['dpaniversario']);
+         if(!empty($emision)){
+             $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
+             $emisionf = $dateemis->format('Y-m-d');
+             
+         } else {
+             $emisionf= '0000-00-00';
+         }
+        
           
          $tipo= $_POST['tipo'];
          $id =  $_POST['id'];
@@ -246,7 +261,7 @@ class personaController {
          $cel3 = $_POST['txtcel3'];
          $email = $_POST['txtemail'];
          $web = $_POST['txtweb'];
-         $aniv = $_POST['dpaniversario'];
+         $aniv = $emisionf;
 //         $responsable = isset($_POST['txtresponsable']) ? $_POST['txtresponsable'] : false;
          $estado = $_POST['cbestado'];
          $representa = $_POST['txtrepresenta'];
