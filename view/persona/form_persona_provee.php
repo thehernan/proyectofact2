@@ -106,7 +106,7 @@ if ($persona->getId() != 0 ) {
                                     <input type="hidden" value="<?= $id ?>" id="id" name="id">
                                     <input type="hidden" value="2" id="tipo" name="tipo">
                                     <div class="form-group form-float">
-                                        <label class="form-label text-danger">Cliente </label>
+                                        <label class="form-label text-danger">Proveedor </label>
                                         <div class="form-line focused error">
                                             <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="<?= $persona->getNombre(); ?>" required="required">
                                             
