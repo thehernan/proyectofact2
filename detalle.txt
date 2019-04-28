@@ -1,0 +1,768 @@
+
+<style>
+   .ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;   
+    padding: 4px 0;
+    margin: 0 0 10px 25px;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+    max-height: 200px;
+    max-width:  auto;
+    overflow-y: auto;
+    overflow-x: auto;
+    
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+    
+}
+
+.ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+    text-decoration: none;
+    
+}
+
+.ui-state-hover, .ui-state-active {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0088cc;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    background-image: none;
+    cursor: pointer;
+}
+
+.ui-helper-hidden-accessible { display:none; }
+    
+    
+</style>
+
+<div class="card ">
+    <div class="header bg-teal">
+        <h2>
+            Productos / Servicios <small> Ingrese los datos aqui...</small>
+        </h2>
+
+    </div>
+
+<!--<form method="post">-->
+<!--<h4 class="bg-primary text-center pad-basic no-btm">Productos / Servicios </h4>-->
+<input id="url" type="hidden" value="<?= base_url?>producto/search">
+<div class="body"   id="tabla">
+    
+
+    <?php foreach ($detalles as $detalle){ ?>
+       
+    
+         
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+
+            
+                <label class="form-label">Código</label>
+                
+                <input class="form-control" required name="idalumno[]" placeholder="Código"/>
+            
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+            
+                <label>Descripción</label> 
+                
+                    <input class="form-control" required name="nombre[]" placeholder="Descripción"/>
+            
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            
+
+                <label>Unidad</label>
+                <select    name="unidad[]" id="unidad">
+                    <?php foreach ($unidades as $unidad){
+                        echo '<option value="'.$unidad->getId().'">'.$unidad->getDescripcion().'</option>';
+                        
+                    }?>
+
+                </select>
+            
+        </div >
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" id="select">
+            
+                <label >Tipo IGV</label>
+                <select class="form-control show-tick" data-live-search="true"  name="unidad[]" id="unidad">
+                    <?php
+                    foreach ($impuestos as $impuesto) {
+                        echo '<option value="' . $impuesto->getId() . '">' . $impuesto->getDescripcion() . '</option>';
+                    }
+                    ?>
+
+
+                </select>
+            
+        </div>
+       
+        
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                
+                    <label>Cantidad</label>
+                    
+                        <input class="form-control" required name="grupo[]" placeholder="Cantidad"/>
+                
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                
+                    <label>Precio Unitario</label>
+                   
+                        <input class="form-control" required name="grupo[]" placeholder="Precio"/>
+               
+            </div>
+        
+        
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                
+                    
+                        <label>Subtotal</label>
+                        <input class="form-control" required name="grupo[]" placeholder="Total"/>
+               
+            </div>
+        
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                
+                    
+                        <label>Total</label>
+                        <input class="form-control" required name="grupo[]" placeholder="Total"/>
+               
+            </div>
+            <div class="eliminar col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                <button type="button" class="btn btn-danger waves-effect" ><span class="glyphicon glyphicon-remove"></span></button></div>
+       
+        
+        
+     
+        
+  <?php  } ?>
+<!--    <div class="row  fila-fija  ">
+        <hr> 
+       
+    </div>-->   
+</div>
+
+
+
+<div class="row">
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 align-center">
+    <!--<input type="submit" name="insertar" value="Insertar Alumno" class="btn btn-info"/>-->
+    <button id="adicional" name="adicional" type="button" class="btn btn-primary waves-effect"> Agregar linea o item </button>
+
+
+    <!--</form>-->
+</div>
+</div>
+</div>
+<?php 
+    $total = 0;
+
+?>
+<script>
+
+    $(function () {
+        // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+  
+        var cont = 0;
+        var ident = '';
+        
+        
+        function sumtotal(){
+          var totalitem = $('#total').val();
+          console.log(totalitem);
+          
+            
+            
+        }
+        
+        
+        $(document).on('click',"#adicional", function () {
+//              var newDiv = document.createElement("div"); 
+//              var newContent = document.createTextNode("Hola!¿Qué tal?"); 
+//              newDiv.appendChild(newContent); //añade texto al div creado. 
+//
+//              // añade el elemento creado y su contenido al DOM 
+//              var currentDiv = document.getElementById("div1"); 
+//              document.getElementById('#tabla').innerHTML (newDiv, currentDiv);
+           
+           
+           ////////////////////////////// div /////////////
+           
+           var divcol = document.createElement('div');
+           divcol.setAttribute('class','col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           var divcol2 = document.createElement('div');
+           divcol2.setAttribute('class','col-lg-4 col-md-4 col-sm-4 col-xs-6');
+           
+           var divcol3 = document.createElement('div');
+           divcol3.setAttribute('class','col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           var divcol4 = document.createElement('div');
+           divcol4.setAttribute('class','col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           var divcol5 = document.createElement('div');
+           divcol5.setAttribute('class','col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           var divcol6 = document.createElement('div');
+           divcol6.setAttribute('class','col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           var divcol7 = document.createElement('div');
+           divcol7.setAttribute('class','col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           var divcol8 = document.createElement('div');
+           divcol8.setAttribute('class','col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           var divcol9 = document.createElement('div');
+           divcol9.setAttribute('class','col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           
+           var diveliminar = document.createElement('div');
+           diveliminar.setAttribute('class','eliminar col-lg-2 col-md-2 col-sm-2 col-xs-6');
+           
+           //////////////////////////////////////////////////////////////////
+           /////////// elemento codigo ///
+        
+           
+           ///////// label //////
+           
+           var labelcod = document.createElement('label');
+           labelcod.innerHTML='Código';
+           divcol.appendChild(labelcod);
+           
+           
+              ////// input ///////////
+           var input = document.createElement('input');
+//           divcol.createTextNode(input);
+           input.setAttribute('type','text');
+           input.setAttribute('class','form-control codigo'+cont);
+           input.setAttribute('id','codigo[]');
+           input.setAttribute('placeholder','código');
+           
+           
+           divcol.appendChild(input);
+           //////////////////////////////////////////////
+             //////////////////////////////////////////////////////////////////
+           /////////// elemento descripcion ///
+        
+           
+           ///////// label //////
+           
+           var labelcod = document.createElement('label');
+           labelcod.innerHTML='Descripción';
+           divcol2.appendChild(labelcod);
+           
+           
+              ////// input ///////////
+           var input = document.createElement('input');
+//           divcol.createTextNode(input);
+           input.setAttribute('type','text');
+           input.setAttribute('class','form-control descripcionprod'+cont);
+           input.setAttribute('id','descripcionprod[]');
+           input.setAttribute('placeholder','Descripción');
+           input.setAttribute('ident',cont);
+           input.addEventListener( 'focus', function (e) {
+                // e.target matches elem
+                var att = $(this).attr('ident');
+                ident = att;
+              }, false
+              );
+           divcol2.appendChild(input);
+           //////////////////////////////////////////////
+           
+             //////////////////////////////////////////////////////////////////
+           /////////// elemento unidad ///
+        
+           
+           ///////// label //////
+           
+           var labelcod = document.createElement('label');
+           labelcod.innerHTML='Unidad';
+           divcol3.appendChild(labelcod);
+           
+           
+              ////// select ///////////
+           var select = document.createElement('select');
+           
+//           divcol.createTextNode(input);
+           
+//           select.last().addClass('form-control show-tick');
+           select.setAttribute('id','unidad');
+           select.setAttribute('data-live-search','true');
+           select.className ='form-control show-tick';
+           <?php $i=0; foreach ($unidades as $unidad){ $i++;?>
+                   
+            var option = document.createElement("option");
+            option.innerHTML = '<?= trim($unidad->getDescripcion())?>';
+            option.setAttribute('value','<?= $unidad->getId() ?>');
+            select.add(option);
+           <?php } ?>
+           
+           
+           select.appendChild(option);
+         
+           
+           divcol3.appendChild(select);
+           //////////////////////////////////////////////
+           
+           //////////// elemento tipo igv
+                      
+           ///////// label //////
+           
+           var labeligv= document.createElement('label');
+           labeligv.innerHTML='Tipo Igv';
+           divcol4.appendChild(labeligv);
+           
+           
+              ////// select ///////////
+           var selectigv = document.createElement('select');
+           
+//           divcol.createTextNode(input);
+           
+//           select.last().addClass('form-control show-tick');
+           selectigv.setAttribute('id','tipoigv');
+           selectigv.setAttribute('data-live-search','true');
+           selectigv.className ='form-control show-tick';
+           <?php  foreach ($impuestos as $impuesto){ ?>
+                   
+            var optionigv = document.createElement("option");
+            optionigv.innerHTML = '<?= trim($impuesto->getDescripcion())?>';
+            optionigv.setAttribute('value','<?= $impuesto->getId() ?>');
+            selectigv.add(optionigv);
+           <?php } ?>
+           
+           
+           selectigv.appendChild(optionigv);
+         
+           
+           divcol4.appendChild(selectigv);
+           //////////////////////////////////////////////
+                /////////// elemento cantidad ///
+        
+           
+           ///////// label //////
+           
+           var labelcant = document.createElement('label');
+           labelcant.innerHTML='Cantidad';
+           divcol5.appendChild(labelcant);
+           
+           
+              ////// input ///////////
+           var input = document.createElement('input');
+//           divcol.createTextNode(input);
+           input.setAttribute('type','text');
+           input.setAttribute('class','form-control cantidad'+cont);
+           input.setAttribute('id','cantidad[]');
+           input.setAttribute('placeholder','Cantidad');
+           input.setAttribute('ident',cont);
+           input.addEventListener( 'focus', function (e) {
+                // e.target matches elem
+                var att = $(this).attr('ident');
+                ident = att;
+              }, false
+              );
+           divcol5.appendChild(input);
+           //////////////////////////////////////////////
+            //////////////////////////////////////////////
+                /////////// elemento precio unitario ///
+        
+           
+           ///////// label //////
+           
+           var labelprecio = document.createElement('label');
+           labelprecio.innerHTML='Precio Unitario';
+           divcol6.appendChild(labelprecio);
+           
+           
+              ////// input ///////////
+           var input = document.createElement('input');
+//           divcol.createTextNode(input);
+           input.setAttribute('type','text');
+           input.setAttribute('class','form-control precio'+cont);
+           input.setAttribute('id','precio[]');
+           input.setAttribute('placeholder','0');
+           input.setAttribute('ident',cont);
+           input.addEventListener( 'focus', function (e) {
+                // e.target matches elem
+                var att = $(this).attr('ident');
+                ident = att;
+              }, false
+              );
+           
+           divcol6.appendChild(input);
+           //////////////////////////////////////////////
+                      //////////////////////////////////////////////
+                /////////// elemento subtotal ///
+        
+           
+           ///////// label //////
+           
+           var labelsub = document.createElement('label');
+           labelsub.innerHTML='Subtotal';
+           divcol7.appendChild(labelsub);
+           
+           
+              ////// input ///////////
+           var input = document.createElement('input');
+//           divcol.createTextNode(input);
+           input.setAttribute('type','text');
+           input.setAttribute('class','form-control subtotal'+cont);
+           input.setAttribute('readonly','true');
+           input.setAttribute('id','subtotal[]');
+           input.setAttribute('placeholder','0');
+           
+           divcol7.appendChild(input);
+           
+           //////////////////////////////////////////////
+                        //////////////////////////////////////////////
+                /////////// elemento total ///
+        
+           
+           ///////// label //////
+           
+           var labeltotal = document.createElement('label');
+           labeltotal.innerHTML='Total';
+           divcol8.appendChild(labeltotal);
+           
+           
+              ////// input ///////////
+           var inputtotal = document.createElement('input');
+//           divcol.createTextNode(input);
+           inputtotal.setAttribute('type','text');
+           inputtotal.setAttribute('class','form-control total'+cont);
+           inputtotal.setAttribute('readonly','true');
+           inputtotal.setAttribute('id','total[]');
+           inputtotal.setAttribute('name','total[]');
+           inputtotal.setAttribute('placeholder','0');
+           
+           divcol8.appendChild(inputtotal);
+           //////////////////////////////////////////////
+           
+           //////////// elemento acciones ////////////
+           ///////// label //////
+           
+           var span = document.createElement('span');
+           span.setAttribute('class','glyphicon glyphicon-remove');
+           
+           
+           ///btn eliminar //////
+           
+           var btn = document.createElement('button');
+           btn.setAttribute('type','button');
+           btn.setAttribute('class','btn btn-danger waves-effect');
+//           btn.setAttribute('id','btneliminar');
+           
+          
+           btn.appendChild(span);
+           diveliminar.appendChild(btn);
+           
+           
+           var div = document.createElement('div');
+           div.setAttribute('class','row');
+           div.appendChild(divcol);
+           div.appendChild(divcol2);
+           div.appendChild(divcol3);
+           div.appendChild(divcol4);
+           div.appendChild(divcol5);
+           div.appendChild(divcol6);
+           div.appendChild(divcol7);
+           div.appendChild(divcol8);
+           div.appendChild(diveliminar);
+           
+           
+            
+            $('#tabla').append(div);
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            $(document).on("keydown.autocompleteselect",".descripcionprod"+cont,function(){
+            $(this).autocomplete({
+              minLength: 2,
+              source :               
+                    
+                    function( request, response ) {
+            $.ajax({
+                type: 'POST',
+                url: '<?= base_url.'producto/search'?>',
+                data: { query: request.term},
+                success: response,
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert("error handler!");   
+                    alert(errorThrown);
+                },
+                    dataType: 'json',
+                    delay: 100
+                  });
+//                          .done(function (data){
+//                      console.log('done'+data);
+////                      console.log('select dano'+ui);
+//                      
+//                     
+//                  });
+                },
+                
+                
+                 select: function(event, ui) {
+                    event.preventDefault();
+                    $('.codigo'+(ident)).val(ui.item.codigo);
+                    $('.precio'+(ident)).val(ui.item.preciov);
+                    $('.descripcionprod'+(ident)).val(ui.item.descripcion);
+                    var totalgen = 0;
+                    var cantidad= $('.cantidad'+ident).val();
+                    console.log('cant '+cantidad);
+                    var precio = ui.item.preciov;
+                    var total = 0;
+                    for (var k = 0; k<cont;k++){
+                        
+                        total = cantidad*precio;
+                        $('.total'+ident).val(total.toFixed(2));
+                         totalgen= parseFloat(totalgen) + parseFloat($('.total'+k).val());
+
+                    }
+                    var subtotal = totalgen/1.18;
+                    var igv = totalgen-subtotal;
+                    console.log('totalgen'+totalgen);
+                    $('#lblgravada').html('<strong>GRAVADA:</strong> S/ '+subtotal.toFixed(2));
+                    $('#lbligv').html('<strong>IGV 18%:</strong> S/ '+igv.toFixed(2));
+                    $('#lbltotal').html('<strong>TOTAL:</strong> S/ '+totalgen.toFixed(2));
+//                    $('#idcodsunat').val(ui.item.id);
+//                    $('#codigo').val(ui.item.codigo);                    
+                    console.log(ui);
+//                    console.log('select  '+ui);
+             }
+            
+                
+              
+            });
+            
+//            event.preventDefault();
+          });
+          
+          
+          
+          
+          
+          
+          $(document).on("keyup",".cantidad"+cont,function(){
+            var cantidad = $(this).val();
+            var precio = $('.precio'+ident).val();
+            var total = cantidad*precio;
+            
+            var subtotal = total / 1.18;
+            $('.subtotal'+ident).val(subtotal.toFixed(2));
+            $('.total'+ident).val(total.toFixed(2));
+            
+            var totalgen = 0;
+            
+            for (var i = 0; i<cont;i++){
+                
+                 totalgen= parseFloat(totalgen) + parseFloat($('.total'+i).val());
+                 
+            }
+            
+            var subtotal = totalgen/1.18;
+            var igv = totalgen-subtotal;
+            console.log('totalgen'+totalgen);
+            $('#lblgravada').html('<strong>GRAVADA:</strong> S/ '+subtotal.toFixed(2));
+            $('#lbligv').html('<strong>IGV 18%:</strong> S/ '+igv.toFixed(2));
+            $('#lbltotal').html('<strong>TOTAL:</strong> S/ '+totalgen.toFixed(2));
+            
+            
+            
+            });
+            
+             $(document).on("keyup",".precio"+cont,function(){
+            var precio = $(this).val();
+            var cantidad = $('.cantidad'+ident).val();
+            var total = cantidad*precio;
+            var subtotal = total / 1.18;
+            $('.subtotal'+ident).val(subtotal.toFixed(2));
+            $('.total'+ident).val(total.toFixed(2));
+            
+            
+            var totalgen = 0;
+             console.log('cont '+cont);
+            for (var j = 0; j<cont;j++){
+//                console.log('i cantidad'+i);
+                 totalgen= parseFloat(totalgen) + parseFloat($('.total'+j).val());
+                 
+            }
+            var subtotal = totalgen/1.18;
+            var igv = totalgen-subtotal;
+            
+            console.log('totalgen'+totalgen);
+            $('#lblgravada').html('<strong>GRAVADA:</strong> S/ '+subtotal.toFixed(2));
+            $('#lbligv').html('<strong>IGV 18%:</strong> S/ '+igv.toFixed(2));
+            $('#lbltotal').html('<strong>TOTAL:</strong> S/ '+totalgen.toFixed(2));
+            
+            });
+          
+
+//          
+          
+          
+          
+          
+          
+         
+                
+              
+
+          
+           console.log('cont'+cont);
+           cont++;
+            
+//           var fila = $("#tabla  div:eq(0)").clone();
+//           fila.appendTo("#tabla");
+//            
+//            
+//            /////////////////////////////////////////////
+//            var op = $('#unidad').clone(true,true);
+//            
+//            var selectedValue = $("#unidad option:selected").val();
+//            op.find("option[value = '" + selectedValue + "']").attr("selected", "selected");
+//            op.attr('class','form-control show-tick');
+////            $('#tabla').append(op);
+//            op.appendTo('#select');
+
+        
+
+
+
+
+
+
+        });
+
+        // Evento que selecciona la fila y la edivmina 
+        $(document).on("click", ".eliminar", function () {
+           
+            var parent = $(this).parents().get(0);
+//            var parent1 = $(this).parents().get(1);
+            $(parent).remove();
+//            $(parent1).remove();
+            cont--;
+            var totalgen = 0;
+            
+            for (var l = 0; l<cont;l++){
+                
+                 totalgen= parseFloat(totalgen) + parseFloat($('.total'+l).val());
+                 
+            }
+            var subtotal = totalgen/1.18;
+            var igv = totalgen-subtotal;
+            
+            console.log('totalgen'+totalgen);
+            if(isNaN(totalgen)){
+                totalgen = 0;
+            }
+            $('#lblgravada').html('<strong>GRAVADA:</strong> S/ '+subtotal.toFixed(2));
+            $('#lbligv').html('<strong>IGV 18%:</strong> S/ '+igv.toFixed(2));
+            $('#lbltotal').html('<strong>TOTAL:</strong> S/ '+totalgen.toFixed(2));
+            
+        });
+        
+        
+        
+//        $(document).on("click", ".btneliminar", function () {
+//            alert('hola');
+//        });
+
+
+    
+
+          
+       
+
+        
+        
+//        $(document).on("keydown.autocomplete",".descripcionprod",function (e){
+//            $(this).autocomplete({
+//                source: '<?= base_url.'producto/search'?>',
+//                minLength: 3,
+//    //            data: {decrip: descrip}
+//                select: function(event, ui) {
+//                 console.log('ccoigo '+ui);
+//                    event.preventDefault();
+////                    $('#idcodsunat').val(ui.item.id);
+//                    $('.descripcionprod').val(ui.item.codigo+' - '+ui.item.descripcion);
+//                    
+//             }
+//                
+//                
+//            });
+//            
+//            
+//        )};
+        
+//        
+//        $(".descripcionprod").autocomplete({
+//           
+////            var descrip = $("#cliente").val();
+//          
+//            source: '<?= base_url.'producto/search'?>',
+//            minLength: 3,
+////            data: {decrip: descrip}
+//            select: function(event, ui) {
+//                 console.log('ccoigo '+ui);
+//                    event.preventDefault();
+////                    $('#idcodsunat').val(ui.item.id);
+//                    $('.descripcionprod').val(ui.item.codigo+' - '+ui.item.descripcion);
+//                    
+//                    
+//              
+//                    
+//
+//
+//             }
+//        });
+//        
+        
+ 
+//        
+        
+        
+        
+    });
+    
+    
+           
+    
+    
+  
+</script>    
