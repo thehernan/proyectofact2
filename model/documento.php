@@ -519,6 +519,7 @@ class documento {
             $documento->setEstadolocal($data_tabla[$clave]["estadolocal"]);
             $documento->setEmail($data_tabla[$clave]["email"]);
             $documento->setTipo($data_tabla[$clave]["tipo"]);
+            $documento->setTipodoc($data_tabla[$clave]["tipo_doc"]);
             $documento->setTotal($data_tabla[$clave]["total"]);
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
              

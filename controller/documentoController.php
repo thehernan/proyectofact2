@@ -530,10 +530,10 @@ class documentoController {
                     $id
                 );
                 array_push($detalles, $d);
-
+                                                                                                                                                                                                                                                                                                              
                 $produp = array(
                     $cantidad[$i],
-                    $idprod[$i]
+                   $idpro
                 );
                 array_push($produpdate, $produp);
             }

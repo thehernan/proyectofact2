@@ -382,11 +382,11 @@
 
                                     <div class="body">
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
                                                 <label class="text-danger" id="lblgravada"><strong>GRAVADA: </strong>  S/ 0.00</label>
 
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
 
                                                 <label class="text-danger" id="lbligv"><strong>IGV 18%: </strong>  S/ 0.00</label>
                                             </div>

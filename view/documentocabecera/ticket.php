@@ -22,19 +22,19 @@
 
 
 
-    if($document->getTipo() =='Factura'){
+    if($document->getTipo() =='Factura' and $document->getTipodoc()=='Venta'){
         $comprobante='FACTURA ELECTRÓNICA'; 
         $opc = '01';
-    }elseif($document->getTipo() =='Boleta') {
+    }elseif($document->getTipo() =='Boleta' and $document->getTipodoc()=='Venta') {
         $comprobante='BOLETA DE VENTA ELECTRÓNICA';
         $opc = '02';
     }elseif($document->getTipo() =='nota_debito'){
         $comprobante='NOTA DE CREDITO ELECTRÓNICA';
         $opc = '03';
-    }elseif($document->getTipo() =='nota_credito'){
+    }elseif($document->getTipo() =='nota_credito' ){
         $comprobante='NOTA DE DEBITO ELECTRÓNICA';
         $opc = '04';
-    }elseif($document->getTipo() =='Compra'){
+    }elseif($document->getTipo() =='Factura' and $document->getTipodoc()=='Compra'){
         $comprobante='COMPRA';
     }else{
         $comprobante='ORDEN DE COMPRA';
