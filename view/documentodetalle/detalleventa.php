@@ -580,6 +580,8 @@ $total = 0;
                 $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + totalgen.toFixed(2));
 
             });
+            
+       
 
 
             //          
@@ -708,6 +710,102 @@ $total = 0;
             input.setAttribute('class', 'form-control id' + cont);
             input.setAttribute('id', 'id[]');
             input.setAttribute('name', 'id[]');
+            var inputigv = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputigv.setAttribute('type', 'text');
+            inputigv.setAttribute('class', 'form-control igvprod' + cont);
+            inputigv.setAttribute('id', 'igvprod[]');
+            inputigv.setAttribute('name', 'igvprod[]');
+            var inputvalorunit = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputvalorunit.setAttribute('type', 'text');
+            inputvalorunit.setAttribute('class', 'form-control valorunitref' + cont);
+            inputvalorunit.setAttribute('id', 'valorunitref[]');
+            inputvalorunit.setAttribute('name', 'valorunitref[]');
+            var inputmontobaseigv = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseigv.setAttribute('type', 'text');
+            inputmontobaseigv.setAttribute('class', 'form-control montobaseigv' + cont);
+            inputmontobaseigv.setAttribute('id', 'montobaseigv[]');
+            inputmontobaseigv.setAttribute('name', 'montobaseigv[]');
+            var inputmontobaseexpo = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseexpo.setAttribute('type', 'text');
+            inputmontobaseexpo.setAttribute('class', 'form-control montobaseexpo' + cont);
+            inputmontobaseexpo.setAttribute('id', 'montobaseexpo[]');
+            inputmontobaseexpo.setAttribute('name', 'montobaseexpo[]');
+            var inputmontobaseexo = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseexo.setAttribute('type', 'text');
+            inputmontobaseexo.setAttribute('class', 'form-control montobaseexonerado' + cont);
+            inputmontobaseexo.setAttribute('id', 'montobaseexonerado[]');
+            inputmontobaseexo.setAttribute('name', 'montobaseexonerado[]');
+            var inputmontobaseinafecto = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseinafecto.setAttribute('type', 'text');
+            inputmontobaseinafecto.setAttribute('class', 'form-control montobaseinafecto' + cont);
+            inputmontobaseinafecto.setAttribute('id', 'montobaseinafecto[]');
+            inputmontobaseinafecto.setAttribute('name', 'montobaseinafecto[]');
+            var inputmontobasegratuito = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobasegratuito.setAttribute('type', 'text');
+            inputmontobasegratuito.setAttribute('class', 'form-control montobasegratuito' + cont);
+            inputmontobasegratuito.setAttribute('id', 'montobasegratuito[]');
+            inputmontobasegratuito.setAttribute('name', 'montobasegratuito[]');
+            var inputmontobaseisc = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseisc.setAttribute('type', 'text');
+            inputmontobaseisc.setAttribute('class', 'form-control montobaseisc' + cont);
+            inputmontobaseisc.setAttribute('id', 'montobaseisc[]');
+            inputmontobaseisc.setAttribute('name', 'montobaseisc[]');
+            var inputmontobaseotros = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseotros.setAttribute('type', 'text');
+            inputmontobaseotros.setAttribute('class', 'form-control montobaseotrostributos' + cont);
+            inputmontobaseotros.setAttribute('id', 'montobaseotrostributos[]');
+            inputmontobaseotros.setAttribute('name', 'montobaseotrostributos[]');
+            var inputventagratuita = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputventagratuita.setAttribute('type', 'text');
+            inputventagratuita.setAttribute('class', 'form-control tributoventagratuita' + cont);
+            inputventagratuita.setAttribute('id', 'tributoventagratuita[]');
+            inputventagratuita.setAttribute('name', 'tributoventagratuita[]');
+            var inputotrostrib = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputotrostrib.setAttribute('type', 'text');
+            inputotrostrib.setAttribute('class', 'form-control otrostributos' + cont);
+            inputotrostrib.setAttribute('id', 'otrostributos[]');
+            inputotrostrib.setAttribute('name', 'otrostributos[]');
+            var inputporcentajeigv = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputporcentajeigv.setAttribute('type', 'text');
+            inputporcentajeigv.setAttribute('class', 'form-control porcentajeigv' + cont);
+            inputporcentajeigv.setAttribute('id', 'porcentajeigv[]');
+            inputporcentajeigv.setAttribute('name', 'porcentajeigv[]');
+            var inputporcentajeotrostrib = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputporcentajeotrostrib.setAttribute('type', 'text');
+            inputporcentajeotrostrib.setAttribute('class', 'form-control porcentajeotrostributos' + cont);
+            inputporcentajeotrostrib.setAttribute('id', 'porcentajeotrostributos[]');
+            inputporcentajeotrostrib.setAttribute('name', 'porcentajeotrostributos[]');
+            var inputporcentajetributoventagratuita = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputporcentajetributoventagratuita.setAttribute('type', 'text');
+            inputporcentajetributoventagratuita.setAttribute('class', 'form-control porcentajetributoventagratuita' + cont);
+            inputporcentajetributoventagratuita.setAttribute('id', 'porcentajetributoventagratuita[]');
+            inputporcentajetributoventagratuita.setAttribute('name', 'porcentajetributoventagratuita[]');
+            var inputmontooriginal = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontooriginal.setAttribute('type', 'text');
+            inputmontooriginal.setAttribute('class', 'form-control montooriginal' + cont);
+            inputmontooriginal.setAttribute('id', 'montooriginal[]');
+            inputmontooriginal.setAttribute('name', 'montooriginal[]');
+            var inputmonedaorig = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmonedaorig.setAttribute('type', 'text');
+            inputmonedaorig.setAttribute('class', 'form-control monedaoriginal' + cont);
+            inputmonedaorig.setAttribute('id', 'monedaoriginal[]');
+            inputmonedaorig.setAttribute('name', 'monedaoriginal[]');
             
             var inputincluye = document.createElement('input');
 //           divcol.createTextNode(input);
@@ -720,6 +818,22 @@ $total = 0;
 
 
             divcol.appendChild(input);
+            divcol.appendChild(inputigv);
+            divcol.appendChild(inputvalorunit);
+            divcol.appendChild(inputmontobaseigv);
+            divcol.appendChild(inputmontobaseexpo);
+            divcol.appendChild(inputmontobaseexo);
+            divcol.appendChild(inputmontobaseinafecto);
+            divcol.appendChild(inputmontobasegratuito);
+            divcol.appendChild(inputmontobaseisc);
+            divcol.appendChild(inputmontobaseotros);
+            divcol.appendChild(inputventagratuita);
+            divcol.appendChild(inputotrostrib);
+            divcol.appendChild(inputporcentajeigv);
+            divcol.appendChild(inputporcentajeotrostrib);
+            divcol.appendChild(inputporcentajetributoventagratuita);
+            divcol.appendChild(inputmontooriginal);
+            divcol.appendChild(inputmonedaorig);
             divcol.appendChild(inputincluye);
             /////////// elemento codigo ///
 
@@ -830,7 +944,7 @@ foreach ($unidades as $unidad) {
             selectigv.setAttribute('id', 'tipoigv');
             selectigv.setAttribute('name', 'tipoigv[]');
             selectigv.setAttribute('data-live-search', 'true');
-            selectigv.className = 'form-control show-tick';
+            selectigv.setAttribute('class','form-control show-tick tipoigv'+cont);
 <?php foreach ($impuestos as $impuesto) { ?>
 
                 var optionigv = document.createElement("option");
@@ -1352,6 +1466,32 @@ foreach ($unidades as $unidad) {
 
 
                 calculartotal();
+
+            });
+            
+                 $(document).on("change", ".tipoigv" + cont, function () {
+                var precio = $(this).val();
+                var cantidad = $('.cantidad' + ident).val();
+                var total = cantidad * precio;
+                var subtotal = total / 1.18;
+                $('.subtotal' + ident).val(subtotal.toFixed(2));
+                $('.total' + ident).val(total.toFixed(2));
+
+
+                var totalgen = 0;
+                console.log('cont ' + cont);
+                for (var j = 0; j < cont; j++) {
+                    //                console.log('i cantidad'+i);
+                    totalgen = parseFloat(totalgen) + parseFloat($('.total' + j).val());
+
+                }
+                var subtotal = totalgen / 1.18;
+                var igv = totalgen - subtotal;
+
+                console.log('totalgen' + totalgen);
+                $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
+                $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
+                $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + totalgen.toFixed(2));
 
             });
          
