@@ -25,14 +25,7 @@
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <button type="button" data-color="deep-purple" class="btn bg-teal waves-effect" data-toggle="modal" data-target=".modaldocserie"><span class="glyphicon glyphicon-plus"></span> DOC-SERIE</button>
                             </div>
-
-
                         </div>
-
-
-
-
-
 
                     </div>
 
@@ -332,20 +325,45 @@
 
 
                                     <div class="body">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                                         <div class="row" id="montos">
+<!--                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center exportacion">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+                                            
+                                            </div> 
+                                        </div>
+                                       
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center gratuita">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+                                            
+                                            </div> 
+                                        </div>
+                                       
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center exonerado">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+                                            
+                                            </div> 
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center inafecto">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+                                            
+                                            </div> 
+                                        </div>-->
+                                        
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
                                                 <label class="text-danger" id="lblgravada"><strong>GRAVADA: </strong>  S/ 0.00</label>
 
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
 
                                                 <label class="text-danger" id="lbligv"><strong>IGV 18%: </strong>  S/ 0.00</label>
                                             </div>
-                                        </div>
+                                        
+                                       
                                         <div class="row text-center">
                                             <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">-->
-                                            <label class="text-danger h1 " id="lbltotal"><strong>TOTAL: </strong>    S/ 0.00</label>
+                                            <label class="text-danger " id="lbltotal"><strong>TOTAL: </strong>    S/ 0.00</label>
                                             <!--</div>--> 
+                                        </div>
                                         </div>
 
 

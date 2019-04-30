@@ -708,6 +708,105 @@ $total = 0;
             input.setAttribute('class', 'form-control id' + cont);
             input.setAttribute('id', 'id[]');
             input.setAttribute('name', 'id[]');
+            
+             var inputigv = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputigv.setAttribute('type', 'hidden');
+            inputigv.setAttribute('class', 'form-control igvprod' + cont);
+            inputigv.setAttribute('id', 'igvprod[]');
+            inputigv.setAttribute('name', 'igvprod[]');
+            inputigv.setAttribute('value', '0');
+            var inputvalorunit = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputvalorunit.setAttribute('type', 'hidden');
+            inputvalorunit.setAttribute('class', 'form-control valorunitref' + cont);
+            inputvalorunit.setAttribute('id', 'valorunitref[]');
+            inputvalorunit.setAttribute('name', 'valorunitref[]');
+            var inputmontobaseigv = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseigv.setAttribute('type', 'hidden');
+            inputmontobaseigv.setAttribute('class', 'form-control montobaseigv' + cont);
+            inputmontobaseigv.setAttribute('id', 'montobaseigv[]');
+            inputmontobaseigv.setAttribute('name', 'montobaseigv[]');
+            var inputmontobaseexpo = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseexpo.setAttribute('type', 'hidden');
+            inputmontobaseexpo.setAttribute('class', 'form-control montobaseexpo' + cont);
+            inputmontobaseexpo.setAttribute('id', 'montobaseexpo[]');
+            inputmontobaseexpo.setAttribute('name', 'montobaseexpo[]');
+            var inputmontobaseexo = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseexo.setAttribute('type', 'hidden');
+            inputmontobaseexo.setAttribute('class', 'form-control montobaseexonerado' + cont);
+            inputmontobaseexo.setAttribute('id', 'montobaseexonerado[]');
+            inputmontobaseexo.setAttribute('name', 'montobaseexonerado[]');
+            var inputmontobaseinafecto = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseinafecto.setAttribute('type', 'hidden');
+            inputmontobaseinafecto.setAttribute('class', 'form-control montobaseinafecto' + cont);
+            inputmontobaseinafecto.setAttribute('id', 'montobaseinafecto[]');
+            inputmontobaseinafecto.setAttribute('name', 'montobaseinafecto[]');
+            var inputmontobasegratuito = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobasegratuito.setAttribute('type', 'hidden');
+            inputmontobasegratuito.setAttribute('class', 'form-control montobasegratuito' + cont);
+            inputmontobasegratuito.setAttribute('id', 'montobasegratuito[]');
+            inputmontobasegratuito.setAttribute('name', 'montobasegratuito[]');
+            var inputmontobaseisc = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseisc.setAttribute('type', 'hidden');
+            inputmontobaseisc.setAttribute('class', 'form-control montobaseisc' + cont);
+            inputmontobaseisc.setAttribute('id', 'montobaseisc[]');
+            inputmontobaseisc.setAttribute('name', 'montobaseisc[]');
+            var inputmontobaseotros = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontobaseotros.setAttribute('type', 'hidden');
+            inputmontobaseotros.setAttribute('class', 'form-control montobaseotrostributos' + cont);
+            inputmontobaseotros.setAttribute('id', 'montobaseotrostributos[]');
+            inputmontobaseotros.setAttribute('name', 'montobaseotrostributos[]');
+            var inputventagratuita = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputventagratuita.setAttribute('type', 'hidden');
+            inputventagratuita.setAttribute('class', 'form-control tributoventagratuita' + cont);
+            inputventagratuita.setAttribute('id', 'tributoventagratuita[]');
+            inputventagratuita.setAttribute('name', 'tributoventagratuita[]');
+            var inputotrostrib = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputotrostrib.setAttribute('type', 'hidden');
+            inputotrostrib.setAttribute('class', 'form-control otrostributos' + cont);
+            inputotrostrib.setAttribute('id', 'otrostributos[]');
+            inputotrostrib.setAttribute('name', 'otrostributos[]');
+            var inputporcentajeigv = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputporcentajeigv.setAttribute('type', 'hidden');
+            inputporcentajeigv.setAttribute('class', 'form-control porcentajeigv' + cont);
+            inputporcentajeigv.setAttribute('id', 'porcentajeigv[]');
+            inputporcentajeigv.setAttribute('name', 'porcentajeigv[]');
+            var inputporcentajeotrostrib = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputporcentajeotrostrib.setAttribute('type', 'hidden');
+            inputporcentajeotrostrib.setAttribute('class', 'form-control porcentajeotrostributos' + cont);
+            inputporcentajeotrostrib.setAttribute('id', 'porcentajeotrostributos[]');
+            inputporcentajeotrostrib.setAttribute('name', 'porcentajeotrostributos[]');
+            var inputporcentajetributoventagratuita = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputporcentajetributoventagratuita.setAttribute('type', 'hidden');
+            inputporcentajetributoventagratuita.setAttribute('class', 'form-control porcentajetributoventagratuita' + cont);
+            inputporcentajetributoventagratuita.setAttribute('id', 'porcentajetributoventagratuita[]');
+            inputporcentajetributoventagratuita.setAttribute('name', 'porcentajetributoventagratuita[]');
+            var inputmontooriginal = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmontooriginal.setAttribute('type', 'hidden');
+            inputmontooriginal.setAttribute('class', 'form-control montooriginal' + cont);
+            inputmontooriginal.setAttribute('id', 'montooriginal[]');
+            inputmontooriginal.setAttribute('name', 'montooriginal[]');
+            var inputmonedaorig = document.createElement('input');
+//           divcol.createTextNode(input);
+            inputmonedaorig.setAttribute('type', 'hidden');
+            inputmonedaorig.setAttribute('class', 'form-control monedaoriginal' + cont);
+            inputmonedaorig.setAttribute('id', 'monedaoriginal[]');
+            inputmonedaorig.setAttribute('name', 'monedaoriginal[]');
+            inputmonedaorig.setAttribute('value', 'Soles');
 
             var inputincluye = document.createElement('input');
 //           divcol.createTextNode(input);
@@ -720,9 +819,27 @@ $total = 0;
 
 
             divcol.appendChild(input);
+            
+            divcol.appendChild(inputigv);
+            divcol.appendChild(inputvalorunit);
+            divcol.appendChild(inputmontobaseigv);
+            divcol.appendChild(inputmontobaseexpo);
+            divcol.appendChild(inputmontobaseexo);
+            divcol.appendChild(inputmontobaseinafecto);
+            divcol.appendChild(inputmontobasegratuito);
+            divcol.appendChild(inputmontobaseisc);
+            divcol.appendChild(inputmontobaseotros);
+            divcol.appendChild(inputventagratuita);
+            divcol.appendChild(inputotrostrib);
+            divcol.appendChild(inputporcentajeigv);
+            divcol.appendChild(inputporcentajeotrostrib);
+            divcol.appendChild(inputporcentajetributoventagratuita);
+            divcol.appendChild(inputmontooriginal);
+            divcol.appendChild(inputmonedaorig);
+            
             divcol.appendChild(inputincluye);
 
-           
+
             /////////// elemento codigo ///
 
 
@@ -832,12 +949,13 @@ foreach ($unidades as $unidad) {
             selectigv.setAttribute('id', 'tipoigv');
             selectigv.setAttribute('name', 'tipoigv[]');
             selectigv.setAttribute('data-live-search', 'true');
-            selectigv.className = 'form-control show-tick';
+            selectigv.setAttribute('class','form-control show-tick tipoigv'+cont);
+            selectigv.setAttribute('ident',cont);
 <?php foreach ($impuestos as $impuesto) { ?>
 
                 var optionigv = document.createElement("option");
                 optionigv.innerHTML = '<?= trim($impuesto->getDescripcion()) ?>';
-                optionigv.setAttribute('value', '<?= $impuesto->getId() ?>');
+                optionigv.setAttribute('value', '<?= $impuesto->getOp() ?>');
                 selectigv.add(optionigv);
 <?php } ?>
 
@@ -1040,14 +1158,14 @@ foreach ($unidades as $unidad) {
                             },
 
                     select: function (event, ui) {
-                        var subtotal = 0, total=0;
+                        var subtotal = 0, total = 0;
                         $('.id' + (ident)).val(ui.item.id);
                         $('.codigo' + (ident)).val(ui.item.codigo);
                         $('.precio' + (ident)).val(ui.item.preciov);
                         $('.descripcionprod' + (ident)).val(ui.item.descripcion);
                         var incluir = ui.item.incluir;
-                        
-                        
+
+
                         ///////////////// creo colapce para incluir series ////////////////
 
                         if (incluir == 'Si') {
@@ -1055,7 +1173,7 @@ foreach ($unidades as $unidad) {
 //                        console.log(series);
                             $('.incluye' + ident).val('Si');
                             $('.cantidad' + ident).val(0);
-                            $('.cantidad' + ident).attr('readonly','true');
+                            $('.cantidad' + ident).attr('readonly', 'true');
                             var divpanels = document.createElement('div');
                             divpanels.setAttribute('class', 'panel panel-successs');
                             var panelheding = document.createElement('div');
@@ -1108,24 +1226,24 @@ foreach ($unidades as $unidad) {
 
 
 
-                        }else {
-                            
-                              $('.divseries' + ident).empty();
-                               $('.cantidad' + ident).removeAttr('readonly');
-                            
+                        } else {
+
+                            $('.divseries' + ident).empty();
+                            $('.cantidad' + ident).removeAttr('readonly');
+
                         }
-                        
+
                         /////// calculo item ///////
                         var cantidad = $('.cantidad' + ident).val();
                         console.log('cant ' + cantidad);
-                        
+
                         var precio = ui.item.preciov;
-                        
-                        total = cantidad* precio;
-                        subtotal = total /1.18;
-                        
-                        $('.total'+ident).val(total.toFixed(2));
-                        $('.subtotal'+ident).val(subtotal.toFixed(2));
+
+                        total = cantidad * precio;
+                        subtotal = total / 1.18;
+
+                        $('.total' + ident).val(total.toFixed(2));
+                        $('.subtotal' + ident).val(subtotal.toFixed(2));
                         var total = 0;
 
 
@@ -1216,15 +1334,15 @@ foreach ($unidades as $unidad) {
 //                body.appendChild(btneliminar);
 
 //                i++;
-                
-                
-                var precio = $('.precio'+ iden).val();
+
+
+                var precio = $('.precio' + iden).val();
                 var total = cant * precio;
-                var subtotal = total /1.18;
-                
-                $('.subtotal'+iden).val(subtotal.toFixed(2));
-                $('.total'+iden).val(total.toFixed(2));
-                
+                var subtotal = total / 1.18;
+
+                $('.subtotal' + iden).val(subtotal.toFixed(2));
+                $('.total' + iden).val(total.toFixed(2));
+
                 calculartotal();
 
 
@@ -1235,32 +1353,125 @@ foreach ($unidades as $unidad) {
 
 
             $(document).on("keyup", ".cantidad" + cont, function () {
-                var cantidad = $(this).val();
-                var precio = $('.precio' + ident).val();
-                var total = cantidad * precio;
+//                var cantidad = $(this).val();
+//                var precio = $('.precio' + ident).val();
+//                var total = cantidad * precio;
+//
+//                var subtotal = total / 1.18;
+//                $('.subtotal' + ident).val(subtotal.toFixed(2));
+//                $('.total' + ident).val(total.toFixed(2));
+//
+//                calculartotal();
 
-                var subtotal = total / 1.18;
-                $('.subtotal' + ident).val(subtotal.toFixed(2));
-                $('.total' + ident).val(total.toFixed(2));
-
-               calculartotal();
+                var op = $('.tipoigv' + ident).val();
+                calculartipoigv(ident,op);
+                calculartotal();
 
 
 
             });
 
             $(document).on("keyup", ".precio" + cont, function () {
-                var precio = $(this).val();
-                var cantidad = $('.cantidad' + ident).val();
-                var total = cantidad * precio;
-                var subtotal = total / 1.18;
-                $('.subtotal' + ident).val(subtotal.toFixed(2));
-                $('.total' + ident).val(total.toFixed(2));
-
-
-                calculartotal();
+//                var precio = $(this).val();
+//                var cantidad = $('.cantidad' + ident).val();
+//                var total = cantidad * precio;
+//                var subtotal = total / 1.18;
+//                $('.subtotal' + ident).val(subtotal.toFixed(2));
+//                $('.total' + ident).val(total.toFixed(2));
+//
+//
+//                calculartotal();
+                    var op = $('.tipoigv' + ident).val();
+                    calculartipoigv(ident,op);
+                    calculartotal();  
 
             });
+            $(document).on("change", ".tipoigv" + cont, function () {
+               var idn = $(this).attr('ident');
+                      var op = $(this).val();
+                      /////reset inputs/////
+                       calculartipoigv(idn,op);
+                       
+                      calculartotal();
+
+            });
+            
+             function calculartipoigv(idn,op){
+                $('.igvprod'+ idn).val('');
+                       $('.valorunitref'+ idn).val('');
+                       $('.montobaseigv'+ idn).val('');
+                       $('.montobaseexpo'+ idn).val('');
+                       $('.montobaseexonerado'+ idn).val('');
+                       $('.montobaseinafecto'+ idn).val('');
+                       $('.montobasegratuito'+ idn).val('');
+                       $('.montobaseisc'+ idn).val('');
+                       $('.montobaseotrostributos'+ idn).val('');
+                       $('.tributoventagratuita'+ idn).val('');
+                       $('.otrostributos'+ idn).val('');
+                       $('.porcentajeigv'+ idn).val('');
+                       $('.porcentajeotrostributos'+ idn).val('');
+                       $('.porcentajetributoventagratuita'+ idn).val('');
+                       //////////////////////////////////
+                       
+                       var cantidad = $('.cantidad' + idn).val();
+                        var precio = $('.precio' + idn).val();
+                        var total = cantidad * precio;
+                       var subtotal = total / 1.18;
+                       if(op == 1){
+
+                            var igvprod;
+
+                            
+                            igvprod= total - subtotal;
+
+                            $('.igvprod'+ idn).val(igvprod);
+                            $('.montobaseigv'+ idn).val(subtotal);
+                            $('.porcentajeigv'+ idn).val('18');
+                            $('.montooriginal'+ idn).val(precio);
+                             $('.subtotal' + ident).val(subtotal.toFixed(2));
+                           
+                           
+                       }else if (op >= 2 && op <= 7){
+                           $('.valorunitref'+ idn).val(precio);
+                           $('.montobasegratuito'+ idn).val(total);
+                           $('.porcentajetributoventagratuita'+ idn).val(18);
+                           
+                           var triboventagratuita = total * 0.18;
+                           $('.tributoventagratuita'+ idn).val(triboventagratuita);
+                           $('.subtotal' + idn).val(total.toFixed(2));
+                           
+                       }else if (op == 8){
+                            $('.valorunitref'+ idn).val(precio);
+                            $('.montobasegratuito'+ idn).val(total);
+//                            $('.montobaseexpo'+ idn).val(total);
+                            $('.subtotal' + idn).val(total.toFixed(2));
+                           
+                       }else if(op == 9){
+//                           $('.montobaseexpo'+ idn).val(total);
+                           $('.montobaseexonerado'+ idn).val(total);
+                           $('.subtotal' + idn).val(total.toFixed(2));
+                           
+                       }else if(op == 10 || (op >= 12 && op <= 17)){
+                           $('.valorunitref'+ idn).val(precio);
+//                           $('.montobaseexpo'+ idn).val(total);
+                           $('.montobasegratuito'+ idn).val(total);
+                           $('.tributoventagratuita'+ idn).val(0);
+                           $('.porcentajetributoventagratuita'+ idn).val(0);
+                           $('.subtotal' + idn).val(total.toFixed(2));
+                       }else if (op == 11){
+//                           $('.porcentajetributoventagratuita'+ idn).val(0);
+                           $('.montobaseinafecto'+ idn).val(total);
+                           $('.subtotal' + idn).val(total.toFixed(2));
+                       }else{
+                           $('.montobaseexpo'+ idn).val(total);
+                           $('.subtotal' + idn).val(total.toFixed(2));
+                       }
+                       
+//                       $('.subtotal' + idn).val(subtotal.toFixed(2));
+                       $('.total' + idn).val(total.toFixed(2));
+                
+                
+            }
 
             $(document).on("click", ".eliminarserie" + cont, function () {
 //            function eliminarserie(idn){
@@ -1274,13 +1485,13 @@ foreach ($unidades as $unidad) {
                 cant--;
 
                 $('.cantidad' + idn).val(cant);
-                
-                var precio = $('.precio'+ idn).val();
+
+                var precio = $('.precio' + idn).val();
                 var total = cant * precio;
-                var subtotal = total /1.18;
-                
-                $('.subtotal'+idn).val(subtotal.toFixed(2));
-                $('.total'+idn).val(total.toFixed(2));
+                var subtotal = total / 1.18;
+
+                $('.subtotal' + idn).val(subtotal.toFixed(2));
+                $('.total' + idn).val(total.toFixed(2));
 
                 var parent = $(this).parents().get(0);
 //            var parent1 = $(this).parents().get(1);
@@ -1330,38 +1541,170 @@ foreach ($unidades as $unidad) {
 
 
         }
-        
-        
-        function calculartotal (){
-        var total = 0, subtotal = 0 ;
-        var igv = 0;
-            $("input[name='total[]']").each(function(indice, elemento) {
-               // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
-               if($(elemento).val() != ''){
-                   total += parseFloat($(elemento).val());
-               }
-               
+
+
+        function calculartotal() {
+//        var total = 0, subtotal = 0 ;
+//        var igv = 0;
+//            $("input[name='total[]']").each(function(indice, elemento) {
+//               // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+//               if($(elemento).val() != ''){
+//                   total += parseFloat($(elemento).val());
+//               }
+//               
+//            });
+//            $("input[name='subtotal[]']").each(function(indice, elemento) {
+//               // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+//               if($(elemento).val() != ''){
+//                   subtotal += parseFloat($(elemento).val());
+//               }
+//               
+//            });
+//            
+//            igv = total - subtotal;
+//            
+//            
+//            
+//            $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
+//            $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
+//            $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + total.toFixed(2));
+            var total = 0, subtotal = 0 ,montobasegratuito = 0;
+            var montobaseexona = 0, montobaseinafecto = 0;
+            var montobaseexpo = 0;
+            var igv = 0;
+            var incigv = true;
+            if (!$('#incigv').is(':checked')) {
+                incigv = false;
+
+            }
+            $("input[name='total[]']").each(function (indice, elemento) {
+                // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+                if ($(elemento).val() != '') {
+                    total += parseFloat($(elemento).val());
+                }
+
             });
-            $("input[name='subtotal[]']").each(function(indice, elemento) {
-               // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
-               if($(elemento).val() != ''){
-                   subtotal += parseFloat($(elemento).val());
-               }
-               
+            $("input[name='subtotal[]']").each(function (indice, elemento) {
+                // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+                if ($(elemento).val() != '') {
+                    subtotal += parseFloat($(elemento).val());
+                }
+
             });
-            
-            igv = total - subtotal;
-            
-            
-            
-            $('#lblgravada').html('<strong>GRAVADA:</strong> S/ ' + subtotal.toFixed(2));
-            $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
-            $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + total.toFixed(2));
-        
-        
+            $("input[name='montobasegratuito[]']").each(function (indice, elemento) {
+                // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+                if ($(elemento).val() != '') {
+                    montobasegratuito += parseFloat($(elemento).val());
+                }
+
+            });
+            $("input[name='montobaseexonerado[]']").each(function (indice, elemento) {
+                // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+                if ($(elemento).val() != '') {
+                    montobaseexona += parseFloat($(elemento).val());
+                }
+
+            });
+            $("input[name='montobaseinafecto[]']").each(function (indice, elemento) {
+                // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+                if ($(elemento).val() != '') {
+                    montobaseinafecto += parseFloat($(elemento).val());
+                }
+
+            });
+            $("input[name='montobaseexpo[]']").each(function (indice, elemento) {
+                // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+                if ($(elemento).val() != '') {
+                    montobaseexpo += parseFloat($(elemento).val());
+                }
+
+            });
+            var moneda = $('#cbmoneda').val();
+            var simbolomoneda;
+            if (moneda == 'Soles') {
+                simbolomoneda = 'S/';
+
+            } else {
+                simbolomoneda = '$';
+            }
+
+
+            var montos = document.getElementById('montos');
+            if (montobasegratuito > 0) {
+                $('.basegratuito').remove();
+                var divbasegratuito = document.createElement('div');
+                divbasegratuito.setAttribute('class', 'col-lg-4 col-md-4 col-sm-6 col-xs-12 no-gutters basegratuito');
+                divbasegratuito.innerHTML = '<label class="text-danger"><strong>GRATUITA: ' + simbolomoneda + ' </strong>' + montobasegratuito.toFixed(2) + '</label>';
+
+                montos.prepend(divbasegratuito);
+
+            } else {
+                $('.basegratuito').remove();
+            }
+            if (montobaseexona > 0) {
+                $('.baseexona').remove();
+                var divbaseexone = document.createElement('div');
+                divbaseexone.setAttribute('class', 'col-lg-4 col-md-4 col-sm-6 col-xs-12 no-gutters baseexona');
+                divbaseexone.innerHTML = '<label class="text-danger"><strong>EXONERADA: ' + simbolomoneda + ' </strong>' + montobaseexona.toFixed(2) + '</label>';
+
+                montos.prepend(divbaseexone);
+
+            } else {
+                $('.baseexona').remove();
+            }
+            if (montobaseinafecto > 0) {
+                $('.baseinafecto').remove();
+                var divbaseina = document.createElement('div');
+                divbaseina.setAttribute('class', 'col-lg-4 col-md-4 col-sm-6 col-xs-12 no-gutters baseinafecto');
+                divbaseina.innerHTML = '<label class="text-danger"><strong>INAFECTO: ' + simbolomoneda + '</strong>' + montobaseinafecto.toFixed(2) + '</label>';
+
+                montos.prepend(divbaseina);
+
+
+            } else {
+                $('.baseinafecto').remove();
+            }
+            if (montobaseexpo > 0) {
+                $('.baseexpo').remove();
+                var divbaseexp = document.createElement('div');
+                divbaseexp.setAttribute('class', 'col-lg-4 col-md-4 col-sm-6 col-xs-12 no-gutters baseexpo');
+                divbaseexp.innerHTML = '<label class="text-danger"><strong>EXPORTACION: ' + simbolomoneda + '</strong>' + montobaseexpo.toFixed(2) + '</label>';
+
+                montos.prepend(divbaseexp);
+
+
+            } else {
+                $('.baseexpo').remove();
+            }
+            total = total - (montobasegratuito + montobaseexona + montobaseinafecto);
+            subtotal = (total - montobaseexpo) / 1.18;
+            igv = (total - montobaseexpo) - subtotal;
+
+
+            if (incigv == false) {
+                subtotal = total;
+                total += igv;
+                igv = total - subtotal;
+
+            }
+
+            $('#lblgravada').html('<strong>GRAVADA:</strong>' + simbolomoneda + ' ' + subtotal.toFixed(2));
+            $('#lbligv').html('<strong>IGV 18%:</strong> ' + simbolomoneda + ' ' + igv.toFixed(2));
+            $('#lbltotal').html('<strong>TOTAL:</strong> ' + simbolomoneda + ' ' + total.toFixed(2));
+
         }
         ///////// FIN DE NUEVO ITEM ///////////////////
-
+        $(document).on('change','#incigv',function (){
+            
+            calculartotal();
+            
+        });
+        /////////////// moneda //////
+        $(document).on('change','#cbmoneda',function (){
+            
+            calculartotal();
+            
+        });
 
         ///// elimina serie del producto //////////////////////////////
 
@@ -1377,7 +1720,7 @@ foreach ($unidades as $unidad) {
 
 //            cont--;
 //            $('#cont').val(cont);
-           calculartotal();
+            calculartotal();
 
         });
 
@@ -1390,7 +1733,7 @@ foreach ($unidades as $unidad) {
 
 
 
-        
+
 
 //        
 

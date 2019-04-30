@@ -105,10 +105,11 @@
                     
                 
                 <div class="RespuestaAjax"></div>
-            </div>
+            
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+            </div>
             </div>
         </div>
     </div>

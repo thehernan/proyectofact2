@@ -183,14 +183,23 @@ if ($sucursal->getId() != 0) {
 
 
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                
                                 <div class="form-group form-float">
                                     <label class="form-label">Responsable</label>
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" id="txtresponsable" name="txtresponsable" value="<?= $sucursal->getResponsable(); ?>">
-                                        
+                                    <select class="form-control show-tick" id="txtresponsable" name="txtresponsable">
 
-                                    </div>
+                                        <?php
+                                        $pred = array('Cbet, Cbet, Cbet', 'Director, Cbet, Cbet','Vendedor, Vendedor, Vendedor');
+
+                                        for ($i = 0; $i < count($pred); $i++) {
+
+                                            echo '<option value="' . $pred[$i] . '" >' . $pred[$i] . '</option>';
+                                        }
+                                        ?>
+
+                                    </select>
                                 </div>
+
                             </div>
 
 

@@ -143,7 +143,7 @@ if ($persona->getId() != 0 ) {
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                     <div class="form-group form-float">
-                                        <label class="form-label">Representate</label>
+                                        <label class="form-label">Representante</label>
                                         <div class="form-line">
                                             <input type="text" class="form-control" id="txtrepresentante" name="txtrepresentante" value="<?= $persona->getRepresentante(); ?>">
                                             
