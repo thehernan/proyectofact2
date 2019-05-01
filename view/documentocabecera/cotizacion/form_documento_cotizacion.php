@@ -20,13 +20,13 @@
                         </h1>
 
 
-                        <hr>
+<!--                        <hr>-->
 
 
                     </div>
                     <input id="print" type="hidden" value="<?= base_url ?>documento/printticket" >
                     <div class="body">
-                        <form action="<?= base_url ?>documento/insertordencompra" method="POST"  id="FormularioAjaxDocumento" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
+                        <form action="<?= base_url ?>documento/insertcotizacion" method="POST"  id="FormularioAjaxDocumento" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
                             <div class="row clearfix">
                                 <!--<form >-->
                                 <input type="hidden" class="form-control" id="tipodoc" name="tipodoc" value="<?= $tipodoc ?>">
@@ -94,7 +94,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">Validez (día)</label>
                                             <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtvalidezdia" name="txtvalidezdia" value="" required="" >
+                                                <input type="number" class="form-control" id="txtvalidezdia" name="txtvalidezdia" value="" required="" >
 
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">Plazo de entrega (día)</label>
                                             <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtplazoentrega" name="txtplazoentrega" value="" required="" >
+                                                <input type="number" class="form-control" id="txtplazoentrega" name="txtplazoentrega" value="" required="" >
 
                                             </div>
                                         </div>
@@ -165,7 +165,7 @@
                                         <div class="form-group form-float">
                                             <label class="text-danger">Condición de pago </label>
                                             <div class="switch" id="divcondicion">
-                                                <label>CREDITO<input type="checkbox" checked id="ckcondicion"><span class="lever"></span>CONTADO</label>
+                                                <label>CREDITO<input type="checkbox" checked id="ckcondicion" name="ckcondicion"><span class="lever"></span>CONTADO</label>
 
                                             </div>
                                         </div>

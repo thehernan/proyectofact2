@@ -45,11 +45,56 @@ class documento {
     private $numeroref;
     private $idtiponota;
     private $garantia;
+    private $condicionpago;
+    private $validezdias;
+    private $plazoentregadias;
+    private $condicionpagodias;
+    private $atencion;
             
     function __construct() {
         
     }
-    
+    function getCondicionpago() {
+        return $this->condicionpago;
+    }
+
+    function getValidezdias() {
+        return $this->validezdias;
+    }
+
+    function getPlazoentregadias() {
+        return $this->plazoentregadias;
+    }
+
+    function getCondicionpagodias() {
+        return $this->condicionpagodias;
+    }
+
+    function getAtencion() {
+        return $this->atencion;
+    }
+
+    function setCondicionpago($condicionpago) {
+        $this->condicionpago = $condicionpago;
+    }
+
+    function setValidezdias($validezdias) {
+        $this->validezdias = $validezdias;
+    }
+
+    function setPlazoentregadias($plazoentregadias) {
+        $this->plazoentregadias = $plazoentregadias;
+    }
+
+    function setCondicionpagodias($condicionpagodias) {
+        $this->condicionpagodias = $condicionpagodias;
+    }
+
+    function setAtencion($atencion) {
+        $this->atencion = $atencion;
+    }
+
+        
     function getGarantia() {
         return $this->garantia;
     }
@@ -442,7 +487,8 @@ class documento {
 
         $data_source->ejecutarActualizacion("insert into documento(serie, numero, fechaemision,fechavencimiento,nroden,"
                 . "moneda,incigv,id_sunat_transaction,id_usuario,tipo_venta,tipo_venta_movimiento,tipo_venta_nop,"
-                . "sujetoa,id_persona,ruc,razonsocial,direccion,email,estadosunat,estadolocal,total,tipo,id_sucursal,tipo_doc,tipo_cambio,documento_ref,serie_ref,numero_ref,id_tiponota,observacion,garantia) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
+                . "sujetoa,id_persona,ruc,razonsocial,direccion,email,estadosunat,estadolocal,total,tipo,id_sucursal,tipo_doc,tipo_cambio,documento_ref,serie_ref,numero_ref,id_tiponota,observacion,garantia,condicionpago,"
+                . "validezdias,plazoentregadias,condicionpagodias,atencion) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
             $documento->getSerie(),
             $documento->getNumero(),
             $documento->getFechaemision(),
@@ -473,7 +519,13 @@ class documento {
             $documento->getNumeroref(),
             $documento->getIdtiponota(),
             $documento->getObservacion(),
-            $documento->getGarantia()
+            $documento->getGarantia(),
+            $documento->getCondicionpago(),
+            $documento->getValidezdias(),
+            $documento->getPlazoentregadias(),
+            $documento->getCondicionpagodias(),
+            $documento->getAtencion()
+            
                     
             
         ));

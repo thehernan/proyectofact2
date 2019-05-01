@@ -151,7 +151,7 @@
                     <a href="<?=base_url?>documento/notedebit" >Emitir Nota de Débito</a>
                 </li>
                  <li >
-                    <a href="<?=base_url?>documento/cotizacion" >Cotización</a>
+                    <a href="<?=base_url?>documento/selectcotizacion" >Cotización</a>
                 </li>
 
                 <!--<li>-->

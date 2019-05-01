@@ -1471,7 +1471,7 @@ $(document).on('change','#ckcondicion', function(){
        var divc = document.createElement('div');
        divc.setAttribute('class','form-line focused error');
        divc.setAttribute('id','divdia');
-       divc.innerHTML = '<input type="number" class="form-control" id="txtdiacredito" name="txtdiacredito" value="" placeholder="Días">' ;
+       divc.innerHTML = '<input type="number" class="form-control" id="txtdiacredito" name="txtdiacredito" value="" placeholder="Días" required>' ;
        divcond.appendChild(divc);
        
    }
