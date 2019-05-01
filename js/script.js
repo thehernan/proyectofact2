@@ -1456,6 +1456,28 @@ function ultimonumerodoc($url){
     
     
 }
+$(document).on('change','#ckcondicion', function(){
+    var cnd = true;
+    if(!$(this).is(':checked')){
+               cnd = false;     
+        }
+   var divcond = document.getElementById('divcondicion'); 
+    var divdia= document.getElementById('divdia');
+    $(divdia).remove();
+   if(cnd == false){
+       
+       
+       
+       var divc = document.createElement('div');
+       divc.setAttribute('class','form-line focused error');
+       divc.setAttribute('id','divdia');
+       divc.innerHTML = '<input type="number" class="form-control" id="txtdiacredito" name="txtdiacredito" value="" placeholder="Días">' ;
+       divcond.appendChild(divc);
+       
+   }
+    console.log(cnd);
+    
+});
 
 
 function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) { //v3.0

@@ -409,6 +409,27 @@ class documentoController {
 
         require_once 'view/layout/footer.php';
     }
+    function cotizacion() {
+
+        $documentossuc = $this->docsucursal->selectAll();
+        $transactions = $this->sunattrans->selectAll();
+        $usuarios = $this->usuario->selectAll();
+        $impuestos = $this->impuesto->selectAll();
+        $unidades = $this->unidad->selectAll();
+
+        $tipocambio = new tipocambio();
+        $cambio = $tipocambio->selectMax();
+
+        $detalles = array();
+        $tipodoc = 'cotizacion';
+        $nro = $this->documento->selectMax($tipodoc,$tipodoc)->getNumero() + 1;
+
+        require_once 'view/layout/header.php';
+        require_once 'view/documentocabecera/cotizacion/form_documento_cotizacion.php';
+
+
+        require_once 'view/layout/footer.php';
+    }
 
     function compra() {
         $documentossuc = $this->docsucursal->selectAll();
@@ -1315,6 +1336,8 @@ class documentoController {
             }
         }
     }
+    
+    
     
     
     function selectmaxnro(){

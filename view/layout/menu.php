@@ -150,6 +150,9 @@
                 <li >
                     <a href="<?=base_url?>documento/notedebit" >Emitir Nota de Débito</a>
                 </li>
+                 <li >
+                    <a href="<?=base_url?>documento/cotizacion" >Cotización</a>
+                </li>
 
                 <!--<li>-->
 <!--                    <a href="javascript:void(0);" class="menu-toggle">
