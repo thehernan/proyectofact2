@@ -21,6 +21,7 @@ require_once 'model/serieDetalle.php';
 require_once 'model/documentoOtros.php';
 require_once 'model/documentoGuia.php';
 require_once 'model/producto.php';
+//require_once 'model/serieDetalle.php';
 
 
 class documentoController {
@@ -45,7 +46,7 @@ class documentoController {
 
 
         $detalles = array();
-        $documentossuc = $this->docsucursal->selectAll();
+//        $documentossuc = $this->docsucursal->selectAll();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
         $impuestos = $this->impuesto->selectAll();
@@ -55,6 +56,7 @@ class documentoController {
         $sucurm = new sucursal();
         $sucursales= $sucurm->selectAll();
         $tipodoc = 'Venta';
+        $documento = new documento();
         
         require_once 'view/layout/header.php';
         require_once 'view/documentocabecera/form_documento.php';
@@ -65,7 +67,8 @@ class documentoController {
 
     function notecredit() {
         $detalles = array();
-        $documentossuc = $this->docsucursal->selectAll();
+        $idsucur = $_SESSION['idsucursal'];
+        $documentossuc = $this->docsucursal->selectAll($idsucur,'nota_credito');
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
         $impuestos = $this->impuesto->selectAll();
@@ -73,7 +76,7 @@ class documentoController {
         $nota = new tiponota();
         $notas = $nota->select('credito');
         $tipo = 'nota_credito';
-        $nro = $this->documento->selectMax($tipo,$tipo)->getNumero() + 1;
+//        $nro = $this->documento->selectMax($tipo,$tipo)->getNumero() + 1;
         $titulo = "Emitir nota de crédito electrónica";
          $sucurm = new sucursal();
         $sucursales= $sucurm->selectAll();
@@ -90,7 +93,8 @@ class documentoController {
 
     function notedebit() {
         $detalles = array();
-        $documentossuc = $this->docsucursal->selectAll();
+        $idsucur = $_SESSION['idsucursal'];
+        $documentossuc = $this->docsucursal->selectAll($idsucur,'nota_debito');
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
         $impuestos = $this->impuesto->selectAll();
@@ -100,7 +104,7 @@ class documentoController {
         $notas = $nota->select('debito');
 
         $tipo = 'nota_debito';
-        $nro = $this->documento->selectMax($tipo,$tipo)->getNumero() + 1;
+//        $nro = $this->documento->selectMax($tipo,$tipo)->getNumero() + 1;
         $titulo = "Emitir nota de débito electrónica";
 
         ///////////// cargo un nuevo documento ////////
@@ -343,7 +347,7 @@ class documentoController {
 
             $detallesmod = new Detalle();
 
-            $documentossuc = $this->docsucursal->selectAll();
+            $documentossuc = $this->docsucursal->select();
             $transactions = $this->sunattrans->selectAll();
             $usuarios = $this->usuario->selectAll();
             $impuestos = $this->impuesto->selectAll();
@@ -373,6 +377,48 @@ class documentoController {
             require_once 'view/layout/footer.php';
         }
     }
+    function loadcotizacion() {
+//        var_dump($_GET);
+        
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+
+
+            $id = $_GET['id'];
+
+            $detallesmod = new Detalle();
+            $seriedet  = new serieDetalle();
+            $transactions = $this->sunattrans->selectAll();
+            $usuarios = $this->usuario->selectAll();
+            $impuestos = $this->impuesto->selectAll();
+            $unidades = $this->unidad->selectAll();
+            $seriesm = new serieProducto();
+//            $series = $seriesm->select(74);
+            $sucurm = new sucursal();
+            $sucursales= $sucurm->selectAll();
+            $tipodoc = 'Venta';
+
+            ///////////// carga el documento deseado (cabecera )///////////
+            $documento = $this->documento->selectOne($id);
+//            var_dump($documento);
+            // carga detalle del domento ///////
+            $detalles = $detallesmod->selectOneDoc($id);
+
+//            $tipo = 'nota_debito';
+//            $titulo = "Emitir nota de débito electrónica";
+            require_once 'view/layout/header.php';
+            require_once 'view/documentocabecera/form_documento.php';
+            require_once 'view/documentosucursal/modalnewdocumentosucursal.php';
+
+            require_once 'view/layout/footer.php';
+        } else {
+
+            require_once 'view/layout/header.php';
+            require_once 'view/error.php';
+
+
+            require_once 'view/layout/footer.php';
+        }
+    }
 
     function loadcredit() {
         var_dump($_GET);
@@ -384,7 +430,7 @@ class documentoController {
 
             $detallesmod = new Detalle();
 
-            $documentossuc = $this->docsucursal->selectAll();
+            $documentossuc = $this->docsucursal->select();
             $transactions = $this->sunattrans->selectAll();
             $usuarios = $this->usuario->selectAll();
             $impuestos = $this->impuesto->selectAll();
@@ -417,7 +463,7 @@ class documentoController {
 
     function ordencompra() {
 
-        $documentossuc = $this->docsucursal->selectAll();
+//        $documentossuc = $this->docsucursal->select();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
         $impuestos = $this->impuesto->selectAll();
@@ -428,7 +474,7 @@ class documentoController {
 
         $detalles = array();
         $tipodoc = 'orden_compra';
-        $nro = $this->documento->selectMax($tipodoc,$tipodoc)->getNumero() + 1;
+        $nro = $this->documento->selectMax($tipodoc,$tipodoc,'ORDEN_COMPRA')->getNumero() + 1;
 
         require_once 'view/layout/header.php';
         require_once 'view/documentocabecera/ordencompra/form_documento_ordcompra.php';
@@ -438,7 +484,7 @@ class documentoController {
     }
     function cotizacion() {
 
-        $documentossuc = $this->docsucursal->selectAll();
+//        $documentossuc = $this->docsucursal->select();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
         $impuestos = $this->impuesto->selectAll();
@@ -449,7 +495,7 @@ class documentoController {
 
         $detalles = array();
         $tipodoc = 'cotizacion';
-        $nro = $this->documento->selectMax($tipodoc,$tipodoc)->getNumero() + 1;
+        $nro = $this->documento->selectMax($tipodoc,$tipodoc,'COTIZACION')->getNumero() + 1;
 
         require_once 'view/layout/header.php';
         require_once 'view/documentocabecera/cotizacion/form_documento_cotizacion.php';
@@ -459,7 +505,7 @@ class documentoController {
     }
 
     function compra() {
-        $documentossuc = $this->docsucursal->selectAll();
+//        $documentossuc = $this->docsucursal->selectAll();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
         $impuestos = $this->impuesto->selectAll();
@@ -551,6 +597,16 @@ class documentoController {
             $documento->setTipocambio($tipocambio);
             $documento->setTipo($tipodoc);
             $documento->setSujetoa($sujetoa);
+            
+            $documento->setGarantia(0);
+            $documento->setValidezdias(0);
+            $documento->setPlazoentregadias(0);
+            $documento->setCondicionpagodias(0);
+            
+            
+            
+            
+            
             echo $id = $documento->insert($documento);
 
             $idprod = $_POST['id'];
@@ -562,14 +618,91 @@ class documentoController {
             $precio = $_POST['precio'];
             $subtotal = $_POST['subtotal'];
             $total = $_POST['total'];
+            
+            $igvprod = $_POST['igvprod'];
+            $valorunitref = $_POST['valorunitref'];
+            $montobaseigv = $_POST['montobaseigv'];
+            $montobaseexpo = $_POST['montobaseexpo'];
+            $montobaseexonerado = $_POST['montobaseexonerado'];
+            $montobaseinafecto = $_POST['montobaseinafecto'];
+            $montobasegratuito = $_POST['montobasegratuito'];
+            $montobaseivap = $_POST['montobaseivap'];
+            $montobaseotrostributos = $_POST['montobaseotrostributos'];
+            $tributoventagratuita = $_POST['tributoventagratuita'];
+            $otrostributos = $_POST['otrostributos'];
+            $porcentajeigv = $_POST['porcentajeigv'];
+            $porcentajeotrostributos = $_POST['porcentajeotrostributos'];
+            $porcentajetributoventagratuita = $_POST['porcentajetributoventagratuita'];
+            $montooriginal = $_POST['montooriginal'];
+            $monedaoriginal = $_POST['monedaoriginal'];
             $incluye = $_POST['incluye'];
 
             $detalles = array();
             $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
-                   $idpro = $idprod[$i];
+               $idpro = $idprod[$i];
+                $igvp = $igvprod[$i];
+                $valorunitr = $valorunitref[$i];
+                $montobaseig = $montobaseigv[$i];
+                $montobaseexp = $montobaseexpo[$i];
+                $montobaseexon = $montobaseexonerado[$i];
+                $montobaseinaf = $montobaseinafecto[$i];
+                $montobasegratu = $montobasegratuito[$i];
+                $montobaseiv = $montobaseivap[$i];
+                $montobaseotrostrib = $montobaseotrostributos[$i];
+                $tributoventagrat = $tributoventagratuita[$i];
+                $otrostrib = $otrostributos[$i];
+                $porceigv = $porcentajeigv[$i];
+                $porcotrostrib = $porcentajeotrostributos[$i];
+                $porcentajetribventgrat = $porcentajetributoventagratuita[$i];
+                $montoorig = $montooriginal[$i];
                 if(empty($idprod[$i])){
                     $idpro = 0;
+                }
+                if(empty($igvprod[$i])){
+                    $igvp = 0;
+                }
+                if(empty($valorunitref[$i])){
+                    $valorunitr = 0;
+                }
+                if(empty($montobaseigv[$i])){
+                    $montobaseig = 0;
+                }
+                if(empty($montobaseexpo[$i])){
+                    $montobaseexp = 0;
+                }
+                if(empty($montobaseexonerado[$i])){
+                    $montobaseexon = 0;
+                }
+                if(empty($montobaseinafecto[$i])){
+                    $montobaseinaf = 0;
+                }
+                if(empty($montobasegratuito[$i])){
+                    $montobasegratu = 0;
+                }
+                if(empty($montobaseivap[$i])){
+                    $montobaseiv = 0;
+                }
+                if(empty($montobaseotrostributos[$i])){
+                    $montobaseotrostrib = 0;
+                }
+                if(empty($tributoventagratuita[$i])){
+                    $tributoventagrat = 0;
+                }
+                if(empty($otrostributos[$i])){
+                    $otrostrib = 0;
+                }
+                if(empty($porcentajeigv[$i])){
+                    $porceigv = 0;
+                }
+                if(empty($porcentajeotrostributos[$i])){
+                    $porcotrostrib = 0;
+                }
+                if(empty($porcentajetributoventagratuita[$i])){
+                    $porcentajetribventgrat = 0;
+                }
+                if(empty($montooriginal[$i])){
+                    $montoorig = 0;
                 }
                 $d = array(
                     $idpro,
@@ -581,7 +714,24 @@ class documentoController {
                     $precio[$i],
                     $subtotal[$i],
                     $total[$i],
-                    $id
+                    $id,
+                    $igvp,
+                    $valorunitr,
+                    $montobaseig,
+                    $montobaseexp,
+                    $montobaseexon,
+                    $montobaseinaf,
+                    $montobasegratu,
+                    $montobaseiv,
+                    $montobaseotrostrib,
+                    $tributoventagrat,
+                    $otrostrib,
+                    $porceigv,
+                    $porcotrostrib,
+                    $porcentajetribventgrat,
+                    $montoorig,
+                    $monedaoriginal[$i],
+                    $incluye[$i]
                 );
                 array_push($detalles, $d);
                                                                                                                                                                                                                                                                                                               
@@ -747,7 +897,7 @@ class documentoController {
             $documento = new documento();
 
 
-//        $serie=$_POST['txtserie'];
+            $serie=$_POST['ORDEN_COMPRA'];
             $numero = $_POST['txtnro'];
             $moneda = $_POST['cbmoneda'];
             $fechaemision = $emisionf;
@@ -770,6 +920,9 @@ class documentoController {
             $idsucursal = $_SESSION['idsucursal'];
             $tipocambio = $_POST['txttipocambio'];
             $garantia = $_POST['txtgarantia'];
+            if(empty($garantia)){
+                $garantia = 0;
+            }
 
 //        $documento->setSerie($serie);
             $documento->setNumero($numero);
@@ -789,6 +942,11 @@ class documentoController {
             $documento->setTipocambio($tipocambio);
             $documento->setTipo($tipodoc);
             $documento->setGarantia($garantia);
+            
+              
+            $documento->setValidezdias(0);
+            $documento->setPlazoentregadias(0);
+            $documento->setCondicionpagodias(0);
             echo $id = $documento->insert($documento);
 
             $idprod = $_POST['id'];
@@ -800,14 +958,92 @@ class documentoController {
             $precio = $_POST['precio'];
             $subtotal = $_POST['subtotal'];
             $total = $_POST['total'];
+            
+            $igvprod = $_POST['igvprod'];
+            $valorunitref = $_POST['valorunitref'];
+            $montobaseigv = $_POST['montobaseigv'];
+            $montobaseexpo = $_POST['montobaseexpo'];
+            $montobaseexonerado = $_POST['montobaseexonerado'];
+            $montobaseinafecto = $_POST['montobaseinafecto'];
+            $montobasegratuito = $_POST['montobasegratuito'];
+            $montobaseivap = $_POST['montobaseivap'];
+            $montobaseotrostributos = $_POST['montobaseotrostributos'];
+            $tributoventagratuita = $_POST['tributoventagratuita'];
+            $otrostributos = $_POST['otrostributos'];
+            $porcentajeigv = $_POST['porcentajeigv'];
+            $porcentajeotrostributos = $_POST['porcentajeotrostributos'];
+            $porcentajetributoventagratuita = $_POST['porcentajetributoventagratuita'];
+            $montooriginal = $_POST['montooriginal'];
+            $monedaoriginal = $_POST['monedaoriginal'];
             $incluye = $_POST['incluye'];
 
             $detalles = array();
 //         $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
-                  $idpro = $idprod[$i];
+
+                $idpro = $idprod[$i];
+                $igvp = $igvprod[$i];
+                $valorunitr = $valorunitref[$i];
+                $montobaseig = $montobaseigv[$i];
+                $montobaseexp = $montobaseexpo[$i];
+                $montobaseexon = $montobaseexonerado[$i];
+                $montobaseinaf = $montobaseinafecto[$i];
+                $montobasegratu = $montobasegratuito[$i];
+                $montobaseiv = $montobaseivap[$i];
+                $montobaseotrostrib = $montobaseotrostributos[$i];
+                $tributoventagrat = $tributoventagratuita[$i];
+                $otrostrib = $otrostributos[$i];
+                $porceigv = $porcentajeigv[$i];
+                $porcotrostrib = $porcentajeotrostributos[$i];
+                $porcentajetribventgrat = $porcentajetributoventagratuita[$i];
+                $montoorig = $montooriginal[$i];
                 if(empty($idprod[$i])){
                     $idpro = 0;
+                }
+                if(empty($igvprod[$i])){
+                    $igvp = 0;
+                }
+                if(empty($valorunitref[$i])){
+                    $valorunitr = 0;
+                }
+                if(empty($montobaseigv[$i])){
+                    $montobaseig = 0;
+                }
+                if(empty($montobaseexpo[$i])){
+                    $montobaseexp = 0;
+                }
+                if(empty($montobaseexonerado[$i])){
+                    $montobaseexon = 0;
+                }
+                if(empty($montobaseinafecto[$i])){
+                    $montobaseinaf = 0;
+                }
+                if(empty($montobasegratuito[$i])){
+                    $montobasegratu = 0;
+                }
+                if(empty($montobaseivap[$i])){
+                    $montobaseiv = 0;
+                }
+                if(empty($montobaseotrostributos[$i])){
+                    $montobaseotrostrib = 0;
+                }
+                if(empty($tributoventagratuita[$i])){
+                    $tributoventagrat = 0;
+                }
+                if(empty($otrostributos[$i])){
+                    $otrostrib = 0;
+                }
+                if(empty($porcentajeigv[$i])){
+                    $porceigv = 0;
+                }
+                if(empty($porcentajeotrostributos[$i])){
+                    $porcotrostrib = 0;
+                }
+                if(empty($porcentajetributoventagratuita[$i])){
+                    $porcentajetribventgrat = 0;
+                }
+                if(empty($montooriginal[$i])){
+                    $montoorig = 0;
                 }
                 $d = array(
                     $idpro,
@@ -819,7 +1055,24 @@ class documentoController {
                     $precio[$i],
                     $subtotal[$i],
                     $total[$i],
-                    $id
+                    $id,
+                    $igvp,
+                    $valorunitr,
+                    $montobaseig,
+                    $montobaseexp,
+                    $montobaseexon,
+                    $montobaseinaf,
+                    $montobasegratu,
+                    $montobaseiv,
+                    $montobaseotrostrib,
+                    $tributoventagrat,
+                    $otrostrib,
+                    $porceigv,
+                    $porcotrostrib,
+                    $porcentajetribventgrat,
+                    $montoorig,
+                    $monedaoriginal[$i],
+                    $incluye[$i]
                 );
                 array_push($detalles, $d);
 
@@ -1047,7 +1300,7 @@ class documentoController {
 //            $garantia = $garantia;
             $atencion = $_POST['txtatencion'];
             $observacion = $_POST['txtobservacion'];
-//        $documento->setSerie($serie);
+            $documento->setSerie('COTIZACION');
             $documento->setNumero($numero);
             $documento->setMoneda($moneda);
             $documento->setFechaemision($fechaemision);
@@ -1084,14 +1337,93 @@ class documentoController {
             $precio = $_POST['precio'];
             $subtotal = $_POST['subtotal'];
             $total = $_POST['total'];
+            
+            $igvprod = $_POST['igvprod'];
+            $valorunitref = $_POST['valorunitref'];
+            $montobaseigv = $_POST['montobaseigv'];
+            $montobaseexpo = $_POST['montobaseexpo'];
+            $montobaseexonerado = $_POST['montobaseexonerado'];
+            $montobaseinafecto = $_POST['montobaseinafecto'];
+            $montobasegratuito = $_POST['montobasegratuito'];
+            $montobaseivap = $_POST['montobaseivap'];
+            $montobaseotrostributos = $_POST['montobaseotrostributos'];
+            $tributoventagratuita = $_POST['tributoventagratuita'];
+            $otrostributos = $_POST['otrostributos'];
+            $porcentajeigv = $_POST['porcentajeigv'];
+            $porcentajeotrostributos = $_POST['porcentajeotrostributos'];
+            $porcentajetributoventagratuita = $_POST['porcentajetributoventagratuita'];
+            $montooriginal = $_POST['montooriginal'];
+            $monedaoriginal = $_POST['monedaoriginal'];
             $incluye = $_POST['incluye'];
+            
+            
 
             $detalles = array();
 //         $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
-                  $idpro = $idprod[$i];
+                 $idpro = $idprod[$i];
+                $igvp = $igvprod[$i];
+                $valorunitr = $valorunitref[$i];
+                $montobaseig = $montobaseigv[$i];
+                $montobaseexp = $montobaseexpo[$i];
+                $montobaseexon = $montobaseexonerado[$i];
+                $montobaseinaf = $montobaseinafecto[$i];
+                $montobasegratu = $montobasegratuito[$i];
+                $montobaseiv = $montobaseivap[$i];
+                $montobaseotrostrib = $montobaseotrostributos[$i];
+                $tributoventagrat = $tributoventagratuita[$i];
+                $otrostrib = $otrostributos[$i];
+                $porceigv = $porcentajeigv[$i];
+                $porcotrostrib = $porcentajeotrostributos[$i];
+                $porcentajetribventgrat = $porcentajetributoventagratuita[$i];
+                $montoorig = $montooriginal[$i];
                 if(empty($idprod[$i])){
                     $idpro = 0;
+                }
+                if(empty($igvprod[$i])){
+                    $igvp = 0;
+                }
+                if(empty($valorunitref[$i])){
+                    $valorunitr = 0;
+                }
+                if(empty($montobaseigv[$i])){
+                    $montobaseig = 0;
+                }
+                if(empty($montobaseexpo[$i])){
+                    $montobaseexp = 0;
+                }
+                if(empty($montobaseexonerado[$i])){
+                    $montobaseexon = 0;
+                }
+                if(empty($montobaseinafecto[$i])){
+                    $montobaseinaf = 0;
+                }
+                if(empty($montobasegratuito[$i])){
+                    $montobasegratu = 0;
+                }
+                if(empty($montobaseivap[$i])){
+                    $montobaseiv = 0;
+                }
+                if(empty($montobaseotrostributos[$i])){
+                    $montobaseotrostrib = 0;
+                }
+                if(empty($tributoventagratuita[$i])){
+                    $tributoventagrat = 0;
+                }
+                if(empty($otrostributos[$i])){
+                    $otrostrib = 0;
+                }
+                if(empty($porcentajeigv[$i])){
+                    $porceigv = 0;
+                }
+                if(empty($porcentajeotrostributos[$i])){
+                    $porcotrostrib = 0;
+                }
+                if(empty($porcentajetributoventagratuita[$i])){
+                    $porcentajetribventgrat = 0;
+                }
+                if(empty($montooriginal[$i])){
+                    $montoorig = 0;
                 }
                 $d = array(
                     $idpro,
@@ -1103,7 +1435,24 @@ class documentoController {
                     $precio[$i],
                     $subtotal[$i],
                     $total[$i],
-                    $id
+                    $id,
+                    $igvp,
+                    $valorunitr,
+                    $montobaseig,
+                    $montobaseexp,
+                    $montobaseexon,
+                    $montobaseinaf,
+                    $montobasegratu,
+                    $montobaseiv,
+                    $montobaseotrostrib,
+                    $tributoventagrat,
+                    $otrostrib,
+                    $porceigv,
+                    $porcotrostrib,
+                    $porcentajetribventgrat,
+                    $montoorig,
+                    $monedaoriginal[$i],
+                    $incluye[$i]
                 );
                 array_push($detalles, $d);
 
@@ -1309,6 +1658,11 @@ class documentoController {
             $documento->setIdsucursal($idsucursal);
             $documento->setTipodoc('Venta');
             $documento->setTipo($tipodoc);
+            
+            $documento->setGarantia(0);
+            $documento->setValidezdias(0);
+            $documento->setPlazoentregadias(0);
+            $documento->setCondicionpagodias(0);
 
             echo $id = $documento->insert($documento);
 
@@ -1321,16 +1675,94 @@ class documentoController {
             $precio = $_POST['precio'];
             $subtotal = $_POST['subtotal'];
             $total = $_POST['total'];
+            
+            
+            $igvprod = $_POST['igvprod'];
+            $valorunitref = $_POST['valorunitref'];
+            $montobaseigv = $_POST['montobaseigv'];
+            $montobaseexpo = $_POST['montobaseexpo'];
+            $montobaseexonerado = $_POST['montobaseexonerado'];
+            $montobaseinafecto = $_POST['montobaseinafecto'];
+            $montobasegratuito = $_POST['montobasegratuito'];
+            $montobaseivap = $_POST['montobaseivap'];
+            $montobaseotrostributos = $_POST['montobaseotrostributos'];
+            $tributoventagratuita = $_POST['tributoventagratuita'];
+            $otrostributos = $_POST['otrostributos'];
+            $porcentajeigv = $_POST['porcentajeigv'];
+            $porcentajeotrostributos = $_POST['porcentajeotrostributos'];
+            $porcentajetributoventagratuita = $_POST['porcentajetributoventagratuita'];
+            $montooriginal = $_POST['montooriginal'];
+            $monedaoriginal = $_POST['monedaoriginal'];
             $incluye = $_POST['incluye'];
-
+            
 
             $detalles = array();
             $iddetalle = array();
             $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
                 $idpro = $idprod[$i];
+                $igvp = $igvprod[$i];
+                $valorunitr = $valorunitref[$i];
+                $montobaseig = $montobaseigv[$i];
+                $montobaseexp = $montobaseexpo[$i];
+                $montobaseexon = $montobaseexonerado[$i];
+                $montobaseinaf = $montobaseinafecto[$i];
+                $montobasegratu = $montobasegratuito[$i];
+                $montobaseiv = $montobaseivap[$i];
+                $montobaseotrostrib = $montobaseotrostributos[$i];
+                $tributoventagrat = $tributoventagratuita[$i];
+                $otrostrib = $otrostributos[$i];
+                $porceigv = $porcentajeigv[$i];
+                $porcotrostrib = $porcentajeotrostributos[$i];
+                $porcentajetribventgrat = $porcentajetributoventagratuita[$i];
+                $montoorig = $montooriginal[$i];
                 if(empty($idprod[$i])){
                     $idpro = 0;
+                }
+                if(empty($igvprod[$i])){
+                    $igvp = 0;
+                }
+                if(empty($valorunitref[$i])){
+                    $valorunitr = 0;
+                }
+                if(empty($montobaseigv[$i])){
+                    $montobaseig = 0;
+                }
+                if(empty($montobaseexpo[$i])){
+                    $montobaseexp = 0;
+                }
+                if(empty($montobaseexonerado[$i])){
+                    $montobaseexon = 0;
+                }
+                if(empty($montobaseinafecto[$i])){
+                    $montobaseinaf = 0;
+                }
+                if(empty($montobasegratuito[$i])){
+                    $montobasegratu = 0;
+                }
+                if(empty($montobaseivap[$i])){
+                    $montobaseiv = 0;
+                }
+                if(empty($montobaseotrostributos[$i])){
+                    $montobaseotrostrib = 0;
+                }
+                if(empty($tributoventagratuita[$i])){
+                    $tributoventagrat = 0;
+                }
+                if(empty($otrostributos[$i])){
+                    $otrostrib = 0;
+                }
+                if(empty($porcentajeigv[$i])){
+                    $porceigv = 0;
+                }
+                if(empty($porcentajeotrostributos[$i])){
+                    $porcotrostrib = 0;
+                }
+                if(empty($porcentajetributoventagratuita[$i])){
+                    $porcentajetribventgrat = 0;
+                }
+                if(empty($montooriginal[$i])){
+                    $montoorig = 0;
                 }
                 $d = array(
                     $idpro,
@@ -1342,7 +1774,25 @@ class documentoController {
                     $precio[$i],
                     $subtotal[$i],
                     $total[$i],
-                    $id
+                    $id,
+                    $igvp,
+                    $valorunitr,
+                    $montobaseig,
+                    $montobaseexp,
+                    $montobaseexon,
+                    $montobaseinaf,
+                    $montobasegratu,
+                    $montobaseiv,
+                    $montobaseotrostrib,
+                    $tributoventagrat,
+                    $otrostrib,
+                    $porceigv,
+                    $porcotrostrib,
+                    $porcentajetribventgrat,
+                    $montoorig,
+                    $monedaoriginal[$i],
+                    $incluye[$i]
+                    
                 );
                 array_push($detalles, $d);
 
@@ -1517,6 +1967,11 @@ class documentoController {
             $documento->setIdtiponota($idtiponota);
             $documento->setObservacion($observacion);
             $documento->setDocref($docref);
+            
+            $documento->setGarantia(0);
+            $documento->setValidezdias(0);
+            $documento->setPlazoentregadias(0);
+            $documento->setCondicionpagodias(0);
 
             echo $id = $documento->insert($documento);
             
@@ -1530,7 +1985,25 @@ class documentoController {
             $precio = $_POST['precio'];
             $subtotal = $_POST['subtotal'];
             $total = $_POST['total'];
+            
+             $igvprod = $_POST['igvprod'];
+            $valorunitref = $_POST['valorunitref'];
+            $montobaseigv = $_POST['montobaseigv'];
+            $montobaseexpo = $_POST['montobaseexpo'];
+            $montobaseexonerado = $_POST['montobaseexonerado'];
+            $montobaseinafecto = $_POST['montobaseinafecto'];
+            $montobasegratuito = $_POST['montobasegratuito'];
+            $montobaseivap = $_POST['montobaseivap'];
+            $montobaseotrostributos = $_POST['montobaseotrostributos'];
+            $tributoventagratuita = $_POST['tributoventagratuita'];
+            $otrostributos = $_POST['otrostributos'];
+            $porcentajeigv = $_POST['porcentajeigv'];
+            $porcentajeotrostributos = $_POST['porcentajeotrostributos'];
+            $porcentajetributoventagratuita = $_POST['porcentajetributoventagratuita'];
+            $montooriginal = $_POST['montooriginal'];
+            $monedaoriginal = $_POST['monedaoriginal'];
             $incluye = $_POST['incluye'];
+            
 
 
             $detalles = array();
@@ -1538,8 +2011,68 @@ class documentoController {
             $produpdate = array();  //////////// array de productos actualizar stock
             for ($i = 0; $i < count($codigo); $i++) {
                 $idpro = $idprod[$i];
+                $igvp = $igvprod[$i];
+                $valorunitr = $valorunitref[$i];
+                $montobaseig = $montobaseigv[$i];
+                $montobaseexp = $montobaseexpo[$i];
+                $montobaseexon = $montobaseexonerado[$i];
+                $montobaseinaf = $montobaseinafecto[$i];
+                $montobasegratu = $montobasegratuito[$i];
+                $montobaseiv = $montobaseivap[$i];
+                $montobaseotrostrib = $montobaseotrostributos[$i];
+                $tributoventagrat = $tributoventagratuita[$i];
+                $otrostrib = $otrostributos[$i];
+                $porceigv = $porcentajeigv[$i];
+                $porcotrostrib = $porcentajeotrostributos[$i];
+                $porcentajetribventgrat = $porcentajetributoventagratuita[$i];
+                $montoorig = $montooriginal[$i];
                 if(empty($idprod[$i])){
                     $idpro = 0;
+                }
+                if(empty($igvprod[$i])){
+                    $igvp = 0;
+                }
+                if(empty($valorunitref[$i])){
+                    $valorunitr = 0;
+                }
+                if(empty($montobaseigv[$i])){
+                    $montobaseig = 0;
+                }
+                if(empty($montobaseexpo[$i])){
+                    $montobaseexp = 0;
+                }
+                if(empty($montobaseexonerado[$i])){
+                    $montobaseexon = 0;
+                }
+                if(empty($montobaseinafecto[$i])){
+                    $montobaseinaf = 0;
+                }
+                if(empty($montobasegratuito[$i])){
+                    $montobasegratu = 0;
+                }
+                if(empty($montobaseivap[$i])){
+                    $montobaseiv = 0;
+                }
+                if(empty($montobaseotrostributos[$i])){
+                    $montobaseotrostrib = 0;
+                }
+                if(empty($tributoventagratuita[$i])){
+                    $tributoventagrat = 0;
+                }
+                if(empty($otrostributos[$i])){
+                    $otrostrib = 0;
+                }
+                if(empty($porcentajeigv[$i])){
+                    $porceigv = 0;
+                }
+                if(empty($porcentajeotrostributos[$i])){
+                    $porcotrostrib = 0;
+                }
+                if(empty($porcentajetributoventagratuita[$i])){
+                    $porcentajetribventgrat = 0;
+                }
+                if(empty($montooriginal[$i])){
+                    $montoorig = 0;
                 }
                 $d = array(
                     $idpro,
@@ -1551,7 +2084,24 @@ class documentoController {
                     $precio[$i],
                     $subtotal[$i],
                     $total[$i],
-                    $id
+                    $id,
+                    $igvp,
+                    $valorunitr,
+                    $montobaseig,
+                    $montobaseexp,
+                    $montobaseexon,
+                    $montobaseinaf,
+                    $montobasegratu,
+                    $montobaseiv,
+                    $montobaseotrostrib,
+                    $tributoventagrat,
+                    $otrostrib,
+                    $porceigv,
+                    $porcotrostrib,
+                    $porcentajetribventgrat,
+                    $montoorig,
+                    $monedaoriginal[$i],
+                    $incluye[$i]
                 );
                 array_push($detalles, $d);
 
@@ -1654,12 +2204,13 @@ class documentoController {
     function selectmaxnro(){
         
 //        var_dump($_POST);
-        if(isset($_POST['tipo']) && isset($_POST['tipod'])){
+        if(isset($_POST['tipo']) && isset($_POST['tipod']) && isset($_POST['serie'])){
             
             $tipo = $_POST['tipo'];
             $tipod = $_POST['tipod'];
+            $serie = $_POST['serie'];
                     
-            $documento = $this->documento->selectMax($tipod,$tipo);
+            $documento = $this->documento->selectMax($tipod,$tipo,$serie);
             echo $documento->getNumero() + 1;
         }
         

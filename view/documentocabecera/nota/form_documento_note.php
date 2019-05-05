@@ -30,6 +30,7 @@
                     </div>
 
                     <input id="print" type="hidden" value="<?= base_url ?>documento/printticket" >
+                    <input id="tipodoc" type="hidden" value="<?= $tipodoc ?>" >
                     <input id="tipo" type="hidden" value="<?= $tipodoc ?>" >
                     <div class="body">
                         <form action="<?= base_url ?>documento/insertnota" method="POST"  id="FormularioAjaxDocumento" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
@@ -40,7 +41,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group form-float" id="divserie">
                                             <label class="text-danger">Doc-Serie </label>
-                                            <select class="form-control show-tick" id="cbserie" name="cbserie" required="">
+                                            <select class="form-control show-tick" id="cbserie" name="cbserie" required="" onchange="ultimonumerodoc('<?=base_url?>documento/selectmaxnro');">
                                                 <option value="" class="">- Doc-Serie  -</option>
                                                 <?php
                                                 foreach ($documentossuc as $docsucur) {
@@ -57,7 +58,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label">Nro: </label>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" id="txtnro" name="txtnro" value="<?= $nro ?>"  readonly="">
+                                                <input type="text" class="form-control" id="txtnro" name="txtnro" value=""  readonly="">
                                                 
                                             </div>
                                         </div>

@@ -20,7 +20,7 @@
                         </h1>
 
 
-                        <hr>
+<!--                        <hr>-->
                         <input id="print" type="hidden" value="<?= base_url ?>documento/printticket" >
                         <input id="tipo" type="hidden" value="<?= $tipodoc ?>" >
                         
@@ -37,15 +37,16 @@
                                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <div class="form-group form-float">
                                             <label class="text-danger">Tipo Doc. </label>
-                                            <select class="form-control show-tick" id="tipodoc" name="tipodoc" required="" onchange="ultimonumerodoc('<?= base_url.'documento/selectmaxnro' ?>')">
+                                            <select class="form-control show-tick" id="tipodoc" name="tipodoc" required="" onchange="cargarserie('<?= base_url.'sucursaldocumento/cargarserie' ?>','<?= base_url.'documento/selectmaxnro' ?>');">
                                                 <option value="" class="">- Documento  -</option>
                                                 <?php 
 
-                                                $pred= array('Factura','Boleta');
+                                                $pred= array('Factura','Boleta','Nota de venta');
+                                                $predvalue= array('Factura','Boleta','nota_venta');
 
                                                 for($i=0;$i < count($pred);$i++){
 
-                                                        echo '<option value="'.$pred[$i].'" >'.$pred[$i].'</option>';
+                                                        echo '<option value="'.$predvalue[$i].'" >'.$pred[$i].'</option>';
 
 
                                                 }
@@ -59,16 +60,18 @@
                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <div class="form-group form-float" id="divserie">
                                             <label class="text-danger">Serie </label>
-                                            <select class="form-control show-tick" id="cbserie" name="cbserie" required="">
-                                                <option value="" class="">- Doc-Serie  -</option>
-                                                <?php
-                                                foreach ($documentossuc as $docsucur) {
+                                            <div id="divcargarserie">
+                                                <select class="form-control show-tick" id="cbserie" name="cbserie" required="">
+                                                    <option value="" class="">- Doc-Serie  -</option>
+                                                    <?php
+    //                                                foreach ($documentossuc as $docsucur) {
+    //
+    //                                                    echo '<option value="' . $docsucur->getSerie() . '">' . $docsucur->getTipodoc() . '-' . $docsucur->getSerie() . '</option>';
+    //                                                }
+                                                    ?>
 
-                                                    echo '<option value="' . $docsucur->getSerie() . '">' . $docsucur->getTipodoc() . '-' . $docsucur->getSerie() . '</option>';
-                                                }
-                                                ?>
-
-                                            </select>
+                                                </select>
+                                                </div>
                                         </div>
                                     </div>
 
@@ -88,10 +91,14 @@
 
                                                 <?php
                                                 $pred = array('Soles', 'Dolares');
-
+                                                    
                                                 for ($i = 0; $i < count($pred); $i++) {
-
-                                                    echo '<option value="' . $pred[$i] . '" >' . $pred[$i] . '</option>';
+                                                    if($documento->getMoneda() == $pred[$i]){
+                                                        echo '<option value="' . $pred[$i] . '" selected >' . $pred[$i] . '</option>';
+                                                    }else{
+                                                        echo '<option value="' . $pred[$i] . '"  >' . $pred[$i] . '</option>';
+                                                    }
+                                                    
                                                 }
                                                 ?>
 
@@ -101,7 +108,11 @@
 
                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <!--                                <div class="form-group form-float">-->
-                                        <input type="checkbox" id="incigv" name="incigv" checked />
+                                        <?php $check = 'checked';
+                                         if($documento->getIncigv()== '0' ){
+                                            $check ='';
+                                        } ?>
+                                        <input type="checkbox" id="incigv" name="incigv" <?= $check ?> />
                                         <label for="incigv">Inc. IGV</label>
                                         <!--</div>-->
                                     </div>
@@ -165,12 +176,26 @@
                                                 <option value="">- Vendedor (*) -</option>
                                                 <?php
                                                 foreach ($usuarios as $usuario) {
-                                                    if ($usuario->getId() == $_SESSION['id']) {
-
-                                                        echo '<option value="' . $usuario->getId() . '" selected>' . $usuario->getNombre() . ' ' . $usuario->getApellidop() . '</option>';
+                                                    
+                                                    if($documento->getIdusuario() != 0){
+                                                        
+                                                  
+                                                    if($documento->getIdusuario() == $usuario->getId()){
+                                                         echo '<option value="' . $usuario->getId() . '" selected>' . $usuario->getNombre() . ' ' . $usuario->getApellidop() . '</option>';
                                                     } else {
                                                         echo '<option value="' . $usuario->getId() . '" >' . $usuario->getNombre() . '</option>';
                                                     }
+                                                        
+                                                     }else{
+                                                         
+                                                         if ($usuario->getId() == $_SESSION['id']) {
+
+                                                            echo '<option value="' . $usuario->getId() . '" selected>' . $usuario->getNombre() . ' ' . $usuario->getApellidop() . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $usuario->getId() . '" >' . $usuario->getNombre() . '</option>';
+                                                        }
+                                                     }
+                                                    
                                                 }
                                                 ?>
 
@@ -277,11 +302,11 @@
                                                         <HR>-->
                                 <div class="row">
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                        <input type="hidden" name="idcliente" id="idcliente">
+                                        <input type="hidden" name="idcliente" id="idcliente" value="<?= $documento->getIdpersona()?>">
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">RUC/DNI</label>
                                             <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtrucbuscar" name="txtrucbuscar" value="" required="" onkeyup="consultarucDoc('<?= base_url . 'persona/buscar' ?>');">
+                                                <input type="text" class="form-control" id="txtrucbuscar" name="txtrucbuscar" value="<?= $documento->getRuc() ?>" required="" onkeyup="consultarucDoc('<?= base_url . 'persona/buscar' ?>');">
 
                                             </div>
                                         </div>
@@ -292,7 +317,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">Razón Social / Nombre </label>
                                             <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="" required="">
+                                                <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="<?= $documento->getRazonsocial() ?>" required="">
 
                                             </div>
                                         </div>
@@ -302,7 +327,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label">Dirección </label>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" id="txtdireccion" name="txtdireccion" value="" >
+                                                <input type="text" class="form-control" id="txtdireccion" name="txtdireccion" value="<?= $documento->getDireccion() ?>" >
 
                                             </div>
                                         </div>
@@ -311,7 +336,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label">Email</label>
                                             <div class="form-line">
-                                                <input type="email" class="form-control" id="txtemail" name="txtemail" value="">
+                                                <input type="email" class="form-control" id="txtemail" name="txtemail" value="<?= $documento->getEmail() ?>">
 
                                             </div>
                                         </div>

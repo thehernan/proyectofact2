@@ -29,11 +29,167 @@ class Detalle {
     private $descripcionprod;
     private $idunidad;
     
+    private $igvprod;
+    private $valorunitref;
+    private $montobaseigv;
+    private $montobaseexpo;
+    private $montobaseexonarado;
+    private $montobaseinafecto;
+    private $montobasegratuito;
+    private $montobaseivap;
+    private $montobaseotrstributos;
+    private $tributoventagratuita;
+    private $otrostributos;
+    private $porcentajaigv;
+    private $porcentajeotrstributos;
+    private $porcentjetributoventagratuita;
+    private $montooriginal;
+    private $monedaoriginal;
+    private $incluyeserie;
+    
+         
     
     function __construct() {
         
     }
     
+    function getIgvprod() {
+        return $this->igvprod;
+    }
+
+    function getValorunitref() {
+        return $this->valorunitref;
+    }
+
+    function getMontobaseigv() {
+        return $this->montobaseigv;
+    }
+
+    function getMontobaseexpo() {
+        return $this->montobaseexpo;
+    }
+
+    function getMontobaseexonarado() {
+        return $this->montobaseexonarado;
+    }
+
+    function getMontobaseinafecto() {
+        return $this->montobaseinafecto;
+    }
+
+    function getMontobasegratuito() {
+        return $this->montobasegratuito;
+    }
+
+    function getMontobaseivap() {
+        return $this->montobaseivap;
+    }
+
+    function getMontobaseotrstributos() {
+        return $this->montobaseotrstributos;
+    }
+
+    function getTributoventagratuita() {
+        return $this->tributoventagratuita;
+    }
+
+    function getOtrostributos() {
+        return $this->otrostributos;
+    }
+
+    function getPorcentajaigv() {
+        return $this->porcentajaigv;
+    }
+
+    function getPorcentajeotrstributos() {
+        return $this->porcentajeotrstributos;
+    }
+
+    function getPorcentjetributoventagratuita() {
+        return $this->porcentjetributoventagratuita;
+    }
+
+    function getMontooriginal() {
+        return $this->montooriginal;
+    }
+
+    function getMonedaoriginal() {
+        return $this->monedaoriginal;
+    }
+
+    function getIncluyeserie() {
+        return $this->incluyeserie;
+    }
+
+    function setIgvprod($igvprod) {
+        $this->igvprod = $igvprod;
+    }
+
+    function setValorunitref($valorunitref) {
+        $this->valorunitref = $valorunitref;
+    }
+
+    function setMontobaseigv($montobaseigv) {
+        $this->montobaseigv = $montobaseigv;
+    }
+
+    function setMontobaseexpo($montobaseexpo) {
+        $this->montobaseexpo = $montobaseexpo;
+    }
+
+    function setMontobaseexonarado($montobaseexonarado) {
+        $this->montobaseexonarado = $montobaseexonarado;
+    }
+
+    function setMontobaseinafecto($montobaseinafecto) {
+        $this->montobaseinafecto = $montobaseinafecto;
+    }
+
+    function setMontobasegratuito($montobasegratuito) {
+        $this->montobasegratuito = $montobasegratuito;
+    }
+
+    function setMontobaseivap($montobaseivap) {
+        $this->montobaseivap = $montobaseivap;
+    }
+
+    function setMontobaseotrstributos($montobaseotrstributos) {
+        $this->montobaseotrstributos = $montobaseotrstributos;
+    }
+
+    function setTributoventagratuita($tributoventagratuita) {
+        $this->tributoventagratuita = $tributoventagratuita;
+    }
+
+    function setOtrostributos($otrostributos) {
+        $this->otrostributos = $otrostributos;
+    }
+
+    function setPorcentajaigv($porcentajaigv) {
+        $this->porcentajaigv = $porcentajaigv;
+    }
+
+    function setPorcentajeotrstributos($porcentajeotrstributos) {
+        $this->porcentajeotrstributos = $porcentajeotrstributos;
+    }
+
+    function setPorcentjetributoventagratuita($porcentjetributoventagratuita) {
+        $this->porcentjetributoventagratuita = $porcentjetributoventagratuita;
+    }
+
+    function setMontooriginal($montooriginal) {
+        $this->montooriginal = $montooriginal;
+    }
+
+    function setMonedaoriginal($monedaoriginal) {
+        $this->monedaoriginal = $monedaoriginal;
+    }
+
+    function setIncluyeserie($incluyeserie) {
+        $this->incluyeserie = $incluyeserie;
+    }
+
+        
     function getIdunidad() {
         return $this->idunidad;
     }
@@ -180,6 +336,27 @@ class Detalle {
             $detalle->setCodigoprod($data_tabla[$clave]["codigoprod"]);
             $detalle->setDescripcionprod($data_tabla[$clave]["descripcionprod"]);
             
+            $detalle->setIgvprod($data_tabla[$clave]["igvprod"]);
+            $detalle->setValorunitref($data_tabla[$clave]["valorunitref"]);
+            $detalle->setMontobaseigv($data_tabla[$clave]["montobaseigv"]);
+            $detalle->setMontobaseexpo($data_tabla[$clave]["montobaseexpo"]);
+            $detalle->setMontobaseexonarado($data_tabla[$clave]["montobaseexonarado"]);
+            $detalle->setMontobaseinafecto($data_tabla[$clave]["montobaseinafecto"]);
+            $detalle->setMontobaseigv($data_tabla[$clave]["montobasegratuito"]);
+            $detalle->setMontobaseivap($data_tabla[$clave]["montobaseivap"]);
+            $detalle->setMontobaseotrstributos($data_tabla[$clave]["montobaseotrstributos"]);
+            $detalle->setTributoventagratuita($data_tabla[$clave]["tributoventagratuita"]);
+            $detalle->setOtrostributos($data_tabla[$clave]["otrostributos"]);
+            $detalle->setPorcentajaigv($data_tabla[$clave]["porcentajaigv"]);
+            $detalle->setPorcentajeotrstributos($data_tabla[$clave]["porcentajeotrstributos"]);
+            $detalle->setPorcentjetributoventagratuita($data_tabla[$clave]["porcentjetributoventagratuita"]);
+            $detalle->setMontooriginal($data_tabla[$clave]["montooriginal"]);
+            $detalle->setMonedaoriginal($data_tabla[$clave]["monedaoriginal"]);
+            $detalle->setIncluyeserie($data_tabla[$clave]["incluyeserie"]);
+            $detalle->setMontobasegratuito($data_tabla[$clave]["montobasegratuito"]);
+            
+            
+            
             array_push($detalles, $detalle);
    
              
@@ -195,7 +372,9 @@ class Detalle {
         $filas = array();
 
         $filas = $data_source->insertmultiple("insert into detalle (id_producto,codigoprod ,descripcionprod ,id_unidad,"
-                . "id_impuesto,cantidad,precio,valor,total,id_documento) values(?,?,?,?,?,?,?,?,?,?)", $detalles
+                . "id_impuesto,cantidad,precio,valor,total,id_documento,igvprod,valorunitref,montobaseigv,montobaseexpo,montobaseexonarado,montobaseinafecto,"
+                . "montobasegratuito,montobaseivap,montobaseotrstributos,tributoventagratuita,otrostributos,porcentajaigv,porcentajeotrstributos,porcentjetributoventagratuita,"
+                . "montooriginal,monedaoriginal,incluyeserie) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", $detalles
         );
         
         

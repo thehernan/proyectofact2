@@ -1421,16 +1421,58 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
 });
 
 
-function ultimonumerodoc($url){
+function ultimonumerodoc(url){
     
     var tipo = $('#tipodoc').val();
     var tipod = $('#tipo').val();
+    var serie = $('#cbserie').val();
         $.ajax({
         type: 'POST',
-        url: $url,
+        url: url,
 //        dataType: 'json',
          
-        data: {tipod:tipod,tipo:tipo}
+        data: {tipod:tipod,tipo:tipo,serie:serie}
+        
+        
+        ,
+//        beforeSend: function (xhr) {
+//            $('#respuestabusqueda').html('Cargando ...');
+//        }
+//        ,
+        success: function (dato) {
+            console.log(serie);
+            
+            if(serie!= ''){
+                $('#txtnro').val(dato);
+            }else {
+                $('#txtnro').val('');
+            }
+            
+            
+        }
+//        ,
+//        error: function (data){
+//            console.log(data);
+//            
+//        }
+    });
+}
+
+//$(document).on('change','#cbserie', function (){
+//    alert('fr');
+//    
+//});
+function cargarserie(url,urll){
+    
+    var tipo = $('#tipodoc').val();
+//    var tipod = $('#tipo').val();
+    
+        $.ajax({
+        type: 'POST',
+        url: url,
+//        dataType: 'json',
+         
+        data: {tipodoc:tipo}
         
         
         ,
@@ -1440,7 +1482,15 @@ function ultimonumerodoc($url){
 //        ,
         success: function (dato) {
             console.log(dato);
-            $('#txtnro').val(dato);
+            $('#divcargarserie').html(dato);
+            
+            var serie = $('#cbserie').val();
+            console.log(serie);
+            if(serie != ''){
+                ultimonumerodoc(urll);
+            }else{
+                $('#txtnro').val('');
+            }
             
         }
 //        ,
@@ -1448,15 +1498,10 @@ function ultimonumerodoc($url){
 //            console.log(data);
 //            
 //        }
- 
     });
-    
-    
-    
-    
-    
 }
 $(document).on('change','#ckcondicion', function(){
+    
     var cnd = true;
     if(!$(this).is(':checked')){
                cnd = false;     

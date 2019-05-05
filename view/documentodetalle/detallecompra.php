@@ -755,9 +755,9 @@ $total = 0;
             var inputmontobaseisc = document.createElement('input');
 //           divcol.createTextNode(input);
             inputmontobaseisc.setAttribute('type', 'hidden');
-            inputmontobaseisc.setAttribute('class', 'form-control montobaseisc' + cont);
-            inputmontobaseisc.setAttribute('id', 'montobaseisc[]');
-            inputmontobaseisc.setAttribute('name', 'montobaseisc[]');
+            inputmontobaseisc.setAttribute('class', 'form-control montobaseivap' + cont);
+            inputmontobaseisc.setAttribute('id', 'montobaseivap[]');
+            inputmontobaseisc.setAttribute('name', 'montobaseivap[]');
             var inputmontobaseotros = document.createElement('input');
 //           divcol.createTextNode(input);
             inputmontobaseotros.setAttribute('type', 'hidden');
@@ -1404,7 +1404,7 @@ foreach ($unidades as $unidad) {
                        $('.montobaseexonerado'+ idn).val('');
                        $('.montobaseinafecto'+ idn).val('');
                        $('.montobasegratuito'+ idn).val('');
-                       $('.montobaseisc'+ idn).val('');
+                       $('.montobaseivap'+ idn).val('');
                        $('.montobaseotrostributos'+ idn).val('');
                        $('.tributoventagratuita'+ idn).val('');
                        $('.otrostributos'+ idn).val('');
@@ -1441,8 +1441,8 @@ foreach ($unidades as $unidad) {
                            $('.subtotal' + idn).val(total.toFixed(2));
                            
                        }else if (op == 8){
-                            $('.valorunitref'+ idn).val(precio);
-                            $('.montobasegratuito'+ idn).val(total);
+//                            $('.valorunitref'+ idn).val(precio);
+                            $('.montobaseivap'+ idn).val(total);
 //                            $('.montobaseexpo'+ idn).val(total);
                             $('.subtotal' + idn).val(total.toFixed(2));
                            
@@ -1569,7 +1569,7 @@ foreach ($unidades as $unidad) {
 //            $('#lbligv').html('<strong>IGV 18%:</strong> S/ ' + igv.toFixed(2));
 //            $('#lbltotal').html('<strong>TOTAL:</strong> S/ ' + total.toFixed(2));
             var total = 0, subtotal = 0 ,montobasegratuito = 0;
-            var montobaseexona = 0, montobaseinafecto = 0;
+            var montobaseexona = 0, montobaseinafecto = 0,  montobaseivap = 0;
             var montobaseexpo = 0;
             var igv = 0;
             var incigv = true;
@@ -1618,6 +1618,14 @@ foreach ($unidades as $unidad) {
                     montobaseexpo += parseFloat($(elemento).val());
                 }
 
+            });
+            
+               $("input[name='montobaseivap[]']").each(function(indice, elemento) {
+               // console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+               if($(elemento).val() != ''){
+                   montobaseivap += parseFloat($(elemento).val());
+               }
+               
             });
             var moneda = $('#cbmoneda').val();
             var simbolomoneda;
@@ -1676,9 +1684,9 @@ foreach ($unidades as $unidad) {
             } else {
                 $('.baseexpo').remove();
             }
-            total = total - (montobasegratuito + montobaseexona + montobaseinafecto);
-            subtotal = (total - montobaseexpo) / 1.18;
-            igv = (total - montobaseexpo) - subtotal;
+            total = total - (montobasegratuito + montobaseivap);
+            subtotal = (total - (montobaseexpo + montobaseexona + montobaseinafecto)) / 1.18;
+            igv = (total - (montobaseexpo + montobaseexona+montobaseinafecto)) - subtotal;
 
 
             if (incigv == false) {

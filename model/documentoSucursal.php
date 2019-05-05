@@ -82,14 +82,38 @@ class documentoSucursal {
         $this->modoimpresion = $modoimpresion;
     }
 
-    function selectAll() {
+    function selectAll($idsucursal, $tipodoc) {
+        $data_source = new DataSource();
+
+        $data_tabla = $data_source->ejecutarconsulta("select doc.id,doc.id_sucursal,s.nombre,doc.tipo_documento,doc.serie,doc.predeterminado,doc.modoimpresion
+ from documento_sucursal as doc INNER JOIN sucursal as s on
+doc.id_sucursal=s.id  where doc.activo=1 and doc.id_sucursal=? and doc.tipo_documento= ? order by doc.id desc;",array($idsucursal,$tipodoc));
+
+//        $documento = null;
+        $documentos = array();
+        foreach ($data_tabla as $clave => $valor) {
+            $documento = new documentoSucursal();
+            $documento->setId($data_tabla[$clave]["id"]);
+            $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
+            $documento->setSucursal($data_tabla[$clave]["nombre"]);
+            $documento->setTipodoc($data_tabla[$clave]["tipo_documento"]);
+            $documento->setSerie($data_tabla[$clave]["serie"]);
+            $documento->setPredeterminado($data_tabla[$clave]["predeterminado"]);
+            $documento->setModoimpresion($data_tabla[$clave]["modoimpresion"]);
+
+
+            array_push($documentos, $documento);
+        }
+        return $documentos;
+    }
+    function select() {
         $data_source = new DataSource();
 
         $data_tabla = $data_source->ejecutarconsulta("select doc.id,doc.id_sucursal,s.nombre,doc.tipo_documento,doc.serie,doc.predeterminado,doc.modoimpresion
  from documento_sucursal as doc INNER JOIN sucursal as s on
 doc.id_sucursal=s.id  where doc.activo=1 order by doc.id desc;");
 
-        $documento = null;
+//        $documento = null;
         $documentos = array();
         foreach ($data_tabla as $clave => $valor) {
             $documento = new documentoSucursal();

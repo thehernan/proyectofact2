@@ -198,13 +198,13 @@
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Tipo</th>
-                                        <th>Serie</th>
+                                        <!--<th>Serie</th>-->
                                         <th>Número</th>
                                         <th>RUC/ DNI</th>
                                         <th>Nombre / Rz. Social</th>
                                         <th>Total</th>
-                                        <th>Est. Local</th>
-                                        <th>Est. Sunat</th>
+                                        <!--<th>Est. Local</th>-->
+                                        <!--<th>Est. Sunat</th>-->
                                         <th>Imprimir</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -238,26 +238,19 @@
                                             
                                             echo '<td>'.$documento->getFechaemision().'</td>';
                                             echo '<td>'.$documento->getTipo().'</td>';
-                                            echo '<td>'.$documento->getSerie().'</td>';
+//                                            echo '<td>'.$documento->getSerie().'</td>';
                                             echo '<td>'.$documento->getNumero().'</td>';
                                             echo '<td>'.$documento->getRuc().'</td>';
                                             echo '<td>'.$documento->getRazonsocial().'</td>';
                                             echo '<td>'.$documento->getTotal().'</td>';
-                                            echo '<td>'.$documento->getEstadolocal().'</td>';
-                                            echo '<td>'.$estados.'</td>';
+//                                            echo '<td>'.$documento->getEstadolocal().'</td>';
+//                                            echo '<td>'.$estados.'</td>';
                                             echo '<td><div class="demo-google-material-icon"> <i class="material-icons">picture_as_pdf</i> <i class="material-icons">confirmation_number</i> </div></td>';
-                                            if($documento->getTipo() == 'Cotizacion'){
+                                            echo '<td>'
+                                                . '<a href="' . base_url . 'documento/loadcotizacion&id='.$documento->getId().'"  data-toggle="tooltip" data-placement="top" title="VENDER"><i class="material-icons">add_shopping_cart</i></a> </div></td>';
+                                            
 
 
-                                                echo '<td>'
-                                                . '<a href="' . base_url . 'documento/sale"  data-toggle="tooltip" data-placement="top" title="VENDER"><i class="material-icons">add_shopping_cart</i></a> </div></td>';
-                                            }else{
-
-                                                echo '<td><div class="demo-google-material-icon"> <i class="material-icons">code</i> <i class="material-icons">done</i> '
-                                                . '<a href="' . base_url . 'documento/loaddebit&id=' . $documento->getId() . '"  data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a> <a href="' . base_url . 'documento/loadcredit&id=' . $documento->getId() . '"  data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a> <i class="material-icons">block</i></div></td>';
-
-
-                                            }
                                              echo '</tr>';
                                         
                                         

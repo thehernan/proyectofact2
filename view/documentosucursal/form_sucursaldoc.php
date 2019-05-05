@@ -77,13 +77,14 @@ if ($sucursaldoc->getId() != 0) {
                                             <select class="form-control show-tick" id="cbtipodoc" name="cbtipodoc" required="">
                                                 <option value="">- Tipo de documento -</option>
                                                 <?php
-                                                $tipodoc = array('Factura', 'Boleta', 'Nota de Venta', 'Guia de Remision');
+                                                $tipodoc = array('Factura', 'Boleta', 'Nota de Venta','Nota de credito','Nota de debito', 'Guia de Remision');
+                                                $tipovalue = array('Factura', 'Boleta', 'nota_venta','nota_credito','nota_debito','guia_remision');
 
                                                 for ($i = 0; $i < count($tipodoc); $i++) {
                                                     if ($sucursaldoc->getTipodoc() == $tipodoc[$i]) {
-                                                        echo '<option value="' . $tipodoc[$i] . '" selected="selected">' . $tipodoc[$i] . '</option>';
+                                                        echo '<option value="' . $tipovalue[$i] . '" selected="selected">' . $tipodoc[$i] . '</option>';
                                                     } else {
-                                                        echo '<option value="' . $tipodoc[$i] . '" >' . $tipodoc[$i] . '</option>';
+                                                        echo '<option value="' . $tipovalue[$i] . '" >' . $tipodoc[$i] . '</option>';
                                                     }
                                                 }
                                                 ?>

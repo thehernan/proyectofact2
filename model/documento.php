@@ -484,7 +484,7 @@ class documento {
         
         $data_source = new DataSource();
         $id = 0;
-
+        
         $data_source->ejecutarActualizacion("insert into documento(serie, numero, fechaemision,fechavencimiento,nroden,"
                 . "moneda,incigv,id_sunat_transaction,id_usuario,tipo_venta,tipo_venta_movimiento,tipo_venta_nop,"
                 . "sujetoa,id_persona,ruc,razonsocial,direccion,email,estadosunat,estadolocal,total,tipo,id_sucursal,tipo_doc,tipo_cambio,documento_ref,serie_ref,numero_ref,id_tiponota,observacion,garantia,condicionpago,"
@@ -580,11 +580,11 @@ class documento {
         
     }
     
-       function selectMax($tipodoc,$tipo){
+       function selectMax($tipodoc,$tipo,$serie){
         
         $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta("select * from documento where tipo_doc = ? and tipo = ? ORDER BY id DESC LIMIT 1;", array($tipodoc,$tipo));
+        $data_tabla = $data_source->ejecutarconsulta("select * from documento where tipo_doc = ? and tipo = ? and serie = ? ORDER BY id DESC LIMIT 1;", array($tipodoc,$tipo,$serie));
 
         
         $documento = new documento();

@@ -24,7 +24,7 @@ class sucursaldocumentoController {
     }
     
     function select(){
-        $sucursalesdoc =$this->documento->selectAll();
+        $sucursalesdoc =$this->documento->select();
         require_once 'view/layout/header.php';
         require_once 'view/documentosucursal/listar_sucursaldoc.php';
         require_once 'view/layout/footer.php';
@@ -45,6 +45,27 @@ class sucursaldocumentoController {
             
             
             
+        }
+        
+    }
+    function cargarserie(){
+        if(isset($_POST['tipodoc'])){
+            $idsucur = $_SESSION['idsucursal'];
+            $tipodoc = $_POST['tipodoc'];
+            $documentossuc =$this->documento->selectAll($idsucur,$tipodoc);
+            
+            echo '<select class="form-control show-tick" id="cbserie" name="cbserie" required onchange="ultimonumerodoc('."'".base_url.'documento/selectmaxnro'."'".');">';
+                if(count($documentossuc) == 0){
+                   echo '<option value="" class="text-danger">- Sin resultados  -</option>';
+                }
+//                
+                
+                foreach ($documentossuc as $docsucur) {
+
+                    echo '<option value="' . $docsucur->getSerie() . '">' . $docsucur->getTipodoc() . '-' . $docsucur->getSerie() . '</option>';
+                }
+                
+            echo '</select>'; 
         }
         
     }
