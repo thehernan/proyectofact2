@@ -687,7 +687,15 @@ $total = 0;
                 
                 var divseries = document.createElement('div');  /////////// CREO CONTENEDOR PARA EL INPUT SERIES /////
                 divseries.setAttribute('class', 'col-lg-3 col-md-3 col-sm-3 col-xs-6');
-
+                
+                 var serieid = document.createElement('input');  //////////// CREO INPUT ID SERIE //////////////
+                serieid.setAttribute('id', 'idserieitem[]');
+                serieid.setAttribute('name', 'idserieitem[]');
+                serieid.setAttribute('class', '  idserieitem' + cont);
+                serieid.setAttribute('type', 'hidden');
+                serieid.setAttribute('ident', cont);
+                serieid.setAttribute('value', '<?= $serie->getId() ?>');
+                
                 var inputs = document.createElement('input'); ///////// CREO INPUT SERIE PROD ///////// 
                 inputs.setAttribute('type', 'text');
                 inputs.setAttribute('name', 'serieprod[]');
@@ -698,27 +706,31 @@ $total = 0;
 
                 divseries.appendChild(inputs);
                 divseries.appendChild(serieid);
-                
 
-                
-
-                var divbtn = document.createElement('div');
+                var divbtn = document.createElement('div');  ////////// CREO CONTENEDOR PARA EL DIV BOTON ELIMINAR
                 divbtn.setAttribute('class', 'col-lg-3 col-md-3 col-sm-3 col-xs-6 eliminarserie' + cont);  //
                 divbtn.setAttribute('ident', cont);
+                
+                var btneliminar = document.createElement('button'); /////////// CREO BOTON ELIMINAR SERIE //////
+                btneliminar.setAttribute('type', 'button');
+                btneliminar.setAttribute('class', 'btn btn-danger btneliminarserie' + cont);
+                btneliminar.setAttribute('ident', cont);
+                btneliminar.innerHTML= '<span class= "glyphicon glyphicon-remove"></span>';
+                divbtn.appendChild(btneliminar);
+                
+                divrow.appendChild(divseries);
+                divrow.appendChild(divbtn);
+                
+                body.appendChild(divrow);
+                
+                
     //                divbtn.setAttribute('onclick',"eliminarserie("+iden+")");
 
 
 //                var body = document.getElementById('body' + cont);
     //                body.appendChild(divserie);
     //                ////// select ///////////
-                var serieid = document.createElement('input');
-                serieid.setAttribute('id', 'idserieitem[]');
-                serieid.setAttribute('name', 'idserieitem[]');
-                serieid.setAttribute('class', '  idserieitem' + cont);
-                serieid.setAttribute('type', 'hidden');
-
-                serieid.setAttribute('ident', cont);
-                serieid.setAttribute('value', '<?= $serie->getId() ?>');
+               
 
                 //////////////////////////////////////////////
     //       
@@ -728,24 +740,19 @@ $total = 0;
                 
 ///////////////////////// FIN DE LAS SERIES //////////////////////
 
+        collapse.appendChild(body);
+        divpanelsuccess.appendChild(panelheding);
+        divpanelsuccess.appendChild(collapse);
 
 
-
-
-                var btneliminar = document.createElement('button');
-                btneliminar.setAttribute('type', 'button');
-                btneliminar.setAttribute('class', 'btn btn-danger btneliminarserie' + cont);
-                btneliminar.setAttribute('ident', cont);
-
-                var span = document.createElement('span');
-                span.setAttribute('class', 'glyphicon glyphicon-remove');
-                btneliminar.appendChild(span);
-                divbtn.appendChild(btneliminar);
+                
+        divserie.appendChild(divpanelsuccess);
+             
+                
     //                divrow.appendChild(inputidprod);
-                divrow.appendChild(divserie);
-                divrow.appendChild(divbtn);
+                
 
-                body.appendChild(divrow);
+               
     //                
     //                body.appendChild(inputidprod)
     //                body.appendChild(divserie);
@@ -775,12 +782,11 @@ $total = 0;
     //                            divboton.appendChild(labelplus);
                           
 
-                            collapse.appendChild(body);
-                            divpanels.appendChild(panelheding);
-                            divpanels.appendChild(collapse);
+                            
+                           
 
 
-                            divserie.appendChild(divpanels);
+                            
             
            
             
