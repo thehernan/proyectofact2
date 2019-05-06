@@ -1,0 +1,170 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/12/2018, 12:12:27 AM
+    Author     : HERNAN
+*/
+
+/** {
+  font-size: 12px;
+  font-family: 'Courier New';
+}
+*/ 
+td,
+th,
+tr,
+table {
+  font-size: 12px;
+  font-family: 'Courier New';  
+  border-top: 1px solid #5878ca;
+  border-collapse: collapse;
+}
+ 
+td.producto,
+th.producto {
+  width: 580px;
+  max-width: 580px;
+  word-break: break-all;
+}
+ 
+td.cantidad,
+th.cantidad {
+  width: 120px;
+  max-width: 120px;
+  text-align: center;
+  word-break: break-all;
+}
+ 
+td.precio,
+th.precio {
+  width: 100px;
+  max-width: 100px;
+  text-align: center;
+  word-break: break-all;
+}
+
+th {
+  font-size: 14px;
+  font-family: 'Courier New';  
+  background-color: #889ccf;
+  color: white;
+/*  border-radius: 5px;*/
+  border: 2px solid #5878ca;
+}
+
+ 
+.centrado {
+  text-align: center;
+  align-content: center;
+}
+.justificado {
+  text-align: justify;
+ 
+} 
+
+.A4 {
+  width: 800px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right:auto;
+ 
+}
+ 
+img {
+/*  max-width: inherit;
+  width: inherit;*/
+display:block;
+
+  
+}
+
+/*----------- CAJA ----------- */
+.cajacliente { 
+font-family: Courier New;
+color: #ffffff; 
+font-size: 14px; 
+font-weight: 300; 
+text-align: left; 
+background: #889ccf; 
+margin: 0 0 10px; 
+overflow: hidden; 
+padding: 10px; 
+border-radius: 15px 15px 15px 15px; 
+
+border: 2px solid #5878ca;
+width: 550px;
+max-width: 550px;
+float:left;
+}
+.cajafecha { 
+font-family: Courier New; 
+color: #ffffff; 
+font-size: 13px; 
+font-weight: 300; 
+text-align: left; 
+background: #889ccf; 
+margin: 0 0 12px; 
+overflow: hidden; 
+padding: 11px; 
+border-radius: 15px 15px 15px 15px;  
+border: 2px solid #5878ca;
+width: 200px;
+max-width:200px;
+margin-left: 580px;
+
+
+}
+.cajaruc { 
+font-family: Arial; 
+color: #ffffff; 
+font-size: 20px; 
+font-weight: 350px; 
+text-align: center; 
+
+background: #889ccf; 
+margin: 0 0 10px; 
+overflow: hidden; 
+padding: 10px;
+margin: 105px; 
+border-radius: 15px 15px 15px 15px;  
+border: 2px solid #5878ca;
+width: 200px;
+max-width:200px;
+margin-left: 580px;
+
+}
+
+.importeletra{
+    font-family: Arial; 
+    font-size: 12px;
+}
+
+.divempresa { 
+font-family: Courier New;
+/*color: #ffffff;*/ 
+font-size: 14px; 
+font-weight: 300; 
+text-align: left; 
+/*background: #889ccf;*/ 
+margin: 0 0 10px; 
+overflow: hidden; 
+padding: 0px; 
+/*border-radius: 15px 15px 15px 15px;*/ 
+
+/*border: 2px solid #5878ca;*/
+width: 550px;
+max-width: 550px;
+float:left;
+}
+
+
+
+
+
+
+
+
+

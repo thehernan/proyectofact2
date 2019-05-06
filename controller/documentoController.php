@@ -2231,15 +2231,22 @@ class documentoController {
             $detalles = $detalle->selectOneDoc($id);
 //            var_dump($sucur);
             require_once 'view/CifrasEnLetras.php';
-            require_once 'view/documentocabecera/ticket.php';
-            
-            
-            
-            
+            require_once 'view/documentocabecera/ticket.php';   
         }
-        
-        
-        
+ 
     }
-
+    function printA4(){
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];           
+            $sucursal = new sucursal();
+            $detalle = new Detalle();
+            $sucur = $sucursal->selectOne($_SESSION['idsucursal']);
+            $document = $this->documento->selectOne($id);
+            $detalles = $detalle->selectOneDoc($id);
+            require_once 'libs/phpqrcode/qrlib.php';
+            require_once 'view/CifrasEnLetras.php'; 
+            
+            require_once 'view/documentocabecera/printA4.php'; 
+        }
+    }
 }

@@ -284,7 +284,7 @@ class CifrasEnLetras {
 //      if (self::empiezaPor($parteDecimal, self::PREFIJO_ERROR)) return $parteDecimal;
       $resultado[]= " con ";
       $resultado[]= $parteDecimal;
-       $resultado[] = "/100 SOLES";
+       $resultado[] = "/100 ";
     }
 
     return implode('', $resultado);
