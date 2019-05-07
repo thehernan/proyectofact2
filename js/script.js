@@ -1525,6 +1525,39 @@ $(document).on('change','#ckcondicion', function(){
 });
 
 
+$(document).on('click','#exceldocument', function (e){
+   var url = $(this).attr('url');
+   var desde = $('#dpdesde').val();
+   var hasta = $('#dphasta').val();
+   var tipocomprobante = $('#cbtipocomprobante').val();
+   var ruc = $('#txtbuscar').val();
+   var serie = $('#txtserie').val();
+   var numero = $('#txtnumero').val();
+   var idsucur = $('#cbsucursal').val();
+   var d = new Date(desde);
+   console.log(desde);
+    var desdef = $.datepicker.formatDate('yy-mm-dd', d);
+    console.log(hasta);
+   var h = new Date(hasta);
+    var hastaf = $.datepicker.formatDate('yy-mm-dd', h);
+    console.log(desdef);
+    console.log(hastaf);
+//    $.ajax({
+//        type: 'POST',
+//        url: url,
+//        data: {dpdesde:desde,dphasta:hasta,cbtipocomprobante:tipocomprobante,txtbuscar:ruc,txtserie:serie,txtnumero:numero,cbsucursal:idsucur},
+//        success: function (data) {
+            
+            window.open(url+'&dpdesde="'+desdef+'"&dphasta="'+hastaf+'"&cbtipocomprobante="'+tipocomprobante+'"&txtbuscar="'+ruc+'"&txtserie="'+serie+'"&txtnumero="'+numero+'"&cbsucursal="'+idsucur+'"', "_blank");
+//        }
+//        
+//        
+//        
+//    });
+    e.preventDefault();
+});
+
+
 function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) { //v3.0
   if(window.screen)if(isCenter)if(isCenter=="true"){
     var myLeft = (screen.width-myWidth)/2;

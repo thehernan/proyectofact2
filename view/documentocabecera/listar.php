@@ -175,7 +175,10 @@
                             <div class="form-group form-float">
                                 
                                 <button class="btn btn-sm btn-primary waves-effect" type="submit"><span class="glyphicon glyphicon-search "></span> Buscar</button>
-                                <button class="btn btn-sm btn-success waves-effect"><span class="glyphicon glyphicon-file"></span> Excel</button>
+                                
+                         
+                                
+                                <button class="btn btn-sm btn-success waves-effect" id="exceldocument" url="<?= base_url?>documento/imprimirexcel"><span class="glyphicon glyphicon-file"></span> Excel</button>
                                 
                             </div>
                         </div>
@@ -189,7 +192,7 @@
                         
                         
                         
-                        
+                        <div id="respuestaExcel"></div>
                         <div class="table-responsive" id="respuestaAjax">
                             <table class="table  table-hover table-bordered" id="tabladocumento">
                                 <thead>
@@ -243,7 +246,7 @@
                                             echo '<td>'.$documento->getTotal().'</td>';
                                             echo '<td>'.$documento->getEstadolocal().'</td>';
                                             echo '<td>'.$estados.'</td>';
-                                            echo '<td><div class="demo-google-material-icon"> <i class="material-icons">picture_as_pdf</i> <i class="material-icons">confirmation_number</i> </div></td>';
+                                            echo '<td><a href="'.base_url.'documento/imprimir&id='.$documento->getId().'"> <i class="material-icons">picture_as_pdf</i> <i class="material-icons">confirmation_number</i> </a></td>';
                                             echo '<td><div class="demo-google-material-icon"> <i class="material-icons">code</i> <i class="material-icons">done</i> '
                                             . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a> <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a> <i class="material-icons">block</i></div></td>';
                                             

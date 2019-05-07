@@ -233,7 +233,7 @@ class documentoController {
                 echo '<td>' . $documento->getTotal() . '</td>';
                 echo '<td>' . $documento->getEstadolocal() . '</td>';
                 echo '<td>' . $estados . '</td>';
-                echo '<td><div class="demo-google-material-icon"> <i class="material-icons">picture_as_pdf</i> <i class="material-icons">confirmation_number</i> </div></td>';
+                echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
                 if($documento->getTipo() == 'Cotizacion'){
                     
                     
@@ -313,8 +313,10 @@ class documentoController {
 
                     });
 
-
+                    
                 });
+                
+               
             //       $(function (){
             //        $('table tr:eq(0)').prepend('<th>ID</th>')
             //        var id=0;
@@ -2249,5 +2251,41 @@ class documentoController {
 //            require_once 'libs/dompdf';
             require_once 'view/documentocabecera/printA4.php'; 
         }
+    }
+    function imprimirexcel(){
+//        var_dump($_GET);
+         if (isset($_GET['dpdesde']) && isset($_GET['dphasta']) && isset($_GET['cbtipocomprobante']) && isset($_GET['txtbuscar']) && isset($_GET['txtserie']) && isset($_GET['txtnumero']) && isset($_GET['cbsucursal'])) {
+
+
+            $desde = $_GET['dpdesde'];
+//            $dated = DateTime::createFromFormat('d/m/Y', $desde);
+//            $datedf = $dated->format('Y-m-d');
+
+            $hasta = $_GET['dphasta'];
+//            $dateh = DateTime::createFromFormat('d/m/Y', $hasta);
+//            $datehf = $dateh->format('Y-m-d');
+
+            $tipocomp = $_GET['cbtipocomprobante'];
+
+
+            $buscar = $_GET['txtbuscar'];
+            $serie = $_GET['txtserie'];
+            $numero = $_GET['txtnumero'];
+            $sucursal = $_GET['cbsucursal'];
+
+            $documentos = $this->documento->select($desde, $hasta, $tipocomp, $buscar, $serie, $numero, $sucursal);
+            var_dump($documentos);
+            require_once 'view/reportes/functions/excel.php';
+            
+            activeErrorReporting();
+            noCli();
+
+            require_once 'plugins/PHPExcel/Classes/PHPExcel.php';
+            require_once 'view/reportes/searchdocumentExcel.php';
+            
+        }
+        
+        
+        
     }
 }

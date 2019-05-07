@@ -1,5 +1,5 @@
 
-
+http://localhost/facturador/documento/imprimirexcel&dpdesde=2019-05-01&dphasta=2019-05-30&cbtipocomprobante=nota_credito&txtbuscar=&txtserie=&txtnumero=&cbsucursal=6
 //    
 //    $dir= "temp/";
 //    if(!file_exists($dir)){
