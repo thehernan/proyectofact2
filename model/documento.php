@@ -435,7 +435,8 @@ class documento {
         
                 $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta('select * from documento  where '.$fecha.$tipocomp.$buscar.$serie.$numero.$idsucur.' order by id desc;');
+        $data_tabla = $data_source->ejecutarconsulta('SELECT doc.*,sum(det.total) as totaldoc FROM `documento` as doc inner join detalle as det on det.id_documento=doc.id
+  where '.$fecha.$tipocomp.$buscar.$serie.$numero.$idsucur.' GROUP BY id_documento order by id_documento desc;');
 
         
         $documentos = array();
@@ -464,7 +465,7 @@ class documento {
             $documento->setEstadolocal($data_tabla[$clave]["estadolocal"]);
             $documento->setEmail($data_tabla[$clave]["email"]);
             $documento->setTipo($data_tabla[$clave]["tipo"]);
-            $documento->setTotal($data_tabla[$clave]["total"]);
+            $documento->setTotal($data_tabla[$clave]["totaldoc"]);
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
 
             

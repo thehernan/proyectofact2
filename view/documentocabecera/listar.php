@@ -81,7 +81,7 @@
                             <div class="form-group form-float">
                                 <label>Tipo Comprobante</label>
                                 <select  class="form-control show-tick" id="cbtipocomprobante" name="cbtipocomprobante">
-                                    <option value="">- Tipo comprobante -</option>
+<!--                                    <option value="">- Tipo comprobante -</option>-->
                                     <?php 
                                     $pred= array('Factura','Boleta','Nota de crédito','Nota de débito');
                                     $value= array('Factura','Boleta','nota_credito','nota_debito');

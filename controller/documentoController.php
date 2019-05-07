@@ -131,7 +131,7 @@ class documentoController {
 
         $sucursales = $sucursal->selectAll();
 
-        $documentos = $this->documento->select($desde, $hasta, '', '', '', '', $_SESSION['idsucursal']);
+        $documentos = $this->documento->select($desde, $hasta, 'Factura', '', '', '', $_SESSION['idsucursal']);
         require_once 'view/layout/header.php';
         require_once 'view/documentocabecera/listar.php';
         require_once 'view/layout/footer.php';
@@ -2243,6 +2243,10 @@ class documentoController {
             $sucur = $sucursal->selectOne($_SESSION['idsucursal']);
             $document = $this->documento->selectOne($id);
             $detalles = $detalle->selectOneDoc($id);
+            
+          
+            
+            
             require_once 'libs/phpqrcode/qrlib.php';
             require_once 'view/CifrasEnLetras.php'; 
             

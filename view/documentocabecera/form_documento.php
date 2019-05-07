@@ -445,7 +445,7 @@
                                        
                                         <div class="row text-center">
                                             <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">-->
-                                            <label class="text-danger " id="lbltotal"><strong>TOTAL: </strong>    S/ 0.00</label>
+                                            <label class="text-danger " id="lbltotal" ><strong>TOTAL: </strong>    S/ 0.00</label>
                                             <!--</div>--> 
                                         </div>
                                         </div> 
