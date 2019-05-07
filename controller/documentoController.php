@@ -2235,7 +2235,7 @@ class documentoController {
         }
  
     }
-    function printA4(){
+    function imprimir(){
         if(isset($_GET['id'])){
             $id = $_GET['id'];           
             $sucursal = new sucursal();
@@ -2243,13 +2243,10 @@ class documentoController {
             $sucur = $sucursal->selectOne($_SESSION['idsucursal']);
             $document = $this->documento->selectOne($id);
             $detalles = $detalle->selectOneDoc($id);
-            
-          
-            
-            
+//            require_once "vendor/autoload.php";
             require_once 'libs/phpqrcode/qrlib.php';
             require_once 'view/CifrasEnLetras.php'; 
-            
+//            require_once 'libs/dompdf';
             require_once 'view/documentocabecera/printA4.php'; 
         }
     }
