@@ -255,7 +255,7 @@
 
                                             <div class="row">
                                                 <div class="form-group">
-                                                    <label for="textordenc">Observación</label>
+                                                    <label for="txtobservacion">Observación</label>
                                                     <div class="form-line">
                                                         <textarea class="form-control" id="txtobservacion" name="txtobservacion"></textarea>
                                                         
@@ -336,7 +336,7 @@
 
 
                                     </div>
-                                    <button class="btn btn-lg btn-success waves-effect">REGISTRAR COMPROBANTE</button>
+                                    <button class="btn btn-lg btn-success waves-effect" type="submit">REGISTRAR COMPROBANTE</button>
 
 
                                 </div>

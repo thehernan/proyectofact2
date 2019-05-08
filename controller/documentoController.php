@@ -41,6 +41,7 @@ class documentoController {
         $this->impuesto = new tipoImpuesto();
         $this->unidad = new unidmedida();
     }
+    
 
     function sale() {
 
@@ -524,12 +525,18 @@ class documentoController {
         require_once 'view/layout/footer.php';
     }
 
-    function insertcompra() {
+    function insertcompra(){
 
 //        var_dump($_POST);
 
         if (isset($_POST['tipodoc']) && isset($_POST['txtserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion'])) {
-
+            $serier = str_replace(PHP_EOL, ' ', $_POST['txtserie']);
+            $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
+            
+            $serie = ltrim($serier,'0');
+            $numero = (int)($numeror);
+            
+        if($this->documento->duplicado($serie, $numero,'Compra') == 'valido'){
             $emision = trim($_POST['dpfechaemision']);
 
             $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
@@ -540,8 +547,8 @@ class documentoController {
             $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);
             $vencimientof = $dateven->format('Y-m-d');
             
-            if(!empty($_POST['incigv'])){
-                $incigv = $_POST['incigv'];
+            if(isset($_POST['incigv'])){
+                $incigv = 1;
             }else {
                 $incigv = 0;
             }
@@ -557,8 +564,8 @@ class documentoController {
             $documento = new documento();
 
 
-            $serie = $_POST['txtserie'];
-            $numero = $_POST['txtnro'];
+//            $serie = $_POST['txtserie'];
+//            $numero = $_POST['txtnro'];
             $moneda = $_POST['cbmoneda'];
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
@@ -861,7 +868,11 @@ class documentoController {
                 $otrosm = new documentoOtros();
                 $otrosm->insert($otros);
             }
+        }else {
+            
+            echo 'duplicado';
         }
+    }
     }
 
     function insertordencompra() {
@@ -869,7 +880,13 @@ class documentoController {
 //        var_dump($_POST);
 
         if (isset($_POST['tipodoc']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtgarantia'])) {
-
+//            $serier = str_replace(PHP_EOL, ' ', $_POST['txtserie']);
+            $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
+            
+            $serie = '';
+            $numero = (int)($numeror);
+            
+        if($this->documento->duplicado($serie, $numero,'orden_compra') == 'valido'){
             $emision = $_POST['dpfechaemision'];
 
             $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
@@ -883,8 +900,8 @@ class documentoController {
             
             
             
-            if(!empty($_POST['incigv'])){
-                $incigv = $_POST['incigv'];
+           if(isset($_POST['incigv'])){
+                $incigv = 1;
             }else {
                 $incigv = 0;
             }
@@ -900,7 +917,7 @@ class documentoController {
 
 
             $serie=$_POST['ORDEN_COMPRA'];
-            $numero = $_POST['txtnro'];
+//            $numero = $_POST['txtnro'];
             $moneda = $_POST['cbmoneda'];
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
@@ -1205,7 +1222,10 @@ class documentoController {
                 $otrosm = new documentoOtros();
                 $otrosm->insert($otros);
             }
+        }else{
+            echo 'duplicado';
         }
+    }
     }
     function insertcotizacion() {
 
@@ -1217,6 +1237,14 @@ class documentoController {
                 && isset($_POST['txtatencion']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) 
                 && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtgarantia'])
                 && isset($_POST['txtobservacion'])) {
+            
+//            $serier = str_replace(PHP_EOL, ' ', $_POST['txtserie']);
+            $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
+            
+            $serie = 'COTIZACION';
+            $numero = (int)($numeror);
+            
+        if($this->documento->duplicado($serie, $numero,'Cotizacion') == 'valido'){
 
             $emision = $_POST['dpfechaemision'];
 
@@ -1278,7 +1306,7 @@ class documentoController {
 
 
 //        $serie=$_POST['txtserie'];
-            $numero = $_POST['txtnro'];
+//            $numero = $_POST['txtnro'];
             $moneda = $_POST['cbmoneda'];
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
@@ -1585,15 +1613,29 @@ class documentoController {
                 $otrosm = new documentoOtros();
                 $otrosm->insert($otros);
             }
+        }else {
+            
+            echo 'duplicado';
         }
     }
-
+    }
+    
+    
     function insertsale() {
 
 //    var_dump($_POST);
 
         if (isset($_POST['cbserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['cbvendedor']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion'])) {
-
+            $serier = str_replace(PHP_EOL, ' ', $_POST['cbserie']);
+            $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
+            
+            $serie = ltrim($serier,'0');
+            $numero = (int)($numeror);
+            
+        if($this->documento->duplicado($serie, $numero,'Venta') == 'valido'){
+            
+        
+            
             $emision = $_POST['dpfechaemision'];
 
             $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
@@ -1605,8 +1647,8 @@ class documentoController {
             $vencimientof = $dateven->format('Y-m-d');
             
             
-            if(!empty($_POST['incigv'])){
-                $incigv = $_POST['incigv'];
+            if(isset($_POST['incigv'])){
+                $incigv = 1;
             }else {
                 $incigv = 0;
             }
@@ -1621,8 +1663,7 @@ class documentoController {
             $documento = new documento();
 
 
-            $serie = $_POST['cbserie'];
-            $numero = $_POST['txtnro'];
+            
             $moneda = $_POST['cbmoneda'];
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
@@ -1882,6 +1923,9 @@ class documentoController {
                 $otrosm = new documentoOtros();
                 $otrosm->insert($otros);
             }
+        }else{
+            echo 'duplicado';
+        }
         }
     }
 
@@ -1891,6 +1935,13 @@ class documentoController {
 
         if (isset($_POST['cbserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['cbdocref']) && isset($_POST['txtserieref']) && isset($_POST['txtnumeroref']) && isset($_POST['cbidtiponota']) && isset($_POST['txtobservacion'])) {
 
+            $serier = str_replace(PHP_EOL, ' ', $_POST['cbserie']);
+            $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
+            $tiponota = $_POST['tiponota'];
+            $serie = ltrim($serier,'0');
+            $numero = (int)($numeror);
+            
+        if($this->documento->duplicado($serie, $numero,$tiponota) == 'valido'){
             $emision = $_POST['dpfechaemision'];
 
             $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
@@ -1901,8 +1952,8 @@ class documentoController {
             $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);
             $vencimientof = $dateven->format('Y-m-d');
 
-              if(!empty($_POST['incigv'])){
-                $incigv = $_POST['incigv'];
+            if(isset($_POST['incigv'])){
+                $incigv = 1;
             }else {
                 $incigv = 0;
             }
@@ -1917,8 +1968,8 @@ class documentoController {
             $documento = new documento();
 
 
-            $serie = $_POST['cbserie'];
-            $numero = $_POST['txtnro'];
+//            $serie = $_POST['cbserie'];
+//            $numero = $_POST['txtnro'];
             $moneda = $_POST['cbmoneda'];
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
@@ -1945,7 +1996,7 @@ class documentoController {
             $observacion = $_POST['txtobservacion'];
             $docref = $_POST['cbdocref'];
 
-            $tiponota = $_POST['tiponota'];
+            
 
             $documento->setSerie($serie);
             $documento->setNumero($numero);
@@ -2197,7 +2248,11 @@ class documentoController {
                 $otrosm = new documentoOtros();
                 $otrosm->insert($otros);
             }
+        }else{
+            
+            echo 'duplicado';
         }
+    }
     }
     
     
@@ -2207,20 +2262,21 @@ class documentoController {
         
 //        var_dump($_POST);
         if(isset($_POST['tipo']) && isset($_POST['tipod']) && isset($_POST['serie'])){
-            
+//            var_dump($_POST);
             $tipo = $_POST['tipo'];
             $tipod = $_POST['tipod'];
             $serie = $_POST['serie'];
                     
             $documento = $this->documento->selectMax($tipod,$tipo,$serie);
-            echo $documento->getNumero() + 1;
+             $numeror = str_replace(PHP_EOL, ' ', $documento->getNumero());
+            echo (int)$numeror + 1;
         }
         
         
         
         
     }
-    
+            
     function printticket(){
         
         if(isset($_GET['id'])){

@@ -465,6 +465,7 @@ class documento {
             $documento->setEstadolocal($data_tabla[$clave]["estadolocal"]);
             $documento->setEmail($data_tabla[$clave]["email"]);
             $documento->setTipo($data_tabla[$clave]["tipo"]);
+            $documento->setTipodoc($data_tabla[$clave]["tipo_doc"]);
             $documento->setTotal($data_tabla[$clave]["totaldoc"]);
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
 
@@ -620,6 +621,17 @@ class documento {
         }
         return $documento;
         
+    }
+    
+    function duplicado($serie, $numero,$tipodoc){
+        $data_source = new DataSource();
+
+        $data_tabla = $data_source->ejecutarconsulta("select 1 from documento where serie = ? and numero = ? and tipo_doc = ?;", array($serie,$numero,$tipodoc));
+        $bol = 'valido';
+        foreach ($data_tabla as $clave => $valor) {
+            $bol = 'duplicado';
+        }
+        return $bol;
     }
 
 

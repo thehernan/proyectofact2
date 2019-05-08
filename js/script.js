@@ -1148,7 +1148,7 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
         
         
     }
-    if(num == '' || isNaN(num)){
+    if(num == '' || isNaN(num) || num < 0){
         $('#txtnro').focus();
         swal("Alerta!", "Ingrese Numero", "info");
         
@@ -1374,6 +1374,7 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
 //            },
             success: function (data) {
                 $('#respuestaAjax').html('');
+                console.log(data);
                     if(data > 0){
                         
                         var nro = $('#txtnro').val();
@@ -1404,7 +1405,10 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
                        
 //                    $('#respuestaAjax').html(data);  
                         
-                    }else{
+                    } else if(data.trim() == 'duplicado'){
+                        swal('No se realizo registro', 'El documento ya se encuentra emitido', 'error');
+                        console.log(data);
+                    }else {
                         swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
                         console.log(data);
                     }
@@ -1534,21 +1538,28 @@ $(document).on('click','#exceldocument', function (e){
    var serie = $('#txtserie').val();
    var numero = $('#txtnumero').val();
    var idsucur = $('#cbsucursal').val();
-   var d = new Date(desde);
-   console.log(desde);
-    var desdef = $.datepicker.formatDate('yy-mm-dd', d);
-    console.log(hasta);
-   var h = new Date(hasta);
-    var hastaf = $.datepicker.formatDate('yy-mm-dd', h);
-    console.log(desdef);
-    console.log(hastaf);
+   
+   var Dated = desde;
+    var date_desde = moment(Dated, "DD/MM/YYYY").format("YYYY-MM-DD");
+   var Dateh = hasta;
+    var date_hasta = moment(Dateh, "DD/MM/YYYY").format("YYYY-MM-DD");
+    console.log(date_desde);
+    console.log(date_hasta);
+//   var d = new Date(desde);
+//   console.log(desde);
+//    var desdef = $.datepicker.formatDate('yy-mm-dd', d);
+//    console.log(hasta);
+//   var h = new Date(hasta);
+//    var hastaf = $.datepicker.formatDate('yy-mm-dd', h);
+//    console.log(desdef);
+//    console.log(hastaf);
 //    $.ajax({
 //        type: 'POST',
 //        url: url,
 //        data: {dpdesde:desde,dphasta:hasta,cbtipocomprobante:tipocomprobante,txtbuscar:ruc,txtserie:serie,txtnumero:numero,cbsucursal:idsucur},
 //        success: function (data) {
             
-            window.open(url+'&dpdesde="'+desdef+'"&dphasta="'+hastaf+'"&cbtipocomprobante="'+tipocomprobante+'"&txtbuscar="'+ruc+'"&txtserie="'+serie+'"&txtnumero="'+numero+'"&cbsucursal="'+idsucur+'"', "_blank");
+            window.open(url+'&dpdesde='+date_desde+'&dphasta='+date_hasta+'&cbtipocomprobante='+tipocomprobante+'&txtbuscar='+ruc+'&txtserie='+serie+'&txtnumero='+numero+'&cbsucursal='+idsucur, "_blank");
 //        }
 //        
 //        

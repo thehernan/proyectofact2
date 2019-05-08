@@ -246,11 +246,10 @@
                                             echo '<td>'.$documento->getTotal().'</td>';
                                             echo '<td>'.$documento->getEstadolocal().'</td>';
                                             echo '<td>'.$estados.'</td>';
-                                            echo '<td><a href="'.base_url.'documento/imprimir&id='.$documento->getId().'"> <i class="material-icons">picture_as_pdf</i> <i class="material-icons">confirmation_number</i> </a></td>';
+                                            echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
                                             echo '<td><div class="demo-google-material-icon"> <i class="material-icons">code</i> <i class="material-icons">done</i> '
                                             . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a> <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a> <i class="material-icons">block</i></div></td>';
-                                            
-                                             echo '</tr>';
+                                            echo '</tr>';
                                         
                                         
                                         

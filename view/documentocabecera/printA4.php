@@ -141,10 +141,7 @@ $codhtml = '
         right: 15;
         top: 150;
        
-
         }
-    
-
         .importeletra{
             font-family: Arial; 
             font-size: 12px;

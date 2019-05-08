@@ -25,7 +25,7 @@ $objPHPExcel = new PHPExcel();
 
 // Set document properties
 $objPHPExcel->getProperties()->setCreator("vtechnology")
-               ->setLastModifiedBy("Maarten Balliauw")
+               ->setLastModifiedBy("HERNAN VILCHEZ")
                ->setTitle("Office 2007 XLSX Test Document")
                ->setSubject("Office 2007 XLSX Test Document")
                ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
@@ -62,23 +62,23 @@ $objPHPExcel->setActiveSheetIndex(0)
             
     $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue("A".$i, $i-1)
-//            ->setCellValue("B".$i, $documento->getFechaemision())
-//            ->setCellValue("C".$i, $documento->getTipo())
-//            ->setCellValue("D".$i, $documento->getSerie())
-//            ->setCellValue("E".$i, $documento->getNumero())
-//            ->setCellValue("F".$i, $documento->getRuc())
-//            ->setCellValue("G".$i, $documento->getRazonsocial()) 
-//            ->setCellValue("H".$i, $documento->getTotal())
-//            ->setCellValue("I".$i, $documento->getTipodoc());
+            ->setCellValue("B".$i, $documento->getFechaemision())
+            ->setCellValue("C".$i, $documento->getTipo())
+            ->setCellValue("D".$i, $documento->getSerie())
+            ->setCellValue("E".$i, $documento->getNumero())
+            ->setCellValue("F".$i, $documento->getRuc())
+            ->setCellValue("G".$i, $documento->getRazonsocial()) 
+            ->setCellValue("H".$i, $documento->getTotal())
+            ->setCellValue("I".$i, $documento->getTipodoc());
            
-            ->setCellValue("B".$i, "hol")
-            ->setCellValue("C".$i, "hola")
-            ->setCellValue("D".$i, "hola")
-            ->setCellValue("E".$i, "hola")
-            ->setCellValue("F".$i, "hola")
-            ->setCellValue("G".$i, "hola") 
-            ->setCellValue("H".$i, "hola")
-            ->setCellValue("I".$i, "hola");
+//            ->setCellValue("B".$i, "hol")
+//            ->setCellValue("C".$i, "hola")
+//            ->setCellValue("D".$i, "hola")
+//            ->setCellValue("E".$i, "hola")
+//            ->setCellValue("F".$i, "hola")
+//            ->setCellValue("G".$i, "hola") 
+//            ->setCellValue("H".$i, "hola")
+//            ->setCellValue("I".$i, "hola");
            
          
         $i++;
@@ -109,5 +109,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 getHeaders();
 
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+ /* Limpiamos el búfer */
+ob_end_clean();
 $objWriter->save('php://output');
 exit;
