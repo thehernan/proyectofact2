@@ -62,14 +62,23 @@ $objPHPExcel->setActiveSheetIndex(0)
             
     $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue("A".$i, $i-1)
-            ->setCellValue("B".$i,  $documento->getFechaemision())
-            ->setCellValue("C".$i, $documento->getTipo())
-            ->setCellValue("D".$i, $documento->getSerie())
-            ->setCellValue("E".$i, $documento->getNumero())
-            ->setCellValue("F".$i, $documento->getRuc())
-            ->setCellValue("G".$i, $documento->getRazonsocial()) 
-            ->setCellValue("H".$i, $documento->getTotal())
-            ->setCellValue("I".$i, $documento->getTipodoc());
+//            ->setCellValue("B".$i, $documento->getFechaemision())
+//            ->setCellValue("C".$i, $documento->getTipo())
+//            ->setCellValue("D".$i, $documento->getSerie())
+//            ->setCellValue("E".$i, $documento->getNumero())
+//            ->setCellValue("F".$i, $documento->getRuc())
+//            ->setCellValue("G".$i, $documento->getRazonsocial()) 
+//            ->setCellValue("H".$i, $documento->getTotal())
+//            ->setCellValue("I".$i, $documento->getTipodoc());
+           
+            ->setCellValue("B".$i, 'hola')
+            ->setCellValue("C".$i, 'hola')
+            ->setCellValue("D".$i, 'hola')
+            ->setCellValue("E".$i, 'hola')
+            ->setCellValue("F".$i, 'hola')
+            ->setCellValue("G".$i, 'hola') 
+            ->setCellValue("H".$i, 'hola')
+            ->setCellValue("I".$i, 'hola');
            
          
         $i++;

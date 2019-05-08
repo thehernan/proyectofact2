@@ -2274,7 +2274,7 @@ class documentoController {
             $sucursal = $_GET['cbsucursal'];
 
             $documentos = $this->documento->select($desde, $hasta, $tipocomp, $buscar, $serie, $numero, $sucursal);
-            var_dump($documentos);
+//            var_dump($documentos);
             require_once 'view/reportes/functions/excel.php';
             
             activeErrorReporting();

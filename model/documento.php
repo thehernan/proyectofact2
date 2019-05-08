@@ -430,7 +430,7 @@ class documento {
         }
         
         
-        echo 'select * from documento  where '.$fecha.$tipocomp.$buscar.$serie.$numero.$idsucur.' order by id desc;';
+//        echo 'select * from documento  where '.$fecha.$tipocomp.$buscar.$serie.$numero.$idsucur.' order by id desc;';
         
         
                 $data_source = new DataSource();
