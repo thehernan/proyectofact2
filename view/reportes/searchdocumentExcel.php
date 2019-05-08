@@ -71,14 +71,14 @@ $objPHPExcel->setActiveSheetIndex(0)
 //            ->setCellValue("H".$i, $documento->getTotal())
 //            ->setCellValue("I".$i, $documento->getTipodoc());
            
-            ->setCellValue("B".$i, 'hola')
-            ->setCellValue("C".$i, 'hola')
-            ->setCellValue("D".$i, 'hola')
-            ->setCellValue("E".$i, 'hola')
-            ->setCellValue("F".$i, 'hola')
-            ->setCellValue("G".$i, 'hola') 
-            ->setCellValue("H".$i, 'hola')
-            ->setCellValue("I".$i, 'hola');
+            ->setCellValue("B".$i, "hol")
+            ->setCellValue("C".$i, "hola")
+            ->setCellValue("D".$i, "hola")
+            ->setCellValue("E".$i, "hola")
+            ->setCellValue("F".$i, "hola")
+            ->setCellValue("G".$i, "hola") 
+            ->setCellValue("H".$i, "hola")
+            ->setCellValue("I".$i, "hola");
            
          
         $i++;
@@ -99,7 +99,7 @@ $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
 $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
 $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
 $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
-$
+
 
 
 $objPHPExcel->getActiveSheet()->setTitle('Reporte');

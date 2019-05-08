@@ -2277,8 +2277,8 @@ class documentoController {
 //            var_dump($documentos);
             require_once 'view/reportes/functions/excel.php';
             
-            activeErrorReporting();
-            noCli();
+//            activeErrorReporting();
+//            noCli();
 
             require_once 'plugins/PHPExcel/Classes/PHPExcel.php';
             require_once 'view/reportes/searchdocumentExcel.php';
