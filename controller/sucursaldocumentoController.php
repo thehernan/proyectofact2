@@ -24,21 +24,24 @@ class sucursaldocumentoController {
     }
     
     function select(){
-        $sucursalesdoc =$this->documento->select();
         require_once 'view/layout/header.php';
+        $sucursalesdoc =$this->documento->select();
+        
         require_once 'view/documentosucursal/listar_sucursaldoc.php';
         require_once 'view/layout/footer.php';
         
     }
     
     function cargar(){
+        
+        require_once 'view/layout/header.php';
         if(isset($_GET['id'])){
             $id = $_GET['id'];
             $sucursaldoc =$this->documento->selectOne($id);
             $sucursales= $this->sucursal->selectAll();
 //            var_dump($sucursales);
 //            var_dump($sucursaldoc);
-            require_once 'view/layout/header.php';
+            
             require_once 'view/documentosucursal/form_sucursaldoc.php';
             require_once 'view/layout/footer.php';
             

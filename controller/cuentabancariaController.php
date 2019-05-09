@@ -24,10 +24,10 @@ class cuentabancariaController {
     
     
     function select(){
-        
+        require_once 'view/layout/header.php';
         $cuentas = $this->cuenta->selectAll();
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/cuentabancaria/listar_cuenta.php';
       
         
@@ -37,10 +37,11 @@ class cuentabancariaController {
         
     }
     function crear(){
+        require_once 'view/layout/header.php';
         $cuenta = new cuentaBancaria();
         $bancos = $this->banco->selectAll();
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/cuentabancaria/form_cuenta.php';
       
         
@@ -82,7 +83,7 @@ class cuentabancariaController {
         
         
     }
-            function cargar(){
+    function cargar(){
         require_once 'view/layout/header.php';
         if(isset($_GET['id']) && !empty($_GET['id'])){
             $cuenta = $this->cuenta->selectOne($_GET['id']);

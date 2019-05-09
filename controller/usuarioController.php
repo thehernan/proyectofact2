@@ -44,9 +44,9 @@ class usuarioController {
     }
             
     function select(){
-        
-        $usuarios = $this->usuario->selectAll();
         require_once 'view/layout/header.php';
+        $usuarios = $this->usuario->selectAll();
+        
         require_once 'view/usuario/listar_usuario.php';
         require_once 'view/layout/footer.php';
  
@@ -129,20 +129,24 @@ class usuarioController {
     }
     
     function cargar(){
+        require_once 'view/layout/header.php';
         if(isset($_GET['id'])){
             $id =$_GET['id'];
             
             $usuario = $this->usuario->selectOne($id);
             $sucursales = $this->sucursal->selectAll();
             $niveles=$this->nivel->selectAll();
-            require_once 'view/layout/header.php';
+            
             require_once 'view/usuario/form_usuario.php';
             require_once 'view/usuario/modalcambioclave.php';
-            require_once 'view/layout/footer.php';
             
+            
+            
+        }else {
+            require_once 'view/error.php';
             
         }
-        
+        require_once 'view/layout/footer.php';
         
     }
     function updatekey(){
@@ -228,7 +232,7 @@ function login(){
                 $user = $usuario->login($usuario);
                   
                 if($user!=null && is_object($user)){
-                    session_start();
+                   
                  
                     $_SESSION['id']=$user->getId();
                     $_SESSION['apellidop'] = $user->getApellidop();

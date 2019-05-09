@@ -23,10 +23,10 @@ class dashboardController {
     }
 
     function index(){
-      
+      require_once 'view/layout/header.php';
         $cambio = $this->cambio->selectMax();
         $cambios = $this->cambio->selectLimit(5);
-        require_once 'view/layout/header.php';
+        
         require_once 'view/dashboard.php';
         require_once 'view/layout/footer.php';
         

@@ -1569,6 +1569,8 @@ $(document).on('click','#exceldocument', function (e){
 });
 
 
+
+
 function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) { //v3.0
   if(window.screen)if(isCenter)if(isCenter=="true"){
     var myLeft = (screen.width-myWidth)/2;

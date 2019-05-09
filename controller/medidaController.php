@@ -52,10 +52,10 @@ class medidaController {
     
     
     function select(){
-        
+        require_once 'view/layout/header.php';
         $medidas = $this->medida->selectAll();
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/unidmedida/listar_medida.php';
       
         
@@ -63,10 +63,11 @@ class medidaController {
     }
     
     function crear(){
+        require_once 'view/layout/header.php';
         $medida= new unidmedida();
        
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/unidmedida/form_medida.php';
       
         

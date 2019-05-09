@@ -25,6 +25,8 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 
 session_start();
 
+
+
 include './config/parameters.php';
 
 

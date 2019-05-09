@@ -394,7 +394,7 @@ class usuario {
             u.sexo,u.fechaN,u.dni,u.telf1,u.telf2,u.cel1,u.cel2,u.email,u.usuario,
             u.clave,u.id_nivel,u.id_sucursal,u.comision,u.foto,s.nombre as sucursal
              from usuario as u LEFT JOIN sucursal as s 
-            on u.id_sucursal = s.id where usuario = ? and clave = ? and u.activo=1;", array($user->getUsuario(),base64_encode($user->getClave())));
+            on u.id_sucursal = s.id where usuario = ? and clave = ? and u.activo=1 and s.activo = 1;", array($user->getUsuario(),base64_encode($user->getClave())));
 
         $usuario = null;
 

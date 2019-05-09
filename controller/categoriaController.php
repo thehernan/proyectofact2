@@ -52,10 +52,10 @@ class categoriaController {
     
     
     function select(){
-        
+        require_once 'view/layout/header.php';
         $categorias = $this->categoria->selectAll();
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/categoria/listar_categoria.php';
       
         
@@ -63,10 +63,12 @@ class categoriaController {
     }
     
     function crear(){
+        require_once 'view/layout/header.php';
+        
         $categoria= new categoriaprod();
        
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/categoria/form_categoria.php';
       
         

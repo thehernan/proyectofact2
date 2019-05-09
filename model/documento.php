@@ -633,6 +633,13 @@ class documento {
         }
         return $bol;
     }
+    
+       function anular($id){
+        $data_source = new DataSource();
+
+        return $data_source->ejecutarActualizacion("update documento set estadolocal='Anulado' where id = ?", array($id));
+        
+    }
 
 
 

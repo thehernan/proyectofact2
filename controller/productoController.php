@@ -36,18 +36,22 @@ class productoController {
     }
     
     function selectprod(){
+        
+        require_once 'view/layout/header.php';
         $tipo = 'producto';
         $productos = $this->producto->select($tipo);
    
-        require_once 'view/layout/header.php';
+        
         require_once 'view/producto/listar_producto.php';
         require_once 'view/layout/footer.php';
     }
     
     function selectserv(){
+        
+        require_once 'view/layout/header.php';
         $tipo = 'servicio';
         $productos = $this->producto->select($tipo);
-        require_once 'view/layout/header.php';
+        
         require_once 'view/producto/listar_producto.php';
         require_once 'view/layout/footer.php';
     }
@@ -379,7 +383,7 @@ function  search(){
 
   function crearprod(){
         
-        
+            require_once 'view/layout/header.php';
             $series = array();
             $producto = new producto();
             $lineas = $this->linea->selectAll();
@@ -387,7 +391,7 @@ function  search(){
             $marcas = $this->marca->selectAll();
             $medidas = $this->medida->selectAll();
             $impuestos=$this->impuesto->selectAll();
-            require_once 'view/layout/header.php';
+            
             require_once 'view/producto/form_producto.php';  
             require_once 'view/marca/modalnewmarca.php'; 
             require_once 'view/linea/modalnewlinea.php'; 
@@ -403,14 +407,14 @@ function  search(){
      function crearserv(){
         
         
-            
+            require_once 'view/layout/header.php';
             $producto = new producto();
             $lineas = $this->linea->selectAll();
             $categorias=$this->categoria->selectAll();
             $marcas = $this->marca->selectAll();
             $medidas = $this->medida->selectAll();
             $impuestos=$this->impuesto->selectAll();
-            require_once 'view/layout/header.php';
+            
             require_once 'view/producto/form_servicio.php';  
             require_once 'view/marca/modalnewmarca.php'; 
             require_once 'view/linea/modalnewlinea.php'; 

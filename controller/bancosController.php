@@ -17,10 +17,10 @@ class bancosController{
     }
     
     function select(){
-        
+        require_once 'view/layout/header.php';
         $bancos = $this->bancosm->selectAll();
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/bancos/listar_bancos.php';
       
         
@@ -32,9 +32,9 @@ class bancosController{
     }
     
     function crear(){
-        
-        $banco = new bancos();
         require_once 'view/layout/header.php';
+        $banco = new bancos();
+        
         require_once 'view/bancos/form_bancos.php';
       
         

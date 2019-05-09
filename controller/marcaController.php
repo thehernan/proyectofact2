@@ -52,10 +52,10 @@ class marcaController {
     
     
     function select(){
-        
+        require_once 'view/layout/header.php';
         $marcas = $this->marca->selectAll();
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/marca/listar_marca.php';
       
         
@@ -63,10 +63,12 @@ class marcaController {
     }
     
     function crear(){
+        
+        require_once 'view/layout/header.php';
         $marca= new marcaprod();
        
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/marca/form_marca.php';
       
         

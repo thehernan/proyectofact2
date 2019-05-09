@@ -24,33 +24,37 @@ class sucursalController {
     }
 
     function select() {
-
-        $sucursales = $this->sucursal->selectsecond();
         require_once 'view/layout/header.php';
+        $sucursales = $this->sucursal->selectsecond();
+        
         require_once 'view/sucursal/listar_sucursal.php';
         require_once 'view/layout/footer.php';
     }
 
     function cargar() {
+        
+        require_once 'view/layout/header.php';
         $titulo = '<div class="demo-google-material-icon"> <i class="material-icons">business</i> <span class="icon-name"> EDITAR SUCURSAL </span> </div>';
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $sucursal = $this->sucursal->selectOne($id);
 
 //            var_dump($sucursal);
-            require_once 'view/layout/header.php';
+            
             require_once 'view/sucursal/form_sucursal.php';
             require_once 'view/layout/footer.php';
         }
     }
 
     function crear() {
+        
+        require_once 'view/layout/header.php';
         $titulo = '<div class="demo-google-material-icon"> <i class="material-icons">business</i> <span class="icon-name"> NUEVA SUCURSAL </span> </div>';
 
         $sucursal = new sucursal();
 
 //            var_dump($sucursal);
-        require_once 'view/layout/header.php';
+        
         require_once 'view/sucursal/form_sucursal.php';
         require_once 'view/layout/footer.php';
     }
@@ -184,12 +188,14 @@ class sucursalController {
     }
 
     function main() {
+        
+        require_once 'view/layout/header.php';
         $titulo = '<div class="demo-google-material-icon"> <i class="material-icons">business</i> <span class="icon-name"> SUCURSAL PRINCIPAL</span> </div>';
 
         $sucursal = $this->sucursal->selectMain();
 
 //            var_dump($sucursal);
-        require_once 'view/layout/header.php';
+        
         require_once 'view/sucursal/form_sucursal.php';
         require_once 'view/layout/footer.php';
     }

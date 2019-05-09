@@ -121,6 +121,9 @@ class documentoController {
     }
 
     function selectdocument() {
+        
+        require_once 'view/layout/header.php';
+        
         $month = date('m');
         $year = date('Y');
         $day = date("d", mktime(0, 0, 0, $month + 1, 0, $year));
@@ -133,11 +136,12 @@ class documentoController {
         $sucursales = $sucursal->selectAll();
 
         $documentos = $this->documento->select($desde, $hasta, 'Factura', '', '', '', $_SESSION['idsucursal']);
-        require_once 'view/layout/header.php';
+        
         require_once 'view/documentocabecera/listar.php';
         require_once 'view/layout/footer.php';
     }
     function selectcotizacion() {
+        require_once 'view/layout/header.php';
         $month = date('m');
         $year = date('Y');
         $day = date("d", mktime(0, 0, 0, $month + 1, 0, $year));
@@ -150,7 +154,7 @@ class documentoController {
         $sucursales = $sucursal->selectAll();
 
         $documentos = $this->documento->select($desde, $hasta, 'Cotizacion', '', '', '', $_SESSION['idsucursal']);
-        require_once 'view/layout/header.php';
+       
         require_once 'view/documentocabecera/cotizacion/listar_cotizacion.php';
         require_once 'view/layout/footer.php';
     }
@@ -216,10 +220,17 @@ class documentoController {
             <?php
             foreach ($documentos as $documento) {
                 $estados = '';
+                $estadol = '';
                 if ($documento->getEstadosunat() == 'Aceptado') {
                     $estados = '<span class="label bg-green">' . $documento->getEstadosunat() . '</span>';
                 } else {
                     $estados = '<span class="label bg-red">' . $documento->getEstadosunat() . '</span>';
+                }
+                
+                if ($documento->getEstadolocal() == 'Aceptado') {
+                    $estadol = '<span class="label bg-green">' . $documento->getEstadolocal() . '</span>';
+                } else {
+                    $estadol = '<span class="label bg-red">' . $documento->getEstadolocal() . '</span>';
                 }
 
 
@@ -232,7 +243,7 @@ class documentoController {
                 echo '<td>' . $documento->getRuc() . '</td>';
                 echo '<td>' . $documento->getRazonsocial() . '</td>';
                 echo '<td>' . $documento->getTotal() . '</td>';
-                echo '<td>' . $documento->getEstadolocal() . '</td>';
+                echo '<td>' . $estadol . '</td>';
                 echo '<td>' . $estados . '</td>';
                 echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
                 if($documento->getTipo() == 'Cotizacion'){
@@ -243,9 +254,11 @@ class documentoController {
                 }else{
                     
                     echo '<td><div class="demo-google-material-icon"> <i class="material-icons">code</i> <i class="material-icons">done</i> '
-                    . '<a href="' . base_url . 'documento/loaddebit&id=' . $documento->getId() . '"  data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a> <a href="' . base_url . 'documento/loadcredit&id=' . $documento->getId() . '"  data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a> <i class="material-icons">block</i></div></td>';
-
-                    
+                    . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a>'
+                            . ' <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a>';
+                    if($documento->getEstadolocal() != 'Anulado'){
+                        echo '<a href ="'.base_url.'documento/anular&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
+                    }     
                 }
                 
                 echo '</tr>';
@@ -341,8 +354,8 @@ class documentoController {
     }
 
     function loaddebit() {
-        var_dump($_GET);
-
+//        var_dump($_GET);
+        require_once 'view/layout/header.php';
         if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 
@@ -366,14 +379,14 @@ class documentoController {
 
             $tipo = 'nota_debito';
             $titulo = "Emitir nota de débito electrónica";
-            require_once 'view/layout/header.php';
+            
             require_once 'view/documentocabecera/nota/form_documento_note.php';
 
 
             require_once 'view/layout/footer.php';
         } else {
 
-            require_once 'view/layout/header.php';
+       
             require_once 'view/error.php';
 
 
@@ -385,7 +398,7 @@ class documentoController {
         
         if (isset($_GET['id']) && !empty($_GET['id'])) {
 
-
+            require_once 'view/layout/header.php';
             $id = $_GET['id'];
 
             $detallesmod = new Detalle();
@@ -408,14 +421,14 @@ class documentoController {
 
 //            $tipo = 'nota_debito';
 //            $titulo = "Emitir nota de débito electrónica";
-            require_once 'view/layout/header.php';
+            
             require_once 'view/documentocabecera/form_documento.php';
             require_once 'view/documentosucursal/modalnewdocumentosucursal.php';
 
             require_once 'view/layout/footer.php';
         } else {
 
-            require_once 'view/layout/header.php';
+            
             require_once 'view/error.php';
 
 
@@ -424,8 +437,8 @@ class documentoController {
     }
 
     function loadcredit() {
-        var_dump($_GET);
-
+//        var_dump($_GET);
+        require_once 'view/layout/header.php';
         if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 
@@ -449,14 +462,14 @@ class documentoController {
 
             $tipo = 'nota_credito';
             $titulo = "Emitir nota de crédito electrónica";
-            require_once 'view/layout/header.php';
+           
             require_once 'view/documentocabecera/nota/form_documento_note.php';
 
 
             require_once 'view/layout/footer.php';
         } else {
 
-            require_once 'view/layout/header.php';
+            
             require_once 'view/error.php';
 
 
@@ -465,7 +478,7 @@ class documentoController {
     }
 
     function ordencompra() {
-
+        require_once 'view/layout/header.php';
 //        $documentossuc = $this->docsucursal->select();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
@@ -479,14 +492,14 @@ class documentoController {
         $tipodoc = 'orden_compra';
         $nro = $this->documento->selectMax($tipodoc,$tipodoc,'ORDEN_COMPRA')->getNumero() + 1;
 
-        require_once 'view/layout/header.php';
+        
         require_once 'view/documentocabecera/ordencompra/form_documento_ordcompra.php';
 
 
         require_once 'view/layout/footer.php';
     }
     function cotizacion() {
-
+        require_once 'view/layout/header.php';
 //        $documentossuc = $this->docsucursal->select();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
@@ -500,7 +513,7 @@ class documentoController {
         $tipodoc = 'cotizacion';
         $nro = $this->documento->selectMax($tipodoc,$tipodoc,'COTIZACION')->getNumero() + 1;
 
-        require_once 'view/layout/header.php';
+        
         require_once 'view/documentocabecera/cotizacion/form_documento_cotizacion.php';
 
 
@@ -508,6 +521,7 @@ class documentoController {
     }
 
     function compra() {
+        require_once 'view/layout/header.php';
 //        $documentossuc = $this->docsucursal->selectAll();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
@@ -518,7 +532,7 @@ class documentoController {
         $cambio = $tipocambio->selectMax();
         $tipo = 'Compra';
         $detalles = array();
-        require_once 'view/layout/header.php';
+        
         require_once 'view/documentocabecera/compra/form_documento_compra.php';
 
 
@@ -2275,6 +2289,23 @@ class documentoController {
         
         
         
+    }
+    
+    function anular(){
+        $fila = 0;
+        if(isset($_GET['id']) && !empty($_GET['id'])){        
+            
+           $fila = $this->documento->anular($_GET['id']);
+        }
+        echo 'Redireccionando ...';
+        echo "<META HTTP-EQUIV ='Refresh' CONTENT='0; URL=".base_url."documento/selectdocument'>";
+//        if($fila > 0){
+//            
+//        } else {
+//            require_once 'view/layout/header.php';
+//            require_once 'view/error.php';
+//            require_once 'view/layout/footer.php';
+//        }
     }
             
     function printticket(){

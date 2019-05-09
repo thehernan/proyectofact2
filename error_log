@@ -496,3 +496,337 @@ Stack trace:
 [27-Apr-2019 20:00:04 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/44478496): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
 [27-Apr-2019 23:00:09 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
 [27-Apr-2019 23:00:09 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/00000000): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[27-Apr-2019 23:33:20 UTC] PHP Warning:  require_once(controller/QRcode.php): failed to open stream: No such file or directory in /home/elpequeni/public_html/facturador/autoload.php on line 4
+[27-Apr-2019 23:33:20 UTC] PHP Fatal error:  require_once(): Failed opening required 'controller/QRcode.php' (include_path='.
+;
+; Windows: \path1') in /home/elpequeni/public_html/facturador/autoload.php on line 4
+[27-Apr-2019 23:45:43 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[27-Apr-2019 23:45:43 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/47478750): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[27-Apr-2019 23:52:59 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[27-Apr-2019 23:52:59 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/474787524): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[27-Apr-2019 23:53:13 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[27-Apr-2019 23:53:13 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/47478757): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:03:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:03:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:03:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:03:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:03:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:03:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:04:20 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:04:20 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:04:20 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:04:20 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:04:20 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:04:20 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:56:43 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:56:43 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20523520): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:56:43 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:56:43 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/205235200): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:56:43 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:56:43 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2052352002): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:56:43 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[30-Apr-2019 20:56:43 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20523520025): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 17:56:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 17:56:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 17:56:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 17:56:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 17:56:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 17:56:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 17:56:03 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 17:56:03 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010439): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 18:46:48 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id desc' at line 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(438): DataSource->ejecutarconsulta('select * from d...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(149): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[02-May-2019 19:05:06 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:06 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604011): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:06 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:06 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:06 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:06 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:06 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:06 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:07 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:07 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:07 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:05:07 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010439): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:16:56 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:16:56 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:16:56 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:16:56 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:16:56 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:16:56 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:16:57 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:16:57 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010439): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:17:43 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 19:18:14 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 19:18:14 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 19:18:36 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 19:19:39 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:19:39 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:19:39 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:19:39 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:19:39 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:19:39 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:21:04 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 19:21:31 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:21:31 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:21:32 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:21:32 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:21:32 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:21:32 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 19:21:42 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 19:21:54 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 19:28:58 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 22:29:02 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id desc' at line 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(438): DataSource->ejecutarconsulta('select * from d...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(132): documento->select('2019-05-01', '2019-05-31', '', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectdocument()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[02-May-2019 22:29:30 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 22:29:30 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 22:29:30 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 22:29:30 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 22:29:31 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 22:29:31 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[02-May-2019 22:29:51 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'condicionpago' cannot be null' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(531): DataSource->ejecutarActualizacion('insert into doc...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(1315): documento->insert(Object(documento))
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->insertsale()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[02-May-2019 22:32:59 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id desc' at line 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(438): DataSource->ejecutarconsulta('select * from d...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(132): documento->select('2019-05-01', '2019-05-31', '', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectdocument()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[03-May-2019 02:53:41 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id desc' at line 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(438): DataSource->ejecutarconsulta('select * from d...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(150): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[03-May-2019 16:26:58 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:26:59 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:26:59 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:26:59 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:26:59 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:26:59 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:26:59 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:26:59 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010439): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:09 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:09 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/	Laptop Lenovo): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:09 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:09 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/	Laptop Lenovo): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:13 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:13 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:13 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:13 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:13 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:13 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:55 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:55 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:55 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:55 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:55 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:29:55 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:30:20 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:30:20 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:30:20 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:30:20 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:30:20 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:30:20 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:32:16 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:32:16 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:32:16 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:32:16 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:32:16 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:32:16 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:32:18 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 16:32:18 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:05:53 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:05:53 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:05:53 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:05:53 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:05:53 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:05:53 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:06:51 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:06:51 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:06:51 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:06:51 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:06:51 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 17:06:51 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:27:39 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:27:39 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:27:39 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:27:39 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:27:39 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:27:39 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:30:24 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:30:24 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:30:24 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:30:24 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:30:24 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:30:24 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:31:43 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 21:31:43 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:32:39 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '20604010439' for key 'unx_ruc'' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/persona.php(378): DataSource->ejecutarActualizacion('insert into per...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/personaController.php(303): persona->insert(Object(persona))
+#3 /home/elpequeni/public_html/facturador/index.php(83): personaController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[03-May-2019 22:32:46 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '20604010439' for key 'unx_ruc'' in /home/elpequeni/public_html/facturador/config/DataSource.php:50
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(50): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/persona.php(378): DataSource->ejecutarActualizacion('insert into per...', Array)
+#2 /home/elpequeni/public_html/facturador/controller/personaController.php(303): persona->insert(Object(persona))
+#3 /home/elpequeni/public_html/facturador/index.php(83): personaController->insert()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 50
+[03-May-2019 22:34:28 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:34:28 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:34:28 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:34:28 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:34:29 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:34:29 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401042): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:50:23 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:50:23 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:50:23 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:50:23 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:50:23 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[03-May-2019 22:50:23 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[06-May-2019 19:23:45 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id desc' at line 1' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(438): DataSource->ejecutarconsulta('select * from d...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(134): documento->select('2019-05-01', '2019-05-31', '', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectdocument()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[06-May-2019 19:24:38 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[06-May-2019 19:24:38 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[06-May-2019 19:24:38 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[06-May-2019 19:24:38 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[06-May-2019 19:24:38 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[06-May-2019 19:24:38 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 01:07:08 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '2019-01-05"" and ""NaN-NaN-NaN"" and tipo= ""Factura"" and concat(ruc,razonsocia' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(2276): documento->select('"2019-01-05"', '"NaN-NaN-NaN"', '"Factura"', '""', '""', '""', '"1"')
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->imprimirexcel()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[08-May-2019 11:29:36 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/elpequeni/public_html/facturador/index.php:11) in /home/elpequeni/public_html/facturador/index.php on line 26
+[08-May-2019 11:29:36 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/elpequeni/public_html/facturador/index.php:11) in /home/elpequeni/public_html/facturador/index.php on line 26
+[08-May-2019 19:45:01 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/101010101): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/1010101010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/10101010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/10101010101): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:02 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/101010101010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:06 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:45:06 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/10101010101): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:55:35 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:55:35 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:55:35 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:55:35 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:55:35 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 19:55:35 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:26:29 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:26:29 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:26:29 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:26:29 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:26:30 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:26:30 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:30:47 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:30:47 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:30:47 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:30:47 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:30:47 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:30:47 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:47:10 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 20:47:10 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/12345678): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360

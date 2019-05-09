@@ -145,15 +145,16 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                             <div class="form-group form-float">
+                            
                                 <label>Punto de Venta</label>
                                 <select class="form-control show-tick" id="cbsucursal" name="cbsucursal">
                                     
                                     <?php 
                                    
-
+                                                                        
                                         foreach ($sucursales as $sucursal){
-                                            if($_SESSION['idsucursal'] == $sucursal->getID()){
-                                                echo '<option value="'.$sucursal->getId().'" selected>'.$sucursal->getNombre().'</option>';
+                                            if($_SESSION['idsucursal'] == $sucursal->getId()){
+                                                echo '<option value="'.$sucursal->getId().'" selected="selected" >'.$sucursal->getNombre().'</option>';
                                                 
                                             }else{
                                                 echo '<option value="'.$sucursal->getId().'" >'.$sucursal->getNombre().'</option>';
@@ -228,13 +229,20 @@
                                 <tbody >
                                     <?php foreach ($documentos as $documento){
                                         
-                                           $estados = '';                                        
+                                           $estados = '';  
+                                           $estadol = '';
                                            if($documento->getEstadosunat() == 'Aceptado'){
                                                $estados = '<span class="label bg-green">'.$documento->getEstadosunat().'</span>';
                                            }else {
                                                $estados = '<span class="label bg-red">'.$documento->getEstadosunat().'</span>';
                                            }
-                                            
+                                           
+                                           if ($documento->getEstadolocal() == 'Aceptado') {
+                                                $estadol = '<span class="label bg-green">' . $documento->getEstadolocal() . '</span>';
+                                            } else {
+                                                $estadol = '<span class="label bg-red">' . $documento->getEstadolocal() . '</span>';
+                                            }
+
                                             echo '<tr>';
                                             
                                             echo '<td>'.$documento->getFechaemision().'</td>';
@@ -244,11 +252,23 @@
                                             echo '<td>'.$documento->getRuc().'</td>';
                                             echo '<td>'.$documento->getRazonsocial().'</td>';
                                             echo '<td>'.$documento->getTotal().'</td>';
-                                            echo '<td>'.$documento->getEstadolocal().'</td>';
+                                            echo '<td>'.$estadol.'</td>';
                                             echo '<td>'.$estados.'</td>';
                                             echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
-                                            echo '<td><div class="demo-google-material-icon"> <i class="material-icons">code</i> <i class="material-icons">done</i> '
-                                            . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a> <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a> <i class="material-icons">block</i></div></td>';
+                                            if($documento->getTipo() == 'Cotizacion'){
+
+
+                                                echo '<td>'
+                                                . '<a href="' . base_url . 'documento/sale"  data-toggle="tooltip" data-placement="top" title="VENDER"><i class="material-icons">add_shopping_cart</i></a> </div></td>';
+                                            }else{
+
+                                                echo '<td><div class="demo-google-material-icon"> <i class="material-icons">code</i> <i class="material-icons">done</i> '
+                                                . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a>'
+                                                        . ' <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a>';
+                                                if($documento->getEstadolocal() != 'Anulado'){
+                                                    echo '<a href ="'.base_url.'documento/anular&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
+                                                }     
+                                            }
                                             echo '</tr>';
                                         
                                         

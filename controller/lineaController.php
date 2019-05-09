@@ -51,10 +51,10 @@ class lineacontroller {
     
     
     function select(){
-        
+        require_once 'view/layout/header.php';
         $lineas = $this->linea->selectAll();
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/linea/listar_linea.php';
       
         
@@ -62,10 +62,12 @@ class lineacontroller {
     }
     
     function crear(){
+        
+        require_once 'view/layout/header.php';
         $linea= new linea();
        
         
-        require_once 'view/layout/header.php';
+        
         require_once 'view/linea/form_linea.php';
       
         

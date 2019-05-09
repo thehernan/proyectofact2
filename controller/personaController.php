@@ -25,19 +25,19 @@ class personaController {
 
     
     function selectclient() {
-
+        require_once 'view/layout/header.php';
         $tipo = 1;
         $personas= $this->persona->select($tipo);        
-        require_once 'view/layout/header.php';
+        
         require_once 'view/persona/listar_persona.php';
         require_once 'view/layout/footer.php';
         
     }
-        function selectprovee() {
-
+    function selectprovee() {
+        require_once 'view/layout/header.php';
         $tipo = 2;
         $personas= $this->persona->select($tipo);        
-        require_once 'view/layout/header.php';
+        
         require_once 'view/persona/listar_persona.php';
         require_once 'view/layout/footer.php';
     }
@@ -70,7 +70,7 @@ class personaController {
     
     
         function cargarprovee() {
-        
+        require_once 'view/layout/header.php';
         if(!empty($_GET['id']) && isset($_GET['id'])){
             $id=$_GET['id'];
          
@@ -80,11 +80,11 @@ class personaController {
             $docs = $this->tipodoc->selectAll();
 
             $persona = $this->persona->selectone($id);
-            require_once 'view/layout/header.php';
+            
             require_once 'view/persona/form_persona_provee.php';
             require_once 'view/layout/footer.php';
         }else {
-            require_once 'view/layout/header.php';
+           
             require_once 'view/error.php';
             require_once 'view/layout/footer.php';
         }     
