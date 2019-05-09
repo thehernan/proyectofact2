@@ -18,7 +18,8 @@
         
     }
     $filename = $dir.'test.png';
-
+    $moneda = '';
+    $simbolo = '';
 
 
     if($document->getTipo() =='Factura' and $document->getTipodoc()=='Venta'){
@@ -39,6 +40,17 @@
         $comprobante='ORDEN DE COMPRA';
     }
     
+    if($document->getMoneda()== 'Soles'){
+        $moneda = 'PEN';
+        $simbolo = 'S/ ';
+        
+    }
+    if($document->getMoneda()== 'Dolares'){
+        $moneda= 'USD';
+        $simbolo = '$ ';
+    }
+    
+    
    
 
 ?>
@@ -58,7 +70,7 @@
     <?= $document->getDireccion() ?><br><br>
     <strong>FECHA EMISIÓN:  </strong><?= $document->getFechaemision()?><br>
     <strong>FECHA DE VENC:  </strong><?= $document->getFechavencimiento() ?><br>
-    <strong>MONEDA: </strong><?= $document->getMoneda() ?><br>
+    <strong>MONEDA: </strong><?= $moneda?><br>
     <strong>IGV: </strong>18.00 %</p><br>
     <table>
       <thead>
@@ -73,6 +85,11 @@
           <?php
 //          $temp = new Temp(); 
           $total=0;
+          $gravada = 0;
+          $igv = 0;
+          $gratuita = 0;
+          $exonerada = 0;
+          $inafecta = 0;
           foreach ($detalles as $temp){
               $importe = $temp->getCantidad() * $temp->getPrecio();
               ?>
@@ -87,6 +104,9 @@
         
         <?php 
             $total+=$importe;
+            $gratuita += $temp->getMontobasegratuito();
+            $exonerada += $temp->getMontobaseexonarado();
+            $inafecta += $temp->getMontobaseinafecto();
         
         
           } 
@@ -98,22 +118,63 @@
         <tr>
           <td></td>
           
-          <td class="producto">GRAVADA S/</td>
+          <td class="producto">TOTAL ANTICIPOS <?= $simbolo?></td>
+          <td></td>
+          <td class="precio">0.00</td>
+          </tr>
+        <tr>
+          <td></td>
+          
+          <td class="producto">OP. GRATUITA <?= $simbolo?></td>
+          <td></td>
+          <td class="precio"><?php echo number_format($gratuita,2) ?></td>
+          </tr>
+        <tr>
+          <td></td>
+          
+          <td class="producto">OP. EXONERADA <?= $simbolo?></td>
+          <td></td>
+          <td class="precio"><?php echo number_format($exonerada,2) ?></td>
+          </tr>
+        <tr>
+          <td></td>
+          
+          <td class="producto">OP. INAFECTA <?= $simbolo?></td>
+          <td></td>
+          <td class="precio"><?php echo number_format($inafecta,2) ?></td>
+          </tr>
+        <tr>
+          <td></td>
+          
+          <td class="producto">OP. GRAVADA <?= $simbolo?></td>
           <td></td>
           <td class="precio"><?php echo number_format($gravada,2) ?></td>
           </tr>
           <tr>
+          <td class="producto">DESCUENTO <?= $simbolo?></td>
+          <td></td>
+          <td class="precio">0.00</td>
+          </tr>
+          <tr>
            <td></td>
           
-          <td class="producto">IGV     S/</td>
+          <td class="producto">IGV <?= $simbolo?></td>
            <td></td>
           <td class="precio"><?php echo number_format($igv,2) ?></td>
           
           </tr>
           <tr>
            <td></td>
+          
+          <td class="producto">I.S.C <?= $simbolo?></td>
+           <td></td>
+          <td class="precio">0.00</td>
+          
+          </tr>
+          <tr>
+           <td></td>
            
-          <td class="producto">TOTAL   S/</td>
+          <td class="producto">TOTAL A PAGAR <?= $simbolo?></td>
           <td></td>
           <td class="precio"><?php echo number_format($total,2) ?></td>
           </tr>
