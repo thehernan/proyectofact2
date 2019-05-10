@@ -830,3 +830,194 @@ Stack trace:
 [08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
 [08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
 [08-May-2019 21:03:03 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 00:22:58 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 00:23:21 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 00:23:23 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 00:23:23 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 00:23:23 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 00:23:24 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 00:23:24 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 00:23:25 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 00:23:25 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(152): documento->select('2019-05-01', '2019-05-31', 'Cotizacion', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectcotizacion()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 14:56:23 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 14:56:23 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 14:56:24 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 14:56:24 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 14:56:24 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 14:56:24 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 19:40:34 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 19:40:34 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604001): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 19:40:36 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 19:40:36 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/20604010): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 19:40:36 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 19:40:36 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/206040104): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 19:40:37 UTC] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 19:40:37 UTC] PHP Warning:  file_get_contents(https://api.sunat.cloud/ruc/2060401043): failed to open stream: no suitable wrapper could be found in /home/elpequeni/public_html/facturador/controller/personaController.php on line 360
+[09-May-2019 21:05:34 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(137): documento->select('2019-05-01', '2019-05-31', 'Factura', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectdocument()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 22:38:11 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(137): documento->select('2019-05-01', '2019-05-31', 'Factura', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectdocument()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[09-May-2019 22:38:30 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [data:image/jpg;base64 ,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAC5NSURBVHja7J13fN1V/f+f5zPuyN6jTUfStEn3Ll20lC0gG0RAUPiKIF/9+nXrT78qoigiKLgHQ0FAlkChQlmle5HOdKcjSZM0beadn3V+f3zOTW9D9ctqKXw5j8dtbj/J/dzzOa/z3uMIKSUfjRNnaB8twUeAfDQ+AuQjQD4aHwHy4RjGW/mj4IjPHe9NUgnkAqLfppH9fjrANiABDAOK1Gds9bvU3wnAVK8EsA84dLweKLn99+8tIMdxlAC1QCuwQS3qvxulwGT1HK3AasD7Xz6TD1Sr12Yg8oGjkOMwBDAOCAOr1C6eAnxOLXB/Y8kEGoCfAcuAAJAETgOuAqyjETqwAPi7Aq4AmAgcUFT2ESBqZKpd3gSsV9cuB/4kPZktHRshRB9qqPcA6PpEhPgUEAeutG33XgTBo36LBMPQPy0EE4DvAB3AYmAkMAtYqzbC/2lAyhWLqgO61LXvAd93bQfdNCg++zTcwiLshIXjSpykheNI3J4etPVvXCIcO0MKscR15S3jRw7SszKDeN6RBCWEIGnZbNzWjOO439J1bTTwaaAT2KJkzwxgI3DwfWUVb8V1coyE+nCgWLEPG8gB/ghcbieSZBXlU3PFBbhVwzgUs7AcSbLtIHYghBWzsC0bGrajr1mJ5rqcNKmaQ50RGls70LUjlUfPkxQXZFM5qIi6zfs41BUhYBr1wBUKhBRLm6YE/t7/a0J9nPruZWngPColE+14nIrR1Uy55hISuXns70kgP in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 00:47:20 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(137): documento->select('2019-05-01', '2019-05-31', 'Factura', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectdocument()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[10-May-2019 00:51:58 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 00:52:15 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 00:52:15 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 00:52:16 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 00:53:56 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 00:53:59 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 00:58:35 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 01:09:25 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY id_documento order by id_documento desc' at line 2' in /home/elpequeni/public_html/facturador/config/DataSource.php:37
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/config/DataSource.php(37): PDOStatement->execute(Array)
+#1 /home/elpequeni/public_html/facturador/model/documento.php(439): DataSource->ejecutarconsulta('SELECT doc.*,su...')
+#2 /home/elpequeni/public_html/facturador/controller/documentoController.php(137): documento->select('2019-05-01', '2019-05-31', 'Factura', '', '', '', NULL)
+#3 /home/elpequeni/public_html/facturador/index.php(83): documentoController->selectdocument()
+#4 {main}
+  thrown in /home/elpequeni/public_html/facturador/config/DataSource.php on line 37
+[10-May-2019 01:10:22 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513
+[10-May-2019 01:11:36 UTC] PHP Fatal error:  Uncaught exception 'Spipu\Html2Pdf\Exception\ImageException' with message 'Unable to get the size of the image [https://elpequenito.com/facturador/temp/img/logo.jpg]' in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php:1513
+Stack trace:
+#0 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(5763): Spipu\Html2Pdf\Html2Pdf->_drawImage('https://elpeque...', false)
+#1 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_IMG(Array)
+#2 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1407): Spipu\Html2Pdf\Html2Pdf->_executeAction(Object(Spipu\Html2Pdf\Parsing\Node))
+#3 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(3117): Spipu\Html2Pdf\Html2Pdf->_makeHTMLcode()
+#4 /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php(1439): Spipu\Html2Pdf\Html2Pdf->_tag_open_DIV(Array)
+#5 /home/elpequeni/public_html/facturador/v in /home/elpequeni/public_html/facturador/vendor/spipu/html2pdf/src/Html2Pdf.php on line 1513

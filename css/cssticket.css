@@ -9,31 +9,45 @@ and open the template in the editor.
 */
 
 * {
-  font-size: 12px;
+  /*font-size: 12px;*/
   font-family: 'Arial';
 }/*
 */ 
-td,
-th,
-tr,
-table {
+.headdetalle {
+  font-size: 12px;
+  
   border-top: 1px solid black;
   border-collapse: collapse;
+}
+.encabezado{
+    font-size: 12px;
+    
+}
+
+.titulo{
+    font-size: 12px;
+}
+
+.tbodydetalle{
+    font-size: 10px;
 }
  
 td.producto,
 th.producto {
   width: 220px;
   max-width: 210px;
-  padding-right: 5px;
+  padding-right: 2px;
   word-break: break-all;
+  text-align: left;
 }
  
 td.cantidad,
 th.cantidad {
-  width: 70px;
-  max-width: 70px;
+  width: 80px;
+  max-width: 80px;
   word-break: break-all;
+  text-align: center;
+      
 }
  
 td.precio,
@@ -41,6 +55,7 @@ th.precio {
   width: 70px;
   max-width: 70px;
   word-break: break-all;
+  text-align: center;
 }
  
 .centrado {
@@ -64,8 +79,38 @@ img {
   width: inherit;*/
 display:block;
 margin:auto;
+
   
 }
+
+
+.resultados{
+    
+    text-align: right;
+    font-size: 10px;
+    margin-left: 65px;
+ 
+}
+
+.footerup{
+    font-size: 10px;
+}
+
+.footerdown{
+    font-size: 8px;
+}
+
+.rnum{
+    width: 70px;
+    /*text-align: center;*/
+}
+
+.rletra{
+    
+    width: 110px;
+    /*text-align: right;*/
+}
+
 
 
 

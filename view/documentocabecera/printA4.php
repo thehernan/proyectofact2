@@ -4,8 +4,14 @@
 require 'vendor/autoload.php';
 
 use Spipu\Html2Pdf\Html2Pdf;
+//use Spipu\Html2Pdf\Exception\Html2PdfException;
+//use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+//header("Content-type: image/jpg"); 
+// $path =  base_url.'images/user-lg.jpg';
+// $type = pathinfo($path, PATHINFO_EXTENSION);
+// $data = file_get_contents($path);
+// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 ob_start();
-
 
 
 $codhtml = '
@@ -161,11 +167,11 @@ $codhtml = '
 
        /* border: 2px solid #5878ca;*/
         width: 300px;
-        height: 100px;
+        height: 200px;
         max-width: 400px;
         position:absolute;
         left: 15;
-        top: 20;
+        top: 0;
         
         }
     </style>
@@ -177,8 +183,18 @@ $codhtml = '
         mkdir($dir);
         
     }
-    $filename = $dir.'test.png';
-    $opc = '';
+   $filename = $dir.'test.png';
+    $opc = '';  
+    
+ $dirimg= "temp/img/";
+    if(!file_exists($dirimg)){
+        mkdir($dirimg);
+        
+    }
+    file_put_contents($dirimg."logo.jpg", base64_decode($sucur->getImgtoplogo()));
+    
+    $logo = 'temp/img/logo.jpg';
+   
     if($document->getTipo() =="Factura" and $document->getTipodoc()=="Venta"){
         $comprobante="FACTURA ELECTRÓNICA"; 
         $opc = "01";
@@ -208,6 +224,7 @@ $codhtml.='
   <div class="A4">
       
     <div class="divempresa">
+     <img src="'.$logo.'" width="100" height="100" alt="Logo" /> 
     <strong>'.$sucur->getEmpresa().'</strong><br>'.$sucur->getDireccion().'<br>'.$sucur->getDpto().' - '.$sucur->getProvincia().' - '.$sucur->getDistrito().'<br>'.$sucur->getTelf().'<br>'.
     '</div><div class="cajacliente"><strong>   ADQUIRIENTE </strong><br>'.
         $document->getRuc().'<br>'.
@@ -284,13 +301,14 @@ $codhtml.='
     
 $codhtml.='
     <img src="'.$filename.'" alt="QR" width="160" height="160">
- 
+        
     <hr>
   </div>
 </body>
-</html>';
- 
+//</html>';
+//ob_get_clean();  
 $html2pdf = new Html2Pdf();
+
 //$html2pdf->pdf->SetDisplayMode('fullpage');
 $html2pdf->writeHTML($codhtml);
 $html2pdf->output('documento.pdf');

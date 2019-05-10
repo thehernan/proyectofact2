@@ -17,7 +17,9 @@
         mkdir($dir);
         
     }
-    $filename = $dir.'test.png';
+    
+    
+    $filename = base_url.'temp/test.png';
     $moneda = '';
     $simbolo = '';
 
@@ -62,8 +64,11 @@
   <div class="ticket">
       
       <img src="data:image/jpg;base64 ,<?=  $sucur->getImgtoplogo(); ?>" width="100" height="100" alt="Logo" /> 
+      <div class="titulo">
       <p class="centrado"><strong><?= $sucur->getEmpresa(); ?></strong><br><?= $sucur->getDireccion(); ?> <br> <?= $sucur->getDpto().' - '.$sucur->getProvincia().' - '.$sucur->getDistrito() ?><br> <?= $sucur->getTelf(); ?> <br><strong> <?= 'RUC.: '.$sucur->getRuc(); ?> <br><?=  $comprobante;?><br>
       <?= $document->getSerie().'-'.str_pad($document->getNumero(), 6, "0", STR_PAD_LEFT)?></strong></p>
+      </div>
+      <div class="encabezado">
     <p> <strong>   ADQUIRIENTE </strong><br>
      <?= $document->getRuc() ?> <br>
     <?= $document->getRazonsocial() ?><br>
@@ -72,8 +77,9 @@
     <strong>FECHA DE VENC:  </strong><?= $document->getFechavencimiento() ?><br>
     <strong>MONEDA: </strong><?= $moneda?><br>
     <strong>IGV: </strong>18.00 %</p><br>
+      </div>
     <table>
-      <thead>
+        <thead class="headdetalle">
         <tr>
           <th class="cantidad">[CANT.]</th>
           <th class="producto">DESCRIPCIÓN</th>
@@ -81,7 +87,7 @@
           <th class="precio">TOTAL</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="tbodydetalle">
           <?php
 //          $temp = new Temp(); 
           $total=0;
@@ -90,6 +96,8 @@
           $gratuita = 0;
           $exonerada = 0;
           $inafecta = 0;
+          $ivap = 0;
+          $expo = 0;
           foreach ($detalles as $temp){
               $importe = $temp->getCantidad() * $temp->getPrecio();
               ?>
@@ -107,90 +115,130 @@
             $gratuita += $temp->getMontobasegratuito();
             $exonerada += $temp->getMontobaseexonarado();
             $inafecta += $temp->getMontobaseinafecto();
-        
-        
+            $ivap += $temp->getMontobaseivap();
+            $expo += $temp->getMontobaseexpo();
+
           } 
+          $total = $total - ($gratuita + $ivap);
           
-          $gravada = $total/1.18;
-          $igv = $total - ($total/1.18);
+          $gravada = ($total -($expo + $exonerada + $inafecta))/1.18;
+          $igv =($total -($expo + $exonerada + $inafecta)) - $gravada;
+          
+          if($document->getIncigv() == false){
+              $gravada = $total;
+              $total += $igv;
+              $igv = $total - $gravada;
+              
+          }
+          
+          $totalf = (float)number_format($total,2);
           ?>
      
+         </tbody>
+      </table>
+    <table class="resultados">
+        <tbody >
+            
         <tr>
+          
+          <td ></td>
+          <td></td>
+          <td class="rletra">TOTAL ANTICIPOS <?= $simbolo?></td>
+         
+          <td class="rnum">0.00</td>
+         </tr>
+        <tr>
+         <td ></td>
           <td></td>
           
-          <td class="producto">TOTAL ANTICIPOS <?= $simbolo?></td>
-          <td></td>
-          <td class="precio">0.00</td>
+          <td class="rletra" >OP. GRATUITA <?= $simbolo?></td>
+        
+          <td class="rnum"><?php echo number_format($gratuita,2) ?></td>
           </tr>
         <tr>
+         <td ></td>
           <td></td>
           
-          <td class="producto">OP. GRATUITA <?= $simbolo?></td>
-          <td></td>
-          <td class="precio"><?php echo number_format($gratuita,2) ?></td>
+          <td class="rletra">OP. EXONERADA <?= $simbolo?></td>
+         
+          <td class="rnum"><?php echo number_format($exonerada,2) ?></td>
           </tr>
         <tr>
+          <td ></td>
           <td></td>
           
-          <td class="producto">OP. EXONERADA <?= $simbolo?></td>
-          <td></td>
-          <td class="precio"><?php echo number_format($exonerada,2) ?></td>
+          <td class="rletra">OP. INAFECTA <?= $simbolo?></td>
+         
+          <td class="rnum"><?php echo number_format($inafecta,2) ?></td>
           </tr>
         <tr>
+          <td ></td>
           <td></td>
           
-          <td class="producto">OP. INAFECTA <?= $simbolo?></td>
-          <td></td>
-          <td class="precio"><?php echo number_format($inafecta,2) ?></td>
-          </tr>
-        <tr>
-          <td></td>
+          <td class="rletra">OP. GRAVADA <?= $simbolo?></td>
           
-          <td class="producto">OP. GRAVADA <?= $simbolo?></td>
-          <td></td>
-          <td class="precio"><?php echo number_format($gravada,2) ?></td>
+          <td class="rnum"><?php echo number_format($gravada,2) ?></td>
           </tr>
           <tr>
-          <td class="producto">DESCUENTO <?= $simbolo?></td>
+           <td ></td>
+          <td></td>   
+          <td class="rletra">DESCUENTO <?= $simbolo?></td>
+         
+          <td class="rnum">0.00</td>
+          </tr>
+          <tr>
+          
+          <td ></td>
           <td></td>
-          <td class="precio">0.00</td>
-          </tr>
-          <tr>
-           <td></td>
-          
-          <td class="producto">IGV <?= $simbolo?></td>
-           <td></td>
-          <td class="precio"><?php echo number_format($igv,2) ?></td>
-          
-          </tr>
-          <tr>
-           <td></td>
-          
-          <td class="producto">I.S.C <?= $simbolo?></td>
-           <td></td>
-          <td class="precio">0.00</td>
-          
-          </tr>
-          <tr>
-           <td></td>
+          <td class="rletra">IGV <?= $simbolo?></td>
            
-          <td class="producto">TOTAL A PAGAR <?= $simbolo?></td>
+          <td class="rnum"><?php echo number_format($igv,2) ?></td>
+          
+          </tr>
+          <tr>
+           <td ></td>
           <td></td>
-          <td class="precio"><?php echo number_format($total,2) ?></td>
+          
+          <td class="rletra">I.S.C <?= $simbolo?></td>
+          
+          <td class="rnum">0.00</td>
+          
+          </tr>
+          <tr>
+          <td ></td>
+          <td></td>
+           
+          <td class="rletra">TOTAL A PAGAR <?= $simbolo?></td>
+         
+          <td class="rnum"><?php echo number_format($total,2) ?></td>
           </tr>
       </tbody>
     </table>
     <hr>
-     <?php $qr = $sucur->getRuc().' | '.$opc.' | '.$document->getSerie().' | '.str_pad($document->getNumero(), 6, "0", STR_PAD_LEFT).' | '.$igv.' | '.$total.' | '.$document->getFechaemision().' | '.$document->getRuc().' || '; ?>
-    <p class="centrado"><strong>IMPORTE EN LETRAS: </strong><?php echo strtoupper(CifrasEnLetras::convertirEurosEnLetras($total)); ?></p><hr>
-    <p class="justificado"> Representación impresa de la <?= $comprobante; ?></p>
-    <?php QRcode::png($qr,$filename,'M',20,15)?>
-    <img src="<?= $filename; ?>" alt="QR" width="160" height="160">
+    <div class="footerup">
+        <?php $qr = $sucur->getRuc().' | '.$opc.' | '.$document->getSerie().' | '.str_pad($document->getNumero(), 6, "0", STR_PAD_LEFT).' | '.$igv.' | '.$total.' | '.$document->getFechaemision().' | '.$document->getRuc().' || '; ?>
+        <p class="centrado"><strong>IMPORTE EN LETRAS: </strong><?php echo strtoupper(CifrasEnLetras::convertirEurosEnLetras($totalf)); ?></p><hr>
+        
+    </div>
+        <?php // QRcode::png($qr,$filename,'M',20,15)?>
+        <img src="<?= $filename ?>" alt="QR" width="160" height="160">
+        
+    <div class="footerdown">
+
+        <p> Representación impresa de la <?= $comprobante; ?></p>
+    </div>
+        
+        
+        
+        
+        
+    </div>
+     
  
     <hr>
-  </div>
+ 
  <script>
-window.print();
+//window.print();
 
 </script>   
     
