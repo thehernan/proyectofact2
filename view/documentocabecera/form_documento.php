@@ -238,7 +238,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group form-float">
                                             <label class="text-danger">Tipo de Pago </label>
-                                            <select class="form-control show-tick" id="cbmoneda" name="cbmoneda" required="">
+                                            <select class="form-control show-tick" id="cbtipopago" name="cbtipopago" required="">
 
                                                 <?php
                                                 $pred = array('Efectivo', 'C.Entrega', 'MasterCard', 'Visa', 'American Express');
@@ -256,7 +256,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" id="txtnroop" name="txtnroop" value="" disabled="" >
+                                                <input type="text" class="form-control" id="txtnroop" name="txtnroop" value="" readonly="" >
                                                 <label class="form-label">Nro OP</label>
                                             </div>
                                         </div>

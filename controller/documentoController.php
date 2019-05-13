@@ -21,6 +21,7 @@ require_once 'model/serieDetalle.php';
 require_once 'model/documentoOtros.php';
 require_once 'model/documentoGuia.php';
 require_once 'model/producto.php';
+require_once 'model/cuentaBancaria.php';
 //require_once 'model/serieDetalle.php';
 
 
@@ -257,7 +258,7 @@ class documentoController {
                     . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a>'
                             . ' <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a>';
                     if($documento->getEstadolocal() != 'Anulado'){
-                        echo '<a href ="'.base_url.'documento/anular&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
+                         echo '<a  data-toggle="modal" data-target=".modalanulardoc" data-id="'.$documento->getId().'" data-documento="'.$documento->getSerie().'-'.$documento->getNumero().'" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
                     }     
                 }
                 
@@ -270,6 +271,7 @@ class documentoController {
                 </tbody>
 
             </table>
+          
             <div class="pagination">
                 <nav>
                     <ul class="pagination"></ul>
@@ -620,7 +622,7 @@ class documentoController {
             $documento->setTipocambio($tipocambio);
             $documento->setTipo($tipodoc);
             $documento->setSujetoa($sujetoa);
-            
+            $documento->setIncigv($incigv);
             $documento->setGarantia(0);
             $documento->setValidezdias(0);
             $documento->setPlazoentregadias(0);
@@ -976,7 +978,7 @@ class documentoController {
             $documento->setTipo($tipodoc);
             $documento->setGarantia($garantia);
             
-              
+            $documento->setIncigv($incigv);  
             $documento->setValidezdias(0);
             $documento->setPlazoentregadias(0);
             $documento->setCondicionpagodias(0);
@@ -1639,7 +1641,11 @@ class documentoController {
 
 //    var_dump($_POST);
 
-        if (isset($_POST['cbserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['cbvendedor']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion'])) {
+        if (isset($_POST['cbserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision']) 
+                && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['cbvendedor'])
+                        && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) 
+                && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion'])  && isset($_POST['cbtipopago']) && 
+                isset($_POST['txtnroop'])) {
             $serier = str_replace(PHP_EOL, ' ', $_POST['cbserie']);
             $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
             
@@ -1697,6 +1703,8 @@ class documentoController {
             $observacion = $_POST['txtobservacion'];
             $idsucursal = $_SESSION['idsucursal'];
             $tipodoc = $_POST['tipodoc'];
+            $tipopago = $_POST['cbtipopago'];
+            $nrotipopago = $_POST['txtnroop'];
 
             $documento->setSerie($serie);
             $documento->setNumero($numero);
@@ -1720,6 +1728,9 @@ class documentoController {
             $documento->setValidezdias(0);
             $documento->setPlazoentregadias(0);
             $documento->setCondicionpagodias(0);
+            $documento->setTipopago($tipopago);
+            $documento->setNrooptipopago($nrotipopago);
+            $documento->setIncigv($incigv);
 
             echo $id = $documento->insert($documento);
 
@@ -2034,6 +2045,7 @@ class documentoController {
             $documento->setIdtiponota($idtiponota);
             $documento->setObservacion($observacion);
             $documento->setDocref($docref);
+            $documento->setIncigv($incigv);
             
             $documento->setGarantia(0);
             $documento->setValidezdias(0);
@@ -2293,12 +2305,38 @@ class documentoController {
     
     function anular(){
         $fila = 0;
-        if(isset($_GET['id']) && !empty($_GET['id'])){        
+        if(isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['txtmotivo'])){        
             
-           $fila = $this->documento->anular($_GET['id']);
+            if(!empty($_POST['txtmotivo'])){
+                $id = $_POST['id'];
+                $motivo = $_POST['txtmotivo'];
+                
+                $fila = $this->documento->anular($id,$motivo);
+               
+                if($fila>0){
+                    echo 'Redireccionando ...';
+                    echo "<META HTTP-EQUIV ='Refresh' CONTENT='0; URL=".base_url."documento/selectdocument'>";
+
+                }else {
+                    echo '<div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Error!</strong> YA SE ENCUENTRA ANULADA
+                    </div>';
+
+                }
+                
+            }else {
+                
+                echo '<div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Error!</strong> INGRESE MOTIVO DE ANULACIÓN
+                </div>';
+            }
+            
+        
         }
-        echo 'Redireccionando ...';
-        echo "<META HTTP-EQUIV ='Refresh' CONTENT='0; URL=".base_url."documento/selectdocument'>";
+        
+        
 //        if($fila > 0){
 //            
 //        } else {
@@ -2337,6 +2375,23 @@ class documentoController {
             require_once 'view/CifrasEnLetras.php'; 
 //            require_once 'libs/dompdf';
             require_once 'view/documentocabecera/printA4.php'; 
+        }
+    }
+    function imprimircotizacion(){
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];           
+            $sucursal = new sucursal();
+            $detalle = new Detalle();
+            $cuentam  = new cuentaBancaria();
+            $sucur = $sucursal->selectOne($_SESSION['idsucursal']);
+            $document = $this->documento->selectOne($id);
+            $detalles = $detalle->selectOneDoc($id);
+            $cuentas= $cuentam->selectAll();
+//            require_once "vendor/autoload.php";
+            require_once 'libs/phpqrcode/qrlib.php';
+            require_once 'view/CifrasEnLetras.php'; 
+//            require_once 'libs/dompdf';
+            require_once 'view/documentocabecera/printCotizacion.php'; 
         }
     }
     function imprimirexcel(){

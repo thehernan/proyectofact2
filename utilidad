@@ -225,3 +225,190 @@ $dompdf->render();
 $dompdf->stream("print.pdf");
 
 
+
+
+
+
+
+body {
+          position: relative;
+          width: 750px;
+          max-width: 750px;
+         
+          margin: 0 auto; 
+        }
+        table#detalle{ 
+        
+        
+        margin-top:100px;
+        margin-left:10px;
+        border: 2px solid #1FF;
+        border-collapse: separate;
+        border-left: 0;
+        border-radius: 7px;
+        border-spacing: 0px;
+        width: 700px;
+        max-width: 700px;
+        }
+        thead {
+            display: table-header-group;
+            vertical-align: middle;
+            border-color: inherit;
+            border-collapse: separate;
+        }
+        tr {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
+        th, td {
+            
+            text-align: left;
+            vertical-align: top;
+             
+        }
+       
+        thead:first-child tr:first-child th:first-child, tbody:first-child tr:first-child td:first-child {
+            border-radius: 7px 0 0 0;
+        }
+        thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child {
+            border-radius: 0 0 0 7px;
+        }
+        td.producto,
+        th.producto {
+          width: 430px;
+          max-width: 430px;
+          word-break: break-all;
+        }
+
+        td.cantidad,
+        th.cantidad {
+          width: 80px;
+          max-width: 80px;
+          text-align: center;
+          word-break: break-all;
+        }
+
+        td.precio,
+        th.precio {
+          width: 100px;
+          max-width: 100px;
+          text-align: center;
+          word-break: break-all;
+        }
+
+        th {
+          font-size: 14px;
+          font-family: Arial;  
+
+        }
+
+
+        .centrado {
+          text-align: center;
+          align-content: center;
+        }
+        .justificado {
+          text-align: justify;
+
+        } 
+
+        
+
+        img {
+        /*  max-width: inherit;
+          width: inherit;*/
+        display:block;
+
+
+        }
+
+        /*----------- CAJA ----------- */
+        #cajaruc { 
+        font-family: Arial; 
+        
+        font-size: 16px; 
+        text-align: center;
+        line-height : 20px;
+        padding: 10px;
+        border-radius: 15px 15px 15px 15px;  
+        border: 1px solid black;
+        width: 250px;
+        height: 70px;
+        max-width: 250px;
+      /*  float: right !important;
+        margin-left: 500px;*/
+position:absolute;
+        left: 465;
+        top: 32;
+       
+        }
+        .cajacliente { 
+        font-family: Arial;
+        font-size: 11px; 
+        line-height: 18px;
+        text-align: left; 
+        overflow: auto; 
+        width:400px;
+        height: 65px;
+        max-width: 400px;
+       /* float: left !important;*/
+
+        position: absolute;
+        top: 180;
+        left:5;
+        
+        
+        }
+        .cajafecha { 
+        font-family: Arial;  
+        font-size: 11px; 
+        line-height: 18px;
+        text-align: right;  
+        
+        width: 200px;
+        height: 77px;
+        max-width:200px;
+       /* float: right !important;
+        margin-left: 200px;*/
+        position: absolute;
+        right: 80;
+        top: 180;
+       
+        }
+        .importeletra{
+            font-family: Arial; 
+            font-size: 12px;
+        }
+
+        .divempresa { 
+        font-family: Arial;
+        color: black; 
+        font-size: 16px; 
+        
+        text-align: left; 
+        /*background: #889ccf; */
+    
+     
+        padding: 0px; 
+        /*border-radius: 15px 15px 15px 15px; */
+
+       /* border: 2px solid #5878ca;*/
+        width: 300px;
+        height: 200px;
+        max-width: 400px;
+    /*    float: left !important;*/
+
+
+       /* position:absolute;
+        left: 15;
+        top: 0; */
+        
+        }
+		
+		
+		
+		
+		 echo '<a href ="'.base_url.'documento/anular&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
+
+

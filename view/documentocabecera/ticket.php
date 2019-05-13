@@ -38,8 +38,13 @@
         $opc = '04';
     }elseif($document->getTipo() =='Factura' and $document->getTipodoc()=='Compra'){
         $comprobante='COMPRA';
-    }else{
+        $opc = '05';
+    }elseif($document->getTipo()== 'nota_venta' and $document->getTipodoc() == 'Venta'){
+        $comprobante='NOTA DE VENTA';
+        $opc = '06';
+    }else {
         $comprobante='ORDEN DE COMPRA';
+        $opc = '07';
     }
     
     if($document->getMoneda()== 'Soles'){
@@ -124,7 +129,7 @@
           $gravada = ($total -($expo + $exonerada + $inafecta))/1.18;
           $igv =($total -($expo + $exonerada + $inafecta)) - $gravada;
           
-          if($document->getIncigv() == false){
+          if($document->getIncigv() == 0){
               $gravada = $total;
               $total += $igv;
               $igv = $total - $gravada;

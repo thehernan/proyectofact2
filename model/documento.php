@@ -50,11 +50,31 @@ class documento {
     private $plazoentregadias;
     private $condicionpagodias;
     private $atencion;
+    
+    private $tipopago;
+    private $nrooptipopago;
             
     function __construct() {
         
     }
-    function getCondicionpago() {
+    
+    function getTipopago() {
+        return $this->tipopago;
+    }
+
+    function getNrooptipopago() {
+        return $this->nrooptipopago;
+    }
+
+    function setTipopago($tipopago) {
+        $this->tipopago = $tipopago;
+    }
+
+    function setNrooptipopago($nrooptipopago) {
+        $this->nrooptipopago = $nrooptipopago;
+    }
+
+        function getCondicionpago() {
         return $this->condicionpago;
     }
 
@@ -391,6 +411,9 @@ class documento {
             $documento->setTipo($data_tabla[$clave]["tipo"]);
             $documento->setTotal($data_tabla[$clave]["total"]);
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
+            $documento->setTipopago($data_tabla[$clave]["tipo_pago"]);
+            $documento->setNrooptipopago($data_tabla[$clave]["nroop_tipopago"]);
+            
             
    
             
@@ -490,7 +513,7 @@ class documento {
         $data_source->ejecutarActualizacion("insert into documento(serie, numero, fechaemision,fechavencimiento,nroden,"
                 . "moneda,incigv,id_sunat_transaction,id_usuario,tipo_venta,tipo_venta_movimiento,tipo_venta_nop,"
                 . "sujetoa,id_persona,ruc,razonsocial,direccion,email,estadosunat,estadolocal,total,tipo,id_sucursal,tipo_doc,tipo_cambio,documento_ref,serie_ref,numero_ref,id_tiponota,observacion,garantia,condicionpago,"
-                . "validezdias,plazoentregadias,condicionpagodias,atencion) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
+                . "validezdias,plazoentregadias,condicionpagodias,atencion,tipo_pago,nroop_tipopago) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
             $documento->getSerie(),
             $documento->getNumero(),
             $documento->getFechaemision(),
@@ -526,7 +549,10 @@ class documento {
             $documento->getValidezdias(),
             $documento->getPlazoentregadias(),
             $documento->getCondicionpagodias(),
-            $documento->getAtencion()
+            $documento->getAtencion(),
+            $documento->getTipopago(),
+            $documento->getNrooptipopago()
+            
             
                     
             
@@ -576,6 +602,8 @@ class documento {
             $documento->setTipodoc($data_tabla[$clave]["tipo_doc"]);
             $documento->setTotal($data_tabla[$clave]["total"]);
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
+            $documento->setTipopago($data_tabla[$clave]["tipo_pago"]);
+            $documento->setNrooptipopago($data_tabla[$clave]["nroop_tipopago"]);
              
         }
         return $documento;
@@ -617,6 +645,8 @@ class documento {
             $documento->setTipo($data_tabla[$clave]["tipo"]);
             $documento->setTotal($data_tabla[$clave]["total"]);
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
+            $documento->setTipopago($data_tabla[$clave]["tipo_pago"]);
+            $documento->setNrooptipopago($data_tabla[$clave]["nroop_tipopago"]);
              
         }
         return $documento;
@@ -634,10 +664,10 @@ class documento {
         return $bol;
     }
     
-       function anular($id){
+       function anular($id,$motivo){
         $data_source = new DataSource();
 
-        return $data_source->ejecutarActualizacion("update documento set estadolocal='Anulado' where id = ?", array($id));
+        return $data_source->ejecutarActualizacion("update documento set estadolocal='Anulado', motivoanulacion=? where id = ?", array($motivo,$id));
         
     }
 

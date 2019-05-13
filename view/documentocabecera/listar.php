@@ -83,8 +83,8 @@
                                 <select  class="form-control show-tick" id="cbtipocomprobante" name="cbtipocomprobante">
 <!--                                    <option value="">- Tipo comprobante -</option>-->
                                     <?php 
-                                    $pred= array('Factura','Boleta','Nota de crédito','Nota de débito');
-                                    $value= array('Factura','Boleta','nota_credito','nota_debito');
+                                    $pred= array('Factura','Boleta','Nota de venta','Nota de crédito','Nota de débito');
+                                    $value= array('Factura','Boleta','nota_venta','nota_credito','nota_debito');
                                     
                                     for($i=0;$i < count($pred);$i++){
 
@@ -266,7 +266,7 @@
                                                 . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a>'
                                                         . ' <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a>';
                                                 if($documento->getEstadolocal() != 'Anulado'){
-                                                    echo '<a href ="'.base_url.'documento/anular&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
+                                                    echo '<a  data-toggle="modal" data-target=".modalanulardoc" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
                                                 }     
                                             }
                                             echo '</tr>';
@@ -289,6 +289,7 @@
                             </div>
                             
                         </div>
+                        <?php require_once 'view/documentocabecera/modalanulardoc.php'; ?>
                     </div>
                 </div>
             </div>

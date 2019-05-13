@@ -1569,6 +1569,61 @@ $(document).on('click','#exceldocument', function (e){
 });
 
 
+$(document).on('change','#cbtipopago', function (){
+        var value = $(this).val();
+        
+       
+        if(value == 'Efectivo' || value=='C.Entrega'){
+            $('#txtnroop').val('');
+            $('#txtnroop').attr('readonly','TRUE');
+            
+            
+        }else{
+            $('#txtnroop').removeAttr('readonly');
+        }
+        
+        
+    
+});
+
+$(document).on('show.bs.modal','.modalanulardoc', function (event){
+//$('.modalanulardoc').on('show.bs.modal', function (event) {
+  
+    var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient0 =  button.data('id')
+      var recipient1 = button.data('documento')
+      
+      var modal = $(this)		 
+      modal.find('.modal-body #id').val(recipient0)
+      modal.find('.modal-body #nrodoc').html(recipient1)
+    
+});
+
+$(document).on('submit','#formanulardoc', function (e){
+    
+    e.preventDefault();
+    
+    var accion = $(this).attr('action');
+    var form = $(this).serialize();
+    $.ajax({
+        type: 'POST',
+        url: accion,
+        data: form,
+        beforeSend: function () {
+            $('.RespuestaAjaxmodal').html('Cargando ...');
+            
+        },
+        success: function (data) {
+            $('.RespuestaAjaxmodal').html(data);
+        }
+        
+        
+        
+    });
+    
+});
+
+
 
 
 function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) { //v3.0

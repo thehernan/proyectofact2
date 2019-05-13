@@ -438,8 +438,8 @@ $total = 0;
                 var optionigv = document.createElement("option");
                 optionigv.innerHTML = '<?= trim($impuesto->getDescripcion()) ?>';
                 optionigv.setAttribute('value', '<?= $impuesto->getOp() ?>');
-                <?php if($detalle->getIgv() == $impuesto->getop()){ ?>
-                    optionigv.setAttribute('checked','true');
+                <?php if($detalle->getIdimpuesto() == $impuesto->getOp()){ ?>
+                    optionigv.setAttribute('selected','true');
                 <?php } ?>
                     selectigv.add(optionigv);
     <?php } ?>

@@ -96,6 +96,8 @@ $codhtml = '
         th {
           font-size: 12px;
           font-family: Arial;  
+          background: #337AB7;
+          color: #FFFFFF;
 
         }
 
@@ -125,7 +127,7 @@ $codhtml = '
         
         font-size: 16px; 
         text-align: center;
-        line-height : 20px;
+        line-height : 25px;
         padding: 10px;
         border-radius: 15px 15px 15px 15px;  
         border: 1px solid black;
@@ -134,7 +136,7 @@ $codhtml = '
         max-width: 250px;
       /*  float: right !important;
         margin-left: 500px;*/
-position:absolute;
+        position:absolute;
         left: 490;
         top: 20;
        
@@ -217,8 +219,8 @@ position:absolute;
         }
         .rletra{
             text-align: left;
-            width: 140px;
-            max-width: 140px;
+            width: 200px;
+            max-width: 200px;
             
         }
         .rnum{
@@ -247,6 +249,12 @@ position:absolute;
             max-width: 470px;
         
         }
+        .ncuenta{
+            text-align : left;
+            font-size: 12px;
+            margin-left: 12px;
+            width: 500px;
+        }
         
         
      
@@ -259,7 +267,10 @@ position:absolute;
  
     $moneda = '';
     $simbolo = '';
-    
+    $incigv = '';
+    $garantia = '';
+    $validez = '';
+    $tiementrega = '';
     if(!file_exists($dir)){
         mkdir($dir);
         
@@ -276,23 +287,7 @@ position:absolute;
     
     $logo = 'temp/img/logo.jpg';
    
-    if($document->getTipo() =="Factura" and $document->getTipodoc()=="Venta"){
-        $comprobante="FACTURA ELECTRÓNICA"; 
-        $opc = "01";
-    }elseif($document->getTipo() =="Boleta" and $document->getTipodoc()=="Venta") {
-        $comprobante="BOLETA DE VENTA ELECTRÓNICA";
-        $opc = "02";
-    }elseif($document->getTipo() =="nota_debito"){
-        $comprobante="NOTA DE CREDITO ELECTRÓNICA";
-        $opc = "03";
-    }elseif($document->getTipo() =="nota_credito" ){
-        $comprobante="NOTA DE DEBITO ELECTRÓNICA";
-        $opc = "04";
-    }elseif($document->getTipo() =="Factura" and $document->getTipodoc()=="Compra"){
-        $comprobante="COMPRA";
-    }else{
-        $comprobante="ORDEN DE COMPRA";
-    }
+
     if($document->getMoneda()== 'Soles'){
         $moneda = 'PEN';
         $simbolo = 'S/ ';
@@ -302,6 +297,27 @@ position:absolute;
         $moneda= 'USD';
         $simbolo = '$ ';
     }
+    
+    if($document->getIncigv() == 1){
+        
+        $incigv = 'LOS PRECIOS INCLUYEN IGV';
+    }else {
+        $incigv = 'LOS PRECIOS NO INCLUYEN IGV';
+    }
+    
+     if(!empty($document->getGarantia()) || $document->getGarantia() >0){
+        
+        $garantia = $document->getGarantia().' MES(ES)';
+    }
+     if(!empty($document->getValidezdias()) || $document->getValidezdias() >0){
+        
+        $validez = $document->getValidezdias().' DIA(S)';
+    }
+     if(!empty($document->getPlazoentregadias()) || $document->getPlazoentregadias() >0){
+        
+        $tiementrega = $document->getPlazoentregadias().' DIA(S)';
+    }
+    
    
 
 $codhtml.='
@@ -325,15 +341,15 @@ $codhtml.='
         'DIRECCIÓN: '.$document->getDireccion().'<br><br>
     </div>
     <div id="cajaruc">
-    RUC.: '.$sucur->getRuc().'<br>'.$comprobante.'<br>'.
-        $document->getSerie().'-'.str_pad($document->getNumero(), 6, "0", STR_PAD_LEFT)
+    RUC.: '.$sucur->getRuc().'<br>COTIZACIÓN<br>'.
+        str_pad($document->getNumero(), 6, "0", STR_PAD_LEFT)
     .'</div>
     <div class="cajafecha">
-    <strong>FECHA DE VENC:  </strong>'.$document->getFechavencimiento().'<br>
-    <strong>MONEDA: </strong>'.$moneda.'<br>
-    <strong>ORDEN DE COMPRA: </strong>'.$document->getNorden().' <br>
-    <strong>OBSERVACION: </strong>'.$document->getObservacion().
+    
+    <strong>EJ. COMERCIAL: </strong>'.$sucur->getResponsable().'<br>
+    <strong>CONDICION DE PAGO: </strong>'.$document->getCondicionpago().' <br>'.
     '</div>
+        <p style="font-size: 12px;">De acuedo a la solicitado adjunto la presente, cotización. </p>
     <table id="detalle">
       <thead>
         <tr>
@@ -370,7 +386,8 @@ $codhtml.='
             $expo += $temp->getMontobaseexpo();
         
         
-          } 
+          }
+
           
           $total = $total - ($gratuita + $ivap);
           
@@ -385,8 +402,11 @@ $codhtml.='
           }
           
           $totalf = (float)number_format($total,2);
-          $qr = $sucur->getRuc().' | '.$opc.' | '.$document->getSerie().' | '.str_pad($document->getNumero(), 6, "0", STR_PAD_LEFT).' | '.$igv.' | '.$total.' | '.$document->getFechaemision().' | '.$document->getRuc().' || ';
-          QRcode::png($qr,$filename,'M',20,15);
+          
+  $codhtml.='<tr><td></td><td></td><td><strong>TOTAL</strong></td>'
+. '<td class="precio"><strong>'.$simbolo.' '.$totalf.'</strong></td>'
+. '</tr>';
+  
 $codhtml.='
       </tbody>
       
@@ -396,90 +416,45 @@ $codhtml.='
      <div class="qr">
       <table id="resultados">
         <tbody>
-        <tr>
-            <td rowspan="10" class="rqr"><img src="'.$filename.'" alt="QR" width="150" height="150"><br>
-             REPRESENTACION IMPRESA DE LA '.$comprobante.'<br> Puede consultar este documento en 
-        </td>
-        </tr>
+        
+        
         <tr>
          
-          <td class="rletra">TOTAL ANTICIPOS </td>
+          <td class="rletra">VALIDEZ DE COTIZACIÓN </td>
          
-          <td class="rnum">'.$simbolo.' 0.00</td>
+          <td class="rnum">'.$validez.'</td>
          </tr>
         <tr>
          
           
-          <td class="rletra" >OP. GRATUITA </td>
+          <td class="rletra" >TIEMPO DE ENTREGA </td>
         
-          <td class="rnum">'.$simbolo.' '.number_format($gratuita,2).'</td>
+          <td class="rnum">'.$tiementrega.'</td>
           </tr>
         <tr>
         
           
-          <td class="rletra">OP. EXONERADA '.$simbolo.'</td>
+          <td class="rletra">GARANTIA </td>
          
-          <td class="rnum">'.$simbolo.' '.number_format($exonerada,2).'</td>
+          <td class="rnum">'.$garantia.'</td>
           </tr>
         <tr>
        
           
-          <td class="rletra">OP. INAFECTA </td>
-         
-          <td class="rnum">'.$simbolo.' '.number_format($inafecta,2).'</td>
-          </tr>
-        <tr>
-        
-          
-          <td class="rletra">OP. GRAVADA </td>
-          
-          <td class="rnum">'.$simbolo.' '.number_format($gravada,2).'</td>
-          </tr>
-          <tr>
-          
-          <td class="rletra">DESCUENTO </td>
-         
-          <td class="rnum">'.$simbolo.' 0.00</td>
-          </tr>
-          <tr>
-     
-          <td class="rletra">IGV </td>
-           
-          <td class="rnum">'.$simbolo.' '.number_format($igv,2).'</td>
-          
-          </tr>
-          <tr>
+          <td class="rletra" >'.$incigv.'</td>
          
           
-          <td class="rletra">I.S.C </td>
-          
-          <td class="rnum">'.$simbolo.' 0.00</td>
-          
           </tr>
-          <tr>
-        
-           
-          <td class="rletra">TOTAL A PAGAR </td>
-         
-          <td class="rnum">'.$simbolo.' '.number_format($total,2).'</td>
-          </tr>
+
       </tbody>
     </table>
+    <div class="ncuenta"><strong>NUMEROS DE CUENTA</strong><br>';
+
+foreach ($cuentas as $cuenta){
     
-    ';
-    
-    
-$codhtml.='
-    
-    
-        
-        
-    </div>
-        ';
-    
-    
-$codhtml.='
-    
+$codhtml.=$cuenta->getBanco().' '.$cuenta->getTitular().' - '.$cuenta->getNumero().'<br>';
+}
+$codhtml.='</div><p class="ncuenta"><strong>LOS PRECIOS SERÁN MODIFICADOS DE ACUERDO A LA VARIACIÓN DE COSTA DEL FABRICANTE</strong></p></div>
         
     
   </div>
