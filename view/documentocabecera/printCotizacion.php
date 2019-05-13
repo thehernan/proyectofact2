@@ -349,7 +349,7 @@ $codhtml.='
     <strong>EJ. COMERCIAL: </strong>'.$sucur->getResponsable().'<br>
     <strong>CONDICION DE PAGO: </strong>'.$document->getCondicionpago().' <br>'.
     '</div>
-        <p style="font-size: 12px;">De acuedo a la solicitado adjunto la presente, cotización. </p>
+        <p style="font-size: 12px;">De acuerdo a la solicitado adjunto la presente, cotización. </p>
     <table id="detalle">
       <thead>
         <tr>
@@ -404,7 +404,7 @@ $codhtml.='
           $totalf = (float)number_format($total,2);
           
   $codhtml.='<tr><td></td><td></td><td><strong>TOTAL</strong></td>'
-. '<td class="precio"><strong>'.$simbolo.' '.$totalf.'</strong></td>'
+. '<td class="precio"><strong>'.$simbolo.' '.number_format($total,2).'</strong></td>'
 . '</tr>';
   
 $codhtml.='
@@ -454,7 +454,7 @@ foreach ($cuentas as $cuenta){
     
 $codhtml.=$cuenta->getBanco().' '.$cuenta->getTitular().' - '.$cuenta->getNumero().'<br>';
 }
-$codhtml.='</div><p class="ncuenta"><strong>LOS PRECIOS SERÁN MODIFICADOS DE ACUERDO A LA VARIACIÓN DE COSTA DEL FABRICANTE</strong></p></div>
+$codhtml.='</div><p class="ncuenta"><strong>LOS PRECIOS SERÁN MODIFICADOS DE ACUERDO A LA VARIACIÓN DEL COSTO DEL FABRICANTE</strong></p></div>
         
     
   </div>

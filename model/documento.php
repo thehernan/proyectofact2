@@ -12,6 +12,7 @@
  * @author HERNAN
  */
 class documento {
+
     //put your code here
     private $id;
     private $serie;
@@ -50,15 +51,23 @@ class documento {
     private $plazoentregadias;
     private $condicionpagodias;
     private $atencion;
-    
     private $tipopago;
     private $nrooptipopago;
-            
+    private $motivoanulacion;
+
     function __construct() {
         
     }
-    
-    function getTipopago() {
+
+    function getMotivoanulacion() {
+        return $this->motivoanulacion;
+    }
+
+    function setMotivoanulacion($motivoanulacion) {
+        $this->motivoanulacion = $motivoanulacion;
+    }
+
+        function getTipopago() {
         return $this->tipopago;
     }
 
@@ -74,7 +83,7 @@ class documento {
         $this->nrooptipopago = $nrooptipopago;
     }
 
-        function getCondicionpago() {
+    function getCondicionpago() {
         return $this->condicionpago;
     }
 
@@ -114,7 +123,6 @@ class documento {
         $this->atencion = $atencion;
     }
 
-        
     function getGarantia() {
         return $this->garantia;
     }
@@ -123,7 +131,6 @@ class documento {
         $this->garantia = $garantia;
     }
 
-        
     function getDocref() {
         return $this->docref;
     }
@@ -156,7 +163,6 @@ class documento {
         $this->idtiponota = $idtiponota;
     }
 
-        
     function getTipocambio() {
         return $this->tipocambio;
     }
@@ -165,7 +171,6 @@ class documento {
         $this->tipocambio = $tipocambio;
     }
 
-        
     function getTipodoc() {
         return $this->tipodoc;
     }
@@ -174,7 +179,6 @@ class documento {
         $this->tipodoc = $tipodoc;
     }
 
-        
     function getObservacion() {
         return $this->observacion;
     }
@@ -183,7 +187,6 @@ class documento {
         $this->observacion = $observacion;
     }
 
-        
     function getId() {
         return $this->id;
     }
@@ -335,6 +338,7 @@ class documento {
     function setEmail($email) {
         $this->email = $email;
     }
+
     function getEstadosunat() {
         return $this->estadosunat;
     }
@@ -358,6 +362,7 @@ class documento {
     function setTotal($total) {
         $this->total = $total;
     }
+
     function getTipo() {
         return $this->tipo;
     }
@@ -365,6 +370,7 @@ class documento {
     function setTipo($tipo) {
         $this->tipo = $tipo;
     }
+
     function getIdsucursal() {
         return $this->idsucursal;
     }
@@ -373,16 +379,13 @@ class documento {
         $this->idsucursal = $idsucursal;
     }
 
-    
-    
-        
-     function selectAll(){
-        
+    function selectAll() {
+
         $data_source = new DataSource();
 
         $data_tabla = $data_source->ejecutarconsulta("select * from documento  order by id desc;");
 
-        
+
         $documentos = array();
         foreach ($data_tabla as $clave => $valor) {
             $documento = new documento();
@@ -413,55 +416,49 @@ class documento {
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
             $documento->setTipopago($data_tabla[$clave]["tipo_pago"]);
             $documento->setNrooptipopago($data_tabla[$clave]["nroop_tipopago"]);
-            
-            
-   
-            
-      
-             array_push($documentos, $documento);
+
+
+
+
+
+            array_push($documentos, $documento);
         }
         return $documentos;
-        
     }
-    function select($desde,$hasta,$tipocomp,$buscar,$serie,$numero,$idsucur){
-        
-        
-        $fecha='';
-        if(!empty($desde) && !empty($hasta)){
-            $fecha = 'fechaemision between "'.$desde.'" and "'.$hasta.'" and ';
-            
+
+    function select($desde, $hasta, $tipocomp, $buscar, $serie, $numero, $idsucur) {
+
+
+        $fecha = '';
+        if (!empty($desde) && !empty($hasta)) {
+            $fecha = 'fechaemision between "' . $desde . '" and "' . $hasta . '" and ';
         }
-        if(!empty($tipocomp)){
-            $tipocomp = 'tipo= "'.$tipocomp.'" and ';
-            
+        if (!empty($tipocomp)) {
+            $tipocomp = 'tipo= "' . $tipocomp . '" and ';
         }
-        if(!empty($buscar)){
-            $buscar = 'concat(ruc,razonsocial) like concat("%","'.$buscar.'","%") and ';
-            
+        if (!empty($buscar)) {
+            $buscar = 'concat(ruc,razonsocial) like concat("%","' . $buscar . '","%") and ';
         }
-        if(!empty($serie)){
-            $serie = 'serie= "'.$serie.'" and ';
-            
+        if (!empty($serie)) {
+            $serie = 'serie= "' . $serie . '" and ';
         }
-        if(!empty($numero)){
-            $numero = 'numero= "'.$numero.'" and ';
-            
+        if (!empty($numero)) {
+            $numero = 'numero= "' . $numero . '" and ';
         }
-        if(!empty($idsucur)){
-            $idsucur = 'id_sucursal= '.$idsucur;
-            
+        if (!empty($idsucur)) {
+            $idsucur = 'id_sucursal= ' . $idsucur;
         }
-        
-        
+
+
 //        echo 'select * from documento  where '.$fecha.$tipocomp.$buscar.$serie.$numero.$idsucur.' order by id desc;';
-        
-        
-                $data_source = new DataSource();
+
+
+        $data_source = new DataSource();
 
         $data_tabla = $data_source->ejecutarconsulta('SELECT doc.*,sum(det.total) as totaldoc FROM `documento` as doc inner join detalle as det on det.id_documento=doc.id
-  where '.$fecha.$tipocomp.$buscar.$serie.$numero.$idsucur.' GROUP BY id_documento order by id_documento desc;');
+  where ' . $fecha . $tipocomp . $buscar . $serie . $numero . $idsucur . ' GROUP BY id_documento order by id_documento desc;');
 
-        
+
         $documentos = array();
         foreach ($data_tabla as $clave => $valor) {
             $documento = new documento();
@@ -492,24 +489,20 @@ class documento {
             $documento->setTotal($data_tabla[$clave]["totaldoc"]);
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
 
-            
-   
-            
-      
-             array_push($documentos, $documento);
+
+
+
+
+            array_push($documentos, $documento);
         }
         return $documentos;
-        
-        
-        
     }
-            
-    
-    function insert(documento $documento){
-        
+
+    function insert(documento $documento) {
+
         $data_source = new DataSource();
         $id = 0;
-        
+
         $data_source->ejecutarActualizacion("insert into documento(serie, numero, fechaemision,fechavencimiento,nroden,"
                 . "moneda,incigv,id_sunat_transaction,id_usuario,tipo_venta,tipo_venta_movimiento,tipo_venta_nop,"
                 . "sujetoa,id_persona,ruc,razonsocial,direccion,email,estadosunat,estadolocal,total,tipo,id_sucursal,tipo_doc,tipo_cambio,documento_ref,serie_ref,numero_ref,id_tiponota,observacion,garantia,condicionpago,"
@@ -552,30 +545,21 @@ class documento {
             $documento->getAtencion(),
             $documento->getTipopago(),
             $documento->getNrooptipopago()
-            
-            
-                    
-            
         ));
         $id = $data_source->lastinsertid();
         return $id;
-        
-    
-    
-    
     }
-    
-    
-      function selectOne($id){
-        
+
+    function selectOne($id) {
+
         $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta("select * from documento  where id=?;",array($id));
+        $data_tabla = $data_source->ejecutarconsulta("select * from documento  where id=?;", array($id));
 
-        
+
         $documento = new documento();
         foreach ($data_tabla as $clave => $valor) {
-            
+
             $documento->setId($data_tabla[$clave]["id"]);
             $documento->setserie($data_tabla[$clave]["serie"]);
             $documento->setNumero($data_tabla[$clave]["numero"]);
@@ -604,22 +588,31 @@ class documento {
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
             $documento->setTipopago($data_tabla[$clave]["tipo_pago"]);
             $documento->setNrooptipopago($data_tabla[$clave]["nroop_tipopago"]);
-             
+            $documento->setObservacion($data_tabla[$clave]["observacion"]);
+            $documento->setGarantia($data_tabla[$clave]["garantia"]);
+            $documento->setCondicionpago($data_tabla[$clave]["condicionpago"]);
+            $documento->setValidezdias($data_tabla[$clave]["validezdias"]);
+            $documento->setPlazoentregadias($data_tabla[$clave]["plazoentregadias"]);
+            $documento->setCondicionpagodias($data_tabla[$clave]["condicionpagodias"]);
+            $documento->setAtencion($data_tabla[$clave]["atencion"]);
+            $documento->setCondicionpagodias($data_tabla[$clave]["condicionpagodias"]);
+            $documento->setTipopago($data_tabla[$clave]["tipo_pago"]);
+            $documento->setNrooptipopago($data_tabla[$clave]["nroop_tipopago"]);
+            $documento->setMotivoanulacion($data_tabla[$clave]["motivoanulacion"]);
         }
         return $documento;
-        
     }
-    
-       function selectMax($tipodoc,$tipo,$serie){
-        
+
+    function selectMax($tipodoc, $tipo, $serie) {
+
         $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta("select * from documento where tipo_doc = ? and tipo = ? and serie = ? ORDER BY id DESC LIMIT 1;", array($tipodoc,$tipo,$serie));
+        $data_tabla = $data_source->ejecutarconsulta("select * from documento where tipo_doc = ? and tipo = ? and serie = ? ORDER BY id DESC LIMIT 1;", array($tipodoc, $tipo, $serie));
 
-        
+
         $documento = new documento();
         foreach ($data_tabla as $clave => $valor) {
-            
+
             $documento->setId($data_tabla[$clave]["id"]);
             $documento->setserie($data_tabla[$clave]["serie"]);
             $documento->setNumero($data_tabla[$clave]["numero"]);
@@ -647,30 +640,25 @@ class documento {
             $documento->setIdsucursal($data_tabla[$clave]["id_sucursal"]);
             $documento->setTipopago($data_tabla[$clave]["tipo_pago"]);
             $documento->setNrooptipopago($data_tabla[$clave]["nroop_tipopago"]);
-             
         }
         return $documento;
-        
     }
-    
-    function duplicado($serie, $numero,$tipodoc){
+
+    function duplicado($serie, $numero, $tipodoc) {
         $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta("select 1 from documento where serie = ? and numero = ? and tipo_doc = ?;", array($serie,$numero,$tipodoc));
+        $data_tabla = $data_source->ejecutarconsulta("select 1 from documento where serie = ? and numero = ? and tipo_doc = ?;", array($serie, $numero, $tipodoc));
         $bol = 'valido';
         foreach ($data_tabla as $clave => $valor) {
             $bol = 'duplicado';
         }
         return $bol;
     }
-    
-       function anular($id,$motivo){
+
+    function anular($id, $motivo) {
         $data_source = new DataSource();
 
-        return $data_source->ejecutarActualizacion("update documento set estadolocal='Anulado', motivoanulacion=? where id = ?", array($motivo,$id));
-        
+        return $data_source->ejecutarActualizacion("update documento set estadolocal='Anulado', motivoanulacion=? where id = ?", array($motivo, $id));
     }
-
-
 
 }

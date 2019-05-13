@@ -245,7 +245,7 @@
                                             echo '<td>'.$documento->getTotal().'</td>';
 //                                            echo '<td>'.$documento->getEstadolocal().'</td>';
 //                                            echo '<td>'.$estados.'</td>';
-                                            echo '<td><div class="demo-google-material-icon"> <i class="material-icons">picture_as_pdf</i> <i class="material-icons">confirmation_number</i> </div></td>';
+                                            echo '<td><a  href="'.base_url.'documento/imprimircotizacion&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a></td>';
                                             echo '<td>'
                                                 . '<a href="' . base_url . 'documento/loadcotizacion&id='.$documento->getId().'"  data-toggle="tooltip" data-placement="top" title="VENDER"><i class="material-icons">add_shopping_cart</i></a> </div></td>';
                                             
