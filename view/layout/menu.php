@@ -207,52 +207,36 @@
                 </li>-->
                 
                 <li >
-                    <a href="<?=base_url?>documento/ordencompra" >Orden de compra</a>
+                    <a href="<?=base_url?>documento/selectcompra" >Ver comprobantes</a>
                 </li>
                 
                 <li >
                     <a href="<?=base_url?>documento/compra" >Compra</a>
                 </li>
-              
+                
+                <li >
+                    <a href="<?=base_url?>documento/selectordencompra" >Orden de compra</a>
+                </li>
 
-                <!--<li>-->
-<!--                    <a href="javascript:void(0);" class="menu-toggle">
-                        <span>Cards</span>
-                    </a>-->
-<!--                    <ul class="ml-menu">
-                        <li>
-                            <a href="pages/widgets/cards/basic.html">Cliente</a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets/cards/colored.html">Proveedor</a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets/cards/no-header.html">Articulos</a>
-                        </li>
-                    </ul>-->
-                <!--</li>-->
-<!--                <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <span>Infobox</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="pages/widgets/infobox/infobox-1.html">Infobox-1</a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets/infobox/infobox-2.html">Infobox-2</a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets/infobox/infobox-3.html">Infobox-3</a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets/infobox/infobox-4.html">Infobox-4</a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets/infobox/infobox-5.html">Infobox-5</a>
-                        </li>
-                    </ul>
+            </ul>
+        </li>
+            <li>
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">widgets</i>
+                <span>Reportes</span>
+                
+            </a>
+            <ul class="ml-menu">
+<!--                <li >
+                    <a href="<?=base_url?>documento/ordencompra" >Ver comprobantes</a>
                 </li>-->
+                
+                <li >
+                    <a href="<?=base_url?>documento/selectdetallado" >Venta por detalle</a>
+                </li>
+                
+                
+
             </ul>
         </li>
         

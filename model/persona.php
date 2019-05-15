@@ -38,12 +38,32 @@ class persona {
     private $partida;
     private $tipopersona;
     private $idtipodocumento;
+    private $tipodocumento;
     private $modopago;
+    private $bydefault;
 
     function __construct() {
         
     }
+    function getTipodocumento() {
+        return $this->tipodocumento;
+    }
 
+    function setTipodocumento($tipodocumento) {
+        $this->tipodocumento = $tipodocumento;
+    }
+
+        
+    function getBydefault() {
+        return $this->bydefault;
+    }
+
+    function setBydefault($bydefault) {
+        $this->bydefault = $bydefault;
+    }
+
+    
+    
     function getId() {
         return $this->id;
     }
@@ -231,7 +251,8 @@ class persona {
     function select($tipo) {
         $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta("select * from persona where tipopersona=? and activo = 1 order by id desc;", array($tipo));
+        $data_tabla = $data_source->ejecutarconsulta("select p.*,td.abreviatura from persona as p INNER JOIN persona_tipo_documento as td on 
+         td.id = p.id_tipo_documento where p.tipopersona=? and p.activo = 1 order by id desc;", array($tipo));
         $personas = array();
         $persona = null;
         foreach ($data_tabla as $clave => $valor) {
@@ -259,6 +280,8 @@ class persona {
             $persona->setTipopersona($data_tabla[$clave]["tipopersona"]);
             $persona->setIdtipodocumento($data_tabla[$clave]["id_tipo_documento"]);
             $persona->setModopago($data_tabla[$clave]["modopago"]);
+            $persona->setTipodocumento($data_tabla[$clave]["abreviatura"]);
+            $persona->setBydefault($data_tabla[$clave]["bydefault"]);
 
 
 
@@ -270,7 +293,8 @@ class persona {
     function selectone($id) {
         $data_source = new DataSource();
 
-        $data_tabla = $data_source->ejecutarconsulta("select * from persona where id=?;", array($id));
+        $data_tabla = $data_source->ejecutarconsulta("select p.*,td.abreviatura from persona as p INNER JOIN persona_tipo_documento as td on 
+        td.id = p.id_tipo_documento where p.id=?;", array($id));
 
         $persona = new persona();
         foreach ($data_tabla as $clave => $valor) {
@@ -299,6 +323,46 @@ class persona {
             $persona->setIdtipodocumento($data_tabla[$clave]["id_tipo_documento"]);
             $persona->setModopago($data_tabla[$clave]["modopago"]);
             $persona->setTipopersona("tipopersona");
+            $persona->setTipodocumento($data_tabla[$clave]["abreviatura"]);
+            $persona->setBydefault($data_tabla[$clave]["bydefault"]);
+        }
+        return $persona;
+    }
+    function bydefault($tipo) {
+        $data_source = new DataSource();
+
+        $data_tabla = $data_source->ejecutarconsulta("select p.*,td.abreviatura from persona as p INNER JOIN persona_tipo_documento as td on 
+        td.id = p.id_tipo_documento where p.bydefault=1 and p.tipopersona=?;", array($tipo));
+
+        $persona = new persona();
+        foreach ($data_tabla as $clave => $valor) {
+
+            $persona->setId($data_tabla[$clave]["id"]);
+            $persona->setNombre($data_tabla[$clave]["nombre"]);
+            $persona->setRuc($data_tabla[$clave]["ruc"]);
+            $persona->setRepresentante($data_tabla[$clave]["representante"]);
+            $persona->setDni($data_tabla[$clave]["dni"]);
+            $persona->setDpto($data_tabla[$clave]["dpto"]);
+            $persona->setProvincia($data_tabla[$clave]["provincia"]);
+            $persona->setDistrito($data_tabla[$clave]["distrito"]);
+            $persona->setDireccion($data_tabla[$clave]["direccion"]);
+            $persona->setTelfijo($data_tabla[$clave]["telfijo"]);
+            $persona->setCel1($data_tabla[$clave]["cel1"]);
+            $persona->setCel2($data_tabla[$clave]["cel2"]);
+            $persona->setCel3($data_tabla[$clave]["cel3"]);
+            $persona->setEmail($data_tabla[$clave]["email"]);
+            $persona->setWeb($data_tabla[$clave]["web"]);
+            $persona->setAnivcumplenos($data_tabla[$clave]["anivcumpleanos"]);
+            $persona->setResponsable($data_tabla[$clave]["responsable"]);
+            $persona->setEstado($data_tabla[$clave]["estado"]);
+            $persona->setRepresenta($data_tabla[$clave]["representa"]);
+            $persona->setPartida($data_tabla[$clave]["partida"]);
+            $persona->setTipopersona($data_tabla[$clave]["tipopersona"]);
+            $persona->setIdtipodocumento($data_tabla[$clave]["id_tipo_documento"]);
+            $persona->setModopago($data_tabla[$clave]["modopago"]);
+            $persona->setTipopersona("tipopersona");
+            $persona->setTipodocumento($data_tabla[$clave]["abreviatura"]);
+            $persona->setBydefault($data_tabla[$clave]["bydefault"]);
         }
         return $persona;
     }
@@ -338,6 +402,18 @@ class persona {
             $persona->getId()
         ));
         return $filas;
+    }
+    function updatedefault($id,$tipo) {
+        $data_source = new DataSource();
+        $filas = 0;
+//        $cliente = new cliente();
+//        $cliente = $objeto;
+        $filas = $data_source->ejecutarActualizacion("update persona set bydefault = case when id= ? then 1 else 0 end where tipopersona=?;", array($id,$tipo));
+        
+        if($filas == 0){
+            $data_source->ejecutarActualizacion("update persona set bydefault = 0 where id=? and tipopersona=?;", array($id,$tipo));
+        }
+       
     }
     function insert(persona $persona){
         

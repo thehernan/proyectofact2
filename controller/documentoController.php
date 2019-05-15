@@ -22,6 +22,7 @@ require_once 'model/documentoOtros.php';
 require_once 'model/documentoGuia.php';
 require_once 'model/producto.php';
 require_once 'model/cuentaBancaria.php';
+require_once 'model/persona.php';
 //require_once 'model/serieDetalle.php';
 
 
@@ -59,7 +60,9 @@ class documentoController {
         $sucursales= $sucurm->selectAll();
         $tipodoc = 'Venta';
         $documento = new documento();
-        
+        $personam = new persona();
+        $personabydefault = $personam->bydefault(1);
+//        var_dump($personabydefault);
         require_once 'view/layout/header.php';
         require_once 'view/documentocabecera/form_documento.php';
 
@@ -136,11 +139,72 @@ class documentoController {
 
         $sucursales = $sucursal->selectAll();
 
-        $documentos = $this->documento->select($desde, $hasta, 'Factura', '', '', '', $_SESSION['idsucursal']);
+        $documentos = $this->documento->select($desde, $hasta, 'Factura','Venta' ,'', '', '', $_SESSION['idsucursal']);
         
         require_once 'view/documentocabecera/listar.php';
         require_once 'view/layout/footer.php';
     }
+    function selectdetallado() {
+        
+        require_once 'view/layout/header.php';
+        
+        $month = date('m');
+        $year = date('Y');
+        $day = date("d", mktime(0, 0, 0, $month + 1, 0, $year));
+        $desde = date('Y-m-d', mktime(0, 0, 0, $month, 1, $year));
+        $hasta = date('Y-m-d', mktime(0, 0, 0, $month, $day, $year));
+
+
+        $sucursal = new sucursal();
+
+        $sucursales = $sucursal->selectAll();
+
+        $detallado = $this->documento->selectdetallado($desde, $hasta, 'Factura','Venta' ,'', '', '','Soles', $_SESSION['idsucursal']);
+//        var_dump($detallado);
+        require_once 'view/reportes/venta/listar.php';
+        require_once 'view/layout/footer.php';
+    }
+    function selectcompra(){
+        
+        require_once 'view/layout/header.php';
+        
+        $month = date('m');
+        $year = date('Y');
+        $day = date("d", mktime(0, 0, 0, $month + 1, 0, $year));
+        $desde = date('Y-m-d', mktime(0, 0, 0, $month, 1, $year));
+        $hasta = date('Y-m-d', mktime(0, 0, 0, $month, $day, $year));
+
+
+        $sucursal = new sucursal();
+
+        $sucursales = $sucursal->selectAll();
+
+        $documentos = $this->documento->select($desde, $hasta, 'Factura','Compra', '', '', '', $_SESSION['idsucursal']);
+        
+        require_once 'view/documentocabecera/compra/listarcompras.php';
+        require_once 'view/layout/footer.php';
+    }
+    function selectordencompra(){
+        
+        require_once 'view/layout/header.php';
+        
+        $month = date('m');
+        $year = date('Y');
+        $day = date("d", mktime(0, 0, 0, $month + 1, 0, $year));
+        $desde = date('Y-m-d', mktime(0, 0, 0, $month, 1, $year));
+        $hasta = date('Y-m-d', mktime(0, 0, 0, $month, $day, $year));
+
+
+        $sucursal = new sucursal();
+
+        $sucursales = $sucursal->selectAll();
+
+        $documentos = $this->documento->select($desde, $hasta, 'orden_compra','orden_compra', '', '', '', $_SESSION['idsucursal']);
+        
+        require_once 'view/documentocabecera/ordencompra/listarordencompra.php';
+        require_once 'view/layout/footer.php';
+    }
+    
     function selectcotizacion() {
         require_once 'view/layout/header.php';
         $month = date('m');
@@ -154,7 +218,7 @@ class documentoController {
 
         $sucursales = $sucursal->selectAll();
 
-        $documentos = $this->documento->select($desde, $hasta, 'Cotizacion', '', '', '', $_SESSION['idsucursal']);
+        $documentos = $this->documento->select($desde, $hasta, 'Cotizacion','Cotizacion', '', '', '', $_SESSION['idsucursal']);
        
         require_once 'view/documentocabecera/cotizacion/listar_cotizacion.php';
         require_once 'view/layout/footer.php';
@@ -163,7 +227,8 @@ class documentoController {
     function search() {
 //        var_dump($_POST);
 
-        if (isset($_POST['dpdesde']) && isset($_POST['dphasta']) && isset($_POST['cbtipocomprobante']) && isset($_POST['txtbuscar']) && isset($_POST['txtserie']) && isset($_POST['txtnumero']) && isset($_POST['cbsucursal'])) {
+        if (isset($_POST['dpdesde']) && isset($_POST['dphasta']) && isset($_POST['cbtipocomprobante']) && isset($_POST['txtbuscar'])
+                && isset($_POST['txtserie']) && isset($_POST['txtnumero']) && isset($_POST['cbsucursal']) && isset($_POST['tipodoc'])) {
 
 
             $desde = $_POST['dpdesde'];
@@ -175,20 +240,22 @@ class documentoController {
             $datehf = $dateh->format('Y-m-d');
 
             $tipocomp = $_POST['cbtipocomprobante'];
-
+            $tipodoc = $_POST['tipodoc'];
 
             $buscar = $_POST['txtbuscar'];
             $serie = $_POST['txtserie'];
             $numero = $_POST['txtnumero'];
             $sucursal = $_POST['cbsucursal'];
 
-            $documentos = $this->documento->select($datedf, $datehf, $tipocomp, $buscar, $serie, $numero, $sucursal);
+            $documentos = $this->documento->select($datedf, $datehf, $tipocomp,$tipodoc, $buscar, $serie, $numero, $sucursal);
 
             ////// tabla ///// 
             ?>
             <table class="table  table-hover table-bordered" id="tabladocumento">
                 <thead>
+                <?php echo $tipodoc; if($tipodoc == 'Venta' ){ ?>
                     <tr>
+                        
                         <th>Fecha</th>
                         <th>Tipo</th>
                         <th>Serie</th>
@@ -201,6 +268,37 @@ class documentoController {
                         <th>Imprimir</th>
                         <th>Acciones</th>
                     </tr>
+                <?php }elseif($tipodoc == 'Compra' ){ ?>
+                
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Serie</th>
+                        <th>Número</th>
+                        <th>RUC/ DNI</th>
+                        <th>Nombre / Rz. Social</th>
+                        <th>Total</th>
+                      
+                        <th>Imprimir</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <?php }else{?>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                       
+                        <th>Número</th>
+                        <th>RUC/ DNI</th>
+                        <th>Nombre / Rz. Social</th>
+                        <th>Total</th>
+                      
+                        <th>Imprimir</th>
+                        <th>Acciones</th>
+                    </tr>
+                    
+                    
+                    
+                <?php }?>
                 </thead>
             <!--                                <tfoot>
                     <tr>
@@ -236,30 +334,79 @@ class documentoController {
 
 
 
-                echo '<tr>';
-                echo '<td>' . $documento->getFechaemision() . '</td>';
-                echo '<td>' . $documento->getTipo() . '</td>';
-                echo '<td>' . $documento->getSerie() . '</td>';
-                echo '<td>' . $documento->getNumero() . '</td>';
-                echo '<td>' . $documento->getRuc() . '</td>';
-                echo '<td>' . $documento->getRazonsocial() . '</td>';
-                echo '<td>' . $documento->getTotal() . '</td>';
-                echo '<td>' . $estadol . '</td>';
-                echo '<td>' . $estados . '</td>';
-                echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
-                if($documento->getTipo() == 'Cotizacion'){
+             
+                
+                if($tipodoc == 'Cotizacion'){
+                       echo '<tr>';
+                        echo '<td>' . $documento->getFechaemision() . '</td>';
+                        echo '<td>' . $documento->getTipo() . '</td>';
                     
+                        echo '<td>' . $documento->getNumero() . '</td>';
+                        echo '<td>' . $documento->getRuc() . '</td>';
+                        echo '<td>' . $documento->getRazonsocial() . '</td>';
+                        echo '<td>' . $documento->getTotal() . '</td>';
+                      
                     
+                    echo '<td><a  href="'.base_url.'documento/imprimircotizacion&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a></td>';
                     echo '<td>'
                     . '<a href="' . base_url . 'documento/sale"  data-toggle="tooltip" data-placement="top" title="VENDER"><i class="material-icons">add_shopping_cart</i></a> </div></td>';
-                }else{
+                }elseif($tipodoc == 'Venta' ){
                     
+                    echo '<tr>';
+                    echo '<td>' . $documento->getFechaemision() . '</td>';
+                    echo '<td>' . $documento->getTipo() . '</td>';
+                    echo '<td>' . $documento->getSerie() . '</td>';
+                    echo '<td>' . $documento->getNumero() . '</td>';
+                    echo '<td>' . $documento->getRuc() . '</td>';
+                    echo '<td>' . $documento->getRazonsocial() . '</td>';
+                    echo '<td>' . $documento->getTotal() . '</td>';
+                    echo '<td>' . $estadol . '</td>';
+                    echo '<td>' . $estados . '</td>';
+                    
+                    echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
                     echo '<td><div class="demo-google-material-icon"> <i class="material-icons">code</i> <i class="material-icons">done</i> '
                     . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a>'
                             . ' <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a>';
                     if($documento->getEstadolocal() != 'Anulado'){
                          echo '<a  data-toggle="modal" data-target=".modalanulardoc" data-id="'.$documento->getId().'" data-documento="'.$documento->getSerie().'-'.$documento->getNumero().'" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
                     }     
+                }elseif($tipodoc == 'Compra') {
+                    
+                    
+                    
+                          echo '<tr>';
+                    echo '<td>' . $documento->getFechaemision() . '</td>';
+                    echo '<td>' . $documento->getTipo() . '</td>';
+                    echo '<td>' . $documento->getSerie() . '</td>';
+                    echo '<td>' . $documento->getNumero() . '</td>';
+                    echo '<td>' . $documento->getRuc() . '</td>';
+                    echo '<td>' . $documento->getRazonsocial() . '</td>';
+                    echo '<td>' . $documento->getTotal() . '</td>';
+                  
+                    
+                    
+                    echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
+                                            
+                    echo '<td><div class="demo-google-material-icon"> ';
+
+                    echo '<a  href="" data-toggle="tooltip" data-placement="top"  title="EDITAR"><i class="material-icons">create</i></a></div></td>';
+                    
+                }else{
+                    echo '<tr>';
+                        echo '<td>' . $documento->getFechaemision() . '</td>';
+                        echo '<td>' . $documento->getTipo() . '</td>';
+                    
+                        echo '<td>' . $documento->getNumero() . '</td>';
+                        echo '<td>' . $documento->getRuc() . '</td>';
+                        echo '<td>' . $documento->getRazonsocial() . '</td>';
+                        echo '<td>' . $documento->getTotal() . '</td>';
+                    
+                    echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
+                                            
+                    echo '<td><div class="demo-google-material-icon"> '
+                    . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="COMPRAR"><i class="material-icons">shopping_basket</i></a>';
+
+                    echo '<a  href="" data-toggle="tooltip" data-placement="top"  title="EDITAR"><i class="material-icons">create</i></a></div></td>';   
                 }
                 
                 echo '</tr>';
@@ -346,6 +493,179 @@ class documentoController {
             //       
             //       
             //       })
+
+
+            </script>    
+
+
+            <?php
+        }
+    }
+    function searchdetallado() {
+//        var_dump($_POST);
+
+        if (isset($_POST['dpdesde']) && isset($_POST['dphasta']) && isset($_POST['cbtipocomprobante']) && isset($_POST['txtbuscar'])
+                && isset($_POST['txtserie']) && isset($_POST['txtnumero']) && isset($_POST['cbsucursal']) && isset($_POST['cbmoneda'])) {
+
+
+            $desde = $_POST['dpdesde'];
+            $dated = DateTime::createFromFormat('d/m/Y', $desde);
+            $datedf = $dated->format('Y-m-d');
+
+            $hasta = $_POST['dphasta'];
+            $dateh = DateTime::createFromFormat('d/m/Y', $hasta);
+            $datehf = $dateh->format('Y-m-d');
+
+            $tipocomp = $_POST['cbtipocomprobante'];
+           
+            $moneda = $_POST['cbmoneda'];
+            $buscar = $_POST['txtbuscar'];
+            $serie = $_POST['txtserie'];
+            $numero = $_POST['txtnumero'];
+            $sucursal = $_POST['cbsucursal'];
+
+            $detallado = $this->documento->selectdetallado($datedf, $datehf, $tipocomp,'Venta', $buscar, $serie, $numero,$moneda, $sucursal);
+
+            ////// tabla ///// 
+            ?>
+            <table class="table  table-hover table-bordered" id="tabladocumento">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Serie / Num</th>
+                        <th>Fecha</th>
+                        <th>Nombre / Rz. Social</th>
+                        <th>Vendedor</th>
+                        <th>Tipo pago</th>
+                        <th>Descripción</th>
+                        <th>Total</th>
+                        <th>Inc. Igv</th>
+                        <th>Tipo Igv</th>
+                    </tr>
+                </thead>
+            <!--                                <tfoot>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Serie</th>
+                        <th>Número</th>
+                        <th>RUC/ DNI</th>
+                        <th>Nombre / Rz. Social</th>
+                        <th>Total</th>
+                        <th>Est. Local</th>
+                        <th>Est. Sunat</th>
+                        <th>Imprimir</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </tfoot>-->
+                <tbody >
+                    <?php 
+                        $total = 0;
+                        foreach ($detallado as $detalle){
+
+                                echo '<tr>';
+
+                                echo '<td>'.$detalle['tipo'].'</td>';
+                                echo '<td>'.$detalle['serien'].'</td>';
+                                echo '<td>'.$detalle['fechaemision'].'</td>';
+                                echo '<td>'.$detalle['razonsocial'].'</td>';
+                                echo '<td>'.$detalle['vendedor'].'</td>';
+                                echo '<td>'.$detalle['tipo_pago'].'</td>';
+                                echo '<td>'.$detalle['descripcionprod'].'</td>';
+                                echo '<td>'.$detalle['total'].'</td>';
+                                echo '<td>'.$detalle['incigv'].'</td>';
+                                echo '<td>'.$detalle['impuesto'].'</td>';
+
+                                echo '</tr>';
+
+                            $total += $detalle['total'];
+
+                        } 
+
+
+                                echo '<tr>';
+                                echo '<td></td>';
+                                echo '<td></td>';
+                                echo '<td></td>';
+                                echo '<td></td>';
+                                echo '<td></td>';
+                                echo '<td></td>';
+                                echo '<td></td>';
+                                echo '<td colspan="2" class="h4"><strong>Total</strong></td>';
+//                                            echo '<td></td>';
+                                echo '<td>'.number_format($total,2).'</td>';
+                                echo '</tr>';
+
+                        ?>
+            
+
+
+
+                </tbody>
+
+            </table>
+          
+            <div class="pagination">
+                <nav>
+                    <ul class="pagination"></ul>
+
+                </nav>
+
+            </div>
+            <script>
+
+                var table = '#tabladocumento'
+                $(document).ready(function () {
+
+                    $('.pagination').html('')
+                    var trnum = 0
+                    var maxRows = 20
+                    var totalRows = $(table + ' tbody tr').length
+                    $(table + ' tr:gt(0)').each(function () {
+                        trnum++
+                        if (trnum > maxRows) {
+                            $(this).hide()
+                        }
+                        if (trnum <= maxRows) {
+                            $(this).show()
+
+                        }
+
+
+
+                    })
+                    if (totalRows > maxRows) {
+                        var pagenum = Math.ceil(totalRows / maxRows)
+                        for (var i = 1; i <= pagenum; ) {
+                            $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span>\n\
+                            </span>\</li>').show()
+
+                        }
+
+                    }
+                    $('.pagination li:first-child').addClass('active')
+                    $('.pagination li').on('click', function () {
+
+                        var pageNum = $(this).attr('data-page')
+                        var trIndex = 0;
+                        $('.pagination li').removeClass('active')
+                        $(this).addClass('active')
+                        $(table + ' tr:gt(0)').each(function () {
+                            trIndex++
+                            if (trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum) - maxRows)) {
+                                $(this).hide()
+                            } else {
+                                $(this).show()
+                            }
+
+                        })
+
+                    });
+
+                    
+                });
+                
+    
 
 
             </script>    
@@ -525,6 +845,7 @@ class documentoController {
     function compra() {
         require_once 'view/layout/header.php';
 //        $documentossuc = $this->docsucursal->selectAll();
+        $personam = new persona();
         $transactions = $this->sunattrans->selectAll();
         $usuarios = $this->usuario->selectAll();
         $impuestos = $this->impuesto->selectAll();
@@ -534,7 +855,8 @@ class documentoController {
         $cambio = $tipocambio->selectMax();
         $tipo = 'Compra';
         $detalles = array();
-        
+        $documento = new documento();
+        $personabydefault = $personam->bydefault(2);
         require_once 'view/documentocabecera/compra/form_documento_compra.php';
 
 
@@ -932,7 +1254,7 @@ class documentoController {
             $documento = new documento();
 
 
-            $serie=$_POST['ORDEN_COMPRA'];
+            $serie='orden_compra';
 //            $numero = $_POST['txtnro'];
             $moneda = $_POST['cbmoneda'];
             $fechaemision = $emisionf;
@@ -959,7 +1281,7 @@ class documentoController {
                 $garantia = 0;
             }
 
-//        $documento->setSerie($serie);
+            $documento->setSerie($serie);
             $documento->setNumero($numero);
             $documento->setMoneda($moneda);
             $documento->setFechaemision($fechaemision);
@@ -1645,7 +1967,7 @@ class documentoController {
                 && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['cbvendedor'])
                         && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) 
                 && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion'])  && isset($_POST['cbtipopago']) && 
-                isset($_POST['txtnroop'])) {
+                isset($_POST['txtnroop']) && isset($_POST['cbtipoventa'])) {
             $serier = str_replace(PHP_EOL, ' ', $_POST['cbserie']);
             $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
             
@@ -1683,7 +2005,7 @@ class documentoController {
             $documento = new documento();
 
 
-            
+            $tipoventa = $_POST['cbtipoventa'];
             $moneda = $_POST['cbmoneda'];
             $fechaemision = $emisionf;
             $fechavencimiento = $vencimientof;
@@ -1731,6 +2053,7 @@ class documentoController {
             $documento->setTipopago($tipopago);
             $documento->setNrooptipopago($nrotipopago);
             $documento->setIncigv($incigv);
+            $documento->setTipoventa($tipoventa);
 
             echo $id = $documento->insert($documento);
 
@@ -2396,7 +2719,46 @@ class documentoController {
     }
     function imprimirexcel(){
 //        var_dump($_GET);
-         if (isset($_GET['dpdesde']) && isset($_GET['dphasta']) && isset($_GET['cbtipocomprobante']) && isset($_GET['txtbuscar']) && isset($_GET['txtserie']) && isset($_GET['txtnumero']) && isset($_GET['cbsucursal'])) {
+         if (isset($_GET['dpdesde']) && isset($_GET['dphasta']) && isset($_GET['cbtipocomprobante']) && isset($_GET['txtbuscar'])
+                 && isset($_GET['txtserie']) && isset($_GET['txtnumero']) && isset($_GET['cbsucursal']) && isset($_GET['tipodoc'])) {
+
+
+            $desde = $_GET['dpdesde'];
+//            $dated = DateTime::createFromFormat('d/m/Y', $desde);
+//            $datedf = $dated->format('Y-m-d');
+
+            $hasta = $_GET['dphasta'];
+//            $dateh = DateTime::createFromFormat('d/m/Y', $hasta);
+//            $datehf = $dateh->format('Y-m-d');
+
+            $tipocomp = $_GET['cbtipocomprobante'];
+            $tipodoc = $_GET['tipodoc'];
+
+            $buscar = $_GET['txtbuscar'];
+            $serie = $_GET['txtserie'];
+            $numero = $_GET['txtnumero'];
+            $sucursal = $_GET['cbsucursal'];
+            
+            $documentos = $this->documento->select($desde, $hasta, $tipocomp,$tipodoc, $buscar, $serie, $numero, $sucursal);
+//            var_dump($documentos);
+            require_once 'view/reportes/functions/excel.php';
+            
+//            activeErrorReporting();
+//            noCli();
+
+            require_once 'plugins/PHPExcel/Classes/PHPExcel.php';
+            require_once 'view/reportes/searchdocumentExcel.php';
+            
+        }
+        
+        
+        
+    }
+    function imprimirexcelventadetallado(){
+        var_dump($_GET);
+         if (isset($_GET['dpdesde']) && isset($_GET['dphasta']) && isset($_GET['cbtipocomprobante']) 
+                 && isset($_GET['txtbuscar']) && isset($_GET['txtserie']) && isset($_GET['txtnumero']) && isset($_GET['cbsucursal'])
+                 && isset($_GET['cbmoneda'])) {
 
 
             $desde = $_GET['dpdesde'];
@@ -2409,21 +2771,21 @@ class documentoController {
 
             $tipocomp = $_GET['cbtipocomprobante'];
 
-
+            $moneda = $_GET['cbmoneda'];
             $buscar = $_GET['txtbuscar'];
             $serie = $_GET['txtserie'];
             $numero = $_GET['txtnumero'];
             $sucursal = $_GET['cbsucursal'];
-
-            $documentos = $this->documento->select($desde, $hasta, $tipocomp, $buscar, $serie, $numero, $sucursal);
+//            
+            $detallado = $this->documento->selectdetallado($desde, $hasta, $tipocomp, 'Venta',$buscar, $serie, $numero,$moneda, $sucursal);
 //            var_dump($documentos);
             require_once 'view/reportes/functions/excel.php';
-            
+//            
 //            activeErrorReporting();
 //            noCli();
 
             require_once 'plugins/PHPExcel/Classes/PHPExcel.php';
-            require_once 'view/reportes/searchdocumentExcel.php';
+            require_once 'view/reportes/venta/detalladoExcel.php';
             
         }
         

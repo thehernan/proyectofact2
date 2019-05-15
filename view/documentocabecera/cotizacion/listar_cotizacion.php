@@ -50,6 +50,7 @@
                     <div class="body">
                         <input type="hidden"value="<?=base_url ?>" id="url" name="url">  
                      <form action="<?= base_url?>documento/search" method="POST"  id="FormularioAjaxBuscar" data-form="insert" enctype="multipart/form-data" autocomplete="off" >   
+                         <input type="hidden" value="Cotizacion" id="tipodoc" name="tipodoc">
                         <div class="row">  
                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                             <div class="form-group form-float">

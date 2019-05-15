@@ -381,6 +381,8 @@ class Detalle {
         return $filas;
     }
     
+   
+    
     
     
 

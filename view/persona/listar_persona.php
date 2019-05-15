@@ -55,53 +55,32 @@ if ($tipo == 2) {
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tablapersona">
+                            <table class="table table-bordered table-striped table-hover dataTable " id="tablapersona">
                                 <thead>
                                     <tr>
-                                        <th>Nro°</th>
-                                        <th>Nombre</th>
-                                        <th>Dpto</th>
-                                        <th>R.U.C</th>
-                                        <th>Telf. Fijo</th>
-                                        <th>Aniv.</th>
-                                        <th>Vendedor</th>
+                                        <th>Tipo Documento</th>
+                                        <th>Nro. Documento</th>
+                                        <th>Razón social</th>
+                                        <th>Dirección</th>
+                                        <th>Email</th>
+                                        <th>Celular</th>
+                                        <th>Por defecto?</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
+<!--                                <tfoot>
                                     <tr>
-                                        <th>Nro°</th>
-                                        <th>Nombre</th>
-                                        <th>Dpto</th>
-                                        <th>R.U.C</th>
-                                        <th>Telf. Fijo</th>
-                                        <th>Aniv.</th>
-                                        <th>Vendedor</th>
+                                        <th>Tipo Documento</th>
+                                        <th>Nro. Documento</th>
+                                        <th>Razón social</th>
+                                        <th>Dirección</th>
+                                        <th>Email</th>
+                                        <th>Celular</th>
+                                        <th>Por defecto?</th>
                                         <th>Acciones</th>
                                     </tr>
-                                </tfoot>
-                                <tbody>
-
-                                    <?php
-                                    $i = 1;
-                                    foreach ($personas as $persona) {
-                                        echo '<tr>';
-                                        echo '<td>' . $i . '</td>';
-                                        echo '<td>' . $persona->getNombre() . '</td>';
-                                        echo '<td>' . $persona->getDpto() . '</td>';
-                                        echo '<td>' . $persona->getRuc() . '</td>';
-                                        echo '<td>' . $persona->getTelfijo() . '</td>';
-                                        echo '<td>' . $persona->getAnivcumplenos() . '</td>';
-                                        echo '<td>' . $persona->getRepresentante() . '</td>';
-                                        echo '<td><a href="' . base_url . $urlup . '&id=' . $persona->getId() . '" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'
-                                        . ' <button  type="button" class="btn btn-danger" onclick=eliminar(' . $persona->getId() . ',"' . $urldel . '","delete")><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>';
-                                        echo '</tr>';
-                                        $i++;
-                                    }
-                                    ?>
-
-
-                                </tbody>
+                                </tfoot>-->
+                           
                             </table>
                         </div>
                     </div>
@@ -111,3 +90,56 @@ if ($tipo == 2) {
         <!-- #END# Exportable Table --> 
     </div>
 </section>
+
+<script>
+    
+$(document).ready(function() {
+        $('#tablapersona').DataTable({
+             "responsive": true,
+             
+            
+            "ajax":{
+                "method":"POST",
+                "url":'<?= base_url.'persona/listarcliente'?>',
+                "data":{tipo: <?= $tipo?>},
+            },
+            "columns":[
+                {"data":"tipodoc"},
+                {"data":"ndocumento"},
+                {"data":"nombre"},
+                {"data":"direccion"},
+                {"data":"email"},
+                {"data":"telefono"},
+                {"data":"bydefault"},
+                {"data":"acciones"}
+                
+            ],
+            "ordering": false
+        });
+    });
+    
+    
+    
+$(document).on('change','#ckbydefaultcliente', function (e){
+        ck = true;
+         if(!$(this).is(':checked')){
+               ck= false;     
+        }
+        var id = $(this).val();        
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url.'persona/updatedefault' ?>',
+            data: {id : id , tipo: <?= $tipo ?>},
+            success: function (data) {
+                console.log(data);
+                $('#tablapersona').dataTable()._fnAjaxUpdate();
+                        
+            }
+            
+            
+        });
+        
+    });
+
+</script>
+    

@@ -38,18 +38,20 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                           Comprobantes
+                           Orden de compra
                             
 
                         </h2>
+                        <hr>
+                        <a class="btn btn-sm bg-lime waves-effect" href="<?= base_url ?>documento/ordencompra"><span class="glyphicon glyphicon-plus "></span> Nuevo</a>
                        
                     
                     </div>
                     <div class="body">
-                        <input type="hidden"value="<?=base_url ?>" id="url" name="url">  
-                        
+                        <input type="hidden" value="<?=base_url ?>" id="url" name="url">  
+                          
                      <form action="<?= base_url?>documento/search" method="POST"  id="FormularioAjaxBuscar" data-form="insert" enctype="multipart/form-data" autocomplete="off" >   
-                         <input type="hidden" value="Venta" id="tipodoc" name="tipodoc">
+                         <input type="hidden" value="orden_compra" id="tipodoc" name="tipodoc">
                         <div class="row">  
                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                             <div class="form-group form-float">
@@ -85,8 +87,8 @@
                                 <select  class="form-control show-tick" id="cbtipocomprobante" name="cbtipocomprobante">
 <!--                                    <option value="">- Tipo comprobante -</option>-->
                                     <?php 
-                                    $pred= array('Factura','Boleta','Nota de venta','Nota de crédito','Nota de débito');
-                                    $value= array('Factura','Boleta','nota_venta','nota_credito','nota_debito');
+                                    $pred= array('Orden de compra');
+                                    $value= array('orden_compra');
                                     
                                     for($i=0;$i < count($pred);$i++){
 
@@ -202,13 +204,12 @@
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Tipo</th>
-                                        <th>Serie</th>
+                                       
                                         <th>Número</th>
                                         <th>RUC/ DNI</th>
                                         <th>Nombre / Rz. Social</th>
                                         <th>Total</th>
-                                        <th>Est. Local</th>
-                                        <th>Est. Sunat</th>
+                                     
                                         <th>Imprimir</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -249,28 +250,18 @@
                                             
                                             echo '<td>'.$documento->getFechaemision().'</td>';
                                             echo '<td>'.$documento->getTipo().'</td>';
-                                            echo '<td>'.$documento->getSerie().'</td>';
+                                           
                                             echo '<td>'.$documento->getNumero().'</td>';
                                             echo '<td>'.$documento->getRuc().'</td>';
                                             echo '<td>'.$documento->getRazonsocial().'</td>';
                                             echo '<td>'.$documento->getTotal().'</td>';
-                                            echo '<td>'.$estadol.'</td>';
-                                            echo '<td>'.$estados.'</td>';
+                                        
                                             echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
-                                            if($documento->getTipo() == 'Cotizacion'){
-
-
-                                                echo '<td>'
-                                                . '<a href="' . base_url . 'documento/sale"  data-toggle="tooltip" data-placement="top" title="VENDER"><i class="material-icons">add_shopping_cart</i></a> </div></td>';
-                                            }else{
-
-                                                echo '<td><div class="demo-google-material-icon"> <i class="material-icons">code</i> <i class="material-icons">done</i> '
-                                                . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE DÉBITO"><i class="material-icons">control_point</i></a>'
-                                                        . ' <a href="'.base_url.'documento/loadcredit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="NOTA DE CRÉDITO"><i class="material-icons">remove_circle_outline</i></a>';
-                                                if($documento->getEstadolocal() != 'Anulado'){
-                                                    echo '<a  data-toggle="modal" data-target=".modalanulardoc" data-id="'.$documento->getId().'" data-documento="'.$documento->getSerie().'-'.$documento->getNumero().'" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
-                                                }     
-                                            }
+                                            
+                                            echo '<td><div class="demo-google-material-icon"> '
+                                            . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="COMPRAR"><i class="material-icons">shopping_basket</i></a>';
+                                           
+                                            echo '<a  href="" data-toggle="tooltip" data-placement="top"  title="EDITAR"><i class="material-icons">create</i></a></div></td>';
                                             echo '</tr>';
                                         
                                         

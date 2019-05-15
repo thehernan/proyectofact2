@@ -410,5 +410,162 @@ position:absolute;
 		
 		
 		 echo '<a href ="'.base_url.'documento/anular&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="ANULAR"><i class="material-icons">block</i></a></div></td>';
+		 
+		 
+		 
+		 
+		 
+User
+celeste 32423 32432
+keyboard_arrow_down
+Menu
+© 2019 - 2020 VTechnology - Hernan Vilchez.
+Version: 1.0.0
+
+Fatal error: Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'tipopersona='1' and p.activo = 1 order by id desc' at line 2 in C:\xampp7-3\htdocs\facturador\config\DataSource.php:37 Stack trace: #0 C:\xampp7-3\htdocs\facturador\config\DataSource.php(37): PDOStatement->execute(Array) #1 C:\xampp7-3\htdocs\facturador\model\persona.php(255): DataSource->ejecutarconsulta('select p.*,td.a...', Array) #2 C:\xampp7-3\htdocs\facturador\controller\personaController.php(30): persona->select(1) #3 C:\xampp7-3\htdocs\facturador\index.php(85): personaController->selectclient() #4 {main} thrown in C:\xampp7-3\htdocs\facturador\config\DataSource.php on line 37
+
+
+
+     <tbody>
+
+                                    <?php
+                                    $i = 1;
+                                    $check = '';
+                                    foreach ($personas as $persona) {
+                                        if($persona->getBydefault() == 1){
+                                            $check = 'checked';
+                                        }else{
+                                            $check = '';
+                                        }
+                                   
+                                        echo '<tr>';
+                                        echo '<td>' . $persona->getTipodocumento() . '</td>';
+                                        echo '<td>' . $persona->getRuc() . '</td>';
+                                        echo '<td>' . $persona->getNombre() . '</td>';
+                                        echo '<td>' . $persona->getDireccion() . '</td>';
+                                        echo '<td>' . $persona->getEmail() . '</td>';
+                                        echo '<td ><div class="switch" style="text-align: center;"><label><input type="checkbox" '.$check.' id="ckbydefaultcliente" name="ckbydefaultcliente" value="'.$persona->getId().'"><span class="lever"></span></label> </div> </td>';
+                                        echo '<td><a href="' . base_url . $urlup . '&id=' . $persona->getId() . '" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'
+                                        . ' <button  type="button" class="btn btn-danger" onclick=eliminar(' . $persona->getId() . ',"' . $urldel . '","delete")><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>';
+                                        echo '</tr>';
+                                        $i++;
+                                    }
+                                    ?>
+
+
+                                </tbody>
+								
+								
+								
+								<a href= tel:".$persona->getCel1().">".$persona->getCel1()."</a>
+								
+								
+								
+								
+								//      $(document).ready(function() {
+//        $('#tablapersona').DataTable({
+//            
+//            
+//            "ajax": <?=$json?>,
+//            "columns":[
+//                {"data":"tipodoc"},
+//                {"data":"ndocumento"},
+//                {"data":"nombre"},
+//                {"data":"direccion"},
+//                {"data":"email"},
+//                {"data":"telefono"},
+//                {"data":"bydefault"},
+//                {"data":"acciones"}
+//                
+//            ],
+//            "ordering": false
+//            
+//        });
+//    });
+
+
+
+ var aDemoItems = [      
+ <?php
+foreach ($personas as $persona){
+            
+            if($persona->getBydefault() == 1){
+                $check = 'checked';
+            }else{
+                $check = '';
+            }
+            
+            $bydefault = '<div class="switch" style="text-align: center"><label><input type="checkbox" '.$check.' id="ckbydefaultcliente" name="ckbydefaultcliente" value="'.$persona->getId().'"><span class="lever"></span></label> </div>';
+            $acciones = '<a href="' . base_url . $urlup . '&id=' . $persona->getId() . '" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'
+                        . ' <button  type="button" class="btn btn-danger" onclick=eliminar(' . $persona->getId() . ',"' . $urldel . '","delete")><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>';
+            
+            $telefono = "<a href= tel:".$persona->getCel1().">".$persona->getCel1()."</a>";
+ ?>   
+ 
+    {
+        "tipodoc":'<?= $persona->getTipodocumento() ?>',
+        "ndocumento":'<?= $persona->getRuc() ?>',
+        "nombre":'<?= $persona->getNombre()?>',
+        "direccion":'<?= $persona->getNombre()?>',
+        "email":'<?= $persona->getEmail()?>',
+        "telefono":'<?= $telefono ?>',
+        "bydefault":'<?= $bydefault ?>',
+        "acciones":'<?= $acciones ?>'
+    },
+
+<?php } ?>
+]
+$(document).ready(function() {
+ 
+//    var aDemoItems  = oResults.lDemographicItems; //
+//    var jsonString = JSON.stringify(aDemoItems  ) //for testing
+     
+   //Load  datatable
+    var oTblReport = $("#tablapersona");
+ 
+    oTblReport.DataTable ({
+        "data" : aDemoItems,
+        "columns" : [
+            {"data":"tipodoc"},
+            {"data":"ndocumento"},
+            {"data":"nombre"},
+            {"data":"direccion"},
+            {"data":"email"},
+            {"data":"telefono"},
+            {"data":"bydefault"},
+            {"data":"acciones"}
+        ]
+    });
+});
+
+
+
+
+
+User
+32432 32423 32432
+keyboard_arrow_down
+Menu
+© 2019 - 2020 VTechnology - Hernan Vilchez.
+Version: 1.0.0
+
+Fatal error: Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id' in where clause is ambiguous in C:\xampp7-3\htdocs\facturador\config\DataSource.php:37 Stack trace: #0 C:\xampp7-3\htdocs\facturador\config\DataSource.php(37): PDOStatement->execute(Array) #1 C:\xampp7-3\htdocs\facturador\model\persona.php(297): DataSource->ejecutarconsulta('select p.*,td.a...', Array) #2 C:\xampp7-3\htdocs\facturador\controller\personaController.php(57): persona->selectone('15') #3 C:\xampp7-3\htdocs\facturador\index.php(85): personaController->cargarclient() #4 {main} thrown in C:\xampp7-3\htdocs\facturador\config\DataSource.php on line 37
+
+
+d 'view/documentocabecera/compra/listarordencompra.php' (include_path='C:\xampp7-3\php\PEAR') in C:\xampp7-3\htdocs\facturador\controller\documentoController.php on line 181
+
+
+
+select doc.tipo,concat(doc.serie,' - ',doc.numero) as serien,doc.fechaemision,doc.razonsocial,u.nombre,doc.tipo_pago,
+det.descripcionprod,doc.moneda, (det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap) as total,
+case WHEN doc.incigv = 1 THEN  (det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap)  else  
+(((det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap))- 
+(det.montobaseexpo+det.montobaseexonarado+det.montobaseinafecto))+((((det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap))- 
+(det.montobaseexpo+det.montobaseexonarado+det.montobaseinafecto)) - ((((det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap))- 
+(det.montobaseexpo+det.montobaseexonarado+det.montobaseinafecto))/ 1.18)) end as total2, case when doc.incigv = 1 THEN 'Si' else 'No' end as incluyeigv,
+ti.descripcion
+ from documento as doc INNER JOIN detalle 
+as det on doc.id = det.id_documento INNER JOIN tipo_impuesto as ti on ti.id= det.id_impuesto INNER JOIN usuario as u on u.id = doc.id_usuario
+where doc.tipo_doc = 'Venta'
 
 

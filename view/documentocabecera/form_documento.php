@@ -220,7 +220,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group form-float">
                                             <label class="text-danger">Tipo de Venta </label>
-                                            <select class="form-control show-tick" id="cbmoneda" name="cbmoneda" required="">
+                                            <select class="form-control show-tick" id="cbtipoventa" name="cbtipoventa" required="">
 
                                                 <?php
                                                 $pred = array('Contado', 'Credito');
@@ -302,11 +302,11 @@
                                                         <HR>-->
                                 <div class="row">
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                        <input type="hidden" name="idcliente" id="idcliente" value="<?= $documento->getIdpersona()?>">
+                                        <input type="hidden" name="idcliente" id="idcliente" value="<?= ( isset($personabydefault)) ? $personabydefault->getId()  : $documento->getIdpersona() ?>">
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">RUC/DNI</label>
                                             <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtrucbuscar" name="txtrucbuscar" value="<?= $documento->getRuc() ?>" required="" onkeyup="consultarucDoc('<?= base_url . 'persona/buscar' ?>');">
+                                                <input type="text" class="form-control" id="txtrucbuscar" name="txtrucbuscar" value="<?= (isset($personabydefault)) ? $personabydefault->getRuc()  : $documento->getRuc()  ?>" required="" onkeyup="consultarucDoc('<?= base_url . 'persona/buscar' ?>');">
 
                                             </div>
                                         </div>
@@ -317,7 +317,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">Razón Social / Nombre </label>
                                             <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="<?= $documento->getRazonsocial() ?>" required="">
+                                                <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="<?= (isset($personabydefault)) ? $personabydefault->getNombre()  : $documento->getRazonsocial()  ?>" required="">
 
                                             </div>
                                         </div>
@@ -327,7 +327,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label">Dirección </label>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" id="txtdireccion" name="txtdireccion" value="<?= $documento->getDireccion() ?>" >
+                                                <input type="text" class="form-control" id="txtdireccion" name="txtdireccion" value="<?= (isset($personabydefault)) ? $personabydefault->getDireccion()  : $documento->getDireccion()   ?>" >
 
                                             </div>
                                         </div>
@@ -336,7 +336,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label">Email</label>
                                             <div class="form-line">
-                                                <input type="email" class="form-control" id="txtemail" name="txtemail" value="<?= $documento->getEmail() ?>">
+                                                <input type="email" class="form-control" id="txtemail" name="txtemail" value="<?= (isset($personabydefault)) ? $personabydefault->getEmail()  : $documento->getEmail()   ?>">
 
                                             </div>
                                         </div>

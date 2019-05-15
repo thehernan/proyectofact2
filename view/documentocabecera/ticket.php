@@ -42,6 +42,9 @@
     }elseif($document->getTipo()== 'nota_venta' and $document->getTipodoc() == 'Venta'){
         $comprobante='NOTA DE VENTA';
         $opc = '06';
+    }elseif($document->getTipo()== 'Cotizacion' and $document->getTipodoc() == 'Cotizacion'){
+        $comprobante='';
+        $opc = '07';
     }else {
         $comprobante='ORDEN DE COMPRA';
         $opc = '07';

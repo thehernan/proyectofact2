@@ -1538,7 +1538,7 @@ $(document).on('click','#exceldocument', function (e){
    var serie = $('#txtserie').val();
    var numero = $('#txtnumero').val();
    var idsucur = $('#cbsucursal').val();
-   
+   var tipodoc = $('#tipodoc').val();
    var Dated = desde;
     var date_desde = moment(Dated, "DD/MM/YYYY").format("YYYY-MM-DD");
    var Dateh = hasta;
@@ -1559,7 +1559,45 @@ $(document).on('click','#exceldocument', function (e){
 //        data: {dpdesde:desde,dphasta:hasta,cbtipocomprobante:tipocomprobante,txtbuscar:ruc,txtserie:serie,txtnumero:numero,cbsucursal:idsucur},
 //        success: function (data) {
             
-            window.open(url+'&dpdesde='+date_desde+'&dphasta='+date_hasta+'&cbtipocomprobante='+tipocomprobante+'&txtbuscar='+ruc+'&txtserie='+serie+'&txtnumero='+numero+'&cbsucursal='+idsucur, "_blank");
+            window.open(url+'&dpdesde='+date_desde+'&dphasta='+date_hasta+'&cbtipocomprobante='+tipocomprobante+'&txtbuscar='+ruc+'&txtserie='+serie+'&txtnumero='+numero+'&cbsucursal='+idsucur+'&tipodoc='+tipodoc, "_blank");
+//        }
+//        
+//          
+//        
+//    });
+    e.preventDefault();
+});
+$(document).on('click','#exceldocumentventadetallado', function (e){
+   var url = $(this).attr('url');
+   var desde = $('#dpdesde').val();
+   var hasta = $('#dphasta').val();
+   var tipocomprobante = $('#cbtipocomprobante').val();
+   var ruc = $('#txtbuscar').val();
+   var serie = $('#txtserie').val();
+   var numero = $('#txtnumero').val();
+   var idsucur = $('#cbsucursal').val();
+   var moneda = $('#cbmoneda').val();
+   var Dated = desde;
+    var date_desde = moment(Dated, "DD/MM/YYYY").format("YYYY-MM-DD");
+   var Dateh = hasta;
+    var date_hasta = moment(Dateh, "DD/MM/YYYY").format("YYYY-MM-DD");
+    console.log(date_desde);
+    console.log(date_hasta);
+//   var d = new Date(desde);
+//   console.log(desde);
+//    var desdef = $.datepicker.formatDate('yy-mm-dd', d);
+//    console.log(hasta);
+//   var h = new Date(hasta);
+//    var hastaf = $.datepicker.formatDate('yy-mm-dd', h);
+//    console.log(desdef);
+//    console.log(hastaf);
+//    $.ajax({
+//        type: 'POST',
+//        url: url,
+//        data: {dpdesde:desde,dphasta:hasta,cbtipocomprobante:tipocomprobante,txtbuscar:ruc,txtserie:serie,txtnumero:numero,cbsucursal:idsucur},
+//        success: function (data) {
+            
+            window.open(url+'&dpdesde='+date_desde+'&dphasta='+date_hasta+'&cbtipocomprobante='+tipocomprobante+'&txtbuscar='+ruc+'&txtserie='+serie+'&txtnumero='+numero+'&cbsucursal='+idsucur+'&cbmoneda='+moneda, "_blank");
 //        }
 //        
 //        

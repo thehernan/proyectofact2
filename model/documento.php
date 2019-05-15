@@ -426,7 +426,7 @@ class documento {
         return $documentos;
     }
 
-    function select($desde, $hasta, $tipocomp, $buscar, $serie, $numero, $idsucur) {
+    function select($desde, $hasta, $tipocomp,$tipodoc, $buscar, $serie, $numero, $idsucur) {
 
 
         $fecha = '';
@@ -435,6 +435,9 @@ class documento {
         }
         if (!empty($tipocomp)) {
             $tipocomp = 'tipo= "' . $tipocomp . '" and ';
+        }
+        if (!empty($tipodoc)) {
+            $tipodoc = 'tipo_doc= "' . $tipodoc . '" and ';
         }
         if (!empty($buscar)) {
             $buscar = 'concat(ruc,razonsocial) like concat("%","' . $buscar . '","%") and ';
@@ -456,7 +459,7 @@ class documento {
         $data_source = new DataSource();
 
         $data_tabla = $data_source->ejecutarconsulta('SELECT doc.*,sum(det.total) as totaldoc FROM `documento` as doc inner join detalle as det on det.id_documento=doc.id
-  where ' . $fecha . $tipocomp . $buscar . $serie . $numero . $idsucur . ' GROUP BY id_documento order by id_documento desc;');
+  where ' . $fecha . $tipocomp . $tipodoc. $buscar . $serie . $numero . $idsucur . ' GROUP BY id_documento order by id_documento desc;');
 
 
         $documentos = array();
@@ -496,6 +499,73 @@ class documento {
             array_push($documentos, $documento);
         }
         return $documentos;
+    }
+    function selectdetallado($desde, $hasta, $tipocomp,$tipodoc, $buscar, $serie, $numero, $moneda, $idsucur) {
+
+
+        $fecha = '';
+        if (!empty($desde) && !empty($hasta)) {
+            $fecha = 'fechaemision between "' . $desde . '" and "' . $hasta . '" and ';
+        }
+        if (!empty($tipocomp)) {
+            $tipocomp = 'tipo= "' . $tipocomp . '" and ';
+        }
+        if (!empty($moneda)) {
+            $moneda = 'moneda= "' . $moneda . '" and ';
+        }
+        if (!empty($tipodoc)) {
+            $tipodoc = 'tipo_doc= "' . $tipodoc . '" and ';
+        }
+        if (!empty($buscar)) {
+            $buscar = 'concat(ruc,razonsocial) like concat("%","' . $buscar . '","%") and ';
+        }
+        if (!empty($serie)) {
+            $serie = 'serie= "' . $serie . '" and ';
+        }
+        if (!empty($numero)) {
+            $numero = 'numero= "' . $numero . '" and ';
+        }
+        if (!empty($idsucur)) {
+            $idsucur = 'doc.id_sucursal= ' . $idsucur;
+        }
+
+
+//        echo 'select * from documento  where '.$fecha.$tipocomp.$buscar.$serie.$numero.$idsucur.' order by id desc;';
+
+
+        $data_source = new DataSource();
+
+        $data_tabla = $data_source->ejecutarconsulta('select doc.tipo,concat(doc.serie," - ",doc.numero) as serien,doc.fechaemision,doc.razonsocial,u.nombre,doc.tipo_pago,
+        det.descripcionprod,doc.moneda, (det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap) as total,
+        case WHEN doc.incigv = 1 THEN  (det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap)  else  
+        (((det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap))- 
+        (det.montobaseexpo+det.montobaseexonarado+det.montobaseinafecto))+((((det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap))- 
+        (det.montobaseexpo+det.montobaseexonarado+det.montobaseinafecto)) - ((((det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap))- 
+        (det.montobaseexpo+det.montobaseexonarado+det.montobaseinafecto))/ 1.18)) end as total2, case when doc.incigv = 1 THEN "Si" else "No" end as incluyeigv,
+        ti.descripcion
+         from documento as doc INNER JOIN detalle 
+        as det on doc.id = det.id_documento INNER JOIN tipo_impuesto as ti on ti.id= det.id_impuesto INNER JOIN usuario as u on u.id = doc.id_usuario
+        where ' . $fecha . $tipocomp . $tipodoc. $buscar . $serie . $numero .$moneda. $idsucur . ' order by id_documento desc;');
+
+
+        $detallado = array();
+        foreach ($data_tabla as $clave => $valor) {
+            $documento = array(
+                "tipo"=>$data_tabla[$clave]["tipo"],
+                "serien"=>$data_tabla[$clave]["serien"],
+                "fechaemision"=>$data_tabla[$clave]["fechaemision"],
+                "razonsocial"=>$data_tabla[$clave]["razonsocial"],
+                "vendedor"=>$data_tabla[$clave]["nombre"],
+                "tipo_pago"=>$data_tabla[$clave]["tipo_pago"],
+                "descripcionprod"=>$data_tabla[$clave]["descripcionprod"],
+                "moneda"=>$data_tabla[$clave]["moneda"],
+                "total"=>$data_tabla[$clave]["total2"],
+                "incigv"=>$data_tabla[$clave]["incluyeigv"],
+                "impuesto"=>$data_tabla[$clave]["descripcion"]);
+            
+                array_push($detallado, $documento); 
+        }
+        return $detallado;
     }
 
     function insert(documento $documento) {
@@ -660,5 +730,7 @@ class documento {
 
         return $data_source->ejecutarActualizacion("update documento set estadolocal='Anulado', motivoanulacion=? where id = ?", array($motivo, $id));
     }
+    
+   
 
 }

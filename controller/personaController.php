@@ -383,6 +383,65 @@ class personaController {
         
     }
     
+    function updatedefault(){
+        if(isset($_POST['id']) and isset($_POST['tipo'])){
+            $id= $_POST['id'];
+            $tipo = $_POST['tipo'];
+            echo $this->persona->updatedefault($id,$tipo);
+            
+        }
+        
+    }
+    
+    function listarcliente(){
+        $persons = array();
+        if(isset($_POST['tipo'])){
+            $tipo = $_POST['tipo'];
+            
+            
+        
+      
+        $personas= $this->persona->select($tipo);
+        
+         $url = 'persona/crearclient';
+        $urlup = 'persona/cargarclient';
+        $urldel = base_url . 'persona/deleteclient';
+        foreach ($personas as $persona){
+            
+            if($persona->getBydefault() == 1){
+                $check = 'checked';
+            }else{
+                $check = '';
+            }
+            
+            
+            
+            
+            
+            $bydefault = '<div class="switch" style="text-align: center;"><label><input type="checkbox" '.$check.' id="ckbydefaultcliente" name="ckbydefaultcliente" value="'.$persona->getId().'"><span class="lever"></span></label> </div>';
+            $acciones = '<a href="' . base_url . $urlup . '&id=' . $persona->getId() . '" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'
+                        . ' <button  type="button" class="btn btn-danger" onclick=eliminar(' . $persona->getId() . ',"' . $urldel . '","delete")><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>';
+            
+            
+            $array = [
+            "tipodoc" => $persona->getTipodocumento(),
+            "ndocumento" => $persona->getRuc(),
+            "nombre" => $persona->getNombre(),
+            "direccion" => $persona->getDireccion(),
+            "email" => $persona->getEmail(),
+            "telefono"=> "<a href= tel:".$persona->getCel1().">".$persona->getCel1()."</a>",    
+            "bydefault" => $bydefault,
+            "acciones" => $acciones
+        ];
+        array_push($persons, $array);
+            
+        }
+        }
+        echo '{"data":'.json_encode($persons).'}';  // send data as json format
+        
+        
+    }
+    
     
     
     }

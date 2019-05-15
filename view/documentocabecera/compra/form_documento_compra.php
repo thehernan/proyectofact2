@@ -180,7 +180,7 @@
                                 <div class="form-group form-float">
                                     <label class="form-label text-danger">RUC/DNI</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" id="txtrucbuscar" name="txtrucbuscar" value="" required="" onkeyup="consultarucDoc('<?= base_url.'persona/buscar' ?>');">
+                                        <input type="text" class="form-control" id="txtrucbuscar" name="txtrucbuscar" value="<?= (isset($personabydefault)) ? $personabydefault->getRuc()  : $documento->getRuc()  ?>" required="" onkeyup="consultarucDoc('<?= base_url.'persona/buscar' ?>');">
                                         
                                     </div>
                                 </div>
@@ -191,7 +191,7 @@
                                 <div class="form-group form-float">
                                     <label class="form-label text-danger">Razón Social / Nombre </label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="" required="">
+                                        <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="<?= (isset($personabydefault)) ? $personabydefault->getNombre()  : $documento->getRazonsocial() ?>" required="">
                                         
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Dirección </label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" id="txtdireccion" name="txtdireccion" value="" >
+                                        <input type="text" class="form-control" id="txtdireccion" name="txtdireccion" value="<?= (isset($personabydefault)) ? $personabydefault->getDireccion()  : $documento->getDireccion() ?>" >
                                         
                                     </div>
                                 </div>
@@ -210,7 +210,7 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Email</label>
                                     <div class="form-line">
-                                        <input type="email" class="form-control" id="txtemail" name="txtemail" value="">
+                                        <input type="email" class="form-control" id="txtemail" name="txtemail" value="<?= (isset($personabydefault)) ? $personabydefault->getEmail()  : $documento->getEmail() ?>">
                                         
                                     </div>
                                 </div>
