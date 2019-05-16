@@ -682,10 +682,10 @@ class documentoController {
 
 
             $id = $_GET['id'];
-
+            $idsucur = $_SESSION['idsucursal'];
             $detallesmod = new Detalle();
             $seriedet = new serieDetalle();
-            $documentossuc = $this->docsucursal->select();
+            $documentossuc = $this->docsucursal->selectAll($idsucur,'nota_debito');
             $transactions = $this->sunattrans->selectAll();
             $usuarios = $this->usuario->selectAll();
             $impuestos = $this->impuesto->selectAll();
@@ -801,10 +801,10 @@ class documentoController {
 
 
             $id = $_GET['id'];
-
+            $idsucur = $_SESSION['idsucursal'];
             $detallesmod = new Detalle();
             $seriedet = new serieDetalle();
-            $documentossuc = $this->docsucursal->select();
+            $documentossuc = $this->docsucursal->selectAll($idsucur,'nota_credito');
             $transactions = $this->sunattrans->selectAll();
             $usuarios = $this->usuario->selectAll();
             $impuestos = $this->impuesto->selectAll();

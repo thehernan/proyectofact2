@@ -46,7 +46,7 @@
                                                 <?php
                                                 foreach ($documentossuc as $docsucur) {
 
-                                                    echo '<option value="' . $docsucur->getSerie() . '">' . $docsucur->getTipodoc() . '-' . $docsucur->getSerie() . '</option>';
+                                                    echo '<option value="' . $docsucur->getSerie() . '">' . $docsucur->getSerie() . '</option>';
                                                 }
                                                 ?>
 
