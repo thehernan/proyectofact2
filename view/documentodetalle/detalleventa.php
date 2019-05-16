@@ -678,7 +678,7 @@ $total = 0;
             body.setAttribute('id', 'body' + cont);
             
              ///////////////////// AQUI AGREGO LAS SERIES ///////////////
-                            <?php
+           <?php
             
             foreach ($seriedet->select($detalle->getId()) as $serie){ ?>
                     

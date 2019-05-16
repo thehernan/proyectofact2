@@ -572,7 +572,7 @@ class documentoController {
                                 echo '<td>'.$detalle['vendedor'].'</td>';
                                 echo '<td>'.$detalle['tipo_pago'].'</td>';
                                 echo '<td>'.$detalle['descripcionprod'].'</td>';
-                                echo '<td>'.$detalle['total'].'</td>';
+                                echo '<td>'.number_format($detalle['total'],2).'</td>';
                                 echo '<td>'.$detalle['incigv'].'</td>';
                                 echo '<td>'.$detalle['impuesto'].'</td>';
 
@@ -684,7 +684,7 @@ class documentoController {
             $id = $_GET['id'];
 
             $detallesmod = new Detalle();
-
+            $seriedet = new serieDetalle();
             $documentossuc = $this->docsucursal->select();
             $transactions = $this->sunattrans->selectAll();
             $usuarios = $this->usuario->selectAll();
@@ -703,6 +703,42 @@ class documentoController {
             $titulo = "Emitir nota de débito electrónica";
             
             require_once 'view/documentocabecera/nota/form_documento_note.php';
+
+
+            require_once 'view/layout/footer.php';
+        } else {
+
+       
+            require_once 'view/error.php';
+
+
+            require_once 'view/layout/footer.php';
+        }
+    }
+    function loadcompra() {
+//        var_dump($_GET);
+        require_once 'view/layout/header.php';
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+
+
+            $id = $_GET['id'];
+
+            $seriedet = new serieDetalle();
+            $transactions = $this->sunattrans->selectAll();
+            $usuarios = $this->usuario->selectAll();
+            $impuestos = $this->impuesto->selectAll();
+            $unidades = $this->unidad->selectAll();
+            
+            $tipocambio = new tipocambio();
+            $cambio = $tipocambio->selectMax();
+            $tipo = 'Compra';
+            $detallem = new Detalle();
+            $detalles = $detallem->selectOneDoc($id);
+        
+            $documento = $this->documento->selectOne($id);
+           
+ 
+            require_once 'view/documentocabecera/compra/form_documento_compra.php';
 
 
             require_once 'view/layout/footer.php';
@@ -767,7 +803,7 @@ class documentoController {
             $id = $_GET['id'];
 
             $detallesmod = new Detalle();
-
+            $seriedet = new serieDetalle();
             $documentossuc = $this->docsucursal->select();
             $transactions = $this->sunattrans->selectAll();
             $usuarios = $this->usuario->selectAll();

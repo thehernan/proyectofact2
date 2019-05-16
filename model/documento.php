@@ -536,7 +536,7 @@ class documento {
         $data_source = new DataSource();
 
         $data_tabla = $data_source->ejecutarconsulta('select doc.tipo,concat(doc.serie," - ",doc.numero) as serien,doc.fechaemision,doc.razonsocial,u.nombre,doc.tipo_pago,
-        det.descripcionprod,doc.moneda, (det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap) as total,
+        CONCAT(det.descripcionprod," (",det.cantidad," x ",det.precio,")") as descripcionprod,doc.moneda, (det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap) as total,
         case WHEN doc.incigv = 1 THEN  (det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap)  else  
         (((det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap))- 
         (det.montobaseexpo+det.montobaseexonarado+det.montobaseinafecto))+((((det.cantidad*det.precio) - (det.montobasegratuito + det.montobaseivap))- 

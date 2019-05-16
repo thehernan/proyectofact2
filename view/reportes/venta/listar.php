@@ -259,7 +259,7 @@
                                             echo '<td>'.$detalle['vendedor'].'</td>';
                                             echo '<td>'.$detalle['tipo_pago'].'</td>';
                                             echo '<td>'.$detalle['descripcionprod'].'</td>';
-                                            echo '<td>'.$detalle['total'].'</td>';
+                                            echo '<td>'.number_format($detalle['total'],2).'</td>';
                                             echo '<td>'.$detalle['incigv'].'</td>';
                                             echo '<td>'.$detalle['impuesto'].'</td>';
                                             

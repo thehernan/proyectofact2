@@ -259,7 +259,7 @@
                                             echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
                                             
                                             echo '<td><div class="demo-google-material-icon"> '
-                                            . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="COMPRAR"><i class="material-icons">shopping_basket</i></a>';
+                                            . '<a href="'.base_url.'documento/loadcompra&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="COMPRAR"><i class="material-icons">shopping_basket</i></a>';
                                            
                                             echo '<a  href="" data-toggle="tooltip" data-placement="top"  title="EDITAR"><i class="material-icons">create</i></a></div></td>';
                                             echo '</tr>';
