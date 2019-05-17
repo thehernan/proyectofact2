@@ -1373,45 +1373,8 @@ $(document).on('submit','#FormularioAjaxDocumento',function (e) {
 //                return xhr;
 //            },
             success: function (data) {
-                $('#respuestaAjax').html('');
+                $('#RespuestaAjax').html(data);
                 console.log(data);
-                    if(data > 0){
-                        
-                        var nro = $('#txtnro').val();
-                        $('#FormularioAjaxDocumento').trigger("reset");
-                        
-                        
-                         
-                           if(nro != '' || !isNaN(nro)){
-                               $('#txtnro').val(parseInt(nro.trim()) + 1);
-                           }
-                        VentanaCentrada(urlprint+'&id='+data,'Ticket','','','','false');
-                       swal("Éxitosamente!", "Operación realizada correctamente.", "success");
-                        
-                       
-                       
-                           
-                           
-                       
-                           $('#tabla').empty();
-                           
-                           
-                           $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
-                           $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
-                           $('#lbltotal').html('<strong>TOTAL: </strong>    S/ 0.00');
-                           
-                           
-                        
-                       
-//                    $('#respuestaAjax').html(data);  
-                        
-                    } else if(data.trim() == 'duplicado'){
-                        swal('No se realizo registro', 'El documento ya se encuentra emitido', 'error');
-                        console.log(data);
-                    }else {
-                        swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
-                        console.log(data);
-                    }
                    
             },
             error: function () {

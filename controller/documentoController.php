@@ -404,7 +404,7 @@ class documentoController {
                     echo '<td><a  href="'.base_url.'documento/imprimir&id='.$documento->getId().'" target="_blank" data-toggle="tooltip" data-placement="top" title="PDF" style="background: none;"> <i class="material-icons">picture_as_pdf</i></a><button type ="text" style="border:none;background: none;" data-toggle="tooltip" data-placement="top" title="TICKET" onclick ="VentanaCentrada('."'".base_url.'documento/printticket&id='.$documento->getId()."'".','."'".'Ticket'."'".','."''".','."''".','."''".','."'false'".');">  <i class="material-icons">confirmation_number</i> </button> </td>';
                                             
                     echo '<td><div class="demo-google-material-icon"> '
-                    . '<a href="'.base_url.'documento/loaddebit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="COMPRAR"><i class="material-icons">shopping_basket</i></a>';
+                    . '<a href="'.base_url.'documento/loadcompra&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top" title="COMPRAR"><i class="material-icons">shopping_basket</i></a>';
 
                     echo '<a  href="" data-toggle="tooltip" data-placement="top"  title="EDITAR"><i class="material-icons">create</i></a></div></td>';   
                 }
@@ -902,8 +902,12 @@ class documentoController {
     function insertcompra(){
 
 //        var_dump($_POST);
-
-        if (isset($_POST['tipodoc']) && isset($_POST['txtserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion'])) {
+        $id = 0;
+        if (isset($_POST['tipodoc']) && isset($_POST['txtserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['incigv']) && 
+                isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && 
+                isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion']) &&
+                !empty($_POST['tipodoc']) && !empty($_POST['txtserie']) && !empty($_POST['txtnro']) && !empty($_POST['cbmoneda']) && !empty($_POST['dpfechaemision']) && !empty($_POST['dpfechavencimiento']) 
+                && !empty($_POST['txttipocambio']) && !empty($_POST['txtrucbuscar']) && !empty($_POST['txtcliente']) && isset($_POST['id'])) {
             $serier = str_replace(PHP_EOL, ' ', $_POST['txtserie']);
             $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
             
@@ -990,7 +994,7 @@ class documentoController {
             
             
             
-            echo $id = $documento->insert($documento);
+            $id = $documento->insert($documento);
 
             $idprod = $_POST['id'];
             $codigo = $_POST['codigo'];
@@ -1244,16 +1248,60 @@ class documentoController {
             }
         }else {
             
-            echo 'duplicado';
+             ?> 
+            <script>
+               
+                 swal('No se realizo registro', 'El documento ya se encuentra emitido', 'error');
+            </script>  <?php
         }
-    }
+        
+            if($id > 0 ){
+            ?>
+            
+            <script>
+                
+                 swal("Éxitosamente!", "Operación realizada correctamente.", "success");
+                 var nro = $('#txtnro').val();
+                $('#FormularioAjaxDocumento').trigger("reset");
+               if(nro != '' || !isNaN(nro)){
+                   $('#txtnro').val(parseInt(nro.trim()) + 1);
+               }
+               $('#tabla').empty();
+               $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
+               $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
+               $('#lbltotal').html('<strong>TOTAL: </strong>    S/ 0.00');
+            </script>
+            <?php
+            
+            
+            
+        }else{
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+            </script>  <?php
+            
+        }
+    }else {
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor ingrese campos obligatorios', 'error');
+            </script>  <?php
+            
+        }
     }
 
     function insertordencompra() {
 
 //        var_dump($_POST);
 
-        if (isset($_POST['tipodoc']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtgarantia'])) {
+        if (isset($_POST['tipodoc']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision']) 
+                && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && 
+                isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtgarantia']) && !empty($_POST['txtnro']) && !empty($_POST['cbmoneda']) && !empty($_POST['dpfechaemision'])
+                && !empty($_POST['dpfechavencimiento']) && !empty($_POST['txttipocambio']) && !empty($_POST['txtgarantia']) && !empty($_POST['txtrucbuscar']) && !empty($_POST['txtcliente']) &&
+                isset($_POST['id'])) {
 //            $serier = str_replace(PHP_EOL, ' ', $_POST['txtserie']);
             $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
             
@@ -1340,7 +1388,7 @@ class documentoController {
             $documento->setValidezdias(0);
             $documento->setPlazoentregadias(0);
             $documento->setCondicionpagodias(0);
-            echo $id = $documento->insert($documento);
+            $id = $documento->insert($documento);
 
             $idprod = $_POST['id'];
             $codigo = $_POST['codigo'];
@@ -1506,8 +1554,6 @@ class documentoController {
                             );
 
 
-//                        $idup = array($idserie[$j]);
-//                        array_push($idupdate, $idup);
                             array_push($seriesd, $da);
                         }
 
@@ -1519,18 +1565,7 @@ class documentoController {
 //                    echo 'j '.$j;
                     }
                     
-                    ////////////////////////////////////////////////////
-//                    $series = array();
-//                        for ($i = 0; $i < count($serie); $i++) { ////////////// series de producto 
-//                            $d = array(
-//                                $serie[$i],
-//                                $idprodserie[$i],
-//                                1
-//                            );
-//                            array_push($series, $d);
-//                        }
-//                        $seriem = new serieProducto();
-//                        $seriem->insert($series); ////////////// insert de las series segun array input 
+
                 }
                 $seried = new serieDetalle();
                 $seried->insert($seriesd, $idupdate);
@@ -1539,27 +1574,6 @@ class documentoController {
 
 
 
-
-
-//            if (isset($_POST['serieidprod']) && isset($_POST['serieprod'])) {
-////            var_dump($_POST['serieprod']);
-//                $idprodserie = $_POST['serieidprod'];
-//                $serie = $_POST['serieprod'];
-//
-//                $series = array();
-//                for ($i = 0; $i < count($serie); $i++) {
-//                    $d = array(
-//                        $serie[$i],
-//                        $idprodserie[$i],
-//                        1
-//                    );
-//                    array_push($series, $d);
-//                }
-//                $seriem = new serieProducto();
-//                $seriem->insert($series);
-//            }
-            
-            
             
             
             if (isset($_POST['serieguia']) && isset($_POST['tipoguia'])) {
@@ -1597,20 +1611,61 @@ class documentoController {
                 $otrosm->insert($otros);
             }
         }else{
-            echo 'duplicado';
+            ?> 
+            <script>
+               
+                 swal('No se realizo registro', 'El documento ya se encuentra emitido', 'error');
+            </script>  <?php
         }
-    }
+         if($id > 0 ){
+            ?>
+            
+            <script>
+                
+                 swal("Éxitosamente!", "Operación realizada correctamente.", "success");
+                 var nro = $('#txtnro').val();
+                $('#FormularioAjaxDocumento').trigger("reset");
+               if(nro != '' || !isNaN(nro)){
+                   $('#txtnro').val(parseInt(nro.trim()) + 1);
+               }
+               $('#tabla').empty();
+               $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
+               $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
+               $('#lbltotal').html('<strong>TOTAL: </strong>    S/ 0.00');
+            </script>
+            <?php
+            
+            
+            
+        }else{
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+            </script>  <?php
+            
+        }
+    } else {
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor ingrese campos obligatorios', 'error');
+            </script>  <?php
+            
+        }
     }
     function insertcotizacion() {
 
 //        var_dump($_POST);
-
+        $id = 0;
         if ( isset($_POST['txtnro']) && isset($_POST['cbmoneda']) 
                 && isset($_POST['dpfechaemision']) && isset($_POST['txtvalidezdia'])
                 && isset($_POST['txtplazoentrega']) && isset($_POST['cbvendedor'])  
                 && isset($_POST['txtatencion']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) 
                 && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtgarantia'])
-                && isset($_POST['txtobservacion'])) {
+                && isset($_POST['txtobservacion']) && !empty($_POST['txtnro']) && !empty($_POST['cbmoneda']) && !empty($_POST['dpfechaemision']) &&
+                !empty($_POST['txtvalidezdia']) && !empty($_POST['txtplazoentrega']) && !empty($_POST['txttipocambio']) && !empty($_POST['txtgarantia']) 
+                && !empty($_POST['cbvendedor']) && !empty($_POST['txtrucbuscar']) && !empty($_POST['txtcliente']) && isset($_POST['id'])) {
             
 //            $serier = str_replace(PHP_EOL, ' ', $_POST['txtserie']);
             $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
@@ -1730,7 +1785,7 @@ class documentoController {
             $documento->setObservacion($observacion);
             $documento->setIncigv($incigv);
             
-            echo $id = $documento->insert($documento);
+            $id = $documento->insert($documento);
 
             $idprod = $_POST['id'];
             $codigo = $_POST['codigo'];
@@ -1989,21 +2044,69 @@ class documentoController {
             }
         }else {
             
-            echo 'duplicado';
+             ?> 
+            <script>
+               
+                 swal('No se realizo registro', 'El documento ya se encuentra emitido', 'error');
+            </script>  <?php
         }
+        
+        
+             if($id > 0 ){
+            ?>
+            
+            <script>
+                VentanaCentrada('<?=base_url?>documento/imprimircotizacion&id=<?= $id ?>','PDF','','','','false');
+                 swal("Éxitosamente!", "Operación realizada correctamente.", "success");
+                 var nro = $('#txtnro').val();
+                $('#FormularioAjaxDocumento').trigger("reset");
+               if(nro != '' || !isNaN(nro)){
+                   $('#txtnro').val(parseInt(nro.trim()) + 1);
+               }
+               $('#tabla').empty();
+               $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
+               $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
+               $('#lbltotal').html('<strong>TOTAL: </strong>    S/ 0.00');
+            </script>
+            <?php
+            
+            
+            
+        }else{
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+            </script>  <?php
+            
+        }
+        
     }
+        else {
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor ingrese campos obligatorios', 'error');
+            </script>  <?php
+            
+        }
+        
+ 
     }
     
     
     function insertsale() {
 
 //    var_dump($_POST);
-
+        $id = 0;
+        
         if (isset($_POST['cbserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision']) 
                 && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['cbvendedor'])
                         && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) 
                 && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion'])  && isset($_POST['cbtipopago']) && 
-                isset($_POST['txtnroop']) && isset($_POST['cbtipoventa'])) {
+                isset($_POST['txtnroop']) && isset($_POST['cbtipoventa']) && isset($_POST['tipodoc']) && !empty($_POST['tipodoc']) && !empty($_POST['cbserie']) &&
+                !empty($_POST['dpfechaemision']) && !empty($_POST['dpfechavencimiento']) && !empty($_POST['cbtipoop']) && !empty($_POST['cbvendedor']) && 
+                !empty($_POST['cbtipoventa']) && !empty($_POST['cbtipopago'])  && !empty($_POST['txtrucbuscar']) && !empty($_POST['txtcliente']) && isset($_POST['id']) )  {
             $serier = str_replace(PHP_EOL, ' ', $_POST['cbserie']);
             $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
             
@@ -2091,7 +2194,7 @@ class documentoController {
             $documento->setIncigv($incigv);
             $documento->setTipoventa($tipoventa);
 
-            echo $id = $documento->insert($documento);
+            $id = $documento->insert($documento);
 
             $idprod = $_POST['id'];
             $codigo = $_POST['codigo'];
@@ -2307,17 +2410,63 @@ class documentoController {
                 $otrosm = new documentoOtros();
                 $otrosm->insert($otros);
             }
-        }else{
-            echo 'duplicado';
+        }else{ 
+            ?> 
+            <script>
+               
+                 swal('No se realizo registro', 'El documento ya se encuentra emitido', 'error');
+            </script>  <?php
         }
+        
+        if($id > 0 ){
+            ?>
+            
+            <script>
+                VentanaCentrada('<?=base_url?>documento/printticket&id=<?= $id ?>','Ticket','','','','false');
+                 swal("Éxitosamente!", "Operación realizada correctamente.", "success");
+                 var nro = $('#txtnro').val();
+                $('#FormularioAjaxDocumento').trigger("reset");
+               if(nro != '' || !isNaN(nro)){
+                   $('#txtnro').val(parseInt(nro.trim()) + 1);
+               }
+               $('#tabla').empty();
+               $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
+               $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
+               $('#lbltotal').html('<strong>TOTAL: </strong>    S/ 0.00');
+            </script>
+            <?php
+            
+            
+            
+        }else{
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+            </script>  <?php
+            
+        }
+        }else {
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor ingrese campos obligatorios', 'error');
+            </script>  <?php
+            
         }
     }
 
     function insertnota() {
 
 //    var_dump($_POST);
-
-        if (isset($_POST['cbserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['cbtipoop']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['cbdocref']) && isset($_POST['txtserieref']) && isset($_POST['txtnumeroref']) && isset($_POST['cbidtiponota']) && isset($_POST['txtobservacion'])) {
+        $id=0;
+        if (isset($_POST['cbserie']) && isset($_POST['txtnro']) && isset($_POST['cbmoneda']) && isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) 
+                && isset($_POST['cbtipoop']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail'])
+                        && isset($_POST['cbdocref']) && isset($_POST['txtserieref']) && isset($_POST['txtnumeroref']) && isset($_POST['cbidtiponota']) 
+                && isset($_POST['txtobservacion']) && !empty($_POST['cbserie']) && !empty($_POST['txtnro']) &&
+                !empty($_POST['dpfechaemision']) && !empty($_POST['dpfechavencimiento']) && !empty($_POST['cbtipoop'])  && 
+                 !empty($_POST['txtrucbuscar']) && !empty($_POST['txtcliente']) && isset($_POST['id']) && !empty($_POST['cbdocref']) && !empty($_POST['txtserieref']) && !empty($_POST['txtnumeroref'])
+                && !empty($_POST['cbidtiponota']) && !empty($_POST['txtobservacion'])) {
 
             $serier = str_replace(PHP_EOL, ' ', $_POST['cbserie']);
             $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
@@ -2411,7 +2560,7 @@ class documentoController {
             $documento->setPlazoentregadias(0);
             $documento->setCondicionpagodias(0);
 
-            echo $id = $documento->insert($documento);
+            $id = $documento->insert($documento);
             
             $idprod = $_POST['id'];
             
@@ -2635,8 +2784,51 @@ class documentoController {
             }
         }else{
             
-            echo 'duplicado';
+             ?> 
+            <script>
+               
+                 swal('No se realizo registro', 'El documento ya se encuentra emitido', 'error');
+            </script>  <?php
         }
+        
+            if($id > 0 ){
+            ?>
+            
+            <script>
+                VentanaCentrada('<?=base_url?>documento/printticket&id=<?= $id ?>','Ticket','','','','false');
+                 swal("Éxitosamente!", "Operación realizada correctamente.", "success");
+                 var nro = $('#txtnro').val();
+                $('#FormularioAjaxDocumento').trigger("reset");
+               if(nro != '' || !isNaN(nro)){
+                   $('#txtnro').val(parseInt(nro.trim()) + 1);
+               }
+               $('#tabla').empty();
+               $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
+               $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
+               $('#lbltotal').html('<strong>TOTAL: </strong>    S/ 0.00');
+            </script>
+            <?php
+            
+            
+            
+        }else{
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+            </script>  <?php
+            
+        }
+    }else {
+        
+        ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor ingrese campos obligatorios', 'error');
+            </script>  <?php
+        
+        
+        
     }
     }
     

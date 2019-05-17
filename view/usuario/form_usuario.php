@@ -1,5 +1,6 @@
 
 <?php
+date_default_timezone_set('America/Lima');
 if ($usuario->getId() != 0) {
     $titulo = 'EDITAR USUARIO';
     $url = 'usuario/update';

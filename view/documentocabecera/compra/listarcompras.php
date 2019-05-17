@@ -1,5 +1,5 @@
 <?php 
-
+date_default_timezone_set('America/Lima');
   /** Actual month last day **/
   function _data_last_month_day() { 
       $month = date('m');

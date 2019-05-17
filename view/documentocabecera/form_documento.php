@@ -6,7 +6,7 @@
 
         <div class="block-header">
             <!--<h2>FORM EXAMPLES</h2>-->
-            <!--    <div class="RespuestaAjax"></div>-->
+                <div id="RespuestaAjax"></div>
         </div>
         <!-- Inline Layout | With Floating Label -->
         <div class="row clearfix">
