@@ -243,7 +243,7 @@ date_default_timezone_set('America/Lima');
                                             
                                             echo '<td><div class="demo-google-material-icon"> ';
                                                                                        
-                                            echo '<a  href="" data-toggle="tooltip" data-placement="top"  title="EDITAR"><i class="material-icons">create</i></a></div></td>';
+                                            echo '<a  href="'.base_url.'documento/loadcompraedit&id='.$documento->getId().'" data-toggle="tooltip" data-placement="top"  title="EDITAR"><i class="material-icons">create</i></a></div></td>';
                                               
                                             
                                             echo '</tr>';

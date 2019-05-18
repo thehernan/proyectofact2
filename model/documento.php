@@ -619,6 +619,59 @@ class documento {
         $id = $data_source->lastinsertid();
         return $id;
     }
+    function update(documento $documento) {
+
+        $data_source = new DataSource();
+      
+
+          $fila = $data_source->ejecutarActualizacion("update documento set  fechaemision=?,fechavencimiento=?,nroden=?,"
+                . "moneda=?,incigv=?,id_sunat_transaction=?,id_usuario=?,tipo_venta=?,tipo_venta_movimiento=?,tipo_venta_nop=?,"
+                . "sujetoa=?,id_persona=?,ruc=?,razonsocial=?,direccion=?,email=?,estadosunat=?,estadolocal=?,total=?,id_sucursal=?,tipo_cambio=?,documento_ref=?,serie_ref=?,numero_ref=?,id_tiponota=?,observacion=?,garantia=?,condicionpago=?,"
+                . "validezdias=?,plazoentregadias=?,condicionpagodias=?,atencion=?,tipo_pago=?,nroop_tipopago=? where id=?;", array(
+//            $documento->getSerie(),
+//            $documento->getNumero(),
+            $documento->getFechaemision(),
+            $documento->getFechavencimiento(),
+            $documento->getNorden(),
+            $documento->getMoneda(),
+            $documento->getIncigv(),
+            $documento->getIdsunattransaction(),
+            $documento->getIdusuario(),
+            $documento->getTipoventa(),
+            $documento->getTipoventamov(),
+            $documento->getTipoventaop(),
+            $documento->getSujetoa(),
+            $documento->getIdpersona(),
+            $documento->getRuc(),
+            $documento->getRazonsocial(),
+            $documento->getDireccion(),
+            $documento->getEmail(),
+            $documento->getEstadosunat(),
+            $documento->getEstadolocal(),
+            $documento->getTotal(),
+//            $documento->getTipo(),
+            $documento->getIdsucursal(),
+//            $documento->getTipodoc(),
+            $documento->getTipocambio(),
+            $documento->getDocref(),
+            $documento->getSerieref(),
+            $documento->getNumeroref(),
+            $documento->getIdtiponota(),
+            $documento->getObservacion(),
+            $documento->getGarantia(),
+            $documento->getCondicionpago(),
+            $documento->getValidezdias(),
+            $documento->getPlazoentregadias(),
+            $documento->getCondicionpagodias(),
+            $documento->getAtencion(),
+            $documento->getTipopago(),
+            $documento->getNrooptipopago(),
+            $documento->getId()
+                    
+        ));
+       
+        return $fila;
+    }
 
     function selectOne($id) {
 
@@ -669,6 +722,7 @@ class documento {
             $documento->setTipopago($data_tabla[$clave]["tipo_pago"]);
             $documento->setNrooptipopago($data_tabla[$clave]["nroop_tipopago"]);
             $documento->setMotivoanulacion($data_tabla[$clave]["motivoanulacion"]);
+            $documento->setTipocambio($data_tabla[$clave]["tipo_cambio"]);
         }
         return $documento;
     }

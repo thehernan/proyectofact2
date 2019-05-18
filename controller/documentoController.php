@@ -751,6 +751,40 @@ class documentoController {
             require_once 'view/layout/footer.php';
         }
     }
+    function loadcompraedit() {
+//        var_dump($_GET);
+        require_once 'view/layout/header.php';
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+
+
+            $id = $_GET['id'];
+
+            $seriedet = new serieDetalle();
+            $transactions = $this->sunattrans->selectAll();
+            $usuarios = $this->usuario->selectAll();
+            $impuestos = $this->impuesto->selectAll();
+            $unidades = $this->unidad->selectAll();
+           
+          
+            $detallem = new Detalle();
+            $detalles = $detallem->selectOneDoc($id);
+        
+            $documento = $this->documento->selectOne($id);
+           
+ 
+            require_once 'view/documentocabecera/compra/form_documento_compra_editar.php';
+
+
+            require_once 'view/layout/footer.php';
+        } else {
+
+       
+            require_once 'view/error.php';
+
+
+            require_once 'view/layout/footer.php';
+        }
+    }
     function loadcotizacion() {
 //        var_dump($_GET);
         
@@ -822,6 +856,43 @@ class documentoController {
             $titulo = "Emitir nota de crédito electrónica";
            
             require_once 'view/documentocabecera/nota/form_documento_note.php';
+
+
+            require_once 'view/layout/footer.php';
+        } else {
+
+            
+            require_once 'view/error.php';
+
+
+            require_once 'view/layout/footer.php';
+        }
+    }
+    function loadorden() {
+//        var_dump($_GET);
+        require_once 'view/layout/header.php';
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+
+
+            $id = $_GET['id'];
+//            $idsucur = $_SESSION['idsucursal'];
+            $detallesmod = new Detalle();
+            $seriedet = new serieDetalle();
+            $transactions = $this->sunattrans->selectAll();
+            $usuarios = $this->usuario->selectAll();
+            $impuestos = $this->impuesto->selectAll();
+            $unidades = $this->unidad->selectAll();
+
+
+            ///////////// carga el documento deseado (cabecera )///////////
+            $documento = $this->documento->selectOne($id);
+            // carga detalle del domento ///////
+            $detalles = $detallesmod->selectOneDoc($id);
+
+//            $tipo = 'nota_credito';
+//            $titulo = "Emitir nota de crédito electrónica";
+           
+            require_once 'view/documentocabecera/ordencompra/form_documento_ordcompra_edit.php';
 
 
             require_once 'view/layout/footer.php';
@@ -1261,11 +1332,9 @@ class documentoController {
             <script>
                 
                  swal("Éxitosamente!", "Operación realizada correctamente.", "success");
-                 var nro = $('#txtnro').val();
+                
                 $('#FormularioAjaxDocumento').trigger("reset");
-               if(nro != '' || !isNaN(nro)){
-                   $('#txtnro').val(parseInt(nro.trim()) + 1);
-               }
+               
                $('#tabla').empty();
                $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
                $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
@@ -1283,6 +1352,381 @@ class documentoController {
             </script>  <?php
             
         }
+    }else {
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor ingrese campos obligatorios', 'error');
+            </script>  <?php
+            
+        }
+    }
+    function updatecompra(){
+
+//        var_dump($_POST);
+       
+        if ( isset($_POST['cbmoneda']) && isset($_POST['incigv']) && 
+                isset($_POST['dpfechaemision']) && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && 
+                isset($_POST['txtcliente']) && isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtordenc']) && isset($_POST['txtobservacion']) &&
+                !empty($_POST['cbmoneda']) && !empty($_POST['dpfechaemision']) && !empty($_POST['dpfechavencimiento']) 
+                && !empty($_POST['txttipocambio']) && !empty($_POST['txtrucbuscar']) && !empty($_POST['txtcliente']) && isset($_POST['id'])
+                && isset($_POST['iddoc']) && !empty($_POST['iddoc']) && !is_nan($_POST['iddoc'])) {
+//            $serier = str_replace(PHP_EOL, ' ', $_POST['txtserie']);
+//            $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
+//            
+//            $serie = ltrim($serier,'0');
+//            $numero = (int)($numeror);
+            $id = $_POST['iddoc'];
+//        if($this->documento->duplicado($serie, $numero,'Compra') == 'valido'){
+            $emision = trim($_POST['dpfechaemision']);
+
+            $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
+            $emisionf = $dateemis->format('Y-m-d');
+
+
+            $vencimiento = trim($_POST['dpfechavencimiento']);
+            $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);
+            $vencimientof = $dateven->format('Y-m-d');
+            
+            if(isset($_POST['incigv'])){
+                $incigv = 1;
+            }else {
+                $incigv = 0;
+            }
+            
+            if(!empty($_POST['cbsujetoa'])){
+                $sujetoa = $_POST['cbsujetoa'];
+                
+            }else {
+                $sujetoa = 0;
+            }
+
+
+            $documento = new documento();
+
+
+//            $serie = $_POST['txtserie'];
+//            $numero = $_POST['txtnro'];
+            $moneda = $_POST['cbmoneda'];
+            $fechaemision = $emisionf;
+            $fechavencimiento = $vencimientof;
+//            $tipodoc = $_POST['tipodoc'];
+            
+           
+            $idpersona = $_POST['idcliente'];
+             if(empty($idpersona)){
+                $idpersona = 0;
+            }
+            
+            $idusuario = $_SESSION['id'];
+            $ruc = $_POST['txtrucbuscar'];
+            $razonsocial = $_POST['txtcliente'];
+            $direccion = $_POST['txtdireccion'];
+            $email = $_POST['txtemail'];
+            $norden = $_POST['txtordenc'];
+            $observacion = $_POST['txtobservacion'];
+            $idsucursal = $_SESSION['idsucursal'];
+            $tipocambio = $_POST['txttipocambio'];
+
+            $documento->setId($id);
+//            $documento->setSerie($serie);
+//            $documento->setNumero($numero);
+            $documento->setMoneda($moneda);
+            $documento->setFechaemision($fechaemision);
+            $documento->setFechavencimiento($fechavencimiento);
+//            $documento->setTipodoc('Compra');
+            $documento->setIdusuario($idusuario);
+            $documento->setIdpersona($idpersona);
+            $documento->setRuc($ruc);
+            $documento->setRazonsocial($razonsocial);
+            $documento->setDireccion($direccion);
+            $documento->setEmail($email);
+            $documento->setNorden($norden);
+            $documento->setObservacion($observacion);
+            $documento->setIdsucursal($idsucursal);
+            $documento->setTipocambio($tipocambio);
+//            $documento->setTipo($tipodoc);
+            $documento->setSujetoa($sujetoa);
+            $documento->setIncigv($incigv);
+            $documento->setGarantia(0);
+            $documento->setValidezdias(0);
+            $documento->setPlazoentregadias(0);
+            $documento->setCondicionpagodias(0);
+            
+            $documento->update($documento);
+
+            $idprod = $_POST['id'];
+            $codigo = $_POST['codigo'];
+            $descripcion = $_POST['descripcionprod'];
+            $unidad = $_POST['unidad'];
+            $tipoigv = $_POST['tipoigv'];
+            $cantidad = $_POST['cantidad'];
+            $precio = $_POST['precio'];
+            $subtotal = $_POST['subtotal'];
+            $total = $_POST['total'];
+            
+            $igvprod = $_POST['igvprod'];
+            $valorunitref = $_POST['valorunitref'];
+            $montobaseigv = $_POST['montobaseigv'];
+            $montobaseexpo = $_POST['montobaseexpo'];
+            $montobaseexonerado = $_POST['montobaseexonerado'];
+            $montobaseinafecto = $_POST['montobaseinafecto'];
+            $montobasegratuito = $_POST['montobasegratuito'];
+            $montobaseivap = $_POST['montobaseivap'];
+            $montobaseotrostributos = $_POST['montobaseotrostributos'];
+            $tributoventagratuita = $_POST['tributoventagratuita'];
+            $otrostributos = $_POST['otrostributos'];
+            $porcentajeigv = $_POST['porcentajeigv'];
+            $porcentajeotrostributos = $_POST['porcentajeotrostributos'];
+            $porcentajetributoventagratuita = $_POST['porcentajetributoventagratuita'];
+            $montooriginal = $_POST['montooriginal'];
+            $monedaoriginal = $_POST['monedaoriginal'];
+            $incluye = $_POST['incluye'];
+
+            $detalles = array();
+            $produpdate = array();  //////////// array de productos actualizar stock
+            for ($i = 0; $i < count($codigo); $i++) {
+               $idpro = $idprod[$i];
+                $igvp = $igvprod[$i];
+                $valorunitr = $valorunitref[$i];
+                $montobaseig = $montobaseigv[$i];
+                $montobaseexp = $montobaseexpo[$i];
+                $montobaseexon = $montobaseexonerado[$i];
+                $montobaseinaf = $montobaseinafecto[$i];
+                $montobasegratu = $montobasegratuito[$i];
+                $montobaseiv = $montobaseivap[$i];
+                $montobaseotrostrib = $montobaseotrostributos[$i];
+                $tributoventagrat = $tributoventagratuita[$i];
+                $otrostrib = $otrostributos[$i];
+                $porceigv = $porcentajeigv[$i];
+                $porcotrostrib = $porcentajeotrostributos[$i];
+                $porcentajetribventgrat = $porcentajetributoventagratuita[$i];
+                $montoorig = $montooriginal[$i];
+                if(empty($idprod[$i])){
+                    $idpro = 0;
+                }
+                if(empty($igvprod[$i])){
+                    $igvp = 0;
+                }
+                if(empty($valorunitref[$i])){
+                    $valorunitr = 0;
+                }
+                if(empty($montobaseigv[$i])){
+                    $montobaseig = 0;
+                }
+                if(empty($montobaseexpo[$i])){
+                    $montobaseexp = 0;
+                }
+                if(empty($montobaseexonerado[$i])){
+                    $montobaseexon = 0;
+                }
+                if(empty($montobaseinafecto[$i])){
+                    $montobaseinaf = 0;
+                }
+                if(empty($montobasegratuito[$i])){
+                    $montobasegratu = 0;
+                }
+                if(empty($montobaseivap[$i])){
+                    $montobaseiv = 0;
+                }
+                if(empty($montobaseotrostributos[$i])){
+                    $montobaseotrostrib = 0;
+                }
+                if(empty($tributoventagratuita[$i])){
+                    $tributoventagrat = 0;
+                }
+                if(empty($otrostributos[$i])){
+                    $otrostrib = 0;
+                }
+                if(empty($porcentajeigv[$i])){
+                    $porceigv = 0;
+                }
+                if(empty($porcentajeotrostributos[$i])){
+                    $porcotrostrib = 0;
+                }
+                if(empty($porcentajetributoventagratuita[$i])){
+                    $porcentajetribventgrat = 0;
+                }
+                if(empty($montooriginal[$i])){
+                    $montoorig = 0;
+                }
+                $d = array(
+                    $idpro,
+                    $codigo[$i],
+                    $descripcion[$i],
+                    $unidad[$i],
+                    $tipoigv[$i],
+                    $cantidad[$i],
+                    $precio[$i],
+                    $subtotal[$i],
+                    $total[$i],
+                    $id,
+                    $igvp,
+                    $valorunitr,
+                    $montobaseig,
+                    $montobaseexp,
+                    $montobaseexon,
+                    $montobaseinaf,
+                    $montobasegratu,
+                    $montobaseiv,
+                    $montobaseotrostrib,
+                    $tributoventagrat,
+                    $otrostrib,
+                    $porceigv,
+                    $porcotrostrib,
+                    $porcentajetribventgrat,
+                    $montoorig,
+                    $monedaoriginal[$i],
+                    $incluye[$i]
+                );
+                array_push($detalles, $d);
+                                                                                                                                                                                                                                                                                                              
+                $produp = array(
+                    $cantidad[$i],
+                   $idpro
+                );
+                array_push($produpdate, $produp);
+            }
+
+            $detalle = new Detalle();
+            $producto = new producto();
+            $detalle->delete($id);
+            $iddetalle =$detalle->insert($detalles);
+            $producto->updatestock($produpdate);
+
+
+            if (isset($_POST['serieprod']) && isset($_POST['serieidprod'])) { //&& isset($_POST['idserie'])
+//            var_dump($_POST['idserieitem']);
+//            $idserie = $_POST['idserieitem'];
+                $idprodserie = $_POST['serieidprod'];
+                $serie = $_POST['serieprod'];
+
+                $seriesd = array();
+                $idupdate = array();
+                $cant = 0;
+                $cantini = 0;
+                for ($i = 0; $i < count($codigo); $i++) { //recorro cada unos de los item
+                    if ($incluye[$i] == 'Si') { //// pregunto si incluye serie // 
+                        $cant = $cantidad[$i]; /// recojo la cantida de series a incluir en el item
+//                    echo 'cantidad '.$cant;
+
+                        for ($j = $cantini; $j < $cant + $cantini; $j++) { //////////// series de cada item q incluir = si                           //recorro las series 
+                            $da = array(
+                                $serie[$j],
+//                            $idserie[$j],
+                                $iddetalle[$i],
+                                1
+                            );
+
+
+//                        $idup = array($idserie[$j]);
+//                        array_push($idupdate, $idup);
+                            array_push($seriesd, $da);
+                        }
+
+
+                        
+
+                        $cantini += $cant;
+//                    echo 'cant '.$cantini;
+//                    echo 'j '.$j;
+                    }
+                    
+                    ////////////////////////////////////////////////////
+                    $series = array();
+                        for ($i = 0; $i < count($serie); $i++) { ////////////// series de producto 
+                            $d = array(
+                                $serie[$i],
+                                $idprodserie[$i],
+                                1
+                            );
+                            array_push($series, $d);
+                        }
+                        $seriem = new serieProducto();
+                        $seriem->insert($series); ////////////// insert de las series segun array input 
+                }
+                $seried = new serieDetalle();
+                $seried->insert($seriesd, $idupdate);
+//            
+            }
+            
+            
+            /////////////////////////////////
+
+//            if (isset($_POST['serieidprod']) && isset($_POST['serieprod'])) {
+////            var_dump($_POST['serieprod']);
+//                $idprodserie = $_POST['serieidprod'];
+//                $serie = $_POST['serieprod'];
+//
+//                $series = array();
+//                for ($i = 0; $i < count($serie); $i++) {
+//                    $d = array(
+//                        $serie[$i],
+//                        $idprodserie[$i],
+//                        1
+//                    );
+//                    array_push($series, $d);
+//                }
+//                $seriem = new serieProducto();
+//                $seriem->insert($series);
+//            }
+            
+            ///////////////////////////
+            if (isset($_POST['serieguia']) && isset($_POST['tipoguia'])) {
+//            var_dump($_POST['serieguia']);
+                $serieguia = $_POST['serieguia'];
+                $tipoguia = $_POST['tipoguia'];
+
+                $guias = array();
+                for ($i = 0; $i < count($serieguia); $i++) {
+                    $d = array(
+                        $serieguia[$i],
+                        $tipoguia[$i],
+                        $id
+                    );
+                    array_push($guias, $d);
+                }
+                $docguias = new documentoGuia();
+                $docguias->insert($guias);
+            }
+            if (isset($_POST['nombreotros']) && isset($_POST['descripcionotros'])) {
+//            var_dump($_POST['nombreotros']);
+                $nombre = $_POST['nombreotros'];
+                $descripcion = $_POST['descripcionotros'];
+
+                $otros = array();
+                for ($i = 0; $i < count($nombre); $i++) {
+                    $d = array(
+                        $nombre[$i],
+                        $descripcion[$i],
+                        $id
+                    );
+                    array_push($otros, $d);
+                }
+                $otrosm = new documentoOtros();
+                $otrosm->insert($otros);
+            }
+
+            if($id > 0 ){
+            ?>
+            
+            <script>
+                
+                 swal("Éxitosamente!", "Operación realizada correctamente.", "success");
+              
+            </script>
+            <?php
+            
+            
+            
+            }else{
+                ?> 
+                <script>
+
+                     swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+                </script>  <?php
+
+            }
     }else {
             ?> 
             <script>
@@ -2832,6 +3276,363 @@ class documentoController {
     }
     }
     
+    function updateordencompra() {
+
+//        var_dump($_POST);
+
+        if ( isset($_POST['cbmoneda']) && isset($_POST['incigv']) && isset($_POST['dpfechaemision']) 
+                && isset($_POST['dpfechavencimiento']) && isset($_POST['txttipocambio']) && isset($_POST['txtrucbuscar']) && isset($_POST['txtcliente']) && 
+                isset($_POST['txtdireccion']) && isset($_POST['txtemail']) && isset($_POST['txtgarantia'])  && !empty($_POST['cbmoneda']) && !empty($_POST['dpfechaemision'])
+                && !empty($_POST['dpfechavencimiento']) && !empty($_POST['txttipocambio']) && !empty($_POST['txtgarantia']) && !empty($_POST['txtrucbuscar']) && !empty($_POST['txtcliente']) &&
+                isset($_POST['id']) && isset($_POST['iddoc']) && !empty($_POST['iddoc']) && !is_nan($_POST['iddoc'])) {
+//            $serier = str_replace(PHP_EOL, ' ', $_POST['txtserie']);
+//            $numeror = str_replace(PHP_EOL, ' ', $_POST['txtnro']);
+//            
+//            $serie = '';
+//            $numero = (int)($numeror);
+            $id = $_POST['iddoc'];
+            
+//        if($this->documento->duplicado($serie, $numero,'orden_compra') == 'valido'){
+            $emision = $_POST['dpfechaemision'];
+
+            $dateemis = DateTime::createFromFormat('d/m/Y', $emision);
+            $emisionf = $dateemis->format('Y-m-d');
+
+
+            $vencimiento = $_POST['dpfechavencimiento'];
+            $dateven = DateTime::createFromFormat('d/m/Y', $vencimiento);
+            $vencimientof = $dateven->format('Y-m-d');
+
+            
+            
+            
+           if(isset($_POST['incigv'])){
+                $incigv = 1;
+            }else {
+                $incigv = 0;
+            }
+            
+            if(!empty($_POST['cbsujetoa'])){
+                $sujetoa = $_POST['cbsujetoa'];
+                
+            }else {
+                $sujetoa = 0;
+            }
+            
+            $documento = new documento();
+
+
+//            $serie='orden_compra';
+//            $numero = $_POST['txtnro'];
+            $moneda = $_POST['cbmoneda'];
+            $fechaemision = $emisionf;
+            $fechavencimiento = $vencimientof;
+//            $tipodoc = $_POST['tipodoc'];
+            
+            $idpersona = $_POST['idcliente'];
+            
+             if(empty($idpersona)){
+                $idpersona = 0;
+            }
+            
+            $idusuario = $_SESSION['id'];
+            $ruc = $_POST['txtrucbuscar'];
+            $razonsocial = $_POST['txtcliente'];
+            $direccion = $_POST['txtdireccion'];
+            $email = $_POST['txtemail'];
+//        $norden=$_POST['txtordenc'];
+//        $observacion=$_POST['txtobservacion'];
+            $idsucursal = $_SESSION['idsucursal'];
+            $tipocambio = $_POST['txttipocambio'];
+            $garantia = $_POST['txtgarantia'];
+            if(empty($garantia)){
+                $garantia = 0;
+            }
+            $documento->setId($id);
+//            $documento->setSerie($serie);
+//            $documento->setNumero($numero);
+            $documento->setMoneda($moneda);
+            $documento->setFechaemision($fechaemision);
+            $documento->setFechavencimiento($fechavencimiento);
+//            $documento->setTipodoc($tipodoc);
+            $documento->setIdusuario($idusuario);
+            $documento->setIdpersona($idpersona);
+            $documento->setRuc($ruc);
+            $documento->setRazonsocial($razonsocial);
+            $documento->setDireccion($direccion);
+            $documento->setEmail($email);
+//            $documento->setNorden($norden);
+//            $documento->setObservacion($observacion);
+            $documento->setIdsucursal($idsucursal);
+            $documento->setTipocambio($tipocambio);
+//            $documento->setTipo($tipodoc);
+            $documento->setGarantia($garantia);
+            
+            $documento->setIncigv($incigv);  
+            $documento->setValidezdias(0);
+            $documento->setPlazoentregadias(0);
+            $documento->setCondicionpagodias(0);
+            $documento->update($documento);
+
+            $idprod = $_POST['id'];
+            $codigo = $_POST['codigo'];
+            $descripcion = $_POST['descripcionprod'];
+            $unidad = $_POST['unidad'];
+            $tipoigv = $_POST['tipoigv'];
+            $cantidad = $_POST['cantidad'];
+            $precio = $_POST['precio'];
+            $subtotal = $_POST['subtotal'];
+            $total = $_POST['total'];
+            
+            $igvprod = $_POST['igvprod'];
+            $valorunitref = $_POST['valorunitref'];
+            $montobaseigv = $_POST['montobaseigv'];
+            $montobaseexpo = $_POST['montobaseexpo'];
+            $montobaseexonerado = $_POST['montobaseexonerado'];
+            $montobaseinafecto = $_POST['montobaseinafecto'];
+            $montobasegratuito = $_POST['montobasegratuito'];
+            $montobaseivap = $_POST['montobaseivap'];
+            $montobaseotrostributos = $_POST['montobaseotrostributos'];
+            $tributoventagratuita = $_POST['tributoventagratuita'];
+            $otrostributos = $_POST['otrostributos'];
+            $porcentajeigv = $_POST['porcentajeigv'];
+            $porcentajeotrostributos = $_POST['porcentajeotrostributos'];
+            $porcentajetributoventagratuita = $_POST['porcentajetributoventagratuita'];
+            $montooriginal = $_POST['montooriginal'];
+            $monedaoriginal = $_POST['monedaoriginal'];
+            $incluye = $_POST['incluye'];
+
+            $detalles = array();
+//         $produpdate = array();  //////////// array de productos actualizar stock
+            for ($i = 0; $i < count($codigo); $i++) {
+
+                $idpro = $idprod[$i];
+                $igvp = $igvprod[$i];
+                $valorunitr = $valorunitref[$i];
+                $montobaseig = $montobaseigv[$i];
+                $montobaseexp = $montobaseexpo[$i];
+                $montobaseexon = $montobaseexonerado[$i];
+                $montobaseinaf = $montobaseinafecto[$i];
+                $montobasegratu = $montobasegratuito[$i];
+                $montobaseiv = $montobaseivap[$i];
+                $montobaseotrostrib = $montobaseotrostributos[$i];
+                $tributoventagrat = $tributoventagratuita[$i];
+                $otrostrib = $otrostributos[$i];
+                $porceigv = $porcentajeigv[$i];
+                $porcotrostrib = $porcentajeotrostributos[$i];
+                $porcentajetribventgrat = $porcentajetributoventagratuita[$i];
+                $montoorig = $montooriginal[$i];
+                if(empty($idprod[$i])){
+                    $idpro = 0;
+                }
+                if(empty($igvprod[$i])){
+                    $igvp = 0;
+                }
+                if(empty($valorunitref[$i])){
+                    $valorunitr = 0;
+                }
+                if(empty($montobaseigv[$i])){
+                    $montobaseig = 0;
+                }
+                if(empty($montobaseexpo[$i])){
+                    $montobaseexp = 0;
+                }
+                if(empty($montobaseexonerado[$i])){
+                    $montobaseexon = 0;
+                }
+                if(empty($montobaseinafecto[$i])){
+                    $montobaseinaf = 0;
+                }
+                if(empty($montobasegratuito[$i])){
+                    $montobasegratu = 0;
+                }
+                if(empty($montobaseivap[$i])){
+                    $montobaseiv = 0;
+                }
+                if(empty($montobaseotrostributos[$i])){
+                    $montobaseotrostrib = 0;
+                }
+                if(empty($tributoventagratuita[$i])){
+                    $tributoventagrat = 0;
+                }
+                if(empty($otrostributos[$i])){
+                    $otrostrib = 0;
+                }
+                if(empty($porcentajeigv[$i])){
+                    $porceigv = 0;
+                }
+                if(empty($porcentajeotrostributos[$i])){
+                    $porcotrostrib = 0;
+                }
+                if(empty($porcentajetributoventagratuita[$i])){
+                    $porcentajetribventgrat = 0;
+                }
+                if(empty($montooriginal[$i])){
+                    $montoorig = 0;
+                }
+                $d = array(
+                    $idpro,
+                    $codigo[$i],
+                    $descripcion[$i],
+                    $unidad[$i],
+                    $tipoigv[$i],
+                    $cantidad[$i],
+                    $precio[$i],
+                    $subtotal[$i],
+                    $total[$i],
+                    $id,
+                    $igvp,
+                    $valorunitr,
+                    $montobaseig,
+                    $montobaseexp,
+                    $montobaseexon,
+                    $montobaseinaf,
+                    $montobasegratu,
+                    $montobaseiv,
+                    $montobaseotrostrib,
+                    $tributoventagrat,
+                    $otrostrib,
+                    $porceigv,
+                    $porcotrostrib,
+                    $porcentajetribventgrat,
+                    $montoorig,
+                    $monedaoriginal[$i],
+                    $incluye[$i]
+                );
+                array_push($detalles, $d);
+
+//            $produp = array(
+//                $cantidad[$i],
+//                $idprod[$i]
+//                
+//            );
+//            array_push($produpdate, $produp);
+            }
+
+            $detalle = new Detalle();
+//        $producto = new producto();
+            $detalle->delete($id);
+            $iddetalle =$detalle->insert($detalles);
+//        $producto->updatestock($produpdate);
+
+            if (isset($_POST['serieprod']) && isset($_POST['serieidprod'])) { //&& isset($_POST['idserie'])
+//            var_dump($_POST['idserieitem']);
+//            $idserie = $_POST['idserieitem'];
+                $idprodserie = $_POST['serieidprod'];
+                $serie = $_POST['serieprod'];
+
+                $seriesd = array();
+                $idupdate = array();
+                $cant = 0;
+                $cantini = 0;
+                for ($i = 0; $i < count($codigo); $i++) { //recorro cada unos de los item
+                    if ($incluye[$i] == 'Si') { //// pregunto si incluye serie // 
+                        $cant = $cantidad[$i]; /// recojo la cantida de series a incluir en el item
+//                    echo 'cantidad '.$cant;
+
+                        for ($j = $cantini; $j < $cant + $cantini; $j++) { //////////// series de cada item q incluir = si                           //recorro las series 
+                            $da = array(
+                                $serie[$j],
+//                            $idserie[$j],
+                                $iddetalle[$i],
+                                1
+                            );
+
+
+                            array_push($seriesd, $da);
+                        }
+
+
+                        
+
+                        $cantini += $cant;
+//                    echo 'cant '.$cantini;
+//                    echo 'j '.$j;
+                    }
+                    
+
+                }
+                $seried = new serieDetalle();
+                $seried->insert($seriesd, $idupdate);
+//            
+            }
+
+
+
+            
+            
+            if (isset($_POST['serieguia']) && isset($_POST['tipoguia'])) {
+//            var_dump($_POST['serieguia']);
+                $serieguia = $_POST['serieguia'];
+                $tipoguia = $_POST['tipoguia'];
+
+                $guias = array();
+                for ($i = 0; $i < count($serieguia); $i++) {
+                    $d = array(
+                        $serieguia[$i],
+                        $tipoguia[$i],
+                        $id
+                    );
+                    array_push($guias, $d);
+                }
+                $docguias = new documentoGuia();
+                $docguias->insert($guias);
+            }
+            if (isset($_POST['nombreotros']) && isset($_POST['descripcionotros'])) {
+//            var_dump($_POST['nombreotros']);
+                $nombre = $_POST['nombreotros'];
+                $descripcion = $_POST['descripcionotros'];
+
+                $otros = array();
+                for ($i = 0; $i < count($nombre); $i++) {
+                    $d = array(
+                        $nombre[$i],
+                        $descripcion[$i],
+                        $id
+                    );
+                    array_push($otros, $d);
+                }
+                $otrosm = new documentoOtros();
+                $otrosm->insert($otros);
+            }
+       
+         if($id > 0 ){
+            ?>
+            
+            <script>
+                
+                 swal("Éxitosamente!", "Operación realizada correctamente.", "success");
+//                 var nro = $('#txtnro').val();
+////                $('#FormularioAjaxDocumento').trigger("reset");
+//               if(nro != '' || !isNaN(nro)){
+//                   $('#txtnro').val(parseInt(nro.trim()) + 1);
+//               }
+//               $('#tabla').empty();
+//               $('#lblgravada').html('<strong>GRAVADA: </strong>  S/ 0.00');
+//               $('#lbligv').html('<strong>IGV 18%: </strong>  S/ 0.00');
+//               $('#lbltotal').html('<strong>TOTAL: </strong>    S/ 0.00');
+            </script>
+            <?php
+            
+            
+            
+        }else{
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor recargue la página', 'error');
+            </script>  <?php
+            
+        }
+    } else {
+            ?> 
+            <script>
+               
+                 swal('No se realizarón cambios', 'Por favor ingrese campos obligatoriosss', 'error');
+            </script>  <?php
+            
+        }
+    }
     
     
     

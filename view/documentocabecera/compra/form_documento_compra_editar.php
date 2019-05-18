@@ -1,5 +1,14 @@
 
+<?php 
 
+    $vencimiento = trim($documento->getFechavencimiento());
+    $dateven = DateTime::createFromFormat('Y-m-d', $vencimiento);
+    $vencimientof = $dateven->format('d/m/Y');
+    $emision = trim($documento->getFechaemision());
+    $dateemi = DateTime::createFromFormat('Y-m-d', $emision);
+    $emisionf = $dateemi->format('d/m/Y');
+
+?>
 
 <section class="content">
     <div class="container-fluid">
@@ -12,35 +21,38 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header">
-                        <h1 class="text-center">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Emitir compra
+                    <div class="header bg-warning">
+                        <h3 class="text-center">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Compra (Modo edición)
                             <!--<small>Edición</small>-->
 
-                        </h1>
+                        </h3>
 
                     </div>
-                    <input id="print" type="hidden" value="<?= base_url ?>documento/printticket" >
-                    <input id="tipo" type="hidden" value="<?= $tipodoc ?>" >
+                    
                     <div class="body">
-                        <form action="<?= base_url ?>documento/insertcompra" method="POST"  id="FormularioAjaxDocumento" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
+                        <form action="<?= base_url ?>documento/updatecompra" method="POST"  id="FormularioAjaxDocumento" data-form="insert" enctype="multipart/form-data" autocomplete="off" >
                             <div class="row clearfix">
                                 <!--<form >-->
-
+                                <input type="hidden" id="iddoc" name="iddoc" value="<?= $_GET['id']; ?>">
                                 <div class="row">
 
 
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group form-float">
                                             <label class="text-danger">Tipo Doc. </label>
-                                            <select class="form-control show-tick" id="tipodoc" name="tipodoc" required="">
+                                            <select class="form-control show-tick" id="tipodoc" name="tipodoc"  disabled="">
                                                 <option value="" class="">- Documento  -</option>
                                                 <?php
                                                 $pred = array('Factura', 'Boleta', 'Guia', 'Liquidacion');
-
+                                                
                                                 for ($i = 0; $i < count($pred); $i++) {
-
-                                                    echo '<option value="' . $pred[$i] . '" >' . $pred[$i] . '</option>';
+                                                    if($documento->getTipo() == $pred[$i]){
+                                                        echo '<option value="' . $pred[$i] . '" selected >' . $pred[$i] . '</option>';
+                                                    }else{
+                                                        echo '<option value="' . $pred[$i] . '" >' . $pred[$i] . '</option>';
+                                                    }
+                                                    
                                                 }
                                                 ?>
 
@@ -52,7 +64,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">Serie</label>
                                             <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtserie" name="txtserie" value="" required="">
+                                                <input type="text" class="form-control" id="txtserie" name="txtserie" value="<?= $documento->getSerie() ?>" disabled="">
 
                                             </div>
                                         </div>
@@ -63,7 +75,7 @@
                                         <div class="form-group form-float">
                                             <label class="form-label text-danger">Nro</label>
                                             <div class="form-line focused error">
-                                                <input type="text" class="form-control" id="txtnro" name="txtnro" value="" required="">
+                                                <input type="text" class="form-control" id="txtnro" name="txtnro" value="<?= $documento->getNumero() ?>" disabled="">
 
                                             </div>
                                         </div>
@@ -117,7 +129,7 @@
                                                 <label for="dpfechaemision">Fecha Emisión</label>
                                                 <div class="form-group">
                                                     <div class="form-line error" id="bs_datepicker_container">
-                                                        <input type="text" class="form-control" placeholder="Fecha Emisión" id="dpfechaemision" name="dpfechaemision" value="<?= date('d/m/Y') ?>" required="">
+                                                        <input type="text" class="form-control" placeholder="Fecha Emisión" id="dpfechaemision" name="dpfechaemision" value="<?= $emisionf ?>" required="">
                                                     </div>
                                                 </div>
 
@@ -130,7 +142,7 @@
                                                 <label for="dpfechavencimiento">Fecha Vencimiento</label>
                                                 <div class="form-group">
                                                     <div class="form-line error" id="bs_datepicker_container">
-                                                        <input type="text" class="form-control" placeholder="Fecha Vencimiento" id="dpfechavencimiento" name="dpfechavencimiento" value="<?= date('d/m/Y') ?>" required="">
+                                                        <input type="text" class="form-control" placeholder="Fecha Vencimiento" id="dpfechavencimiento" name="dpfechavencimiento" value="<?= $vencimientof ?>" required="">
                                                     </div>
                                                 </div>
 
@@ -141,7 +153,7 @@
                                             <div class="form-group form-float">
                                                 <label class="form-label text-danger" >Tipo Cambio</label>
                                                 <div class="form-line focused error">
-                                                    <input type="text" class="form-control" id="txttipocambio" name="txttipocambio" value="<?= $cambio->getVenta(); ?>" >
+                                                    <input type="text" class="form-control" id="txttipocambio" name="txttipocambio" value="<?= $documento->getTipocambio(); ?>" >
 
                                                 </div>
                                             </div>
@@ -155,8 +167,13 @@
                                                     $pred = array('Detracción', 'Retención', 'Percepcion');
 
                                                     for ($i = 0; $i < count($pred); $i++) {
+                                                        if($documento->getSujetoa() == $pred[$i]){
+                                                            echo '<option value="' . $pred[$i] . '" selected>' . $pred[$i] . '</option>';
+                                                        }else {
+                                                            echo '<option value="' . $pred[$i] . '" >' . $pred[$i] . '</option>';
+                                                        }
 
-                                                        echo '<option value="' . $pred[$i] . '" >' . $pred[$i] . '</option>';
+                                                        
                                                     }
                                                     ?>
 
@@ -173,11 +190,11 @@
                                     <HR>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                            <input type="hidden" name="idcliente" id="idcliente" value = "<?= (isset($personabydefault)) ? $personabydefault->getId() : $documento->getIdpersona() ?>">
+                                            <input type="hidden" name="idcliente" id="idcliente" value = "<?= $documento->getIdpersona() ?>">
                                             <div class="form-group form-float">
                                                 <label class="form-label text-danger">RUC/DNI</label>
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" id="txtrucbuscar" name="txtrucbuscar" value="<?= (isset($personabydefault)) ? $personabydefault->getRuc() : $documento->getRuc() ?>" required="" onkeyup="consultarucDoc('<?= base_url . 'persona/buscar' ?>');">
+                                                    <input type="text" class="form-control" id="txtrucbuscar" name="txtrucbuscar" value="<?= $documento->getRuc() ?>" required="" onkeyup="consultarucDoc('<?= base_url . 'persona/buscar' ?>');">
 
                                                 </div>
                                             </div>
@@ -188,7 +205,7 @@
                                             <div class="form-group form-float">
                                                 <label class="form-label text-danger">Razón Social / Nombre </label>
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="<?= (isset($personabydefault)) ? $personabydefault->getNombre() : $documento->getRazonsocial() ?>" required="">
+                                                    <input type="text" class="form-control" id="txtcliente" name="txtcliente" value="<?= $documento->getRazonsocial() ?>" required="">
 
                                                 </div>
                                             </div>
@@ -198,7 +215,7 @@
                                             <div class="form-group form-float">
                                                 <label class="form-label">Dirección </label>
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" id="txtdireccion" name="txtdireccion" value="<?= (isset($personabydefault)) ? $personabydefault->getDireccion() : $documento->getDireccion() ?>" >
+                                                    <input type="text" class="form-control" id="txtdireccion" name="txtdireccion" value="<?= $documento->getDireccion() ?>" >
 
                                                 </div>
                                             </div>
@@ -207,7 +224,7 @@
                                             <div class="form-group form-float">
                                                 <label class="form-label">Email</label>
                                                 <div class="form-line">
-                                                    <input type="email" class="form-control" id="txtemail" name="txtemail" value="<?= (isset($personabydefault)) ? $personabydefault->getEmail() : $documento->getEmail() ?>">
+                                                    <input type="email" class="form-control" id="txtemail" name="txtemail" value="<?= $documento->getEmail(); ?>">
 
                                                 </div>
                                             </div>
@@ -324,7 +341,8 @@
 
 
                                         </div>
-                                        <button type="submit" class="btn btn-lg btn-success waves-effect" id="guardardocumento" name="guardardocumento">REGISTRAR COMPROBANTE</button>
+                                        <button type="submit" class="btn btn-lg btn-warning waves-effect" id="guardardocumento" name="guardardocumento">ACTUALIZAR COMPROBANTE</button>
+                                        <a href="<?= base_url?>documento/selectcompra" class="btn btn-lg btn-danger waves-effect">REGRESAR</a>
 
 
                                     </div>

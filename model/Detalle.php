@@ -364,6 +364,15 @@ class Detalle {
         return $detalles;
         
     }
+  function delete($id){
+        
+        $data_source = new DataSource();
+
+        $fila = $data_source->ejecutarActualizacion("DELETE FROM detalle where id_documento=?;",array($id));
+
+        return $fila;
+        
+    }
     
       function insert(array $detalles) {
           

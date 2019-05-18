@@ -569,3 +569,21 @@ as det on doc.id = det.id_documento INNER JOIN tipo_impuesto as ti on ti.id= det
 where doc.tipo_doc = 'Venta'
 
 
+
+User
+32432 32423 32432
+keyboard_arrow_down
+Menu
+© 2019 - 2020 VTechnology - Hernan Vilchez.
+Version: 1.0.0
+
+Fatal error: Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id_sucursal' in where clause is ambiguous in C:\xampp7-3\htdocs\facturador\config\DataSource.php:37 Stack trace: #0 C:\xampp7-3\htdocs\facturador\config\DataSource.php(37): PDOStatement->execute(Array) #1 C:\xampp7-3\htdocs\facturador\model\documento.php(548): DataSource->ejecutarconsulta('select doc.tipo...') #2 C:\xampp7-3\htdocs\facturador\controller\documentoController.php(162): documento->selectdetallado('2019-05-01', '2019-05-31', 'tipo= "Factura"...', 'tipo_doc= "Vent...', '', '', '', 'moneda= "Soles"...', 'id_sucursal= 6') #3 C:\xampp7-3\htdocs\facturador\index.php(85): documentoController->selectdetallado() #4 {main} thrown in C:\xampp7-3\htdocs\facturador\config\DataSource.php on line 37
+
+
+User
+32432 32423 32432
+keyboard_arrow_down
+Menu
+© 2019 - 2020 VTechnology - Hernan Vilchez.
+Version: 1.0.0
+array(1) { [0]=> array(11) { ["tipo"]=> string(6) "Boleta" ["serien"]=> string(7) "BF2 - 2" ["fechaemision"]=> string(10) "2019-05-14" ["razonsocial"]=> string(11) "VTECHNOLOGY" ["vendedor"]=> string(5) "32432" ["tipo_pago"]=> string(8) "Efectivo" ["descripcionprod"]=> string(8) "fe gtrvh" ["moneda"]=> string(5) "Soles" ["total"]=> string(9) "11.000000" ["incigv"]=> string(2) "Si" ["impuesto"]=> string(27) "Gravado - Operacion Onerosa" } }

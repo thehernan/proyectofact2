@@ -861,28 +861,17 @@ $total = 0;
                         ///////////////// creo colapce para incluir series ////////////////
 
                         if (incluir == 'Si') {
-    //                        var series = document.getElementById('serie'+cont);
-    //                        console.log(series);
-                            $('.cantidad' + ident).val(0);
+//                            var series = document.getElementById('serie'+cont);
+//                        console.log(series);
                             $('.incluye' + ident).val('Si');
+                            $('.cantidad' + ident).val(0);
                             $('.cantidad' + ident).attr('readonly', 'true');
                             var divpanels = document.createElement('div');
                             divpanels.setAttribute('class', 'panel panel-successs');
                             var panelheding = document.createElement('div');
-                            panelheding.setAttribute('class', 'panel-heading row');
+                            panelheding.setAttribute('class', 'panel-heading');
                             panelheding.setAttribute('role', 'tab');
                             panelheding.setAttribute('id', 'headingOne_2');
-
-
-
-    //                            var diva = document.createElement('div');
-    //                            diva.setAttribute('class', 'col-lg-3 col-md-3 col-sm-3 col-xs-6 no-gutters');
-
-                            var divselect = document.createElement('div');
-                            divselect.setAttribute('class', 'col-lg-4 col-md-4 col-sm-4 col-xs-6 no-gutters');
-
-                            var divboton = document.createElement('div');
-                            divboton.setAttribute('class', ' col-lg-1 col-md-1 col-sm-1 col-xs-4 no-gutters');
 
 
 
@@ -896,41 +885,7 @@ $total = 0;
                             a.setAttribute('aria-expanded', 'true');
                             a.setAttribute('aria-controls', 'collapseOne_2' + ident);
                             a.innerHTML = '<strong>Series de: </strong>' + ui.item.descripcion + '  ';
-
-                            ///////// cargo series del producto en el SELECT//////////
-                            var selectserie = document.createElement('select');
-
-                            selectserie.setAttribute('id', 'idserie[]');
-                            selectserie.setAttribute('name', 'idserie[]');
-                            selectserie.setAttribute('class', 'form-control  show-tick idserie' + ident);
-                            selectserie.setAttribute('ident', ident);
-                            selectserie.setAttribute('data-live-search', 'true');
-                            //            selectserie.className = 'form-control show-tick';
-                            var idprod = ui.item.id;
-                            $.ajax({
-                                type: 'POST',
-                                url: "<?= base_url ?>serieproducto/select",
-                                data: {id: idprod},
-                                success: function (data) {
-                                    console.log(data);
-                                    var datos = eval(data);
-
-                                    datos.forEach(function (data, index) {
-                                        console.log("index " + index + " | id: " + data.id + " serie: " + data.serie)
-                                        var option = document.createElement("option");
-                                        option.innerHTML = data.serie;
-                                        option.setAttribute('value', data.id);
-                                        selectserie.add(option);
-                                    });
-                                }
-
-
-
-                            });
-                            divselect.appendChild(a);
-                            divselect.appendChild(selectserie);
-                            panelheding.appendChild(divselect);
-                            ///////////////////////// FIN DEL SELECT //////////////////////////////////
+                            panelheding.appendChild(a);
 
                             var collapse = document.createElement('div');
                             collapse.setAttribute('id', 'collapseOne_2' + ident);
@@ -941,14 +896,10 @@ $total = 0;
                             var body = document.createElement('div');
                             body.setAttribute('class', 'panel-body body' + ident);
                             body.setAttribute('id', 'body' + ident);
-    //                        body.innerHTML = 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry';
-
-    //                            var labelplus = document.createElement('label');
-    //                             labelplus.setAttribute('class', 'text-info');
-    //                             labelplus.innerHTML ='Más';
+//                        body.innerHTML = 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry';
 
                             var botonmas = document.createElement('button');
-                            botonmas.setAttribute('class', ' btn btn-success waves-effect  nuevoserie' + ident);
+                            botonmas.setAttribute('class', 'btn btn-success btn-sm nuevoserie' + ident);
                             botonmas.setAttribute('id', 'nuevoserie' + ident);
                             botonmas.setAttribute('name', 'nuevoserie' + ident);
                             botonmas.setAttribute('ident', ident);
@@ -956,9 +907,7 @@ $total = 0;
                             span.setAttribute('class', 'glyphicon glyphicon-plus');
                             botonmas.appendChild(span);
 
-    //                            divboton.appendChild(labelplus);
-                            divboton.appendChild(botonmas);
-                            panelheding.appendChild(divboton);
+                            panelheding.appendChild(botonmas);
 
                             collapse.appendChild(body);
                             divpanels.appendChild(panelheding);

@@ -87,6 +87,7 @@
 
                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <div class="form-group form-float">
+                                            <label class="form-label text-danger">Moneda </label>
                                             <select class="form-control show-tick" id="cbmoneda" name="cbmoneda" required="">
 
                                                 <?php
